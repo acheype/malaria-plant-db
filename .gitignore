@@ -1,0 +1,29 @@
+# Generic files
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Netbeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Maven
+log/
+target/
