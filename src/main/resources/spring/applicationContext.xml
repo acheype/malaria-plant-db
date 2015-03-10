@@ -25,9 +25,14 @@
         <property name="packagesToScan" value="nc.ird.malariaplantdb.entities"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="showSql" value="true"/>
-                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
+                <property name="showSql" value="false"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
             </bean>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">validate</prop>
+            </props>
         </property>
     </bean>
 

@@ -9,6 +9,8 @@
     <description>Database of medicinal plants against malaria</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <jersey.version>2.13</jersey.version>
         <spring.version>4.1.1.RELEASE</spring.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
@@ -26,6 +28,7 @@
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
         <maven-failsafe-plugin.version>2.17</maven-failsafe-plugin.version>
         <hibernate4-maven-plugin.version>1.0.4</hibernate4-maven-plugin.version>
+        <guava.version>18.0</guava.version>
     </properties>
 
     <repositories>
@@ -113,7 +116,7 @@
             <version>${spring-data-jpa.version}</version>
         </dependency>
 
-        <!-- MySQL JDBC connector -->
+        <!-- Postgres JDBC connector -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -209,6 +212,14 @@
             <artifactId>jcl-over-slf4j</artifactId>
             <version>${jcloverslf4j.version}</version>
         </dependency>
+
+        <!-- Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

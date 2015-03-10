@@ -1,13 +1,11 @@
 package nc.ird.malariaplantdb.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import nc.ird.malariaplantdb.service.json.View;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -15,21 +13,21 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Author entity
- * <p>
- * For institutional and other single names, only the family name could be entered.
+ * Plant ingredient entity
  *
- * @author : acheype
+ * Represent a part of a mix referred in a publication
+ *
+ * @author acheype
  */
 @XmlRootElement
-@JsonPropertyOrder({"id", "publication", "family", "given"})
+@JsonPropertyOrder({"id", "species", "partUsed"})
 @Entity
-@Table(name = "author")
+@Table(name = "plant_ingredient")
 @Data
 @EqualsAndHashCode(of = "id")
-public class Author {
+public class PlantIngredient {
     @GenericGenerator(name = "table-hilo-generator", strategy = "org.hibernate.id.TableHiLoGenerator",
-            parameters = {@Parameter(value = "hibernate_id_generation", name = "author")})
+            parameters = {@org.hibernate.annotations.Parameter(value = "hibernate_id_generation", name = "plant_ingredient")})
 
     @JsonView(View.Summary.class)
     @NotNull
@@ -37,19 +35,15 @@ public class Author {
     @GeneratedValue(generator = "table-hilo-generator")
     private Long id;
 
-    @JsonIgnore
+    @JsonView(View.Summary.class)
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "publication_id", foreignKey = @ForeignKey(name = "fk_publication_id"), nullable = false)
-    private Publication publication;
+    @JoinColumn(name = "species_id", foreignKey = @ForeignKey(name = "fk_species_id"), nullable = false)
+    private Species species;
 
     @JsonView(View.Summary.class)
     @NotEmpty
-    @Column(nullable = false)
-    private String family;
-
-    @JsonView(View.Summary.class)
-    // could be null for an institutional and other single name
-    private String given;
+    @Column(nullable = false, name = "part_used")
+    private String partUsed;
 
 }

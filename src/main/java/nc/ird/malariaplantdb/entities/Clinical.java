@@ -7,29 +7,30 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import nc.ird.malariaplantdb.service.json.View;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 /**
- * Author entity
+ * Clinical study entity
  * <p>
- * For institutional and other single names, only the family name could be entered.
+ * Represents for the plant ingredients of a publication the relevant data in clinical study
+ * For the moment, it's just the information about if there is relevant data.
  *
- * @author : acheype
+ * @author acheype
  */
 @XmlRootElement
-@JsonPropertyOrder({"id", "publication", "family", "given"})
+@JsonPropertyOrder({"id", "publication", "plantIngredients"})
 @Entity
-@Table(name = "author")
+@Table(name = "clinical")
 @Data
 @EqualsAndHashCode(of = "id")
-public class Author {
+public class Clinical {
     @GenericGenerator(name = "table-hilo-generator", strategy = "org.hibernate.id.TableHiLoGenerator",
-            parameters = {@Parameter(value = "hibernate_id_generation", name = "author")})
+            parameters = {@org.hibernate.annotations.Parameter(value = "hibernate_id_generation", name = "clinical")})
 
     @JsonView(View.Summary.class)
     @NotNull
@@ -46,10 +47,10 @@ public class Author {
     @JsonView(View.Summary.class)
     @NotEmpty
     @Column(nullable = false)
-    private String family;
-
-    @JsonView(View.Summary.class)
-    // could be null for an institutional and other single name
-    private String given;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    // foreign key name doesn't seem to work for schema generation (it's only work if it's declared for
+    // the reverse ManyToOne relationship but we don't want it in the object schema)
+    @JoinColumn(name = "clinical_id", foreignKey = @ForeignKey(name = "fk_clinical_id"))
+    private List<PlantIngredient> plantIngredients;
 
 }
