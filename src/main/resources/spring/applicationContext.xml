@@ -36,7 +36,7 @@
         </property>
     </bean>
 
-    <!-- Configurer that replaces ${...} placeholders with values from a properties file -->
+    <!-- Configurer that replaces ${...} placeholders with comparedValues from a properties file -->
     <!-- (in this case, JDBC-related settings for the dataSource definition below) -->
     <context:property-placeholder location="classpath:config/db.properties"/>
 
