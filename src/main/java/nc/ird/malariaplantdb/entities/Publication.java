@@ -17,6 +17,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,7 +55,7 @@ public class Publication implements Serializable {
     @NotEmpty
     @Column(nullable = false)
     @OneToMany(mappedBy = "publication", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Author> authors;
+    private List<Author> authors = new ArrayList<>();
 
     @JsonView(View.Detailed.class)
     @NotNull
@@ -123,14 +124,14 @@ public class Publication implements Serializable {
     private Boolean isReviewed;
 
     @JsonView(View.Detailed.class)
-    @NotEmpty
+    @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "publication_compilers",
             joinColumns = {@JoinColumn(name = "compiler_id", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "publication_id", nullable = false)})
     // TODO update with JPA way when the bug is resolved : https://hibernate.atlassian.net/browse/HHH-9436
     @ForeignKey(name = "fk_compiler_id", inverseName = "fk_publication_id")
-    private List<Compiler> compilers;
+    private List<Compiler> compilers = new ArrayList<>();
 
     @JsonView(View.Detailed.class)
     @Type(type = "org.hibernate.type.StringClobType")
@@ -140,27 +141,27 @@ public class Publication implements Serializable {
     @JsonView(View.Summary.class)
     @NotNull
     @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Ethnology> ethnologyNotes;
+    private List<Ethnology> ethnologyNotes = new ArrayList<>();
 
     @JsonView(View.Summary.class)
     @NotNull
     @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<InVivoPharmaco> inVivoPharmacoNotes;
+    private List<InVivoPharmaco> inVivoPharmacoNotes = new ArrayList<>();
 
     @JsonView(View.Summary.class)
     @NotNull
     @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<InVitroPharmaco> inVitroPharmacoNotes;
+    private List<InVitroPharmaco> inVitroPharmacoNotes = new ArrayList<>();
 
     @JsonView(View.Summary.class)
     @NotNull
     @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<InVitroPharmaco> clinicalNotes;
+    private List<InVitroPharmaco> clinicalNotes = new ArrayList<>();
 
     /**
      * Get the publication citation in the APA style
      *
-     * @return
+     * @return the citation
      */
     @JsonView(View.Summary.class)
     @Transient

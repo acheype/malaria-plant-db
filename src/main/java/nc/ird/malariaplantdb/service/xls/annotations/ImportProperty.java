@@ -1,8 +1,5 @@
 package nc.ird.malariaplantdb.service.xls.annotations;
 
-import org.apache.commons.collections.Transformer;
-import org.apache.commons.collections.functors.NOPTransformer;
-
 import java.lang.annotation.*;
 
 /**
@@ -18,22 +15,16 @@ public @interface ImportProperty {
     /**
      * @return the Excel column reference (one or several letters) to keep a map between the ref and the label
      */
-    String columnLetterRef();
+    public String columnLetterRef();
 
     /**
      * @return the Excel column name to tell the user the column source reference
      */
-    String columnLabel();
+    public String columnLabel();
 
     /**
-     * @return the output property in which the imported value will be loaded
+     * @return the loader which uses the field to load the final entity property
      */
-    String outputProperty();
-
-    /**
-     * @return the transformer which transforms the importation value into the corresponding one for the
-     * outputProperty (by default an no-operation transformer)
-     */
-    Class<? extends Transformer> propertyTransformer() default NOPTransformer.class;
+    public PropertyLoader propertyLoader() default @PropertyLoader(outputProperty = PropertyLoader.NULL_OUTPUT);
 
 }

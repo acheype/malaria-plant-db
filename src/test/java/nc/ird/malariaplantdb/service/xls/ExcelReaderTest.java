@@ -2,7 +2,9 @@ package nc.ird.malariaplantdb.service.xls;
 
 import lombok.extern.slf4j.Slf4j;
 import nc.ird.malariaplantdb.entities.Publication;
-import nc.ird.malariaplantdb.service.xls.dto.PublicationSheet;
+import nc.ird.malariaplantdb.service.xls.dto.PublicationLine;
+import nc.ird.malariaplantdb.service.xls.infos.ColumnInfo;
+import nc.ird.malariaplantdb.service.xls.infos.SheetInfo;
 import org.junit.Test;
 
 import java.io.BufferedInputStream;
@@ -22,18 +24,19 @@ public class ExcelReaderTest {
         List<SheetInfo> sheetInfos = new ArrayList<>();
 
         SheetInfo sheetInfo = new SheetInfo(
-                PublicationSheet.class,
+                PublicationLine.class,
                 "1 - PUBLI",
                 2,
                 Publication.class,
-                PublicationMock.parseAndPopulateBeans(PublicationMock.COLUMN_INFOS_STR, ColumnInfo.class, "\\|"));
+                new ArrayList<>(),
+                PublicationMock.parseAndPopulateBeans(PublicationMock.PUBLI_COLUMN_INFOS, ColumnInfo.class, "\\|"));
         sheetInfos.add(sheetInfo);
 
-        InputStream excelInput = new BufferedInputStream(getClass().getResourceAsStream("/xls/test_old.xlsm"));
-        ExcelReader reader = new ExcelReader(sheetInfos, "/xls/xls_mapping.xml");
+        InputStream excelInput = new BufferedInputStream(getClass().getResourceAsStream("/xls/test.xlsm"));
+        ExcelReader reader = new ExcelReader(sheetInfos, "/xls/publi_mapping.xml");
         ExcelReader.ReaderResult readerRes = reader.read(excelInput);
 
-        List<PublicationSheet> importedBeans = readerRes.getDtosMap().getList(sheetInfo.getDtoClass());
+        List<PublicationLine> importedBeans = readerRes.getDtosMap().getList(sheetInfo.getDtoClass());
         log.debug(String.format("Imported in %s dto beans :", importedBeans.size()));
         importedBeans
                 .stream()
@@ -48,7 +51,7 @@ public class ExcelReaderTest {
         assertTrue(importedBeans.get(3).getMonth().equals("FEB"));
 
         assertTrue(readerRes.getCellErrors().size() == 0);
-        assertTrue(readerRes.getDtosMap().getList(PublicationSheet.class).size() == 11);
+        assertTrue(readerRes.getDtosMap().getList(PublicationLine.class).size() == 11);
     }
 
     @SuppressWarnings("unchecked")
@@ -57,15 +60,16 @@ public class ExcelReaderTest {
         List<SheetInfo> sheetInfos = new ArrayList<>();
 
         SheetInfo sheetInfo = new SheetInfo(
-                PublicationSheet.class,
+                PublicationLine.class,
                 "1 - PUBLI",
                 2,
                 Publication.class,
-                PublicationMock.parseAndPopulateBeans(PublicationMock.COLUMN_INFOS_STR, ColumnInfo.class, "\\|"));
+                new ArrayList<>(),
+                PublicationMock.parseAndPopulateBeans(PublicationMock.PUBLI_COLUMN_INFOS, ColumnInfo.class, "\\|"));
         sheetInfos.add(sheetInfo);
 
-        InputStream excelInput = new BufferedInputStream(getClass().getResourceAsStream("/xls/test2.xlsm"));
-        ExcelReader reader = new ExcelReader(sheetInfos, "/xls/xls_mapping.xml");
+        InputStream excelInput = new BufferedInputStream(getClass().getResourceAsStream("/xls/test_with_read_errors.xlsm"));
+        ExcelReader reader = new ExcelReader(sheetInfos, "/xls/publi_mapping.xml");
         ExcelReader.ReaderResult readerRes = reader.read(excelInput);
 
         CellError specificError = readerRes.getCellErrors().get(0);
@@ -74,38 +78,42 @@ public class ExcelReaderTest {
         assertTrue(specificError.getSheet().equals(sheetInfo.getSheetLabel()));
         assertTrue(specificError.getLine().equals(2));
         assertTrue(specificError.getColumn().equals("Year"));
-        assertTrue(specificError.getSourceException().getClass().getCanonicalName().equals("org.apache.commons" +
-                ".beanutils.ConversionException"));
-        log.debug(String.format("line in error : %s", readerRes.getDtosMap().getList(PublicationSheet.class).get(0)));
-        assertNull(readerRes.getDtosMap().getList(PublicationSheet.class).get(0).getYear());
-        assertTrue(readerRes.getDtosMap().getList(PublicationSheet.class).size() == 11);
+        assertTrue(specificError.getSourceExceptionDetails().equals("ConversionException - Error converting from " +
+                "'String' to 'Integer' For input string: \"aaa\""));
+        log.debug(String.format("line in error : %s", readerRes.getDtosMap().getList(PublicationLine.class).get(0)));
+        assertNull(readerRes.getDtosMap().getList(PublicationLine.class).get(0).getYear());
+        assertTrue(readerRes.getDtosMap().getList(PublicationLine.class).size() == 11);
     }
 
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     @Test
     public void testReadWithColumnInfosParsingError() throws Exception {
         List<SheetInfo> sheetInfos = new ArrayList<>();
 
-        String fieldInfosWithErrStr = PublicationMock.COLUMN_INFOS_STR.replace("ColumnInfo(columnLetterRef=C| " +
-                        "columnName=Year| dtoPropertyName=year)",
-                "ColumnInfo(columnLetterRef=XXXX| columnName=Year| dtoPropertyName=year)");
+        String fieldInfosWithErrStr = PublicationMock.PUBLI_COLUMN_INFOS.replace("ColumnInfo(columnLetterRef=C| " +
+                        "columnLabel=Year| dtoPropertyName=year| outputProperty=year| " +
+                        "propertyTransformer=org.apache.commons.collections.functors.NOPTransformer)",
+                "ColumnInfo(columnLetterRef=XXX| columnLabel=Year| dtoPropertyName=year| " +
+                        "outputProperty=year| propertyTransformer=org.apache.commons.collections.functors" +
+                        ".NOPTransformer)");
 
         SheetInfo sheetInfo = new SheetInfo(
-                PublicationSheet.class,
+                PublicationLine.class,
                 "1 - PUBLI",
                 2,
                 Publication.class,
+                new ArrayList<>(),
                 PublicationMock.parseAndPopulateBeans(fieldInfosWithErrStr, ColumnInfo.class, "\\|"));
         sheetInfos.add(sheetInfo);
 
-        InputStream excelInput = new BufferedInputStream(getClass().getResourceAsStream("/xls/test2.xlsm"));
-        ExcelReader reader = new ExcelReader(sheetInfos, "/xls/xls_mapping.xml");
+        InputStream excelInput = new BufferedInputStream(getClass().getResourceAsStream("/xls/test_with_read_errors.xlsm"));
+        ExcelReader reader = new ExcelReader(sheetInfos, "/xls/publi_mapping.xml");
         ExcelReader.ReaderResult readerRes = reader.read(excelInput);
 
         assertTrue(readerRes.getCellErrors().get(0).getMessage().equals("Can't read cell C2 on 1 - PUBLI spreadsheet"));
-        log.debug(String.format("line in error : %s", readerRes.getDtosMap().getList(PublicationSheet.class).get(0)));
-        assertNull(readerRes.getDtosMap().getList(PublicationSheet.class).get(0).getYear());
-        assertTrue(readerRes.getDtosMap().getList(PublicationSheet.class).size() == 11);
+        log.debug(String.format("line in error : %s", readerRes.getDtosMap().getList(PublicationLine.class).get(0)));
+        assertNull(readerRes.getDtosMap().getList(PublicationLine.class).get(0).getYear());
+        assertTrue(readerRes.getDtosMap().getList(PublicationLine.class).size() == 11);
     }
 
 }

@@ -1,4 +1,4 @@
-package nc.ird.malariaplantdb.service.xls.validation;
+package nc.ird.malariaplantdb.service.xls.validators;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -9,8 +9,8 @@ import java.lang.annotation.*;
  * check if a tested property empty or not (must be empty or null if the property {@code isEmpty}' is true,
  * must be not empty if false). The tested property can be a string, a collection,
  * a map or an array).</p>
- *
- * <p>If the criteria is not fulfilled, the validation will succeed.</p>
+ * <p>
+ * <p>If the criteria is not fulfilled, the validators will succeed.</p>
  *
  * @author acheype
  */

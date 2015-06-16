@@ -6,6 +6,7 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import nc.ird.malariaplantdb.service.xls.exceptions.ImportException;
 import nc.ird.malariaplantdb.service.xls.exceptions.ImportRuntimeException;
+import nc.ird.malariaplantdb.service.xls.infos.SheetInfo;
 import net.sf.jxls.reader.*;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.xml.sax.SAXException;
@@ -30,7 +31,6 @@ public class ExcelReader {
 
     /**
      * Xls mapping file path for the xls reading process config file written in xml
-     *
      */
     private String xlsMappingFilepath;
 
@@ -39,29 +39,19 @@ public class ExcelReader {
         this.xlsMappingFilepath = xlsMappingFilepath;
     }
 
-    @Getter
-    @ToString
-    @AllArgsConstructor
-    public static class ReaderResult {
-
-        private ClassMap dtosMap;
-
-        private List<CellError> cellErrors;
-    }
-
     @SuppressWarnings("unchecked")
     public ReaderResult read(InputStream xlsDataInputStream) throws ImportException {
 
-        // TODO : verify in the XLS mapping file that the declared 'items' corresponds to the annoted dtos
-        // example of exception we could throwed : new ImportException("Impossible to find the dto '%s' in the xls
-        // mapping file. For each annoted dto, you have to declare once his class name in the 'items' field of this
+        // TODO : verify in the XLS mapping file that the declared 'items' corresponds to the annotated dtos
+        // example of exception we could throw : new ImportException("Impossible to find the dto '%s' in the xls
+        // mapping file. For each annotated dto, you have to declare once his class name in the 'items' field of this
         // xml file.");
 
 
         XLSReader jxlsReader;
         try {
             jxlsReader = getJxlsReader();
-        } catch (IOException | SAXException e){
+        } catch (IOException | SAXException e) {
             throw new ImportException("Error in the importation process initialization : a problem occur with the " +
                     "xls mapping file", e);
         } catch (RuntimeException e) {
@@ -69,10 +59,10 @@ public class ExcelReader {
                     "with the xls mapping file", e);
         }
 
-        try (InputStream inputXLS = new BufferedInputStream(xlsDataInputStream)){
-            Map<String,Object> dtoBeans = new HashMap<>();
+        try (InputStream inputXLS = new BufferedInputStream(xlsDataInputStream)) {
+            Map<String, Object> dtoBeans = new HashMap<>();
 
-            for (SheetInfo sheetInfo : sheetInfos){
+            for (SheetInfo sheetInfo : sheetInfos) {
                 dtoBeans.put(sheetInfo.getDtoClass().getSimpleName(), new ArrayList<>());
             }
 
@@ -86,7 +76,7 @@ public class ExcelReader {
             }
 
             ClassMap dtosMap = new ClassMap();
-            for (SheetInfo sheetInfo : sheetInfos){
+            for (SheetInfo sheetInfo : sheetInfos) {
                 dtosMap.putList(sheetInfo.getDtoClass(), (ArrayList<Object>) dtoBeans.get(sheetInfo.getDtoClass().getSimpleName()));
             }
 
@@ -94,7 +84,7 @@ public class ExcelReader {
 
         } catch (IOException | InvalidFormatException e) {
             throw new ImportException("An unexpected error occurs during the Excel file reading", e);
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             throw new ImportRuntimeException("An unexpected error occurs during the Excel file reading", e);
         }
     }
@@ -105,9 +95,17 @@ public class ExcelReader {
         // continue if an reading error occurs
         ReaderConfig.getInstance().setSkipErrors(true);
 
-        XLSReader reader = ReaderBuilder.buildFromXML(inputXML);
+        return ReaderBuilder.buildFromXML(inputXML);
+    }
 
-        return reader;
+    @Getter
+    @ToString
+    @AllArgsConstructor
+    public static class ReaderResult {
+
+        private ClassMap dtosMap;
+
+        private List<CellError> cellErrors;
     }
 
 

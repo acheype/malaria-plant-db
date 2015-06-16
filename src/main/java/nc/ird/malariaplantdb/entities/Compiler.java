@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,7 +46,7 @@ public class Compiler {
     @JsonIgnore
     @NotNull
     @ManyToMany(mappedBy = "compilers")
-    private List<Publication> publications;
+    private List<Publication> publications = new ArrayList<>();
 
     @JsonView(View.Summary.class)
     @NotEmpty

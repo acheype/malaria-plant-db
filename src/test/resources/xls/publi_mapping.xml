@@ -3,8 +3,8 @@
     <worksheet name="1 - PUBLI">
         <section startRow="0" endRow="0">
         </section>
-        <loop startRow="1" endRow="1" items="PublicationSheet" var="pub"
-              varType="nc.ird.malariaplantdb.service.xls.dto.PublicationSheet">
+        <loop startRow="1" endRow="1" items="PublicationLine" var="pub"
+              varType="nc.ird.malariaplantdb.service.xls.dto.PublicationLine">
             <section startRow="1" endRow="1">
                 <mapping row="1" col="0">pub.entryType</mapping>
                 <mapping row="1" col="1">pub.authors</mapping>

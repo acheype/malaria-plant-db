@@ -1,4 +1,4 @@
-package nc.ird.malariaplantdb.service.xls;
+package nc.ird.malariaplantdb.service.xls.infos;
 
 import lombok.*;
 import org.apache.commons.collections.Transformer;
@@ -21,7 +21,7 @@ public class ColumnInfo {
     /**
      * Excel column name to tell the user the column source reference
      */
-    private String columnName;
+    private String columnLabel;
 
     /**
      * Name of the dtoPropertyName which map the column in a dto

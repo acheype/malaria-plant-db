@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author acheype
  */
 @XmlRootElement
-@JsonPropertyOrder({"id", "publication", "family", "species", "speciesNameInPub", "isHerbariumVouncher", "herbarium",
+@JsonPropertyOrder({"id", "publication", "family", "species", "speciesNameInPub", "isHerbariumVoucher", "herbarium",
         "localName", "collectionSite", "country", "continent"})
 @Entity
 @Table(name = "species", uniqueConstraints = @UniqueConstraint(columnNames = {"publication_id", "species"}, name = "uk_pub_species"))
@@ -61,8 +61,8 @@ public class Species {
 
     @JsonView(View.Detailed.class)
     @NotNull
-    @Column(nullable = false, name = "is_herbarium_vouncher")
-    private Boolean isHerbariumVouncher;
+    @Column(nullable = false, name = "is_herbarium_voucher")
+    private Boolean isHerbariumVoucher;
 
     @JsonView(View.Detailed.class)
     private String herbarium;

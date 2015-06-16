@@ -13,20 +13,20 @@ import java.util.Map;
  */
 public class ClassMap {
 
-    private Map<Class<?>, List<Object>> dtosLists = new HashMap<>();
+    private Map<Class<?>, List<Object>> objLists = new HashMap<>();
 
     @SuppressWarnings("unchecked")
     public <T> void putList(@NonNull Class<T> clazz, @NonNull List<T> instance) {
-        dtosLists.put(clazz, (List<Object>) instance);
+        objLists.put(clazz, (List<Object>) instance);
     }
 
     @SuppressWarnings("unchecked")
     public <T> List<T> getList(@NonNull Class<T> clazz) {
-        return (List<T>) dtosLists.get(clazz);
+        return (List<T>) objLists.get(clazz);
     }
 
-    public int size(){
-        return dtosLists.size();
+    public int size() {
+        return objLists.size();
     }
 
 }

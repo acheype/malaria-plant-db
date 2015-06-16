@@ -1,4 +1,4 @@
-package nc.ird.malariaplantdb.service;
+package nc.ird.malariaplantdb.service.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jersey.repackaged.com.google.common.collect.Lists;
@@ -37,6 +37,7 @@ public class PublicationService {
     @GET
     public List<Publication> getAll(@DefaultValue("0") @QueryParam("page") Integer page,
                                     @DefaultValue(DEFAULT_PAGE_SIZE) @QueryParam("size") Integer size) {
+
         PageRequest request = new PageRequest(page, size);
 
         return Lists.newArrayList(publiRepo.findAll(request));

@@ -1,4 +1,4 @@
-package nc.ird.malariaplantdb.service.xls.validation;
+package nc.ird.malariaplantdb.service.xls.validators;
 
 import nc.ird.malariaplantdb.service.xls.exceptions.ImportRuntimeException;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -16,8 +16,8 @@ import java.util.Map;
  * check if a tested property empty or not (must be empty or null if the property {@code isEmpty}' is true,
  * must be not empty if false). The tested property can be a string, a collection,
  * a map or an array).</p>
- *
- * <p>If the criteria is not fulfilled, the validation will succeed.</p>
+ * <p>
+ * <p>If the criteria is not fulfilled, the validators will succeed.</p>
  *
  * @author acheype
  */
@@ -65,7 +65,6 @@ public class EmptyOrNotIfPropertyValueValidator implements ConstraintValidator<E
         Object testedVal;
 
         try {
-
             criteriaVal = PropertyUtils.getProperty(value, criteriaProperty);
             testedVal = PropertyUtils.getProperty(value, testedProperty);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
@@ -78,7 +77,7 @@ public class EmptyOrNotIfPropertyValueValidator implements ConstraintValidator<E
             if (!criteriaOK)
                 result = true;
             else
-                result = isEmpty? isEmpty(testedVal) : !isEmpty(testedVal);
+                result = isEmpty ? isEmpty(testedVal) : !isEmpty(testedVal);
         } else
             result = true;
 

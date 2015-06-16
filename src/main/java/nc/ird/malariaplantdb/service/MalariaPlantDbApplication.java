@@ -16,8 +16,9 @@ public class MalariaPlantDbApplication extends ResourceConfig {
      * Register JAX-RS application components.
      */
     public MalariaPlantDbApplication() {
+        packages("nc.ird.malariaplantdb.service.rest");
+        packages("nc.ird.malariaplantdb.util");
         register(RequestContextFilter.class);
-        register(PublicationService.class);
         register(JacksonFeature.class);
         register(LoggingResponseFilter.class);
         //register(CORSResponseFilter.class);

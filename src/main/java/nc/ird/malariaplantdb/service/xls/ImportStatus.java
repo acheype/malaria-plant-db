@@ -1,6 +1,8 @@
 package nc.ird.malariaplantdb.service.xls;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +21,14 @@ public class ImportStatus {
 
     private List<CellError> businessErrors = new ArrayList<>();
 
-    private List<CellError> dbIntegrityErrors = new ArrayList<>();
+    private List<CellError> integrityErrors = new ArrayList<>();
 
-    public List<CellError> getReadErrorsBySheet(@NonNull String sheet){
+    public List<CellError> getReadErrorsBySheet(@NonNull String sheet) {
         return readErrors.stream().filter(e -> sheet.equals(e.getSheet())).collect(Collectors.toList());
+    }
+
+    public boolean isStatusOK() {
+        return readErrors.isEmpty() && businessErrors.isEmpty() && integrityErrors.isEmpty();
     }
 
 }

@@ -26,7 +26,8 @@
         <lombok.version>1.14.8</lombok.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <junit.version>4.11</junit.version>
-        <rest-assured.version>2.3.3</rest-assured.version>
+        <mockito.version>1.10.19</mockito.version>
+        <!--<rest-assured.version>2.3.3</rest-assured.version>-->
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
         <maven-failsafe-plugin.version>2.17</maven-failsafe-plugin.version>
         <hibernate4-maven-plugin.version>1.0.4</hibernate4-maven-plugin.version>
@@ -204,23 +205,28 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.jayway.restassured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${rest-assured.version}</version>
-            <exclusions>
-                <!-- Exclude Groovy because of classpath issue -->
-                <exclusion>
-                    <groupId>org.codehaus.groovy</groupId>
-                    <artifactId>groovy</artifactId>
-                </exclusion>
-            </exclusions>
-            <scope>test</scope>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.test-framework.providers</groupId>
-            <artifactId>jersey-test-framework-provider-external</artifactId>
-            <version>${jersey.version}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.jayway.restassured</groupId>-->
+        <!--<artifactId>rest-assured</artifactId>-->
+        <!--<version>${rest-assured.version}</version>-->
+        <!--<exclusions>-->
+        <!--&lt;!&ndash; Exclude Groovy because of classpath issue &ndash;&gt;-->
+        <!--<exclusion>-->
+        <!--<groupId>org.codehaus.groovy</groupId>-->
+        <!--<artifactId>groovy</artifactId>-->
+        <!--</exclusion>-->
+        <!--</exclusions>-->
+        <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.glassfish.jersey.test-framework.providers</groupId>-->
+        <!--<artifactId>jersey-test-framework-provider-external</artifactId>-->
+        <!--<version>${jersey.version}</version>-->
+        <!--</dependency>-->
 
         <!-- LogBack dependencies -->
         <dependency>
@@ -236,9 +242,9 @@
 
         <!-- Guava -->
         <!--<dependency>-->
-            <!--<groupId>com.google.guava</groupId>-->
-            <!--<artifactId>guava</artifactId>-->
-            <!--<version>${guava.version}</version>-->
+        <!--<groupId>com.google.guava</groupId>-->
+        <!--<artifactId>guava</artifactId>-->
+        <!--<version>${guava.version}</version>-->
         <!--</dependency>-->
 
         <!-- JXLS -->

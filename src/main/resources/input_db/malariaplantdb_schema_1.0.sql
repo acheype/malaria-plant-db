@@ -12,14 +12,14 @@ CREATE TABLE author (
 );
 
 CREATE TABLE compiler (
-  DTYPE              VARCHAR(31)  NOT NULL,
-  id                 INT8         NOT NULL,
-  family             VARCHAR(255) NOT NULL,
-  given              VARCHAR(255) NOT NULL,
-  email              VARCHAR(255) NOT NULL,
-  institution        VARCHAR(255),
+  DTYPE               VARCHAR(31)  NOT NULL,
+  id                  INT8         NOT NULL,
+  family              VARCHAR(255) NOT NULL,
+  given               VARCHAR(255) NOT NULL,
+  email               VARCHAR(255) NOT NULL,
+  institution         VARCHAR(255),
   institution_address VARCHAR(255),
-  password           VARCHAR(255),
+  password            VARCHAR(255),
   PRIMARY KEY (id),
   CHECK (DTYPE <> 'Administrator' OR password IS NOT NULL)
 );
@@ -85,8 +85,8 @@ CREATE TABLE species (
   species_name_in_pub   VARCHAR(255) NOT NULL,
   is_herbarium_vouncher BOOLEAN      NOT NULL,
   herbarium             VARCHAR(255),
-  local_name             VARCHAR(255),
-  collection_site        VARCHAR(255),
+  local_name            VARCHAR(255),
+  collection_site       VARCHAR(255),
   country               VARCHAR(255) NOT NULL,
   continent             VARCHAR(255),
   PRIMARY KEY (id)
@@ -158,11 +158,11 @@ CREATE TABLE in_vivo_pharmaco (
   parasite               VARCHAR(255) NOT NULL,
   parasite_details       VARCHAR(255),
   animal                 VARCHAR(255),
-  treatment_route         VARCHAR(255),
+  treatment_route        VARCHAR(255),
   dose                   FLOAT4,
   inhibition             FLOAT4 CHECK (inhibition <= 100 AND inhibition >= 0),
-  survival_percent        FLOAT4 CHECK (survivalPercent <= 100 AND survivalPercent >= 0),
-  survival_time           FLOAT4,
+  survival_percent       FLOAT4 CHECK (survival_percent <= 100 AND survival_percent >= 0),
+  survival_time          FLOAT4,
   ed50                   FLOAT4,
   is_toxicity            BOOLEAN      NOT NULL,
   ld50                   FLOAT4,
