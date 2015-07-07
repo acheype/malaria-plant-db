@@ -77,22 +77,25 @@ public class ExcelETL {
         ExcelReader.ReaderResult readerResult = excelReader.read(xlsDataInputStream);
         getImportStatus().getReadErrors().addAll(readerResult.getCellErrors());
         dtosMap = readerResult.getDtosMap();
+        // TODO need to sort the read errors
     }
 
     private void checkDtos() {
         ExcelChecker excelChecker = new ExcelChecker(getSheetInfos());
         getImportStatus().getBusinessErrors().addAll(excelChecker.checkBusinessRules(dtosMap));
+        // TODO sort the business errors
     }
 
     private void loadDtos() {
         ExcelLoader excelLoader = new ExcelLoader(getSheetInfos());
         ExcelLoader.LoaderResult loaderResult = excelLoader.loadEntities(dtosMap);
         getImportStatus().getIntegrityErrors().addAll(loaderResult.getCellErrors());
+        // TODO sort the integrity errors
+        //getImportStatus().getIntegrityErrors().stream().sorted()
         entitiesMap = loaderResult.getEntitiesMap();
     }
 
     private List<SheetInfo> buildSheetInfos() {
-
         Reflections reflections = new Reflections(dtosBasePackage, new SubTypesScanner(false),
                 new TypeAnnotationsScanner());
         Set<Class<?>> dtoClasses = reflections.getTypesAnnotatedWith(ImportDto.class);

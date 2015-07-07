@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * In vitro pharmacology entity
- *
+ * <p>
  * Represents for the plant ingredients of a publication the relevant data in in vitro pharmacology
  *
  * @author acheype
@@ -96,6 +96,7 @@ public class InVitroPharmaco {
     @Column(name = "measure_method")
     private String measureMethod;
 
+    // TODO put a BigDecimal for the float properties in each entity
     @JsonView(View.Detailed.class)
     private Float concentration;
 

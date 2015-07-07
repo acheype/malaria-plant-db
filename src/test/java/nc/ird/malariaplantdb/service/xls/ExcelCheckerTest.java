@@ -125,7 +125,7 @@ public class ExcelCheckerTest {
                 .findAny()
                 .orElse(null));
 
-        assertNotNull(cellErrors.stream().filter(ce -> ("The authors value is not well formated. Please enter each " +
+        assertNotNull(cellErrors.stream().filter(ce -> ("The authors value is not well formatted. Please enter each " +
                 "author name with the last name first, a coma (,) then the given name initials (with comas)." +
                 " For several authors, please separate each complete name by a slash (/).").equals(
                 ce.getMessage()))
@@ -133,7 +133,7 @@ public class ExcelCheckerTest {
                 .findAny()
                 .orElse(null));
 
-        assertNotNull(cellErrors.stream().filter(ce -> ("The authors value is not well formated. Please enter each " +
+        assertNotNull(cellErrors.stream().filter(ce -> ("The authors value is not well formatted. Please enter each " +
                 "author name with the last name first, a coma (,) then the given name initials (with comas)." +
                 " For several authors, please separate each complete name by a slash (/).").equals(
                 ce.getMessage()))

@@ -33,8 +33,8 @@ public class EntityRefInfo {
     private String[] refIdentifierProperties;
 
     /**
-     * The entity ref class used to do the comparison. Usually this class is not specified,
-     * and inferred from the outputProperty
+     * The entity ref class used to do the comparison. Usually this class is not specified, and inferred from the
+     * outputProperty. May be useful per example if the outputProperty refer to a list.
      */
     private Class entityRefType;
 

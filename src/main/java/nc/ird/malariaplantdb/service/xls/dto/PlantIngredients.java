@@ -1,7 +1,7 @@
 package nc.ird.malariaplantdb.service.xls.dto;
 
 import lombok.Data;
-import nc.ird.malariaplantdb.entities.Species;
+import nc.ird.malariaplantdb.entities.PlantIngredient;
 
 /**
  * Bundle of 10 Plant Ingredients
@@ -11,44 +11,24 @@ import nc.ird.malariaplantdb.entities.Species;
 @Data
 public class PlantIngredients {
 
-    private Species species1;
+    private PlantIngredient plantIngredient1 = new PlantIngredient();
 
-    private String partUsed1;
+    private PlantIngredient plantIngredient2 = new PlantIngredient();
 
-    private Species species2;
+    private PlantIngredient plantIngredient3 = new PlantIngredient();
 
-    private String partUsed2;
+    private PlantIngredient plantIngredient4 = new PlantIngredient();
 
-    private Species species3;
+    private PlantIngredient plantIngredient5 = new PlantIngredient();
 
-    private String partUsed3;
+    private PlantIngredient plantIngredient6 = new PlantIngredient();
 
-    private Species species4;
+    private PlantIngredient plantIngredient7 = new PlantIngredient();
 
-    private String partUsed4;
+    private PlantIngredient plantIngredient8 = new PlantIngredient();
 
-    private Species species5;
+    private PlantIngredient plantIngredient9 = new PlantIngredient();
 
-    private String partUsed5;
-
-    private Species species6;
-
-    private String partUsed6;
-
-    private Species species7;
-
-    private String partUsed7;
-
-    private Species species8;
-
-    private String partUsed8;
-
-    private Species species9;
-
-    private String partUsed9;
-
-    private Species species10;
-
-    private String partUsed10;
+    private PlantIngredient plantIngredient10 = new PlantIngredient();
 
 }

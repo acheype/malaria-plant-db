@@ -31,7 +31,7 @@
         </property>
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.hbm2ddl.auto">validate</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">validate</prop>-->
             </props>
         </property>
     </bean>

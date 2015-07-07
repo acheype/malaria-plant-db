@@ -32,19 +32,22 @@ import javax.validation.constraints.NotNull;
                 @EntityRef(
                         dtoIdentifierProperties = {"plantIngredients"},
                         dtoIdentifierTransformer = TrimStringTransformer.class,
+                        entityRefIdentifierProperties = {"plantIngredient1", "plantIngredient2", "plantIngredient3",
+                                "plantIngredient4", "plantIngredient5", "plantIngredient6", "plantIngredient7", "plantIngredient8",
+                                "plantIngredient9", "plantIngredient10"},
                         entityRefType = PlantIngredients.class,
                         filler = PlantIngredientsXlsEntityRefFiller.class,
                         outputProperty = "plantIngredients"
                 ),
+                @EntityRef(
+                        dtoIdentifierProperties = {"ethnoRelevancyRef"},
+                        dtoIdentifierTransformer = TrimStringTransformer.class,
+                        entityRefIdentifierProperties = {"title"},
+                        filler = XlsEntityRefFiller.class,
+                        outputProperty = "ethnoRelevancyRef"
+                )
         })
 @EmptyOrNotIfPropertyValue.List({
-        @EmptyOrNotIfPropertyValue(
-                message = "As 'Traditional recipe' is YES, 'Traditional recipe details' must not be empty",
-                criteriaProperty = "isTraditionalRecipe",
-                criteriaValues = {"true"},
-                testedProperty = "traditionalRecipeDetails",
-                isEmpty = false
-        ),
         @EmptyOrNotIfPropertyValue(
                 message = "As 'Traditional recipe' is NO, 'Traditional recipe details' must be empty",
                 criteriaProperty = "isTraditionalRecipe",
@@ -53,26 +56,11 @@ import javax.validation.constraints.NotNull;
                 isEmpty = true
         ),
         @EmptyOrNotIfPropertyValue(
-                message = "As 'Traditional recipe' is YES, 'Preparation mode in traditional recipe' must not be empty",
-                criteriaProperty = "isTraditionalRecipe",
-                criteriaValues = {"true"},
-                testedProperty = "preparationMode",
-                isEmpty = false
-        ),
-        @EmptyOrNotIfPropertyValue(
                 message = "As 'Traditional recipe' is NO, 'Preparation mode in traditional recipe' must be empty",
                 criteriaProperty = "isTraditionalRecipe",
                 criteriaValues = {"false"},
                 testedProperty = "preparationMode",
                 isEmpty = true
-        ),
-        @EmptyOrNotIfPropertyValue(
-                message = "As 'Traditional recipe' is YES, 'Administration route in traditional recipe' must not be " +
-                        "empty",
-                criteriaProperty = "isTraditionalRecipe",
-                criteriaValues = {"true"},
-                testedProperty = "administrationRoute",
-                isEmpty = false
         ),
         @EmptyOrNotIfPropertyValue(
                 message = "As 'Traditional recipe' is NO, 'Administration route in traditional recipe' must be empty",
@@ -90,6 +78,12 @@ public class EthnologyLine {
 
     @ImportProperty(columnLetterRef = "B", columnLabel = "Plant ingredient(s) used")
     @NotEmpty(message = "The cell is empty or the value invalid")
+    // TODO reactivate the validator just below
+//    @Pattern(regexp = "^(([a-zA-ZÀ-ÿ &\\.\\-\\(\\)]+),([a-zA-ZÀ-ÿ \\-\\.]+)/)*" +
+//            "([a-zA-ZÀ-ÿ &\\.\\-\\(\\)]]+),([a-zA-ZÀ-ÿ \\-\\.]+)$",
+//            message = "The plant ingredient(s) value is not well formatted. Please enter each species name first, " +
+//            "a coma (,) then the part used. For several plant ingredients, please separate each plant ingredient " +
+//            "by a slash (/).")
     private String plantIngredients;
 
     @ImportProperty(columnLetterRef = "C", columnLabel = "Ethnopharmalogical relevancy",
@@ -97,9 +91,7 @@ public class EthnologyLine {
                     transformer = TrimStringTransformer.class))
     private String ethnoRelevancy;
 
-    @ImportProperty(columnLetterRef = "D", columnLabel = "Reference for ethnopharmalogical relevancy",
-            propertyLoader = @PropertyLoader(outputProperty = "ethnoRelevancyRef",
-                    transformer = TrimStringTransformer.class))
+    @ImportProperty(columnLetterRef = "D", columnLabel = "Reference for ethnopharmalogical relevancy")
     private String ethnoRelevancyRef;
 
     @ImportProperty(columnLetterRef = "E", columnLabel = "Treatment type",

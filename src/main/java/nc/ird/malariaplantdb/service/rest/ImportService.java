@@ -3,6 +3,7 @@ package nc.ird.malariaplantdb.service.rest;
 import lombok.extern.slf4j.Slf4j;
 import nc.ird.malariaplantdb.entities.*;
 import nc.ird.malariaplantdb.entities.Compiler;
+import nc.ird.malariaplantdb.repositories.EthnologyRepo;
 import nc.ird.malariaplantdb.repositories.PlantIngredientRepo;
 import nc.ird.malariaplantdb.repositories.PublicationRepo;
 import nc.ird.malariaplantdb.repositories.SpeciesRepo;
@@ -11,6 +12,8 @@ import nc.ird.malariaplantdb.service.xls.ExcelETL;
 import nc.ird.malariaplantdb.service.xls.ImportStatus;
 import nc.ird.malariaplantdb.service.xls.dto.PlantIngredients;
 import nc.ird.malariaplantdb.service.xls.exceptions.ImportException;
+import nc.ird.malariaplantdb.service.xls.exceptions.ImportRuntimeException;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +24,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -35,6 +39,10 @@ import java.util.List;
 @Slf4j
 public class ImportService {
 
+    static final private String[] PLANT_INGREDIENTS_PROPERTIES = {"plantIngredient1", "plantIngredient2", "plantIngredient3",
+            "plantIngredient4", "plantIngredient5", "plantIngredient6", "plantIngredient7", "plantIngredient8",
+            "plantIngredient9", "plantIngredient10"};
+
     @Inject
     private PublicationRepo publiRepo;
 
@@ -43,6 +51,9 @@ public class ImportService {
 
     @Inject
     private PlantIngredientRepo plantIngredientRepo;
+
+    @Inject
+    private EthnologyRepo ethnologyRepo;
 
     @Transactional
     @Produces(MediaType.APPLICATION_JSON)
@@ -78,34 +89,28 @@ public class ImportService {
         }
 
         List<Species> species = entities.getList(Species.class);
-        for (Species sp : species) {
-            speciesRepo.save(sp);
-        }
+        species.forEach(speciesRepo::save);
+
         persistBundleOfPlantsIngredients(entities.getList(PlantIngredients.class));
+
+        List<Ethnology> ethnoNotes = entities.getList(Ethnology.class);
+        ethnoNotes.forEach(ethnologyRepo::save);
     }
 
     private void persistBundleOfPlantsIngredients(List<PlantIngredients> bundleOfPlantIngredients) {
         for (PlantIngredients plantIngredients : bundleOfPlantIngredients) {
-            persistPlantIngredient(plantIngredients.getSpecies1(), plantIngredients.getPartUsed1());
-            persistPlantIngredient(plantIngredients.getSpecies2(), plantIngredients.getPartUsed2());
-            persistPlantIngredient(plantIngredients.getSpecies3(), plantIngredients.getPartUsed3());
-            persistPlantIngredient(plantIngredients.getSpecies4(), plantIngredients.getPartUsed4());
-            persistPlantIngredient(plantIngredients.getSpecies5(), plantIngredients.getPartUsed5());
-            persistPlantIngredient(plantIngredients.getSpecies6(), plantIngredients.getPartUsed6());
-            persistPlantIngredient(plantIngredients.getSpecies7(), plantIngredients.getPartUsed7());
-            persistPlantIngredient(plantIngredients.getSpecies8(), plantIngredients.getPartUsed8());
-            persistPlantIngredient(plantIngredients.getSpecies9(), plantIngredients.getPartUsed9());
-            persistPlantIngredient(plantIngredients.getSpecies10(), plantIngredients.getPartUsed10());
-        }
-    }
-
-    private void persistPlantIngredient(Species species, String partUsed) {
-        if (species != null && partUsed != null) {
-            PlantIngredient plantIngredient = new PlantIngredient();
-            plantIngredient.setSpecies(species);
-            plantIngredient.setPartUsed(partUsed);
-
-            plantIngredientRepo.save(plantIngredient);
+            for (int i = 0; i < 10; i++) {
+                try {
+                    PlantIngredient plantIngredient = (PlantIngredient) PropertyUtils.getProperty(plantIngredients,
+                            PLANT_INGREDIENTS_PROPERTIES[i]);
+                    if (plantIngredient.getSpecies() != null && plantIngredient.getPartUsed() != null)
+                        plantIngredientRepo.save(plantIngredient);
+                } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException |
+                        IllegalArgumentException e) {
+                    throw new ImportRuntimeException("An unexpected error occurs during saving the entities " +
+                            "in the database", e);
+                }
+            }
         }
     }
 

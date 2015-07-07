@@ -78,17 +78,17 @@ REFERENCES publication;
 
 
 CREATE TABLE species (
-  id                    INT8         NOT NULL,
-  publication_id        INT8         NOT NULL,
-  family                VARCHAR(255) NOT NULL,
-  species               VARCHAR(255) NOT NULL,
-  species_name_in_pub   VARCHAR(255) NOT NULL,
-  is_herbarium_vouncher BOOLEAN      NOT NULL,
-  herbarium             VARCHAR(255),
-  local_name            VARCHAR(255),
-  collection_site       VARCHAR(255),
-  country               VARCHAR(255) NOT NULL,
-  continent             VARCHAR(255),
+  id                   INT8         NOT NULL,
+  publication_id       INT8         NOT NULL,
+  family               VARCHAR(255) NOT NULL,
+  species              VARCHAR(255) NOT NULL,
+  species_name_in_pub  VARCHAR(255) NOT NULL,
+  is_herbarium_voucher BOOLEAN      NOT NULL,
+  herbarium            VARCHAR(255),
+  local_name           VARCHAR(255),
+  collection_site      VARCHAR(255),
+  country              VARCHAR(255) NOT NULL,
+  continent            VARCHAR(255),
   PRIMARY KEY (id)
 );
 

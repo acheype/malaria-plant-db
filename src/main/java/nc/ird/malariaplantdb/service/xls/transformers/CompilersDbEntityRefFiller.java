@@ -8,6 +8,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class CompilersDbEntityRefFiller extends DbEntityRefFiller implements App
     static final private String COMPILERS_REGEXP = "([a-zA-ZÀ-ÿ \\-]+),([a-zA-ZÀ-ÿ \\-]+)/?";
 
     // by implementing ApplicationContextAware, the Spring application context is supplied
-    private static ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -50,8 +51,8 @@ public class CompilersDbEntityRefFiller extends DbEntityRefFiller implements App
         CompilerRepo compilerRepo = compilerRepos.entrySet().iterator().next().getValue();
 
         return new ArrayList<>(
-                compilerRepo.findByFamilyAndGivenAllIgnoreCase(compilerNames.get(0).toString(),
-                        compilerNames.get(1).toString())
+                compilerRepo.findByFamilyAndGivenAllIgnoreCase(compilerNames.get(0).toString().trim(),
+                        compilerNames.get(1).toString().trim())
         );
     }
 
@@ -66,7 +67,7 @@ public class CompilersDbEntityRefFiller extends DbEntityRefFiller implements App
         // as all the family and given names are in a single string, extract them
         String allNames = (String) identifierValues.get(0);
 
-        if (allNames != null) {
+        if (!StringUtils.isEmpty(allNames)) {
             Pattern pattern = Pattern.compile(COMPILERS_REGEXP);
             Matcher matcher = pattern.matcher(allNames);
 

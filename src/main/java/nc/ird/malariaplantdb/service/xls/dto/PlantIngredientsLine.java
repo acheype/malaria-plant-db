@@ -22,70 +22,70 @@ import org.hibernate.validator.constraints.NotEmpty;
                         dtoIdentifierTransformer = TrimStringTransformer.class,
                         entityRefIdentifierProperties = {"species"},
                         filler = XlsEntityRefFiller.class,
-                        outputProperty = "species1"
+                        outputProperty = "plantIngredient1.species"
                 ),
                 @EntityRef(
                         dtoIdentifierProperties = {"species2"},
                         dtoIdentifierTransformer = TrimStringTransformer.class,
                         entityRefIdentifierProperties = {"species"},
                         filler = XlsEntityRefFiller.class,
-                        outputProperty = "species2"
+                        outputProperty = "plantIngredient2.species"
                 ),
                 @EntityRef(
                         dtoIdentifierProperties = {"species3"},
                         dtoIdentifierTransformer = TrimStringTransformer.class,
                         entityRefIdentifierProperties = {"species"},
                         filler = XlsEntityRefFiller.class,
-                        outputProperty = "species3"
+                        outputProperty = "plantIngredient3.species"
                 ),
                 @EntityRef(
                         dtoIdentifierProperties = {"species4"},
                         dtoIdentifierTransformer = TrimStringTransformer.class,
                         entityRefIdentifierProperties = {"species"},
                         filler = XlsEntityRefFiller.class,
-                        outputProperty = "species4"
+                        outputProperty = "plantIngredient4.species"
                 ),
                 @EntityRef(
                         dtoIdentifierProperties = {"species5"},
                         dtoIdentifierTransformer = TrimStringTransformer.class,
                         entityRefIdentifierProperties = {"species"},
                         filler = XlsEntityRefFiller.class,
-                        outputProperty = "species5"
+                        outputProperty = "plantIngredient5.species"
                 ),
                 @EntityRef(
                         dtoIdentifierProperties = {"species6"},
                         dtoIdentifierTransformer = TrimStringTransformer.class,
                         entityRefIdentifierProperties = {"species"},
                         filler = XlsEntityRefFiller.class,
-                        outputProperty = "species6"
+                        outputProperty = "plantIngredient6.species"
                 ),
                 @EntityRef(
                         dtoIdentifierProperties = {"species7"},
                         dtoIdentifierTransformer = TrimStringTransformer.class,
                         entityRefIdentifierProperties = {"species"},
                         filler = XlsEntityRefFiller.class,
-                        outputProperty = "species7"
+                        outputProperty = "plantIngredient7.species"
                 ),
                 @EntityRef(
                         dtoIdentifierProperties = {"species8"},
                         dtoIdentifierTransformer = TrimStringTransformer.class,
                         entityRefIdentifierProperties = {"species"},
                         filler = XlsEntityRefFiller.class,
-                        outputProperty = "species8"
+                        outputProperty = "plantIngredient8.species"
                 ),
                 @EntityRef(
                         dtoIdentifierProperties = {"species9"},
                         dtoIdentifierTransformer = TrimStringTransformer.class,
                         entityRefIdentifierProperties = {"species"},
                         filler = XlsEntityRefFiller.class,
-                        outputProperty = "species9"
+                        outputProperty = "plantIngredient9.species"
                 ),
                 @EntityRef(
                         dtoIdentifierProperties = {"species10"},
                         dtoIdentifierTransformer = TrimStringTransformer.class,
                         entityRefIdentifierProperties = {"species"},
                         filler = XlsEntityRefFiller.class,
-                        outputProperty = "species10"
+                        outputProperty = "plantIngredient10.species"
                 )
         })
 //TODO Improve EmptyOrNotIfPropertyValue annotation to some ones with a criteriaProperty "not empty"
@@ -96,7 +96,7 @@ public class PlantIngredientsLine {
     private String species1;
 
     @ImportProperty(columnLetterRef = "C", columnLabel = "Plant ingredient #1 (part used)",
-            propertyLoader = @PropertyLoader(outputProperty = "partUsed1", transformer = TrimStringTransformer.class))
+            propertyLoader = @PropertyLoader(outputProperty = "plantIngredient1.partUsed", transformer = TrimStringTransformer.class))
     @NotEmpty(message = "The cell is empty or the value invalid")
     private String partUsed1;
 
@@ -104,63 +104,63 @@ public class PlantIngredientsLine {
     private String species2;
 
     @ImportProperty(columnLetterRef = "E", columnLabel = "Plant ingredient #2 (part used)",
-            propertyLoader = @PropertyLoader(outputProperty = "partUsed2", transformer = TrimStringTransformer.class))
+            propertyLoader = @PropertyLoader(outputProperty = "plantIngredient2.partUsed", transformer = TrimStringTransformer.class))
     private String partUsed2;
 
     @ImportProperty(columnLetterRef = "F", columnLabel = "Plant ingredient #3 (species)")
     private String species3;
 
     @ImportProperty(columnLetterRef = "G", columnLabel = "Plant ingredient #3 (part used)",
-            propertyLoader = @PropertyLoader(outputProperty = "partUsed3", transformer = TrimStringTransformer.class))
+            propertyLoader = @PropertyLoader(outputProperty = "plantIngredient3.partUsed", transformer = TrimStringTransformer.class))
     private String partUsed3;
 
     @ImportProperty(columnLetterRef = "H", columnLabel = "Plant ingredient #4 (species)")
     private String species4;
 
     @ImportProperty(columnLetterRef = "I", columnLabel = "Plant ingredient #4 (part used)",
-            propertyLoader = @PropertyLoader(outputProperty = "partUsed4", transformer = TrimStringTransformer.class))
+            propertyLoader = @PropertyLoader(outputProperty = "plantIngredient4.partUsed", transformer = TrimStringTransformer.class))
     private String partUsed4;
 
     @ImportProperty(columnLetterRef = "J", columnLabel = "Plant ingredient #5 (species)")
     private String species5;
 
     @ImportProperty(columnLetterRef = "K", columnLabel = "Plant ingredient #5 (part used)",
-            propertyLoader = @PropertyLoader(outputProperty = "partUsed5", transformer = TrimStringTransformer.class))
+            propertyLoader = @PropertyLoader(outputProperty = "plantIngredient5.partUsed", transformer = TrimStringTransformer.class))
     private String partUsed5;
 
     @ImportProperty(columnLetterRef = "L", columnLabel = "Plant ingredient #6 (species)")
     private String species6;
 
     @ImportProperty(columnLetterRef = "M", columnLabel = "Plant ingredient #6 (part used)",
-            propertyLoader = @PropertyLoader(outputProperty = "partUsed6", transformer = TrimStringTransformer.class))
+            propertyLoader = @PropertyLoader(outputProperty = "plantIngredient6.partUsed", transformer = TrimStringTransformer.class))
     private String partUsed6;
 
     @ImportProperty(columnLetterRef = "N", columnLabel = "Plant ingredient #7 (species)")
     private String species7;
 
     @ImportProperty(columnLetterRef = "O", columnLabel = "Plant ingredient #7 (part used)",
-            propertyLoader = @PropertyLoader(outputProperty = "partUsed7", transformer = TrimStringTransformer.class))
+            propertyLoader = @PropertyLoader(outputProperty = "plantIngredient7.partUsed", transformer = TrimStringTransformer.class))
     private String partUsed7;
 
-    @ImportProperty(columnLetterRef = "P", columnLabel = "Plant ingredient #8 (species)",
-            propertyLoader = @PropertyLoader(outputProperty = "partUsed8", transformer = TrimStringTransformer.class))
+    @ImportProperty(columnLetterRef = "P", columnLabel = "Plant ingredient #8 (species)")
     private String species8;
 
-    @ImportProperty(columnLetterRef = "Q", columnLabel = "Plant ingredient #8 (part used)")
+    @ImportProperty(columnLetterRef = "Q", columnLabel = "Plant ingredient #8 (part used)",
+            propertyLoader = @PropertyLoader(outputProperty = "plantIngredient8.partUsed", transformer = TrimStringTransformer.class))
     private String partUsed8;
 
-    @ImportProperty(columnLetterRef = "R", columnLabel = "Plant ingredient #9 (species)",
-            propertyLoader = @PropertyLoader(outputProperty = "partUsed9", transformer = TrimStringTransformer.class))
+    @ImportProperty(columnLetterRef = "R", columnLabel = "Plant ingredient #9 (species)")
     private String species9;
 
-    @ImportProperty(columnLetterRef = "S", columnLabel = "Plant ingredient #9 (part used)")
+    @ImportProperty(columnLetterRef = "S", columnLabel = "Plant ingredient #9 (part used)",
+            propertyLoader = @PropertyLoader(outputProperty = "plantIngredient9.partUsed", transformer = TrimStringTransformer.class))
     private String partUsed9;
 
-    @ImportProperty(columnLetterRef = "T", columnLabel = "Plant ingredient #10 (species)",
-            propertyLoader = @PropertyLoader(outputProperty = "partUsed10", transformer = TrimStringTransformer.class))
+    @ImportProperty(columnLetterRef = "T", columnLabel = "Plant ingredient #10 (species)")
     private String species10;
 
-    @ImportProperty(columnLetterRef = "U", columnLabel = "Plant ingredient #10 (part used)")
+    @ImportProperty(columnLetterRef = "U", columnLabel = "Plant ingredient #10 (part used)",
+            propertyLoader = @PropertyLoader(outputProperty = "plantIngredient10.partUsed", transformer = TrimStringTransformer.class))
     private String partUsed10;
 
 }

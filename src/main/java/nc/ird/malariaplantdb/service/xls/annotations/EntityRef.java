@@ -30,7 +30,7 @@ public @interface EntityRef {
 
     /**
      * @return the entity ref class used to do the comparison. Usually this class is not specified,
-     * and inferred from the outputProperty
+     * and inferred from the outputProperty. May be useful per example if the outputProperty refer to a list.
      */
     public Class entityRefType() default NULL_TYPE.class;
 

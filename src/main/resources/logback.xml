@@ -30,11 +30,11 @@
         <appender-ref ref="dailyRollingFileAppender"/>
     </logger>
 
-    <logger name="org.springframework.beans" additivity="false">
+    <!--<logger name="org.springframework.beans" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="consoleAppender"/>
         <appender-ref ref="dailyRollingFileAppender"/>
-    </logger>
+    </logger>-->
 
     <!--  Logs default -->
     <root>

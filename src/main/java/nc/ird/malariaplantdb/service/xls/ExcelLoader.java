@@ -176,8 +176,8 @@ public class ExcelLoader {
                             handleXlsEntityNotFoundException(loaderResult, sheetInfo, i, refInfo, entityRefType,
                                     identifierValues, xlsEntityNotFoundException);
                         } catch (DbEntityNotFoundException dbEntityNotFoundException) {
-                            handleDbEntityNotFoundException(loaderResult, sheetInfo, i, refInfo, entityRefType,
-                                    identifierValues, dbEntityNotFoundException);
+                            handleDbEntityNotFoundException(loaderResult, sheetInfo, i, refInfo, identifierValues,
+                                    dbEntityNotFoundException);
                         }
                     }
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
@@ -199,27 +199,30 @@ public class ExcelLoader {
         assert (refSheetInfo != null);
 
         StringBuilder valuesMap = new StringBuilder();
-        assert (refInfo.getRefIdentifierProperties().length == identifierValues.size());
-        for (int j = 0; j < refInfo.getRefIdentifierProperties().length; j++) {
-            String columnLabel = refSheetInfo.getColumnInfoByOutputProperty(refInfo
-                    .getRefIdentifierProperties()[j]).getColumnLabel();
-            valuesMap.append(columnLabel).append(" = '").append
-                    (identifierValues.get(j)).append("'");
-            if (j != refInfo.getRefIdentifierProperties().length - 1)
+        // refInfo.getRefIdentifierProperties().length != identifierValues.size() with extreme cases fillers
+        for (int j = 0; j < identifierValues.size(); j++) {
+            ColumnInfo columnInfo = refSheetInfo.getColumnInfoByOutputProperty(refInfo
+                    .getRefIdentifierProperties()[j]);
+            if (columnInfo != null)
+                valuesMap.append(columnInfo.getColumnLabel()).append(" = '")
+                        .append(identifierValues.get(j)).append("'");
+            else
+                valuesMap.append("'").append(identifierValues.get(j)).append("'");
+            if (j != identifierValues.size() - 1)
                 valuesMap.append(", ");
         }
 
         loaderResult.getCellErrors().add(
-                new CellError(String.format("Can't find in the '%s' sheet a line with %s " +
-                                "value%s : %s",
-                        refSheetInfo.getSheetLabel(),
-                        identifierValues.size() > 1 ? "these" : "this",
-                        identifierValues.size() > 1 ? "s" : "",
-                        valuesMap
-                ),
+                new CellError(
+                        String.format("Can't find in the '%s' sheet a line with %s value%s : %s",
+                                refSheetInfo.getSheetLabel(),
+                                identifierValues.size() > 1 ? "these" : "this",
+                                identifierValues.size() > 1 ? "s" : "",
+                                valuesMap),
                         sheetInfo.getSheetLabel(),
                         sheetInfo.getStartRow() + i,
                         Arrays.stream(refInfo.getDtoIdentifierProperties())
+                                .map(dtoProp -> sheetInfo.getColumnInfoByDtoProperty(dtoProp).getColumnLabel())
                                 .collect(Collectors.joining(", ")),
                         xlsEntityNotFoundException
                 )
@@ -227,7 +230,7 @@ public class ExcelLoader {
     }
 
     private void handleDbEntityNotFoundException(LoaderResult loaderResult, SheetInfo sheetInfo, int i, EntityRefInfo
-            refInfo, Class entityRefType, ArrayList<Object> identifierValues, DbEntityNotFoundException
+            refInfo, ArrayList<Object> identifierValues, DbEntityNotFoundException
                                                          xlsEntityNotFoundException) {
 
         StringBuilder valuesMap = new StringBuilder();
@@ -242,14 +245,15 @@ public class ExcelLoader {
         }
 
         loaderResult.getCellErrors().add(
-                new CellError(String.format("Can't find in the database an entity with %s value%s : %s",
-                        identifierValues.size() > 1 ? "these" : "this",
-                        identifierValues.size() > 1 ? "s" : "",
-                        valuesMap
-                ),
+                new CellError(
+                        String.format("Can't find in the database an entity with %s value%s : %s",
+                                identifierValues.size() > 1 ? "these" : "this",
+                                identifierValues.size() > 1 ? "s" : "",
+                                valuesMap),
                         sheetInfo.getSheetLabel(),
                         sheetInfo.getStartRow() + i,
                         Arrays.stream(refInfo.getDtoIdentifierProperties())
+                                .map(dtoProp -> sheetInfo.getColumnInfoByDtoProperty(dtoProp).getColumnLabel())
                                 .collect(Collectors.joining(", ")),
                         xlsEntityNotFoundException
                 )

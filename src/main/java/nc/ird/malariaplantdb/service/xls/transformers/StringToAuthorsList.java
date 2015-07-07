@@ -45,7 +45,7 @@ public class StringToAuthorsList implements Transformer {
 
             if (authors.isEmpty()) {
                 throw new IllegalArgumentException(String.format("The followed 'Author(s)' field is not correctly " +
-                        "formated : '%s'", authorsStr));
+                        "formatted : '%s'", authorsStr));
             }
 
         }
