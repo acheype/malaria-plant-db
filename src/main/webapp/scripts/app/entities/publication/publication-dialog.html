@@ -1,0 +1,295 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myPublicationLabel">Create or edit a Publication</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="publication.id" disabled>
+        </div>
+        <div class="form-group">
+            <label for="field_entryType">Entry Type</label>
+            <input type="text" class="form-control" name="entryType" id="field_entryType"
+                    ng-model="publication.entryType"
+                    required ng-maxlength="255">
+            <div ng-show="editForm.entryType.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.entryType.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.entryType.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_year">Year</label>
+            <input type="number" class="form-control" name="year" id="field_year"
+                    ng-model="publication.year"
+                    required min="0" max="3000">
+            <div ng-show="editForm.year.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.year.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.year.$error.min" translate-value-min="0">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.year.$error.max" translate-value-max="3000">
+                    This field cannot be more than 3000.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.year.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                    ng-model="publication.title"
+                    required ng-maxlength="255">
+            <div ng-show="editForm.title.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.title.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.title.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_journal">Journal</label>
+            <input type="text" class="form-control" name="journal" id="field_journal"
+                    ng-model="publication.journal"
+                    ng-maxlength="255">
+            <div ng-show="editForm.journal.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.journal.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_pages">Pages</label>
+            <input type="text" class="form-control" name="pages" id="field_pages"
+                    ng-model="publication.pages"
+                    ng-maxlength="255">
+            <div ng-show="editForm.pages.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.pages.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_volume">Volume</label>
+            <input type="text" class="form-control" name="volume" id="field_volume"
+                    ng-model="publication.volume"
+                    ng-maxlength="255">
+            <div ng-show="editForm.volume.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.volume.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_nbOfVolumes">Nb of Volumes</label>
+            <input type="text" class="form-control" name="nbOfVolumes" id="field_nbOfVolumes"
+                    ng-model="publication.nbOfVolumes"
+                    ng-maxlength="255">
+            <div ng-show="editForm.nbOfVolumes.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nbOfVolumes.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_number">Number</label>
+            <input type="text" class="form-control" name="number" id="field_number"
+                    ng-model="publication.number"
+                    ng-maxlength="255">
+            <div ng-show="editForm.number.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.number.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_bookTitle">Book Title</label>
+            <input type="text" class="form-control" name="bookTitle" id="field_bookTitle"
+                    ng-model="publication.bookTitle"
+                    ng-maxlength="255">
+            <div ng-show="editForm.bookTitle.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.bookTitle.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_publisher">Publisher</label>
+            <input type="text" class="form-control" name="publisher" id="field_publisher"
+                    ng-model="publication.publisher"
+                    ng-maxlength="255">
+            <div ng-show="editForm.publisher.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.publisher.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_edition">Edition</label>
+            <input type="text" class="form-control" name="edition" id="field_edition"
+                    ng-model="publication.edition"
+                    ng-maxlength="255">
+            <div ng-show="editForm.edition.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.edition.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_conferenceName">Conference Name</label>
+            <input type="text" class="form-control" name="conferenceName" id="field_conferenceName"
+                    ng-model="publication.conferenceName"
+                    ng-maxlength="255">
+            <div ng-show="editForm.conferenceName.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.conferenceName.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_conferencePlace">Conference Place</label>
+            <input type="text" class="form-control" name="conferencePlace" id="field_conferencePlace"
+                    ng-model="publication.conferencePlace"
+                    ng-maxlength="255">
+            <div ng-show="editForm.conferencePlace.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.conferencePlace.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_university">University</label>
+            <input type="text" class="form-control" name="university" id="field_university"
+                    ng-model="publication.university"
+                    ng-maxlength="255">
+            <div ng-show="editForm.university.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.university.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_institution">Institution</label>
+            <input type="text" class="form-control" name="institution" id="field_institution"
+                    ng-model="publication.institution"
+                    ng-maxlength="255">
+            <div ng-show="editForm.institution.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.institution.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_doi">DOI</label>
+            <input type="text" class="form-control" name="doi" id="field_doi"
+                    ng-model="publication.doi"
+                    ng-maxlength="255">
+            <div ng-show="editForm.doi.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.doi.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_pmid">PMID</label>
+            <input type="text" class="form-control" name="pmid" id="field_pmid"
+                    ng-model="publication.pmid"
+                    ng-maxlength="255">
+            <div ng-show="editForm.pmid.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.pmid.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_isbn">ISBN</label>
+            <input type="text" class="form-control" name="isbn" id="field_isbn"
+                    ng-model="publication.isbn"
+                    ng-maxlength="255">
+            <div ng-show="editForm.isbn.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.isbn.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_url">URL</label>
+            <input type="url" class="form-control" name="url" id="field_url"
+                    ng-model="publication.url"
+                    ng-maxlength="255">
+            <div ng-show="editForm.url.$invalid">
+                <p class="help-block"  ng-show="editForm.url.$error.url">
+                    Please enter a valid URL.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.url.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_compiler">Compiler(s)</label>
+            <select class="form-control" id="field_compiler" multiple name="compiler"
+                    ng-model="publication.compilers"
+                    ng-options="Compiler as (Compiler.family + '&nbsp;' + Compiler.given) for Compiler in compilers track by Compiler.id"></select>
+            <div>
+                <p class="help-block">
+                    You may add several compilers or deselect a compiler by holding down the Ctrl key.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_compilersNotes">Compilers Notes</label>
+             <textarea class="form-control" rows="3" name="compilersNotes" id="field_compilersNotes"
+                    ng-model="publication.compilersNotes">
+             </textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

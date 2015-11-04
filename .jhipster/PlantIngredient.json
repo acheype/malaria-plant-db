@@ -1,0 +1,26 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "species",
+            "otherEntityName": "Species",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "species"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "partUsed",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        }
+    ],
+    "changelogDate": "20151005000005",
+    "dto": "no",
+    "pagination": "pagination"
+}

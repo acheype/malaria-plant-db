@@ -1,0 +1,38 @@
+
+<div>
+    <h2><span>Species</span><span class="small">&nbsp;&nbsp;#{{species.id}}</span></h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>Family</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{species.family}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Species</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{species.species}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

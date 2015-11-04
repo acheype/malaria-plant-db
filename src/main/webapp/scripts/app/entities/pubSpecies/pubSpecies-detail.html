@@ -1,0 +1,78 @@
+
+<div>
+    <h2><span>PubSpecies</span><span class="small">&nbsp;&nbsp;#{{pubSpecies.id}}</span></h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>Publication</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="Publication.detail({id:pubSpecies.publication.id})">{{pubSpecies.publication.title}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Species</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="PubSpecies.detail({id:pubSpecies.species.id})">{{pubSpecies.species.family + '&nbsp;' + pubSpecies.species.species}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Species Name In Pub</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pubSpecies.speciesNameInPub}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Is Herbarium Voucher ?</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pubSpecies.isHerbariumVoucher}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Herbarium</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pubSpecies.herbarium}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Country</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pubSpecies.country}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Continent</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pubSpecies.continent}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

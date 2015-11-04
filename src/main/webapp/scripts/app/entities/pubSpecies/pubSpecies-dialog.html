@@ -1,0 +1,109 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myPubSpeciesLabel">Create or edit a PubSpecies</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="pubSpecies.id" disabled>
+        </div>
+        <div class="form-group">
+            <label for="field_publication">Publication</label>
+            <select class="form-control" id="field_publication" name="publication" ng-model="pubSpecies.publication"
+                    ng-options="Publication as Publication.title for Publication in publications track by Publication.id"
+                    required>
+            </select>
+            <p class="help-block"
+               ng-show="editForm.publication.$error.required">
+                This list requires a value.
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="field_species">Species</label>
+            <select class="form-control" id="field_species" name="species" ng-model="pubSpecies.species"
+                    ng-options="Species as (Species.family +'&nbsp;'+ Species.species) for Species in speciesList track by Species.id"
+                    required>
+            </select>
+            <p class="help-block"
+               ng-show="editForm.species.$error.required">
+                This list requires a value.
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="field_speciesNameInPub">Species Name In Pub</label>
+            <input type="text" class="form-control" name="speciesNameInPub" id="field_speciesNameInPub"
+                    ng-model="pubSpecies.speciesNameInPub"
+                    required ng-maxlength="255">
+            <div ng-show="editForm.speciesNameInPub.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.speciesNameInPub.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.speciesNameInPub.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_isHerbariumVoucher">Is Herbarium Voucher ?</label>
+            <input type="checkbox" class="form-control" name="isHerbariumVoucher" id="field_isHerbariumVoucher"
+                    ng-model="pubSpecies.isHerbariumVoucher"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_herbarium">Herbarium</label>
+            <input type="text" class="form-control" name="herbarium" id="field_herbarium"
+                   ng-model="pubSpecies.herbarium"
+                   ng-maxlength="255">
+            <div ng-show="editForm.speciesNameInPub.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.speciesNameInPub.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_country">Country</label>
+            <input type="text" class="form-control" name="country" id="field_country"
+                    ng-model="pubSpecies.country"
+                    required ng-maxlength="255">
+            <div ng-show="editForm.country.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.country.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.country.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_continent">Continent</label>
+            <input type="text" class="form-control" name="continent" id="field_continent"
+                    ng-model="pubSpecies.continent"
+                    ng-maxlength="255">
+            <div ng-show="editForm.continent.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.continent.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

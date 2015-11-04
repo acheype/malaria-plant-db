@@ -1,0 +1,29 @@
+{
+    "relationships": [
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "family",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "species",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        }
+    ],
+    "changelogDate": "20151005000003",
+    "dto": "no",
+    "pagination": "pagination"
+}

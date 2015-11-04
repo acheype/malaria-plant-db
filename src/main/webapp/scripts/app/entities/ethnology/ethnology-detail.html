@@ -1,0 +1,81 @@
+
+<div>
+    <h2><span>Ethnology note</span><span class="small">&nbsp;&nbsp;#{{ethnology.id}}</span></h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>Publication</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="publication.detail({id:ethnology.publication.id})">{{ethnology.publication.title}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Plant Ingredient(s)</span>
+                </td>
+                <td>
+                    <span ng-repeat="plantIngredient in ethnology.plantIngredients">
+                        <a class="form-control-static"
+                           ui-sref="plantIngredient.detail({id: plantIngredient.id})">{{plantIngredient.species.family + '&nbsp;' + plantIngredient.species.species + ',&nbsp;' + plantIngredient.partUsed}}</a>{{$last ? '' : '&nbsp;/&nbsp;'}}
+                    <span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Ethno Relevancy</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ethnology.ethnoRelevancy}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Treatment Type</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ethnology.treatmentType}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Traditional Recipe Details</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ethnology.traditionalRecipeDetails}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Preparation Mode</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ethnology.preparationMode}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Administration Route</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ethnology.administrationRoute}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

@@ -1,0 +1,145 @@
+
+<div>
+    <h2><span>In Vitro Pharmaco note</span><span class="small">&nbsp;&nbsp;#{{inVitroPharmaco.id}}</span></h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>Publication</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="publication.detail({id:inVitroPharmaco.publication.id})">{{inVitroPharmaco.publication.title}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Plant Ingredient(s)</span>
+                </td>
+                <td>
+                    <span ng-repeat="plantIngredient in inVitroPharmaco.plantIngredients">
+                        <a class="form-control-static"
+                           ui-sref="plantIngredient.detail({id: plantIngredient.id})">{{plantIngredient.species.family + '&nbsp;' + plantIngredient.species.species + ',&nbsp;' + plantIngredient.partUsed}}</a>{{$last ? '' : '&nbsp;/&nbsp;'}}
+                    <span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Tested Entity</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.testedEntity}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Extraction Solvent</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.extractionSolvent}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Additive Product</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.additiveProduct}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Compound Name</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.compoundName}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Screening Test</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.screeningTest}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Measure Method</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.measureMethod}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Concentration (μg/ml)</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.concentration}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Concentration (μmol/ml)</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.molConcentration}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Inhibition (%)</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.inhibition}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Ic50 (μg/ml)</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.ic50}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Ic50 (μg/ml)</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.molIc50}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>SelectivityIndex </span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.selectivityIndex}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>CompilersObservations</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVitroPharmaco.compilersObservations}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

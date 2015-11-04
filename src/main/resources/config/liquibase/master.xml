@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005000001_added_entity_Author.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005000002_added_entity_Compiler.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005000003_added_entity_Species.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005000004_added_entity_PubSpecies.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005000005_added_entity_PlantIngredient.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005000006_added_entity_Ethnology.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005000007_added_entity_InVivoPharmaco.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005000008_added_entity_InVitroPharmaco.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005000009_added_entity_Publication.xml" relativeToChangelogFile="false"/>
+    <!-- JHipster will add liquibase changelogs here -->
+
+</databaseChangeLog>

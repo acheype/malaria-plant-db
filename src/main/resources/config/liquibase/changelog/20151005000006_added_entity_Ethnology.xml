@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql"/>
+    <property name="autoIncrement" value="false" dbms="oracle"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle"/>
+
+    <property name="clobType" value="clob" dbms="postgresql,h2,oracle"/>
+    <property name="clobType" value="longtext" dbms="mysql"/>
+
+    <!--
+        Added the entity Ethnology.
+    -->
+    <changeSet id="20151005000006" author="jhipster">
+        <createTable tableName="ETHNOLOGY">
+            <column name="publication_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ethno_relevancy" type="${clobType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="treatment_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="traditional_recipe_details" type="${clobType}"/>
+            <column name="preparation_mode" type="varchar(255)"/>
+            <column name="administration_route" type="varchar(255)"/>
+
+        </createTable>
+
+        <createTable tableName="ETHNOLOGY_PLANT_INGREDIENT">
+            <column name="plant_ingredients_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ethnologies_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="ethnologies_id, plant_ingredients_id" tableName="ETHNOLOGY_PLANT_INGREDIENT"/>
+
+        <addForeignKeyConstraint baseColumnNames="ethnologies_id"
+                                 baseTableName="ETHNOLOGY_PLANT_INGREDIENT"
+                                 constraintName="fk_ethnology_plantingredient_plantingredient_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ETHNOLOGY"/>
+
+        <addForeignKeyConstraint baseColumnNames="plant_ingredients_id"
+                                 baseTableName="ETHNOLOGY_PLANT_INGREDIENT"
+                                 constraintName="fk_plantingredient_plantingredient_ethnology_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="PLANT_INGREDIENT"/>
+
+    </changeSet>
+</databaseChangeLog>

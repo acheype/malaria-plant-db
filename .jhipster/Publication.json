@@ -1,0 +1,233 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "author",
+            "otherEntityName": "Author",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "publication"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "compiler",
+            "otherEntityName": "Compiler",
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "publication",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "pubSpecie",
+            "otherEntityName": "PubSpecies",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "publication"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "ethnologie",
+            "otherEntityName": "Ethnology",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "publication"
+        },
+        {
+            "relationshipId": 5,
+            "relationshipName": "inVivoPharmaco",
+            "otherEntityName": "InVivoPharmaco",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "publication"
+        },
+        {
+            "relationshipId": 6,
+            "relationshipName": "inVitroPharmaco",
+            "otherEntityName": "InVitroPharmaco",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "publication"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "entryType",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "year",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": "0",
+            "fieldValidateRulesMax": "3000"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "journal",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "pages",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "volume",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "nbOfVolumes",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "number",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "bookTitle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "publisher",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 11,
+            "fieldName": "edition",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 12,
+            "fieldName": "conferenceName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 13,
+            "fieldName": "conferencePlace",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 14,
+            "fieldName": "university",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 15,
+            "fieldName": "institution",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 16,
+            "fieldName": "doi",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 17,
+            "fieldName": "pmid",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 18,
+            "fieldName": "isbn",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 19,
+            "fieldName": "url",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 20,
+            "fieldName": "compilersNotes",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151005000009",
+    "dto": "no",
+    "pagination": "pagination"
+}

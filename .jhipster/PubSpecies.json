@@ -1,0 +1,63 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "publication",
+            "otherEntityName": "Publication",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "title"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "species",
+            "otherEntityName": "Species",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "species"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "speciesNameInPub",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "isHerbariumVoucher",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "herbarium",
+            "fieldType": "String",
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "country",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "continent",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        }
+    ],
+    "changelogDate": "20151005000004",
+    "dto": "no",
+    "pagination": "pagination"
+}

@@ -1,0 +1,114 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myEthnologyLabel">Create or edit a Ethnology note</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="ethnology.id" disabled>
+        </div>
+        <div class="form-group">
+            <label for="field_publication">Publication</label>
+            <select class="form-control" id="field_publication" name="publication" ng-model="ethnology.publication"
+                    ng-options="publication as publication.title for publication in publications track by publication.id"
+                required>
+            </select>
+            <p class="help-block"
+               ng-show="editForm.publication.$error.required">
+                The list requires a value.
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="field_plantIngredient">Plant Ingredient(s)</label>
+            <select class="form-control" id="field_plantIngredient" multiple name="plantIngredient"
+                    ng-model="ethnology.plantIngredients"
+                    ng-options="PlantIngredient as (PlantIngredient.species.family + '&nbsp;' + PlantIngredient.species.species + ',&nbsp;' + PlantIngredient.partUsed) for PlantIngredient in plantIngredients track by PlantIngredient.id"
+                    required>
+            </select>
+            <div>
+                <p class="help-block" ng-show="editForm.plantIngredient.$error.required">
+                    The list requires one or several values to be selected.
+                </p>
+                <p class="help-block">
+                    You may add several plant ingredients or deselect a plant ingredient by holding down the Ctrl key.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_ethnoRelevancy">Ethno Relevancy</label>
+            <textarea class="form-control" rows="3" type="text" class="form-control" name="ethnoRelevancy"
+                      id="field_ethnoRelevancy"
+                      ng-model="ethnology.ethnoRelevancy"
+                      required>
+            </textarea>
+            <div ng-show="editForm.ethnoRelevancy.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.ethnoRelevancy.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_treatmentType">Treatment Type</label>
+            <input type="text" class="form-control" name="treatmentType" id="field_treatmentType"
+                    ng-model="ethnology.treatmentType"
+                    required ng-maxlength="255">
+            <div ng-show="editForm.treatmentType.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.treatmentType.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.treatmentType.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_traditionalRecipeDetails">Traditional Recipe Details</label>
+            <textarea class="form-control" rows="3" type="text" class="form-control" name="traditionalRecipeDetails"
+                    id="field_traditionalRecipeDetails"
+                    ng-model="ethnology.traditionalRecipeDetails">
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label for="field_preparationMode">Preparation Mode</label>
+            <input type="text" class="form-control" name="preparationMode" id="field_preparationMode"
+                    ng-model="ethnology.preparationMode"
+                    ng-maxlength="255">
+            <div ng-show="editForm.preparationMode.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.preparationMode.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_administrationRoute">Administration Route</label>
+            <input type="text" class="form-control" name="administrationRoute" id="field_administrationRoute"
+                    ng-model="ethnology.administrationRoute"
+                    ng-maxlength="255">
+            <div ng-show="editForm.administrationRoute.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.administrationRoute.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

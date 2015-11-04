@@ -1,0 +1,144 @@
+
+<div>
+    <h2><span>InVivoPharmaco note</span><span class="small">&nbsp;&nbsp;#{{inVivoPharmaco.id}}</span></h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>Publication</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="publication.detail({id:inVivoPharmaco.publication.id})">{{inVivoPharmaco.publication.title}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Plant Ingredient(s)</span>
+                </td>
+                <td>
+                    <span ng-repeat="plantIngredient in inVivoPharmaco.plantIngredients">
+                        <a class="form-control-static" ui-sref="plantIngredient.detail({id: plantIngredient.id})">{{plantIngredient.species.family + '&nbsp;' + plantIngredient.species.species + ',&nbsp;' + plantIngredient.partUsed}}</a>{{$last ? '' : '&nbsp;/&nbsp;'}}
+                    <span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Tested Entity</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.testedEntity}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Extraction Solvent</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.extractionSolvent}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Additive Product</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.additiveProduct}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Compound Name</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.compoundName}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Screening Test</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.screeningTest}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Treatment Route</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.treatmentRoute}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Dose (mg/kg)</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.dose}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Inhibition (%)</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.inhibition}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Survival Percent</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.survivalPercent}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Survival Time (days)</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.survivalTime}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>ED50 (mg/kg)</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.ed50}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>LD50 (mg/kg)</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.ld50}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Compilers Observations</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{inVivoPharmaco.compilersObservations}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

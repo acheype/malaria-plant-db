@@ -1,0 +1,66 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "publication",
+            "otherEntityName": "Publication",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "title"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "plantIngredient",
+            "otherEntityName": "PlantIngredient",
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "ethnology",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "ethnoRelevancy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "treatmentType",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "traditionalRecipeDetails",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "preparationMode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "administrationRoute",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        }
+    ],
+    "changelogDate": "20151005000006",
+    "dto": "no",
+    "pagination": "pagination"
+}

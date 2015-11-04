@@ -1,0 +1,31 @@
+<div ng-cloak>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="mpdbc-logo img-responsive"></span>
+        </div>
+        <div class="col-md-8">
+            <h1>Malaria Plant DB Community</h1>
+            <p class="lead"><span class=".glyphicon .glyphicon-leaf hidden-xs"></span>The database of medicinal plants against
+                malaria</p>
+
+            <div ng-switch="isAuthenticated()">
+                <div class="alert alert-success" ng-switch-when="true">
+                    You are logged in as user "{{account.login}}".
+                </div>
+
+                <div class="alert alert-warning" ng-switch-when="false">
+                    If you want to <a class="alert-link" href="#/login">authenticate</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
+                </div>
+            </div>
+
+            <h3>Objectives</h3>
+
+            <p>The Malaria Plant Community Database has been designed to <strong>register and synthesize</strong>
+                published (or to be published) information and grey literature (literature outside of commercial or
+                academic publishing) on antimalarial medicinal plants: Their traditional use and/or their in vitro/in
+                vivo biological activity, and/or toxicity.</p>
+            <p>The database is not a substitute for published material, as only relevant data from the publication
+                (considered to be fundamental for result interpretation) has been retained.</p>
+        </div>
+    </div>
+</div>

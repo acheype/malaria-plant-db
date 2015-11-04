@@ -1,0 +1,258 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myInVitroPharmacoLabel">Create or edit a In Vitro Pharmaco note</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="inVitroPharmaco.id" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="field_publication">Publication</label>
+            <select class="form-control" id="field_publication" name="publication" ng-model="inVitroPharmaco.publication"
+                    ng-options="publication as publication.title for publication in publications track by publication.id"
+                    required>
+            </select>
+            <p class="help-block"
+               ng-show="editForm.publication.$error.required">
+                The list requires a value.
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="field_plantIngredient">Plant Ingredient(s)</label>
+            <select class="form-control" id="field_plantIngredient" multiple name="plantIngredient"
+                    ng-model="inVitroPharmaco.plantIngredients"
+                    ng-options="PlantIngredient as (PlantIngredient.species.family + '&nbsp;' + PlantIngredient.species.species + ',&nbsp;' + PlantIngredient.partUsed) for PlantIngredient in plantIngredients track by PlantIngredient.id"
+                    required>
+            </select>
+            <div>
+                <p class="help-block" ng-show="editForm.plantIngredient.$error.required">
+                    The list requires one or several values to be selected.
+                </p>
+                <p class="help-block">
+                    You may add several plant ingredients or deselect a plant ingredient by holding down the Ctrl key.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_testedEntity">Tested Entity</label>
+            <input type="text" class="form-control" name="testedEntity" id="field_testedEntity"
+                    ng-model="inVitroPharmaco.testedEntity"
+                    required ng-maxlength="255">
+            <div ng-show="editForm.testedEntity.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.testedEntity.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.testedEntity.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_extractionSolvent">Extraction Solvent</label>
+            <input type="text" class="form-control" name="extractionSolvent" id="field_extractionSolvent"
+                    ng-model="inVitroPharmaco.extractionSolvent"
+                    ng-maxlength="255">
+            <div ng-show="editForm.extractionSolvent.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.extractionSolvent.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_additiveProduct">Additive Product</label>
+            <input type="text" class="form-control" name="additiveProduct" id="field_additiveProduct"
+                    ng-model="inVitroPharmaco.additiveProduct"
+                    ng-maxlength="255">
+            <div ng-show="editForm.additiveProduct.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.additiveProduct.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_compoundName">Compound Name</label>
+            <input type="text" class="form-control" name="compoundName" id="field_compoundName"
+                    ng-model="inVitroPharmaco.compoundName"
+                    ng-maxlength="255">
+            <div ng-show="editForm.compoundName.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.compoundName.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_screeningTest">Screening Test</label>
+            <input type="text" class="form-control" name="screeningTest" id="field_screeningTest"
+                    ng-model="inVitroPharmaco.screeningTest"
+                    required ng-maxlength="255">
+            <div ng-show="editForm.screeningTest.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.screeningTest.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.screeningTest.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_measureMethod">Measure Method</label>
+            <input type="text" class="form-control" name="measureMethod" id="field_measureMethod"
+                    ng-model="inVitroPharmaco.measureMethod"
+                    ng-maxlength="255">
+            <div ng-show="editForm.measureMethod.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.measureMethod.$error.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_concentration">Concentration (μg/ml)</label>
+            <input type="number" class="form-control" name="concentration" id="field_concentration"
+                    ng-model="inVitroPharmaco.concentration"
+                    min="0" max="1000000">
+            <div ng-show="editForm.concentration.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.concentration.$error.min" translate-value-min="0">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.concentration.$error.max">
+                    This field cannot be more than 1000000.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.concentration.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_molConcentration">Concentration (μmol/ml)</label>
+            <input type="number" class="form-control" name="molConcentration" id="field_molConcentration"
+                    ng-model="inVitroPharmaco.molConcentration"
+                    min="0" max="1000000">
+            <div ng-show="editForm.molConcentration.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.molConcentration.$error.min" translate-value-min="0">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.molConcentration.$error.max" translate-value-max="1000000">
+                    This field cannot be more than 1000000.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.molConcentration.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_inhibition">Inhibition (%)</label>
+            <input type="number" class="form-control" name="inhibition" id="field_inhibition"
+                    ng-model="inVitroPharmaco.inhibition"
+                    min="0" max="100">
+            <div ng-show="editForm.inhibition.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.inhibition.$error.min">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.inhibition.$error.max">
+                    This field cannot be more than 100.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.inhibition.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_ic50">IC50 (μg/ml)</label>
+            <input type="number" class="form-control" name="ic50" id="field_ic50"
+                    ng-model="inVitroPharmaco.ic50"
+                    min="0" max="1000000">
+            <div ng-show="editForm.ic50.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.ic50.$error.min">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.ic50.$error.max" >
+                    This field cannot be more than 1000000.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.ic50.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_molIc50">IC50 (μmol/ml)</label>
+            <input type="number" class="form-control" name="molIc50" id="field_molIc50"
+                    ng-model="inVitroPharmaco.molIc50"
+                    min="0" max="1000000">
+            <div ng-show="editForm.molIc50.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.molIc50.$error.min">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.molIc50.$error.max">
+                    This field cannot be more than 1000000.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.molIc50.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_selectivityIndex">Selectivity Index</label>
+            <input type="number" class="form-control" name="selectivityIndex" id="field_selectivityIndex"
+                    ng-model="inVitroPharmaco.selectivityIndex"
+                    min="0" max="100">
+            <div ng-show="editForm.selectivityIndex.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.selectivityIndex.$error.min" translate-value-min="0">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.selectivityIndex.$error.max" translate-value-max="1000000">
+                    This field cannot be more than 100.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.selectivityIndex.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_compilersObservations">CompilersObservations</label>
+            <input type="text" class="form-control" name="compilersObservations" id="field_compilersObservations"
+                    ng-model="inVitroPharmaco.compilersObservations">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

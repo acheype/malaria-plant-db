@@ -1,0 +1,71 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myAuthorLabel">Create or edit a Author</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="author.id" disabled>
+        </div>
+        <div class="form-group">
+            <label for="field_publication">Publication</label>
+            <select class="form-control" id="field_publication" name="publication" ng-model="author.publication"
+                    ng-options="publication as publication.title for publication in publications track by publication.id"
+                    required>
+                <option value=""></option>
+            </select>
+            <div ng-show="editForm.publication.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.publication.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.family.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_family">Family</label>
+            <input type="text" class="form-control" name="family" id="field_family"
+                    ng-model="author.family"
+                    required ng-maxlength="255">
+            <div ng-show="editForm.family.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.family.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.family.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_given">Given</label>
+            <input type="text" class="form-control" name="given" id="field_given"
+                    ng-model="author.given"
+                    ng-maxlength="255">
+            <div ng-show="editForm.given.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.given.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

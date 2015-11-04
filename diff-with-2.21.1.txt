@@ -1,0 +1,16 @@
+package.json
+README.md
+Gruntfile.js
+pom.xml
+src/main/resources/config/liquibase/master.xml
+src/main/java/nc/ird/malariaplantdb/config/audit/AuditEventConverter.java
+src/main/java/nc/ird/malariaplantdb/config/audit/AuditEventConverter.java
+src/main/java/nc/ird/malariaplantdb/service/UserService.java
+src/main/java/nc/ird/malariaplantdb/web/rest/UserResource.java
+src/main/scss/main.scss
+src/main/webapp/scripts/components/navbar/navbar.html
+src/main/webapp/scripts/app/account/password/password.directive.js
+src/main/webapp/scripts/app/admin/user-management/user-management.html
+src/main/webapp/scripts/app/admin/user-management/user-management.js
+src/test/javascript/karma.conf.js
+src/main/webapp/index.html
