@@ -20,8 +20,14 @@ angular.module('malariaplantdbApp', ['LocalStorageModule',
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
             var titleKey = 'malariaplantdb' ;
 
-            $rootScope.previousStateName = fromState.name;
-            $rootScope.previousStateParams = fromParams;
+            // Remember previous state unless we've been redirected to login or we've just
+            // reset the state memory after logout. If we're redirected to login, our
+            // previousState is already set in the authExpiredInterceptor. If we're going
+            // to login directly, we don't want to be sent to some previous state anyway
+            if (toState.name != 'login' && $rootScope.previousStateName) {
+              $rootScope.previousStateName = fromState.name;
+              $rootScope.previousStateParams = fromParams;
+            }
 
             // Set the page title key to the one configured in state or use default one
             if (toState.data.pageTitle) {
@@ -67,4 +73,14 @@ angular.module('malariaplantdbApp', ['LocalStorageModule',
         $httpProvider.interceptors.push('authInterceptor');
         $httpProvider.interceptors.push('notificationInterceptor');
         
-    });
+    })
+    .config(['$urlMatcherFactoryProvider', function($urlMatcherFactory) {
+        $urlMatcherFactory.type('boolean', {
+            name : 'boolean',
+            decode: function(val) { return val == true ? true : val == "true" ? true : false },
+            encode: function(val) { return val ? 1 : 0; },
+            equals: function(a, b) { return this.is(a) && a === b; },
+            is: function(val) { return [true,false,0,1].indexOf(val) >= 0 },
+            pattern: /bool|true|0|1/
+        });
+    }]);;

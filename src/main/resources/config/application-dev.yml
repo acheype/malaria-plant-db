@@ -1,31 +1,35 @@
-server:
-    port: 8080
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+# ===================================================================
 
-liquibase:
-    context: dev
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
 
 spring:
     profiles:
         active: dev
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false # we use Grunt + BrowserSync for livereload
     datasource:
-        dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+        driver-class-name: org.h2.jdbcx.JdbcDataSource
         url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
-        databaseName:
-        serverName:
-        username:
+        name:
+        username: 
         password:
-
     jpa:
         database-platform: nc.ird.malariaplantdb.domain.util.FixedH2Dialect
         database: H2
-        openInView: false
         show_sql: true
-        generate-ddl: false
-        hibernate:
-            ddl-auto: none
-            naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
         properties:
-            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
@@ -37,25 +41,38 @@ spring:
                 path:
                   logs: target/elasticsearch/log
                   data: target/elasticsearch/data
+    mail:
+        host: localhost
     messages:
         cache-seconds: 1
     thymeleaf:
-        mode: XHTML
         cache: false
 
-metrics:
-    jmx.enabled: true
-    spark:
-        enabled: false
-        host: localhost
-        port: 9999
-    graphite:
-        enabled: false
-        host: localhost
-        port: 2003
-        prefix: malariaplantdb
+liquibase:
+    contexts: dev
 
-cache:
-    timeToLiveSeconds: 3600
-    ehcache:
-        maxBytesLocalHeap: 16M
+server:
+    port: 8080
+
+# ===================================================================
+# JHipster specific properties
+# ===================================================================
+
+jhipster:
+    cache: # Hibernate 2nd level cache, used by CacheConfiguration
+        timeToLiveSeconds: 3600
+        ehcache:
+            maxBytesLocalHeap: 16M
+    mail: # specific JHipster mail property, for standard properties see MailProperties
+        from: malariaplantdb@localhost
+    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
+        jmx.enabled: true
+        spark:
+            enabled: false
+            host: localhost
+            port: 9999
+        graphite:
+            enabled: false
+            host: localhost
+            port: 2003
+            prefix: malariaplantdb

@@ -23,40 +23,34 @@ import java.util.Objects;
 @Entity
 @JsonPropertyOrder({"id", "publication", "species", "speciesNameInPub", "isHerbariumVoucher", "herbarium",
     "country", "continent"})
-@Table(name = "PUB_SPECIES")
+@Table(name = "pub_species")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName="pubspecies")
 public class PubSpecies implements Serializable, Comparable<PubSpecies> {
 
+    private final static Comparator<PubSpecies> COMPARATOR = new PubSpeciesComparator();
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotNull
     @ManyToOne
     private Publication publication;
-
     @NotNull
     @ManyToOne
     private Species species;
-
     @NotNull
     @Size(max = 255)
     @Column(name = "species_name_in_pub", length = 255, nullable = false)
     private String speciesNameInPub;
-
     @NotNull
     @Column(name = "is_herbarium_voucher")
     private Boolean isHerbariumVoucher;
-
     @Column(name = "herbarium")
     private String herbarium;
-
     @NotNull
     @Size(max = 255)
     @Column(name = "country", length = 255, nullable = false)
     private String country;
-
     @Size(max = 255)
     @Column(name = "continent", length = 255)
     private String continent;
@@ -136,9 +130,8 @@ public class PubSpecies implements Serializable, Comparable<PubSpecies> {
 
         PubSpecies pubSpecies = (PubSpecies) o;
 
-        if ( ! Objects.equals(id, pubSpecies.id)) return false;
+        return Objects.equals(id, pubSpecies.id);
 
-        return true;
     }
 
     @Override
@@ -158,10 +151,8 @@ public class PubSpecies implements Serializable, Comparable<PubSpecies> {
                 '}';
     }
 
-    private final static Comparator<PubSpecies> COMPARATOR = new PubSpeciesComparator();
-
     @Override
-    public int compareTo(PubSpecies o) {
+    public int compareTo(@NotNull PubSpecies o) {
         return COMPARATOR.compare(this, o);
     }
 }

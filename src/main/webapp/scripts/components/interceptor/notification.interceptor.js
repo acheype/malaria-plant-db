@@ -9,6 +9,6 @@ angular.module('malariaplantdbApp')
                     AlertService.success(alertKey, { param : response.headers('X-malariaplantdbApp-params')});
                 }
                 return response;
-            },
+            }
         };
     });

@@ -8,7 +8,7 @@ angular.module('malariaplantdbApp')
                 url: '/login',
                 data: {
                     authorities: [], 
-                    pageTitle: 'Authentication'
+                    pageTitle: 'Sign in'
                 },
                 views: {
                     'content@': {

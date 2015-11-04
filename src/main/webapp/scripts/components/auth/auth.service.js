@@ -10,7 +10,6 @@ angular.module('malariaplantdbApp')
                 AuthServerProvider.login(credentials).then(function (data) {
                     // retrieve the logged account information
                     Principal.identity(true).then(function(account) {
-                      
                         deferred.resolve(data);
                     });
                     return cb();
@@ -26,6 +25,9 @@ angular.module('malariaplantdbApp')
             logout: function () {
                 AuthServerProvider.logout();
                 Principal.authenticate(null);
+                // Reset state memory
+                $rootScope.previousStateName = undefined;
+                $rootScope.previousStateNameParams = undefined;
             },
 
             authorize: function(force) {
@@ -46,8 +48,8 @@ angular.module('malariaplantdbApp')
                             else {
                                 // user is not authenticated. stow the state they wanted before you
                                 // send them to the signin state, so you can return them when you're done
-                                $rootScope.returnToState = $rootScope.toState;
-                                $rootScope.returnToStateParams = $rootScope.toStateParams;
+                                $rootScope.previousStateName = $rootScope.toState;
+                                $rootScope.previousStateNameParams = $rootScope.toStateParams;
 
                                 // now, send them to the signin state so they can log in
                                 $state.go('login');

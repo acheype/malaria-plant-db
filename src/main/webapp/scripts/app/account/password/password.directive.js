@@ -7,7 +7,7 @@ angular.module('malariaplantdbApp')
             replace: true,
             restrict: 'E',
             template: '<div id="strength">' +
-                '<small>Password strength:</small>' +
+            '<small>Password strength:</small>' +
                 '<ul id="strengthBar">' +
                 '<li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li>' +
                 '</ul>' +

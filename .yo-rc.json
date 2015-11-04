@@ -16,6 +16,10 @@
     "frontendBuilder": "grunt",
     "javaVersion": "8",
     "enableTranslation": false,
-    "rememberMeKey": "cb0f037ff3c3646f9796359f3916f7e654f33744"
+    "rememberMeKey": "cb0f037ff3c3646f9796359f3916f7e654f33744",
+    "enableSocialSignIn": false,
+    "testFrameworks": [
+      "gatling"
+    ]
   }
 }

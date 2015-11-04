@@ -1,9 +1,7 @@
 package nc.ird.malariaplantdb.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nc.ird.malariaplantdb.domain.util.comparator.EthnologyComparator;
-import nc.ird.malariaplantdb.domain.util.comparator.PlantIngredientComparator;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -26,19 +24,18 @@ import java.util.*;
 @Entity
 @JsonPropertyOrder({"id", "publication", "plantIngredients", "ethnoRelevancy", "treatmentType",
     "traditionalRecipeDetails", "preparationMode", "administrationRoute"})
-@Table(name = "ETHNOLOGY")
+@Table(name = "ethnology")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName="ethnology")
 public class Ethnology implements Serializable, Comparable<Ethnology> {
 
+    private final static Comparator<Ethnology> COMPARATOR = new EthnologyComparator();
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotNull
     @ManyToOne
     private Publication publication;
-
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     @BatchSize(size = 10)
@@ -48,27 +45,22 @@ public class Ethnology implements Serializable, Comparable<Ethnology> {
         inverseJoinColumns = @JoinColumn(name="plant_ingredients_id", referencedColumnName="ID"))
     @SortNatural
     private SortedSet<PlantIngredient> plantIngredients = new TreeSet<>();
-
     @NotNull
     @Lob
     @Type(type="org.hibernate.type.StringClobType")
     @Column(name = "ethno_relevancy", nullable = false)
     private String ethnoRelevancy;
-
     @NotNull
     @Size(max = 255)
     @Column(name = "treatment_type", length = 255, nullable = false)
     private String treatmentType;
-
     @Lob
     @Type(type="org.hibernate.type.StringClobType")
     @Column(name = "traditional_recipe_details")
     private String traditionalRecipeDetails;
-
     @Size(max = 255)
     @Column(name = "preparation_mode", length = 255)
     private String preparationMode;
-
     @Size(max = 255)
     @Column(name = "administration_route", length = 255)
     private String administrationRoute;
@@ -148,9 +140,8 @@ public class Ethnology implements Serializable, Comparable<Ethnology> {
 
         Ethnology ethnology = (Ethnology) o;
 
-        if ( ! Objects.equals(id, ethnology.id)) return false;
+        return Objects.equals(id, ethnology.id);
 
-        return true;
     }
 
     @Override
@@ -170,10 +161,8 @@ public class Ethnology implements Serializable, Comparable<Ethnology> {
                 '}';
     }
 
-    private final static Comparator<Ethnology> COMPARATOR = new EthnologyComparator();
-
     @Override
-    public int compareTo(Ethnology o) {
+    public int compareTo(@NotNull Ethnology o) {
         return COMPARATOR.compare(this, o);
     }
 }

@@ -1,9 +1,7 @@
 package nc.ird.malariaplantdb.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nc.ird.malariaplantdb.domain.util.comparator.InVivoPharmacoComparator;
-import nc.ird.malariaplantdb.domain.util.comparator.PlantIngredientComparator;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -27,19 +25,18 @@ import java.util.*;
 @JsonPropertyOrder({"id", "publication", "plantIngredients", "testedEntity", "extractionSolvent", "additiveProduct",
     "compoundName", "screeningTest","treatmentRoute", "dose", "inhibition", "survivalPercent", "survivalTime", "ed50",
     "ld50", "compilersObservations"})
-@Table(name = "IN_VIVO_PHARMACO")
+@Table(name = "in_vivo_pharmaco")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName="invivopharmaco")
 public class InVivoPharmaco implements Serializable, Comparable<InVivoPharmaco> {
 
+    private final static Comparator<InVivoPharmaco> COMPARATOR = new InVivoPharmacoComparator();
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotNull
     @ManyToOne
     private Publication publication;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @BatchSize(size = 100)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -48,69 +45,56 @@ public class InVivoPharmaco implements Serializable, Comparable<InVivoPharmaco> 
         inverseJoinColumns = @JoinColumn(name="plant_ingredients_id", referencedColumnName="ID"))
     @SortNatural
     private SortedSet<PlantIngredient> plantIngredients = new TreeSet<>();
-
     @NotNull
     @Size(max = 255)
     @Column(name = "tested_entity", length = 255, nullable = false)
     private String testedEntity;
-
     @Size(max = 255)
     @Column(name = "extraction_solvent", length = 255)
     private String extractionSolvent;
-
     @Size(max = 255)
     @Column(name = "additive_product", length = 255)
     private String additiveProduct;
-
     @Size(max = 255)
     @Column(name = "compound_name", length = 255)
     private String compoundName;
-
     @NotNull
     @Size(max = 255)
     @Column(name = "screening_test", length = 255, nullable = false)
     private String screeningTest;
-
     @Size(max = 255)
     @Column(name = "treatment_route", length = 255)
     private String treatmentRoute;
-
     @Min(value = 0)
     @Max(value = 1000000)
     @Digits(integer=7, fraction=4)
     @Column(name = "dose", precision=11, scale=4)
     private BigDecimal dose;
-
     @Min(value = 0)
     @Max(value = 100)
     @Digits(integer=3, fraction=2)
     @Column(name = "inhibition", precision=5, scale=2)
     private BigDecimal inhibition;
-
     @Min(value = 0)
     @Max(value = 100)
     @Digits(integer=3, fraction=2)
     @Column(name = "survival_percent", precision=5, scale=2)
     private BigDecimal survivalPercent;
-
     @Min(value = 0)
     @Max(value = 1000000)
     @Digits(integer=3, fraction=2)
     @Column(name = "survival_time", precision=5, scale=2)
     private BigDecimal survivalTime;
-
     @Min(value = 0)
     @Max(value = 1000000)
     @Digits(integer=7, fraction=4)
     @Column(name = "ed50", precision=11, scale=4)
     private BigDecimal ed50;
-
     @Min(value = 0)
     @Max(value = 1000000)
     @Digits(integer=7, fraction=4)
     @Column(name = "ld50", precision=11, scale=4)
     private BigDecimal ld50;
-
     @Lob
     @Type(type = "org.hibernate.type.StringClobType")
     @Column(name = "compilers_observations")
@@ -255,9 +239,8 @@ public class InVivoPharmaco implements Serializable, Comparable<InVivoPharmaco> 
 
         InVivoPharmaco inVivoPharmaco = (InVivoPharmaco) o;
 
-        if ( ! Objects.equals(id, inVivoPharmaco.id)) return false;
+        return Objects.equals(id, inVivoPharmaco.id);
 
-        return true;
     }
 
     @Override
@@ -285,10 +268,8 @@ public class InVivoPharmaco implements Serializable, Comparable<InVivoPharmaco> 
                 '}';
     }
 
-    private final static Comparator<InVivoPharmaco> COMPARATOR = new InVivoPharmacoComparator();
-
     @Override
-    public int compareTo(InVivoPharmaco o) {
+    public int compareTo(@NotNull InVivoPharmaco o) {
         return COMPARATOR.compare(this, o);
     }
 }

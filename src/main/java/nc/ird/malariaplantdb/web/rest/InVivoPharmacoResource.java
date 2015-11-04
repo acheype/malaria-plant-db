@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing InVivoPharmaco.
@@ -134,7 +134,7 @@ public class InVivoPharmacoResource {
     @Timed
     public List<InVivoPharmaco> searchInVivoPharmacos(@PathVariable String query) {
         return StreamSupport
-            .stream(inVivoPharmacoSearchRepository.search(queryString(query)).spliterator(), false)
+            .stream(inVivoPharmacoSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
 }

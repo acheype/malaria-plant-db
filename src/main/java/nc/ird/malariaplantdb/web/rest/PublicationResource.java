@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing Publication.
@@ -134,7 +134,7 @@ public class PublicationResource {
     @Timed
     public List<Publication> searchPublications(@PathVariable String query) {
         return StreamSupport
-            .stream(publicationSearchRepository.search(queryString(query)).spliterator(), false)
+            .stream(publicationSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
 }

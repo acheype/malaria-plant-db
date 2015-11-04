@@ -33,8 +33,6 @@ angular.module('malariaplantdbApp')
                         controller: 'UserManagementDetailController'
                     }
                 },
-                resolve: {
-
-                }
+                resolve: {}
             });
     });

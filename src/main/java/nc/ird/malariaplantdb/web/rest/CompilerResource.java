@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing Compiler.
@@ -134,7 +134,7 @@ public class CompilerResource {
     @Timed
     public List<Compiler> searchCompilers(@PathVariable String query) {
         return StreamSupport
-            .stream(compilerSearchRepository.search(queryString(query)).spliterator(), false)
+            .stream(compilerSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
 }

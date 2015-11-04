@@ -26,35 +26,31 @@ import java.util.Objects;
  */
 @Entity
 @JsonPropertyOrder({"id", "family", "given", "institution", "institutionAddress", "email"})
-@Table(name = "COMPILER", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}, name = "uk_compiler_email"))
+@Table(name = "compiler", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}, name = "uk_compiler_email"))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName="compiler")
 public class Compiler implements Serializable, Comparable<Compiler> {
 
+    private final static Comparator<Compiler> COMPARATOR = new CompilerComparator();
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotNull
     @Size(max = 255)
     @Column(name = "family", length = 255, nullable = false)
     private String family;
-
     @NotNull
     @Size(max = 255)
     @Column(name = "given", length = 255, nullable = false)
     private String given;
-
     @Size(max = 255)
     @Column(name = "institution", length = 255)
     private String institution;
-
     @Size(max = 255)
     @Lob
     @Type(type="org.hibernate.type.StringClobType")
     @Column(name = "institution_address", length = 255)
     private String institutionAddress;
-
     @NotNull
     @Size(max = 255)
     @Email
@@ -120,9 +116,8 @@ public class Compiler implements Serializable, Comparable<Compiler> {
 
         Compiler compiler = (Compiler) o;
 
-        if ( ! Objects.equals(id, compiler.id)) return false;
+        return Objects.equals(id, compiler.id);
 
-        return true;
     }
 
     @Override
@@ -142,10 +137,8 @@ public class Compiler implements Serializable, Comparable<Compiler> {
                 '}';
     }
 
-    private final static Comparator<Compiler> COMPARATOR = new CompilerComparator();
-
     @Override
-    public int compareTo(Compiler o) {
+    public int compareTo(@NotNull Compiler o) {
         return COMPARATOR.compare(this, o);
     }
 }

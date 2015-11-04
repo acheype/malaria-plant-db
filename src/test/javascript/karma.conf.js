@@ -32,6 +32,8 @@ module.exports = function (config) {
             'main/webapp/scripts/app/app.js',
             'main/webapp/scripts/app/**/*.js',
             'main/webapp/scripts/components/**/*.{js,html}',
+            'test/javascript/spec/helpers/module.js',
+            'test/javascript/spec/helpers/httpBackend.js',
             'test/javascript/**/!(karma.conf).js'
         ],
 
@@ -80,6 +82,11 @@ module.exports = function (config) {
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
-        singleRun: false
+        singleRun: false,
+
+        // to avoid DISCONNECTED messages when connecting to slow virtual machines
+        browserDisconnectTimeout : 10000, // default 2000
+        browserDisconnectTolerance : 1, // default 0
+        browserNoActivityTimeout : 4*60*1000 //default 10000
     });
 };

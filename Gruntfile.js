@@ -1,4 +1,4 @@
-// Generated on 2015-09-18 using generator-jhipster 2.21.0
+// Generated on 2015-11-04 using generator-jhipster 2.23.0
 'use strict';
 var fs = require('fs');
 
@@ -20,7 +20,7 @@ var useminAutoprefixer = {
         if(block.src.length === 0) {
             return {};
         } else {
-            return require('grunt-usemin/lib/config/cssmin').createConfig(context, block) // Reuse cssmins createConfig
+            return require('grunt-usemin/lib/config/cssmin').createConfig(context, block); // Reuse cssmins createConfig
         }
     }
 };
@@ -75,6 +75,7 @@ module.exports = function (grunt) {
                 src: ['src/main/webapp/index.html', 'src/main/scss/main.scss'],
                 exclude: [
                     /angular-i18n/, // localizations are loaded dynamically
+                    'bower_components/bootstrap/', // Exclude Bootstrap LESS as we use bootstrap-sass
                     /bootstrap-sass\/assets\/stylesheets/
                 ],
                 ignorePath: /\.\.\/webapp\/bower_components\// // remove ../webapp/bower_components/ from paths of injected sass files
@@ -229,7 +230,7 @@ module.exports = function (grunt) {
         ngtemplates:    {
             dist: {
                 cwd: 'src/main/webapp',
-                src: ['scripts/app/**/*.html', 'scripts/components/**/*.html',],
+                src: ['scripts/app/**/*.html', 'scripts/components/**/*.html'],
                 dest: '.tmp/templates/templates.js',
                 options: {
                     module: 'malariaplantdbApp',
@@ -372,7 +373,7 @@ module.exports = function (grunt) {
                     'src/main/webapp/index.html': 'src/main/webapp/index.html'
                 }
             }
-        },
+        }
     });
 
     grunt.registerTask('serve', [
@@ -420,27 +421,27 @@ module.exports = function (grunt) {
         'htmlmin'
     ]);
 
-	grunt.registerTask('appendSkipBower', 'Force skip of bower for Gradle', function () {
+    grunt.registerTask('appendSkipBower', 'Force skip of bower for Gradle', function () {
 
-		if (!grunt.file.exists(filepath)) {
-			// Assume this is a maven project
-			return true;
-		}
+        if (!grunt.file.exists(filepath)) {
+            // Assume this is a maven project
+            return true;
+        }
 
-		var fileContent = grunt.file.read(filepath);
-		var skipBowerIndex = fileContent.indexOf("skipBower=true");
+        var fileContent = grunt.file.read(filepath);
+        var skipBowerIndex = fileContent.indexOf("skipBower=true");
 
-		if (skipBowerIndex != -1) {
-			return true;
-		}
+        if (skipBowerIndex != -1) {
+            return true;
+        }
 
-		grunt.file.write(filepath, fileContent + "\nskipBower=true\n");
-	});
+        grunt.file.write(filepath, fileContent + "\nskipBower=true\n");
+    });
 
     grunt.registerTask('buildOpenshift', [
         'test',
         'build',
-        'copy:generateOpenshiftDirectory',
+        'copy:generateOpenshiftDirectory'
     ]);
 
     grunt.registerTask('deployOpenshift', [

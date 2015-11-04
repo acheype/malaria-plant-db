@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing Ethnology.
@@ -134,7 +134,7 @@ public class EthnologyResource {
     @Timed
     public List<Ethnology> searchEthnologies(@PathVariable String query) {
         return StreamSupport
-            .stream(ethnologySearchRepository.search(queryString(query)).spliterator(), false)
+            .stream(ethnologySearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
 }

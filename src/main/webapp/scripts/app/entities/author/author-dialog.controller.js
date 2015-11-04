@@ -2,7 +2,7 @@
 
 angular.module('malariaplantdbApp').controller('AuthorDialogController',
     ['$scope', '$stateParams', '$modalInstance', 'entity', 'Author', 'Publication',
-        function($scope, $controller, $stateParams, $modalInstance, entity, Author, Publication) {
+        function ($scope, $stateParams, $modalInstance, entity, Author, Publication) {
 
         $scope.author = entity;
         $scope.publications = Publication.sortedQuery();

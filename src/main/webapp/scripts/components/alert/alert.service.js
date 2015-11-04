@@ -16,7 +16,8 @@ angular.module('malariaplantdbApp')
         },
         alertId = 0, // unique id for each alert. Starts from 0.
         alerts = [],
-        timeout = 5000; // default timeout
+            timeout = 5000,
+            errorTimeout = 10000; // default timeout
 
         function clear() {
             alerts = [];
@@ -39,9 +40,8 @@ angular.module('malariaplantdbApp')
             this.add({
                 type: "danger",
                 msg: msg,
-                params: params
-                // no time out for errors
-                //timeout: timeout
+                params: params,
+                timeout: errorTimeout
             });
         }
 

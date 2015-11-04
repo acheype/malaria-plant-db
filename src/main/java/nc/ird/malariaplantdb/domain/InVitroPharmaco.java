@@ -1,9 +1,7 @@
 package nc.ird.malariaplantdb.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nc.ird.malariaplantdb.domain.util.comparator.InVitroPharmacoComparator;
-import nc.ird.malariaplantdb.domain.util.comparator.PlantIngredientComparator;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -27,19 +25,18 @@ import java.util.*;
 @JsonPropertyOrder({"id", "publication", "plantIngredients", "testedEntity", "extractionSolvent", "additiveProduct",
     "compoundName", "screeningTest", "measureMethod", "concentration", "molConcentration", "inhibition", "ic50",
     "molIc50", "selectivityIndex", "compilersObservations"})
-@Table(name = "IN_VITRO_PHARMACO")
+@Table(name = "in_vitro_pharmaco")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName="invitropharmaco")
 public class InVitroPharmaco implements Serializable, Comparable<InVitroPharmaco> {
 
+    private final static Comparator<InVitroPharmaco> COMPARATOR = new InVitroPharmacoComparator();
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotNull
     @ManyToOne
     private Publication publication;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @BatchSize(size = 100)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -48,69 +45,56 @@ public class InVitroPharmaco implements Serializable, Comparable<InVitroPharmaco
         inverseJoinColumns = @JoinColumn(name="plant_ingredients_id", referencedColumnName="ID"))
     @SortNatural
     private SortedSet<PlantIngredient> plantIngredients = new TreeSet<>();
-
     @NotNull
     @Size(max = 255)
     @Column(name = "tested_entity", length = 255, nullable = false)
     private String testedEntity;
-
     @Size(max = 255)
     @Column(name = "extraction_solvent", length = 255)
     private String extractionSolvent;
-
     @Size(max = 255)
     @Column(name = "additive_product", length = 255)
     private String additiveProduct;
-
     @Size(max = 255)
     @Column(name = "compound_name", length = 255)
     private String compoundName;
-
     @NotNull
     @Size(max = 255)
     @Column(name = "screening_test", length = 255, nullable = false)
     private String screeningTest;
-
     @Size(max = 255)
     @Column(name = "measure_method", length = 255)
     private String measureMethod;
-
     @Min(value = 0)
     @Max(value = 1000000)
     @Digits(integer=7, fraction=4)
     @Column(name = "concentration", precision=11, scale=4)
     private BigDecimal concentration;
-
     @Min(value = 0)
     @Max(value = 1000000)
     @Digits(integer=7, fraction=4)
     @Column(name = "mol_concentration", precision=11, scale=4)
     private BigDecimal molConcentration;
-
     @Min(value = 0)
     @Max(value = 100)
     @Digits(integer=3, fraction=2)
     @Column(name = "inhibition", precision=5, scale=2)
     private BigDecimal inhibition;
-
     @Min(value = 0)
     @Max(value = 1000000)
     @Digits(integer=7, fraction=4)
     @Column(name = "ic50", precision=11, scale=4)
     private BigDecimal ic50;
-
     @Min(value = 0)
     @Max(value = 1000000)
     @Digits(integer=7, fraction=4)
     @Column(name = "mol_ic50", precision=11, scale=4)
     private BigDecimal molIc50;
-
     @Min(value = 0)
     @Max(value = 100)
     @Digits(integer=3, fraction=2)
     @Column(name = "selectivity_index", precision=5, scale=2)
     private BigDecimal selectivityIndex;
-
     @Lob
     @Type(type = "org.hibernate.type.StringClobType")
     @Column(name = "compilers_observations")
@@ -255,9 +239,8 @@ public class InVitroPharmaco implements Serializable, Comparable<InVitroPharmaco
 
         InVitroPharmaco inVitroPharmaco = (InVitroPharmaco) o;
 
-        if ( ! Objects.equals(id, inVitroPharmaco.id)) return false;
+        return Objects.equals(id, inVitroPharmaco.id);
 
-        return true;
     }
 
     @Override
@@ -285,10 +268,8 @@ public class InVitroPharmaco implements Serializable, Comparable<InVitroPharmaco
                 '}';
     }
 
-    private final static Comparator<InVitroPharmaco> COMPARATOR = new InVitroPharmacoComparator();
-
     @Override
-    public int compareTo(InVitroPharmaco o) {
+    public int compareTo(@NotNull InVitroPharmaco o) {
         return COMPARATOR.compare(this, o);
     }
 }

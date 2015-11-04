@@ -1,6 +1,7 @@
 package nc.ird.malariaplantdb.repository;
 
 import nc.ird.malariaplantdb.domain.Authority;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

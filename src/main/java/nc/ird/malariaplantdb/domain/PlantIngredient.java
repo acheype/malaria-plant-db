@@ -22,20 +22,19 @@ import java.util.Objects;
  */
 @Entity
 @JsonPropertyOrder({"id", "species", "partUsed"})
-@Table(name = "PLANT_INGREDIENT", uniqueConstraints = @UniqueConstraint(columnNames = {"species_id", "part_used"},
+@Table(name = "plant_ingredient", uniqueConstraints = @UniqueConstraint(columnNames = {"species_id", "part_used"},
     name = "uk_plantingredient_speciesid_partused"))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName="plantingredient")
 public class PlantIngredient implements Serializable, Comparable<PlantIngredient> {
 
+    private final static Comparator<PlantIngredient> COMPARATOR = new PlantIngredientComparator();
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotNull
     @ManyToOne
     private Species species;
-
     @NotNull
     @Size(max = 255)
     @Column(name = "part_used", length = 255, nullable = false)
@@ -76,9 +75,8 @@ public class PlantIngredient implements Serializable, Comparable<PlantIngredient
 
         PlantIngredient plantIngredient = (PlantIngredient) o;
 
-        if ( ! Objects.equals(id, plantIngredient.id)) return false;
+        return Objects.equals(id, plantIngredient.id);
 
-        return true;
     }
 
     @Override
@@ -94,10 +92,8 @@ public class PlantIngredient implements Serializable, Comparable<PlantIngredient
                 '}';
     }
 
-    private final static Comparator<PlantIngredient> COMPARATOR = new PlantIngredientComparator();
-
     @Override
-    public int compareTo(PlantIngredient o) {
+    public int compareTo(@NotNull PlantIngredient o) {
         return COMPARATOR.compare(this, o);
     }
 }

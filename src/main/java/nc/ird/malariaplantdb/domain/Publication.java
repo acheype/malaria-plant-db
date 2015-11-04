@@ -1,6 +1,8 @@
 package nc.ird.malariaplantdb.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -30,7 +32,7 @@ import java.util.TreeSet;
     "number", "bookTitle", "publisher", "edition", "conferenceName", "conferencePlace", "university", "institution",
     "doi", "pmid", "isbn", "url", "isReviewed", "compilers", "compilersNotes", "pubSpecies", "ethnologies",
     "inVivoPharmacos", "inVitroPharmacos", "citation"})
-@Table(name = "PUBLICATION", uniqueConstraints = @UniqueConstraint(columnNames = {"title"},
+@Table(name = "publication", uniqueConstraints = @UniqueConstraint(columnNames = {"title"},
     name = "uk_publication_title"))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "publication")
@@ -392,9 +394,8 @@ public class Publication implements Serializable {
 
         Publication publication = (Publication) o;
 
-        if (!Objects.equals(id, publication.id)) return false;
+        return Objects.equals(id, publication.id);
 
-        return true;
     }
 
     @Override

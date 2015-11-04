@@ -36,4 +36,76 @@
     <cache name="nc.ird.malariaplantdb.domain.User.persistentTokens"
            timeToLiveSeconds="3600">
     </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Author"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Compiler"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Ethnology"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Ethnology.plantIngredients"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.InVitroPharmaco"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.InVitroPharmaco.plantIngredients"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.InVivoPharmaco"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.InVivoPharmaco.plantIngredients"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.PlantIngredient"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Publication"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Publication.authors"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Publication.compilers"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Publication.pubSpecies"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Publication.ethnologies"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Publication.inVivoPharmacos"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Publication.inVitroPharmacos"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.PubSpecies"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="nc.ird.malariaplantdb.domain.Species"
+           timeToLiveSeconds="3600">
+    </cache>
 </ehcache>

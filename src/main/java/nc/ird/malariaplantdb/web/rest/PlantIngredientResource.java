@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing PlantIngredient.
@@ -134,7 +134,7 @@ public class PlantIngredientResource {
     @Timed
     public List<PlantIngredient> searchPlantIngredients(@PathVariable String query) {
         return StreamSupport
-            .stream(plantIngredientSearchRepository.search(queryString(query)).spliterator(), false)
+            .stream(plantIngredientSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
 }

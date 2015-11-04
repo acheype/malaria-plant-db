@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing Species.
@@ -134,7 +134,7 @@ public class SpeciesResource {
     @Timed
     public List<Species> searchSpecies(@PathVariable String query) {
         return StreamSupport
-            .stream(speciesSearchRepository.search(queryString(query)).spliterator(), false)
+            .stream(speciesSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
 }

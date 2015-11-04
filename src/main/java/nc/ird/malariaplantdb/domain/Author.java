@@ -1,6 +1,6 @@
 package nc.ird.malariaplantdb.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nc.ird.malariaplantdb.domain.util.comparator.AuthorComparator;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -23,24 +23,22 @@ import java.util.Objects;
 @Entity
 //@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @JsonPropertyOrder({"id", "publication", "family", "given"})
-@Table(name = "AUTHOR")
+@Table(name = "author")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName="author")
 public class Author implements Serializable, Comparable<Author> {
 
+    private final static Comparator<Author> COMPARATOR = new AuthorComparator();
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotNull
     @ManyToOne
     private Publication publication;
-
     @NotNull
     @Size(max = 255)
     @Column(name = "family", length = 255, nullable = false)
     private String family;
-
     @Size(max = 255)
     @Column(name = "given", length = 255)
     private String given;
@@ -88,9 +86,8 @@ public class Author implements Serializable, Comparable<Author> {
 
         Author author = (Author) o;
 
-        if ( ! Objects.equals(id, author.id)) return false;
+        return Objects.equals(id, author.id);
 
-        return true;
     }
 
     @Override
@@ -107,10 +104,8 @@ public class Author implements Serializable, Comparable<Author> {
                 '}';
     }
 
-    private final static Comparator<Author> COMPARATOR = new AuthorComparator();
-
     @Override
-    public int compareTo(Author o) {
+    public int compareTo(@NotNull Author o) {
         return COMPARATOR.compare(this, o);
     }
 }

@@ -5,7 +5,6 @@ import nc.ird.malariaplantdb.config.audit.AuditEventConverter;
 import nc.ird.malariaplantdb.domain.PersistentAuditEvent;
 import nc.ird.malariaplantdb.repository.PersistenceAuditEventRepository;
 import nc.ird.malariaplantdb.service.AuditEventService;
-import org.joda.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
