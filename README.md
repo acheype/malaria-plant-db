@@ -1,6 +1,6 @@
 # Malaria Plant DB
 
-The database of medicinal plants against malaria
+###The database of medicinal plants against malaria
 
 Malaria Plant DB was generated using JHipster, you can find documentation and help at [JHipster][].
 
@@ -53,9 +53,9 @@ Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in
 
 To setup this project in Jenkins, use the following configuration:
 
-* Project name: `malariaplantdb`
+* Project name: `malaria-plant-db`
 * Source Code Management
-    * Git Repository: `git@github.com:xxxx/malariaplantdb.git`
+    * Git Repository: `git@github.com:xxxx/malaria-plant-db.git`
     * Branches to build: `*/master`
     * Additional Behaviours: `Wipe out repository & force clone`
 * Build Triggers
