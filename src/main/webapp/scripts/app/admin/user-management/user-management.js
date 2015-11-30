@@ -7,7 +7,7 @@ angular.module('malariaplantdbApp')
                 parent: 'admin',
                 url: '/user-management',
                 data: {
-                    authorities: ['ROLE_ADMIN'],
+                    authorities: ['ROLE_USER'],
                     pageTitle: 'Users'
                 },
                 views: {

@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title th:text="#{email.activation.title}">JHipster activation</title>
+        <title th:text="#{email.activation.title}">Malaria Plant DB activation</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <p th:text="#{email.activation.greeting(${user.login})}">
-            Dear
+    <p th:text="#{email.activation.greeting(${user.firstName})}">
+        Dear,
         </p>
         <p th:text="#{email.activation.text1}">
-            Your JHipster account has been created, please click on the URL below to activate it:
+            An administration account for Malaria Plant DB have been created, please click on the URL below to activate
+            it:
         </p>
         <p>
             <a th:href="@{|${baseUrl}/#/activate?key=${user.activationKey}|}"
                th:text="|${user.login}|">Activation Link</a>
         </p>
-        <p>
-            <span th:text="#{email.activation.text2}">Regards, </span>
+
+    <p><span th:text="#{email.activation.text2}">Your temporary identifiers are the followed:</span>
+    <ul>
+        <li><span th:text="#{email.activation.text3}">login</span>:&nbsp;
+            <pre th:text="${user.login}">ERROR</pre>
+        </li>
+        <li><span th:text="#{email.activation.text4}">password</span>:&nbsp;
+            <pre th:text="${password}">ERROR</pre>
+        </li>
+    </ul>
+    </p>
+    <p th:text="#{email.activation.text5}">Please sign in and change your password.</p>
+
+    <p>
+        <span th:text="#{email.activation.text6}">Regards,</span>
             <br/>
-            <em th:text="#{email.signature}">JHipster.</em>
+        <em th:text="#{email.signature}">The Malaria plant DB's administrators</em>
         </p>
     </body>
 </html>

@@ -2,7 +2,6 @@ package nc.ird.malariaplantdb.service;
 
 import nc.ird.malariaplantdb.config.JHipsterProperties;
 import nc.ird.malariaplantdb.domain.User;
-
 import org.apache.commons.lang.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +12,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
-
-
 
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
@@ -70,11 +67,12 @@ public class MailService {
     }
 
     @Async
-    public void sendActivationEmail(User user, String baseUrl) {
+    public void sendActivationEmail(User user, String password, String baseUrl) {
         log.debug("Sending activation e-mail to '{}'", user.getEmail());
         Locale locale = Locale.forLanguageTag(user.getLangKey());
         Context context = new Context(locale);
         context.setVariable("user", user);
+        context.setVariable("password", password);
         context.setVariable("baseUrl", baseUrl);
         String content = templateEngine.process("activationEmail", context);
         String subject = messageSource.getMessage("email.activation.title", null, locale);
@@ -92,5 +90,5 @@ public class MailService {
         String subject = messageSource.getMessage("email.reset.title", null, locale);
         sendEmail(user.getEmail(), subject, content, false, true);
     }
-    
+
 }

@@ -4,11 +4,11 @@ angular.module('malariaplantdbApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('settings', {
-                parent: 'account',
+                parent: 'admin',
                 url: '/settings',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Settings'
+                    pageTitle: 'Your settings'
                 },
                 views: {
                     'content@': {
@@ -16,8 +16,6 @@ angular.module('malariaplantdbApp')
                         controller: 'SettingsController'
                     }
                 },
-                resolve: {
-                    
-                }
+                resolve: {}
             });
     });

@@ -4,11 +4,11 @@ angular.module('malariaplantdbApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('password', {
-                parent: 'account',
+                parent: 'admin',
                 url: '/password',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Password'
+                    pageTitle: 'Your password'
                 },
                 views: {
                     'content@': {
@@ -16,8 +16,6 @@ angular.module('malariaplantdbApp')
                         controller: 'PasswordController'
                     }
                 },
-                resolve: {
-                    
-                }
+                resolve: {}
             });
     });

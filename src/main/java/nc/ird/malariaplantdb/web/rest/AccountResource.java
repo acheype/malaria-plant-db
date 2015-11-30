@@ -1,7 +1,6 @@
 package nc.ird.malariaplantdb.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import nc.ird.malariaplantdb.domain.Authority;
 import nc.ird.malariaplantdb.domain.User;
 import nc.ird.malariaplantdb.repository.UserRepository;
 import nc.ird.malariaplantdb.security.SecurityUtils;
@@ -9,7 +8,6 @@ import nc.ird.malariaplantdb.service.MailService;
 import nc.ird.malariaplantdb.service.UserService;
 import nc.ird.malariaplantdb.web.rest.dto.KeyAndPasswordDTO;
 import nc.ird.malariaplantdb.web.rest.dto.UserDTO;
-
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.*;
+import java.util.Optional;
 
 /**
  * REST controller for managing the current user's account.
@@ -65,7 +61,7 @@ public class AccountResource {
                     ":" +                                  // ":"
                     request.getServerPort();               // "80"
 
-                    mailService.sendActivationEmail(user, baseUrl);
+                    mailService.sendActivationEmail(user, userDTO.getPassword(), baseUrl);
                     return new ResponseEntity<>(HttpStatus.CREATED);
                 })
         );

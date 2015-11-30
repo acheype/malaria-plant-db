@@ -3,7 +3,7 @@
 angular.module('malariaplantdbApp')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('entity', {
+            .state('whoarewe', {
                 abstract: true,
                 parent: 'site'
             });

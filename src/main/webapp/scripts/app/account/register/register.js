@@ -4,11 +4,11 @@ angular.module('malariaplantdbApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('register', {
-                parent: 'account',
+                parent: 'admin',
                 url: '/register',
                 data: {
-                    authorities: [],
-                    pageTitle: 'Registration'
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Register a new admin'
                 },
                 views: {
                     'content@': {
@@ -16,8 +16,6 @@ angular.module('malariaplantdbApp')
                         controller: 'RegisterController'
                     }
                 },
-                resolve: {
-                    
-                }
+                resolve: {}
             });
     });

@@ -4,15 +4,112 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 // bower:scss
 // endbower
 
-body {
-    //background: #fafafa;
-    //font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    //color: #333;
+// Google Font
+@import url(https://fonts.googleapis.com/css?family=Cabin+Condensed:500);
+$mpdbc-title-font: 'Cabin Condensed';
+
+// Custom Mpdbc Icons
+@font-face {
+    font-family: 'mpdbc-icons';
+    src: url('../styles/fonts/mpdbc-icons.eot?6n0q6m');
+    src: url('../styles/fonts/mpdbc-icons.eot?6n0q6m#iefix') format('embedded-opentype'),
+    url('../styles/fonts/mpdbc-icons.ttf?6n0q6m') format('truetype'),
+    url('../styles/fonts/mpdbc-icons.woff?6n0q6m') format('woff'),
+    url('../styles/fonts/mpdbc-icons.svg?6n0q6m#mpdbc-icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'mpdbc-icons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mail:before {
+    content: "\e902";
+}
+
+.icon-users:before {
+    content: "\e900";
+}
+
+.icon-twitter:before {
+    content: "\e901";
+}
+
+/* End custom mpdbc icons */
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
+
+.mpdbc-title {
+    font-family: $mpdbc-title-font;
+}
+
+//.mpdbc-logo {
+//    display: inline-block;
+//    width: 300px;
+//    height: 300px;
+//    background: url("../images/mpdbc_animated-logo.gif") no-repeat center top;
+//    background-size: contain;
+//}
+
+.container-fluid {
+    padding: 0;
+}
+
+.carousel-inner .item img {
+    width: 100%;
+}
+
+.overlay {
+    color: #fff;
+    position: absolute;
+    z-index: 12;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.overlay .shadow {
+    text-shadow: #7b5b5b 2px 2px;
+}
+
+#welcome-alert {
+    margin-bottom: 0px;
+}
+
+#mpdbc-cloud {
+    margin: 0 auto;
+    width: 80%;
+    height: 200px;
+}
+
+.vertical-align {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.colored-background {
+    background-color: $gray-lighter;
+}
+
+//h1.mpdbc-title {
+//    color : #fff;
+//}
 
 .development {
     position: absolute;
@@ -25,6 +122,10 @@ body {
     background-image: url("../images/development_ribbon.png");
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+.navbar-brand > .mpdbc-title {
+    font-size: 20px;
 }
 
 .navbar-version {
@@ -66,30 +167,8 @@ body {
     background-color: red;
 }
 
-.mpdbc-logo {
-    display: inline-block;
-    width: 400px;
-    height: 400px;
-    background: url("../images/mpdbc_logo.jpg") no-repeat center top;
-    background-size: contain;
-}
-
 .pad {
     padding: 10px;
-}
-
-/* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (   min--moz-device-pixel-ratio: 2),
-only screen and (     -o-min-device-pixel-ratio: 2/1),
-only screen and (        min-device-pixel-ratio: 2),
-only screen and (                min-resolution: 192dpi),
-only screen and (                min-resolution: 2dppx) {
-    .mpdbc-logo {
-        background: url("../images/mpdbc_logo_xl.jpg") no-repeat center top;
-        background-size: contain;
-    }
 }
 
 /* make sure browsers use the pointer cursor for anchors, even with no href */
@@ -155,3 +234,146 @@ ul#strength {
     margin: 0;
 }
 /* end of Custom alerts for notification */
+
+/* round buttons for icons */
+.hi-icon-wrap {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.hi-icon {
+    display: inline-block;
+    font-size: 28px;
+    cursor: pointer;
+    //margin: 15px 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    color: $blue2;
+    padding: 9px 0 0 0;
+}
+
+.hi-icon:after {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    content: '';
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.hi-icon:before {
+    line-height: 50px;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    display: block;
+    -webkit-font-smoothing: antialiased;
+}
+
+/** icon animation **/
+.hi-icon-effect-9 .hi-icon {
+    -webkit-transition: box-shadow 0.6s;
+    -moz-transition: box-shadow 0.6s;
+    transition: box-shadow 0.6s;
+}
+
+.hi-icon-effect-9 .hi-icon:after {
+    top: 0;
+    left: 0;
+    padding: 0;
+    box-shadow: 0 0 2px #fff;
+    -webkit-transition: -webkit-transform 0.6s, opacity 0.6s;
+    -moz-transition: -moz-transform 0.6s, opacity 0.6s;
+    transition: transform 0.6s, opacity 0.6s;
+}
+
+.hi-icon-effect-9b .hi-icon:hover:after {
+    -webkit-transform: scale(0.85);
+    -moz-transform: scale(0.85);
+    -ms-transform: scale(0.85);
+    transform: scale(0.85);
+}
+
+.hi-icon-effect-9b .hi-icon:hover {
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.4);
+    color: $blue2;;
+}
+
+/* Distributed footer */
+.footer-distributed {
+    background-color: $green-lighter;
+    font-size: 17px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    text-align: left;
+    padding: 40px 50px 25px 50px;
+}
+
+.footer-distributed a {
+    color: $blue2;
+    text-decoration: none;
+}
+
+.footer-distributed a:hover {
+    color: $blue2-darker;
+}
+
+.footer-distributed a.mpdbc-title {
+    font-size: 20px;
+    text-decoration: none;
+    //margin-right : 35px;
+}
+
+#contact {
+    margin-left: 30px;
+    margin-right: 15px;
+}
+
+.footer-distributed .footer-centre > span {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.footer-distributed ul.footer-links {
+    text-decoration: none;
+    color: inherit;
+    padding-left: 0px;
+    padding-top: 5px;
+}
+
+.footer-distributed ul.footer-links > li {
+    list-style-type: none;
+}
+
+.footer-distributed .footer-right {
+    text-align: right;
+    color: $blue2;
+}
+
+.footer-distributed .footer-right > span {
+    margin-right: 15px;
+}
+
+@media (max-width: 767px) {
+
+    .footer-distributed .row > div {
+        text-align: center;
+        margin: 0 auto 20px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .footer-distributed .row > div {
+        margin: 0 auto 20px;
+    }
+}
+
+/* End of distributed footer */

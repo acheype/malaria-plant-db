@@ -9,115 +9,141 @@
             </button>
             <a class="navbar-brand" href="#/"><img src="assets/images/mpdbc_logo_xs.png">
             </a>
-            <a class="navbar-brand" href="#/"><span>Malaria Plant DB Community</span>
-                <span ng-show="{{ENV === 'dev'}}" class="navbar-version">v{{VERSION}}</span></a>
+            <a class="navbar-brand" href="#/"><span class="mpdbc-title">Malaria Plant DB Community</span>
+                <span ng-show="false" class="navbar-version">v{{VERSION}}</span></a><!-- {{ENV === 'dev'}}-->
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
             <ul class="nav navbar-nav navbar-right">
                 <li ui-sref-active="active">
                     <a ui-sref="home" data-toggle="collapse" data-target=".navbar-collapse.in">
-                        <span class="glyphicon glyphicon-home"></span>
+                        <span class="glyphicon glyphicon-home"></span>&nbsp;
                         <span class="hidden-sm">Home</span>
                     </a>
                 </li>
-                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
+                <li ng-class="{active: $state.includes('whoarewe')}" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>
-                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="glyphicon glyphicon-globe"></span>&nbsp;
                             <span class="hidden-sm">
-                                Entities
+                                Who are we ?
                             </span>
                             <b class="caret"></b>
                         </span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li ui-sref-active="active"><a ui-sref="author" data-toggle="collapse"
+                        <li ui-sref-active="active"><a ui-sref="background" data-toggle="collapse"
                                                        data-target=".navbar-collapse.in"><span
-                            class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span>author</span></a></li>
+                            class="glyphicon glyphicon-wrench"></span>
+                            &#xA0;<span>Project background</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="community" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-lock"></span>
+                            &#xA0;<span>Community</span></a></li>
+                    </ul>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="database" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-grain"></span>&nbsp;
+                        <span class="hidden-sm">Go to DataBase</span>
+                    </a>
+                </li>
+                <li ng-class="{active: $state.includes('admin')}" ng-switch-when="true" has-authority="ROLE_USER"
+                    class="dropdown pointer">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        <span>
+                            <span class="glyphicon glyphicon-tower"></span>&#xA0;
+                            <span class="hidden-sm">Admin</span>
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ui-sref-active="active"><a ui-sref="settings" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-wrench"></span>
+                            &#xA0;<span>Your settings</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="password" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-lock"></span>
+                            &#xA0;<span>Your password</span></a></li>
+
+
                         <li ui-sref-active="active"><a ui-sref="compiler" data-toggle="collapse"
                                                        data-target=".navbar-collapse.in"><span
-                            class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span>compiler</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="species" data-toggle="collapse"
-                                                       data-target=".navbar-collapse.in"><span
-                            class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span>species</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="plantIngredient" data-toggle="collapse"
-                                                       data-target=".navbar-collapse.in"><span
-                            class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span>plantIngredient</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="ethnology" data-toggle="collapse"
-                                                       data-target=".navbar-collapse.in"><span
-                            class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span>ethnology</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="pubSpecies" data-toggle="collapse"
-                                                       data-target=".navbar-collapse.in"><span
-                            class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span>pubSpecies</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="inVivoPharmaco" data-toggle="collapse"
-                                                       data-target=".navbar-collapse.in"><span
-                            class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span>inVivoPharmaco</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="inVitroPharmaco" data-toggle="collapse"
-                                                       data-target=".navbar-collapse.in"><span
-                            class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span>inVitroPharmaco</span></a></li>
+                            class="glyphicon glyphicon-th-list"></span>
+                            &#xA0;<span>1.1 - Compiler</span></a></li>
                         <li ui-sref-active="active"><a ui-sref="publication" data-toggle="collapse"
                                                        data-target=".navbar-collapse.in"><span
-                            class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span>publication</span></a></li>
-                        <!-- JHipster will add entities to the menu here -->
-                    </ul>
-                </li>
-                <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                        <span>
-                            <span class="glyphicon glyphicon-user"></span>
-                            <span class="hidden-sm">
-                                Account
-                            </span>
-                            <b class="caret"></b>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="settings" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-wrench"></span>
-                            &#xA0;<span>Settings</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-lock"></span>
-                            &#xA0;<span>Password</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-out"></span>
-                            &#xA0;<span>Sign out</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-in"></span>
-                            &#xA0;<span>Sign in</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-plus-sign"></span>
-                            &#xA0;<span>Register</span></a></li>
-                    </ul>
-                </li>
-                <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                        <span>
-                            <span class="glyphicon glyphicon-tower"></span>
-                            <span class="hidden-sm">Administration</span>
-                            <b class="caret"></b>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu">
+                            class="glyphicon glyphicon-th-list"></span>
+                            &#xA0;<span>1.2 - Publication</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="author" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-th-list"></span>
+                            &#xA0;<span>1.3 - Author</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="species" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-th-list"></span>
+                            &#xA0;<span>2.1 - Species</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="pubSpecies" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-th-list"></span>
+                            &#xA0;<span>2.2 - PubSpecies</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="plantIngredient" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-th-list"></span>
+                            &#xA0;<span>3 - PlantIngredient</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="ethnology" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-th-list"></span>
+                            &#xA0;<span>4 - Ethnology</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="inVivoPharmaco" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-th-list"></span>
+                            &#xA0;<span>5 - inVivoPharmaco</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="inVitroPharmaco" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-th-list"></span>
+                            &#xA0;<span>6 - inVitroPharmaco</span></a></li>
+
                         <li ui-sref-active="active"><a ui-sref="user-management" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-user"></span>
                             &#xA0;<span>User management</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="metrics" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-dashboard"></span>
+                        <li ui-sref-active="active"><a ui-sref="register" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-plus-sign"></span>
+                            &#xA0;<span>Register a new admin</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="metrics" has-authority="ROLE_ADMIN"
+                                                       data-toggle="collapse" data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-dashboard"></span>
                             &#xA0;<span>Metrics</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="health" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-heart"></span>
+                        <li ui-sref-active="active"><a ui-sref="health" has-authority="ROLE_ADMIN"
+                                                       data-toggle="collapse" data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-heart"></span>
                             &#xA0;<span>Health</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="configuration" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-list-alt"></span>
+                        <li ui-sref-active="active"><a ui-sref="configuration" has-authority="ROLE_ADMIN"
+                                                       data-toggle="collapse" data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-list-alt"></span>
                             &#xA0;<span>Configuration</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="audits" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-bell"></span>
+                        <li ui-sref-active="active"><a ui-sref="audits" has-authority="ROLE_ADMIN"
+                                                       data-toggle="collapse" data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-bell"></span>
                             &#xA0;<span>Audits</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="logs" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-tasks"></span>
+                        <li ui-sref-active="active"><a ui-sref="logs" has-authority="ROLE_ADMIN" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-tasks"></span>
                             &#xA0;<span>Logs</span></a></li>
-                        <li ng-hide="inProduction" ui-sref-active="active"><a ui-sref="docs" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-book"></span>
+                        <li ng-hide="inProduction" ui-sref-active="active"><a ui-sref="docs" has-authority="ROLE_ADMIN"
+                                                                              data-toggle="collapse"
+                                                                              data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-book"></span>
                             &#xA0;<span>API</span></a></li>
-                        <li ng-hide="inProduction"><a href='/console' target="_tab" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-hdd"></span>
+                        <li ng-hide="inProduction"><a href='/console' target="_tab" has-authority="ROLE_ADMIN"
+                                                      data-toggle="collapse" data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-hdd"></span>
                             &#xA0;<span>Database</span></a></li>
+
+                        <li ui-sref-active="active"><a href="" ng-click="logout()" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-log-out"></span>
+                            &#xA0;<span>Sign out</span></a></li>
                     </ul>
                 </li>
             </ul>

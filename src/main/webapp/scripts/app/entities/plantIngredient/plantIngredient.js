@@ -4,7 +4,7 @@ angular.module('malariaplantdbApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('plantIngredient', {
-                parent: 'entity',
+                parent: 'admin',
                 url: '/plantIngredients',
                 data: {
                     authorities: ['ROLE_USER'],
@@ -20,7 +20,7 @@ angular.module('malariaplantdbApp')
                 }
             })
             .state('plantIngredient.detail', {
-                parent: 'entity',
+                parent: 'admin',
                 url: '/plantIngredient/{id}',
                 data: {
                     authorities: ['ROLE_USER'],

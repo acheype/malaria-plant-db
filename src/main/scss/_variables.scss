@@ -14,12 +14,20 @@ $gray-dark:              #34825e !default;
 $gray:                   #40ff3b !default;
 $gray-light:             lighten($gray, 15%);   // #b4bcc2
 $gray-lighter:           lighten($gray-light, 20%) !default; // #ecf0f1
+$green: #7aba5a !default;
+$green-lighter: lighten($green, 15%);
+$green-super-lighter: #efe !default;
+$blue1: #74c1cb !default;
+$blue2: #3085bb !default$blue2-darker: darken($blue2, 10%) !default;
 
-$brand-primary:         #7aba5a !default;//#88c14e;//#57a983;//#45c675;
-$brand-success:         #74c1cb !default;//lighten(#18BC9C, 13.5%) !default;
-$brand-info:            #3085bb !default;//#3498DB !default;
+$brand-primary: $green !default;
+//#88c14e;//#57a983;//#45c675;
+$brand-success: $blue1 !default;
+//lighten(#18BC9C, 13.5%) !default;
+$brand-info: $blue2 !default;
+//#3498DB !default;
 $brand-warning:         lighten(#F39C12, 12%) !default;
-$brand-danger:          #E74C3C !default;
+$brand-danger: #e74c3c !default;
 
 
 //== Scaffolding
@@ -32,9 +40,10 @@ $body-bg:               $gray-lighter !default;
 $text-color:            darken(#34825e, 10%) !default;//$brand-primary !default;
 
 //** Global textual link color.
-$link-color:            #3085bb !default;//darken(#4cdb81, 20%) !default;
+$link-color: $blue2 !default;
+//darken(#4cdb81, 20%) !default;
 //** Link hover color set via `darken()` function.
-$link-hover-color:      darken($link-color, 10%) !default;
+$link-hover-color: $blue2-darker !default;
 //** Link hover decoration.
 $link-hover-decoration: underline !default;
 
@@ -359,7 +368,8 @@ $container-lg:                 $container-large-desktop !default;
 
 // Basics of a navbar
 $navbar-height:                    60px !default;
-$navbar-margin-bottom:             $line-height-computed !default;
+$navbar-margin-bottom: 0;
+//$line-height-computed !default;
 $navbar-border-radius:             $border-radius-base !default;
 $navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
 $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2) !default;
