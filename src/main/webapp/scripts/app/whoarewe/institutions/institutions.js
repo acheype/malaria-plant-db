@@ -3,7 +3,7 @@
 angular.module('malariaplantdbApp')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('community', {
+            .state('institutions', {
                 parent: 'whoarewe',
                 url: '/institutions',
                 data: {
