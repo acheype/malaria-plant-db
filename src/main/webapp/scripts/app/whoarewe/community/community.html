@@ -1,9 +1,45 @@
-<div class="container well colored-background">
+<div class="container well colored-background" xmlns="http://www.w3.org/1999/html">
     <div ng-cloak>
-        <div class="row">
-            <h3>Community</h3>
+        <h3 class="text-center">Community</h3><br/>
 
-            <p class="text-justify">Test test</p>
+        <div class="row">
+            <div class="col-sm-12 col-md-8 vertical-align">
+                <p class="text-justify">Initially designed by 3 researchers from the IRD (Institut de
+                    Recherche pour le D&eacute;veloppement), <span class="mpdbc-title">MpDBc</span> represents a
+                    global network of people who share an interest in antimalarial medicinal plants.</p>
+                <dl class="dl-horizontal">
+                <dt>Designers</dt>
+                <dd>Genevi&egrave;ve Bourdy, Eric Deharo, Adrien Cheype</dd>
+                </dl>
+            </div><!-- comments for vertical align
+         --><div class="col-sm-12 col-md-4 vertical-align">
+                <img class="img-rounded presentation-img" src="assets/images/community_huts.jpg">
+            </div>
+        </div>
+
+        <h4>Contributors</h4>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Family</th>
+                        <th>Given</th>
+                        <th>Institution</th>
+                        <th>Institution Address</th>
+                        <th>E-mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="compiler in compilers">
+                    <td>{{compiler.family}}</td>
+                    <td>{{compiler.given}}</td>
+                    <td><span ng-bind-html="compiler.institution"/></td>
+                    <td><small><span ng-bind-html="compiler.institutionAddress"/></small></td>
+                    <td><a ng-href="mailto:'{{compiler.email}}'">{{compiler.email}}</a></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

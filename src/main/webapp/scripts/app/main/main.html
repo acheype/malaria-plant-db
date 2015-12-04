@@ -1,9 +1,10 @@
-<div id="carousel-mpdbc" class="carousel slide" ng-non-bindable data-ride="carousel" data-interval="5000"
-     data-pause="false">
+<div id="carousel-mpdbc" class="carousel slide" ng-non-bindable data-ride="carousel" data-interval="2000" data-pause="false">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#carousel-mpdbc" data-slide-to="0" class="active"></li>
         <li data-target="#carousel-mpdbc" data-slide-to="1"></li>
+        <li data-target="#carousel-mpdbc" data-slide-to="2"></li>
+        <li data-target="#carousel-mpdbc" data-slide-to="3"></li>
     </ol>
 
     <!-- Wrapper for slides -->
@@ -13,6 +14,12 @@
         </div>
         <div class="item">
             <img src="assets/images/mpdbc_carousel2.jpg">
+        </div>
+        <div class="item">
+            <img src="assets/images/mpdbc_carousel3.jpg">
+        </div>
+        <div class="item">
+            <img src="assets/images/mpdbc_carousel4.jpg">
         </div>
     </div>
 
@@ -38,35 +45,34 @@
         <div class="row">
             <div class="col-xs-12 col-md-4 vertical-align">
                 <img src="assets/images/mpdbc_animated-logo.gif" class="img-responsive center-block"></span>
-            </div>
-            <!-- comments for vertical align
-                 -->
-            <div class="col-xs-12 col-md-8 vertical-align">
-
+            </div><!-- comments for vertical align
+         --><div class="col-xs-12 col-md-8 vertical-align">
                 <div ng-switch="isAuthenticated()">
-                    <div id="welcome-alert" class="alert alert-success" ng-switch-when="true">
-                    You are logged in as user "{{account.login}}".
+                    <div id="welcome-alert" class="alert alert-success" ng-switch-when="true">You are logged in as user
+                        "{{account.login}}".</div>
                 </div>
-            </div>
+
                 <!--class="center-block"-->
                 <jqcloud id="mpdbc-cloud" words="cloudWords" steps="7" autoResize="true"
                          font-size="{from:0.06, to:0.03}"></jqcloud>
                 <!--colors="{{wordColors}}"-->
-                <p class="text-justify"><span class="mpdbc-title">MpDBc</span> has been designed to <strong>register and
-                    synthesize published information</strong> on antimalarial medicinal plants: their traditional use,
-                    <i>in vitro / in
-                        vivo</i> biological activity, and toxicity.</p>
+                <p class="text-justify"><span class="mpdbc-title">MpDBc</span> has been designed to register and
+                    synthesize <strong>published information on antimalarial medicinal plants</strong>: their
+                    traditional use, <i>in vitro</i> / <i>in vivo</i> biological activity and toxicity.</p>
 
-                <p class="text-justify">The database is not a substitute for published material, as only selected data
-                    from the publication has been retained.</p>
+                <p class="text-justify">The database is not a substitute for published material as only selected data
+                    has been included.</p>
 
-                <p class="text-justify"><span class="mpdbc-title">MpDBc</span> is a contribution that could serve as a
-                    <strong>decision-making tool</strong> in the search for natural substances with antimalarial
-                    activity, validation and integration of traditional pharmacopoeia in health care systems.</p>
+                <p class="text-justify"><span class="mpdbc-title">MpDBc</span> serves as a <strong>decision-making
+                    </strong> tool in the search for natural substances with antimalarial activity, validation and
+                    integration of traditional pharmacopoeia in health care systems.</p>
 
-
+                <p class="text-justify">In <span class="mpdbc-title">MpDBc</span> following data can be found: complete
+                    reference of the publication, country of origin of the research, latin name of the plant,
+                    traditional antimalarial recipe, antimalarial evaluation results, toxicity and comments from
+                    expert compiler.</p>
             </div>
-
         </div>
+
     </div>
 </div>

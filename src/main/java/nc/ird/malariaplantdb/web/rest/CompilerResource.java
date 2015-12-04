@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import nc.ird.malariaplantdb.domain.Compiler;
 import nc.ird.malariaplantdb.repository.CompilerRepository;
 import nc.ird.malariaplantdb.repository.search.CompilerSearchRepository;
+import nc.ird.malariaplantdb.security.AuthoritiesConstants;
 import nc.ird.malariaplantdb.web.rest.util.HeaderUtil;
 import nc.ird.malariaplantdb.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -48,6 +50,7 @@ public class CompilerResource {
     @RequestMapping(value = "/compilers",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.USER)
     @Timed
     public ResponseEntity<Compiler> createCompiler(@Valid @RequestBody Compiler compiler) throws URISyntaxException {
         log.debug("REST request to save Compiler : {}", compiler);
@@ -67,6 +70,7 @@ public class CompilerResource {
     @RequestMapping(value = "/compilers",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.USER)
     @Timed
     public ResponseEntity<Compiler> updateCompiler(@Valid @RequestBody Compiler compiler) throws URISyntaxException {
         log.debug("REST request to update Compiler : {}", compiler);
@@ -86,6 +90,7 @@ public class CompilerResource {
     @RequestMapping(value = "/compilers",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<List<Compiler>> getAllCompilers(Pageable pageable)
         throws URISyntaxException {
@@ -100,6 +105,7 @@ public class CompilerResource {
     @RequestMapping(value = "/compilers/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<Compiler> getCompiler(@PathVariable Long id) {
         log.debug("REST request to get Compiler : {}", id);
@@ -116,6 +122,7 @@ public class CompilerResource {
     @RequestMapping(value = "/compilers/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.USER)
     @Timed
     public ResponseEntity<Void> deleteCompiler(@PathVariable Long id) {
         log.debug("REST request to delete Compiler : {}", id);
@@ -131,6 +138,7 @@ public class CompilerResource {
     @RequestMapping(value = "/_search/compilers/{query}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public List<Compiler> searchCompilers(@PathVariable String query) {
         return StreamSupport

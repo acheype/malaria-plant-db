@@ -2,7 +2,7 @@
 
 angular.module('malariaplantdbApp', ['LocalStorageModule',
                'ui.bootstrap', // for modal dialogs
-    'ngResource', 'ui.router', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload', 'angular-jqcloud'])
+    'ngResource', 'ui.router', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload', 'ngSanitize', 'angular-jqcloud'])
 
     .run(function ($rootScope, $location, $window, $http, $state,  Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;
@@ -14,7 +14,6 @@ angular.module('malariaplantdbApp', ['LocalStorageModule',
             if (Principal.isIdentityResolved()) {
                 Auth.authorize();
             }
-
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {

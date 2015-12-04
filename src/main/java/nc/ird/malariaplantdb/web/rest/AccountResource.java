@@ -3,6 +3,7 @@ package nc.ird.malariaplantdb.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import nc.ird.malariaplantdb.domain.User;
 import nc.ird.malariaplantdb.repository.UserRepository;
+import nc.ird.malariaplantdb.security.AuthoritiesConstants;
 import nc.ird.malariaplantdb.security.SecurityUtils;
 import nc.ird.malariaplantdb.service.MailService;
 import nc.ird.malariaplantdb.service.UserService;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -45,6 +47,7 @@ public class AccountResource {
     @RequestMapping(value = "/register",
         method = RequestMethod.POST,
         produces = MediaType.TEXT_PLAIN_VALUE)
+    @Secured(AuthoritiesConstants.USER)
     @Timed
     public ResponseEntity<?> registerAccount(@Valid @RequestBody UserDTO userDTO, HttpServletRequest request) {
         return userRepository.findOneByLogin(userDTO.getLogin())
@@ -73,6 +76,7 @@ public class AccountResource {
     @RequestMapping(value = "/activate",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<String> activateAccount(@RequestParam(value = "key") String key) {
         return Optional.ofNullable(userService.activateRegistration(key))
@@ -86,6 +90,7 @@ public class AccountResource {
     @RequestMapping(value = "/authenticate",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public String isAuthenticated(HttpServletRequest request) {
         log.debug("REST request to check if the current user is authenticated");
@@ -98,6 +103,7 @@ public class AccountResource {
     @RequestMapping(value = "/account",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<UserDTO> getAccount() {
         return Optional.ofNullable(userService.getUserWithAuthorities())
@@ -111,6 +117,7 @@ public class AccountResource {
     @RequestMapping(value = "/account",
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.USER)
     @Timed
     public ResponseEntity<String> saveAccount(@RequestBody UserDTO userDTO) {
         return userRepository
@@ -130,6 +137,7 @@ public class AccountResource {
     @RequestMapping(value = "/account/change_password",
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.USER)
     @Timed
     public ResponseEntity<?> changePassword(@RequestBody String password) {
         if (!checkPasswordLength(password)) {
@@ -142,6 +150,7 @@ public class AccountResource {
     @RequestMapping(value = "/account/reset_password/init",
         method = RequestMethod.POST,
         produces = MediaType.TEXT_PLAIN_VALUE)
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<?> requestPasswordReset(@RequestBody String mail, HttpServletRequest request) {
         return userService.requestPasswordReset(mail)
@@ -159,6 +168,7 @@ public class AccountResource {
     @RequestMapping(value = "/account/reset_password/finish",
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<String> finishPasswordReset(@RequestBody KeyAndPasswordDTO keyAndPassword) {
         if (!checkPasswordLength(keyAndPassword.getNewPassword())) {

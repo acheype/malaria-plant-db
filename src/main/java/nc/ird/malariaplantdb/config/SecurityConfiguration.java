@@ -1,28 +1,22 @@
 package nc.ird.malariaplantdb.config;
 
-import nc.ird.malariaplantdb.security.*;
-import nc.ird.malariaplantdb.security.xauth.*;
+import nc.ird.malariaplantdb.security.AuthoritiesConstants;
+import nc.ird.malariaplantdb.security.Http401UnauthorizedEntryPoint;
+import nc.ird.malariaplantdb.security.xauth.TokenProvider;
+import nc.ird.malariaplantdb.security.xauth.XAuthTokenConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import org.springframework.data.repository.query.spi.EvaluationContextExtension;
-import org.springframework.data.repository.query.spi.EvaluationContextExtensionSupport;
-import org.springframework.security.access.expression.SecurityExpressionRoot;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
-
 
 import javax.inject.Inject;
 
@@ -83,11 +77,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/authenticate").permitAll()
-            .antMatchers("/api/account/reset_password/init").permitAll()
-            .antMatchers("/api/account/reset_password/finish").permitAll()
+            //.antMatchers("/api/account/reset_password/init").permitAll()
+            //.antMatchers("/api/account/reset_password/finish").permitAll()
+            .antMatchers("/api/account").permitAll()
             .antMatchers("/api/logs/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/audits/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/api/**").authenticated()
+            .antMatchers("/api/**").permitAll()
             .antMatchers("/metrics/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/health/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/trace/**").hasAuthority(AuthoritiesConstants.ADMIN)
@@ -105,7 +100,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/configuration/security").permitAll()
             .antMatchers("/configuration/ui").permitAll()
             .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/protected/**").authenticated() 
+            .antMatchers("/protected/**").authenticated()
         .and()
             .apply(securityConfigurerAdapter());
 
