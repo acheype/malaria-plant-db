@@ -1,9 +1,40 @@
 <div class="container well">
     <div ng-cloak>
         <div class="row">
-            <h3>Consult the data</h3>
+            <h3>Search</h3><br/>
 
-            <p class="text-justify">Test test</p>
+            <!--<p class="text-justify">Test test</p>-->
+            <div class="row pub-item" ng-repeat="publication in publications">
+                <div class="col-sm-12 col-md-10 vertical-align">
+                    <span ng-repeat="author in publication.authors">
+                        <a ui-sref="author.detail({id: {{author.id}}})">{{author.family + '&nbsp;' +
+                            author.given}}</a>{{$last ? '' : ', '}}
+                    </span>
+                    ({{publication.year}}). {{publication.title}}. {{publication.journal}}.
+                    {{publication.volume}}/{{publication.nbOfVolumes}}. {{publication.pages}}
+                </div><!-- Comments for vertical align
+             --><div class="col-sm-12 col-md-2 vertical-align"">
+                    <a ui-sref="publication.detail({id:publication.id})">Details</a></td>
+                </div>
+
+                    <!--<td>{{publication.doi}}</td>-->
+                    <!--<td>{{publication.pmid}}</td>-->
+                    <!--<td>{{publication.isbn}}</td>-->
+                    <!--<td><a href="{{publication.url}}">{{publication.url}}</a></td>-->
+            </div>
+            <nav>
+                <ul class="pagination">
+                    <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+                    <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a>&lt;</a></li>
+                    <li ng-show="page > 1" ng-click="loadPage(page - 2)"><a>{{page - 1}}</a></li>
+                    <li ng-show="page > 0" ng-click="loadPage(page - 1)"><a>{{page}}</a></li>
+                    <li class="active"><a>{{page + 1}}</a></li>
+                    <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 2}}</a></li>
+                    <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 3}}</a></li>
+                    <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+                    <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

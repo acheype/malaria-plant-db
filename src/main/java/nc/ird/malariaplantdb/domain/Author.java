@@ -29,6 +29,7 @@ import java.util.Objects;
 public class Author implements Serializable, Comparable<Author> {
 
     private final static Comparator<Author> COMPARATOR = new AuthorComparator();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
