@@ -76,7 +76,6 @@ public class AccountResource {
     @RequestMapping(value = "/activate",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<String> activateAccount(@RequestParam(value = "key") String key) {
         return Optional.ofNullable(userService.activateRegistration(key))
@@ -90,7 +89,6 @@ public class AccountResource {
     @RequestMapping(value = "/authenticate",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public String isAuthenticated(HttpServletRequest request) {
         log.debug("REST request to check if the current user is authenticated");
@@ -103,7 +101,6 @@ public class AccountResource {
     @RequestMapping(value = "/account",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<UserDTO> getAccount() {
         return Optional.ofNullable(userService.getUserWithAuthorities())
@@ -150,7 +147,6 @@ public class AccountResource {
     @RequestMapping(value = "/account/reset_password/init",
         method = RequestMethod.POST,
         produces = MediaType.TEXT_PLAIN_VALUE)
-    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<?> requestPasswordReset(@RequestBody String mail, HttpServletRequest request) {
         return userService.requestPasswordReset(mail)
@@ -168,7 +164,6 @@ public class AccountResource {
     @RequestMapping(value = "/account/reset_password/finish",
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<String> finishPasswordReset(@RequestBody KeyAndPasswordDTO keyAndPassword) {
         if (!checkPasswordLength(keyAndPassword.getNewPassword())) {

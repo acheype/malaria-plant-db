@@ -4,10 +4,10 @@ angular.module('malariaplantdbApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('login', {
-                parent: 'account',
+                parent: 'site',
                 url: '/login',
                 data: {
-                    authorities: [], 
+                    authorities: [],
                     pageTitle: 'Sign in'
                 },
                 views: {
@@ -17,7 +17,7 @@ angular.module('malariaplantdbApp')
                     }
                 },
                 resolve: {
-                    
+
                 }
             });
     });

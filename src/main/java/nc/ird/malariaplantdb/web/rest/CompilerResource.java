@@ -90,7 +90,6 @@ public class CompilerResource {
     @RequestMapping(value = "/compilers",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<List<Compiler>> getAllCompilers(Pageable pageable)
         throws URISyntaxException {
@@ -105,7 +104,6 @@ public class CompilerResource {
     @RequestMapping(value = "/compilers/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public ResponseEntity<Compiler> getCompiler(@PathVariable Long id) {
         log.debug("REST request to get Compiler : {}", id);
@@ -138,7 +136,6 @@ public class CompilerResource {
     @RequestMapping(value = "/_search/compilers/{query}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    @Secured(AuthoritiesConstants.ANONYMOUS)
     @Timed
     public List<Compiler> searchCompilers(@PathVariable String query) {
         return StreamSupport
