@@ -15,7 +15,7 @@ import java.util.Objects;
 
 /**
  * Plant ingredient entity
- * <p>
+ * <p/>
  * Represent a part of a mix referred in a publication
  *
  * @author acheype
@@ -25,16 +25,19 @@ import java.util.Objects;
 @Table(name = "plant_ingredient", uniqueConstraints = @UniqueConstraint(columnNames = {"species_id", "part_used"},
     name = "uk_plantingredient_speciesid_partused"))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName="plantingredient")
+@Document(indexName = "plantingredient")
 public class PlantIngredient implements Serializable, Comparable<PlantIngredient> {
 
     private final static Comparator<PlantIngredient> COMPARATOR = new PlantIngredientComparator();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotNull
     @ManyToOne
     private Species species;
+
     @NotNull
     @Size(max = 255)
     @Column(name = "part_used", length = 255, nullable = false)
@@ -87,9 +90,9 @@ public class PlantIngredient implements Serializable, Comparable<PlantIngredient
     @Override
     public String toString() {
         return "PlantIngredient{" +
-                "id=" + id +
-                ", partUsed='" + partUsed + "'" +
-                '}';
+            "id=" + id +
+            ", partUsed='" + partUsed + "'" +
+            '}';
     }
 
     @Override

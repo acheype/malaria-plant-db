@@ -111,6 +111,19 @@ public class InVivoPharmacoResource {
     }
 
     /**
+     * GET  /publications/:id/invivopharmacos -> get all the inVivoPharmacos of the "id" publication.
+     */
+    @RequestMapping(value = "/publications/{id}/invivopharmacos",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<InVivoPharmaco>> getInVivoPharmacosByPublicationId(@PathVariable Long id) {
+        log.debug("REST request to get the inVivoPharmacos of the Publication : {}", id);
+        List<InVivoPharmaco> invivopharmacos = inVivoPharmacoRepository.findByPublicationId(id);
+        return new ResponseEntity<>(invivopharmacos, HttpStatus.OK);
+    }
+
+    /**
      * DELETE  /inVivoPharmacos/:id -> delete the "id" inVivoPharmaco.
      */
     @RequestMapping(value = "/inVivoPharmacos/{id}",

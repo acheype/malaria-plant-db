@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="201601080000" author="jhipster">
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/publication.csv"
+                  separator=","
+                  tableName="publication"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/author.csv"
+                  separator=","
+                  tableName="author"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/compiler.csv"
+                  separator=","
+                  tableName="compiler"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/publication_compiler.csv"
+                  separator=","
+                  tableName="publication_compiler"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/species.csv"
+                  separator=","
+                  tableName="species"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/pub_species.csv"
+                  separator=","
+                  tableName="pub_species"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/ethnology.csv"
+                  separator=","
+                  tableName="ethnology"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/plant_ingredient.csv"
+                  separator=","
+                  tableName="plant_ingredient"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/ethnology_plant_ingredient.csv"
+                  separator=","
+                  tableName="ethnology_plant_ingredient"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/in_vivo_pharmaco.csv"
+                  separator=","
+                  tableName="in_vivo_pharmaco"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/in_vivo_pharmaco_plant_ingredient.csv"
+                  separator=","
+                  tableName="in_vivo_pharmaco_plant_ingredient"/>
+
+    </changeSet>
+
+</databaseChangeLog>

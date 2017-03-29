@@ -111,6 +111,19 @@ public class EthnologyResource {
     }
 
     /**
+     * GET  /publications/:id/ethnologies -> get all the ethnologies of the "id" publication.
+     */
+    @RequestMapping(value = "/publications/{id}/ethnologies",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Ethnology>> getEthnologiesByPublicationId(@PathVariable Long id) {
+        log.debug("REST request to get the Ethnologies of the Publication : {}", id);
+        List<Ethnology> ethnologies = ethnologyRepository.findByPublicationId(id);
+        return new ResponseEntity<>(ethnologies,  HttpStatus.OK);
+    }
+
+    /**
      * DELETE  /ethnologies/:id -> delete the "id" ethnology.
      */
     @RequestMapping(value = "/ethnologies/{id}",

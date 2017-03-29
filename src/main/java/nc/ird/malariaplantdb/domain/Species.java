@@ -23,17 +23,20 @@ import java.util.Objects;
 @Table(name = "species", uniqueConstraints = @UniqueConstraint(columnNames = {"family", "species"}, name =
     "uk_species_family_species"))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName="species")
+@Document(indexName = "species")
 public class Species implements Serializable, Comparable<Species> {
 
     private final static Comparator<Species> COMPARATOR = new SpeciesComparator();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotNull
     @Size(max = 255)
     @Column(name = "family", length = 255, nullable = false)
     private String family;
+
     @NotNull
     @Size(max = 255)
     @Column(name = "species", length = 255, nullable = false)
@@ -86,10 +89,10 @@ public class Species implements Serializable, Comparable<Species> {
     @Override
     public String toString() {
         return "Species{" +
-                "id=" + id +
-                ", family='" + family + "'" +
-                ", species='" + species + "'" +
-                '}';
+            "id=" + id +
+            ", family='" + family + "'" +
+            ", species='" + species + "'" +
+            '}';
     }
 
     @Override

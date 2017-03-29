@@ -18,7 +18,7 @@ import java.util.Objects;
 
 /**
  * Compiler entity
- * <p>
+ * <p/>
  * Must have a family and a given name. Email is mandatory.
  * A compiler can not to be bounded to a publication yet
  *
@@ -28,29 +28,35 @@ import java.util.Objects;
 @JsonPropertyOrder({"id", "family", "given", "institution", "institutionAddress", "email"})
 @Table(name = "compiler", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}, name = "uk_compiler_email"))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName="compiler")
+@Document(indexName = "compiler")
 public class Compiler implements Serializable, Comparable<Compiler> {
 
     private final static Comparator<Compiler> COMPARATOR = new CompilerComparator();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotNull
     @Size(max = 255)
     @Column(name = "family", length = 255, nullable = false)
     private String family;
+
     @NotNull
     @Size(max = 255)
     @Column(name = "given", length = 255, nullable = false)
     private String given;
+
     @Size(max = 255)
     @Column(name = "institution", length = 255)
     private String institution;
+
     @Size(max = 255)
     @Lob
-    @Type(type="org.hibernate.type.StringClobType")
+    @Type(type = "org.hibernate.type.StringClobType")
     @Column(name = "institution_address", length = 255)
     private String institutionAddress;
+
     @NotNull
     @Size(max = 255)
     @Email
@@ -128,13 +134,13 @@ public class Compiler implements Serializable, Comparable<Compiler> {
     @Override
     public String toString() {
         return "Compiler{" +
-                "id=" + id +
-                ", family='" + family + "'" +
-                ", given='" + given + "'" +
-                ", institution='" + institution + "'" +
-                ", institutionAddress='" + institutionAddress + "'" +
-                ", email='" + email + "'" +
-                '}';
+            "id=" + id +
+            ", family='" + family + "'" +
+            ", given='" + given + "'" +
+            ", institution='" + institution + "'" +
+            ", institutionAddress='" + institutionAddress + "'" +
+            ", email='" + email + "'" +
+            '}';
     }
 
     @Override

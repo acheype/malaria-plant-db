@@ -7,6 +7,13 @@ angular.module('malariaplantdbApp')
             $scope.isAuthenticated = Principal.isAuthenticated;
         });
 
+        $scope.carouselInterval = 5000;
+        $scope.slides = [{image: "assets/images/mpdbc_carousel1.jpg", text: ""},
+            {image: "assets/images/mpdbc_carousel2.jpg", text: ""},
+            {image: "assets/images/mpdbc_carousel3.jpg", text: ""},
+            {image: "assets/images/mpdbc_carousel4.jpg", text: ""}
+        ];
+
         $scope.cloudWords = [
             {text: "biodiversity", weight: 7},
             {text: "malaria", weight: 9},
@@ -18,4 +25,5 @@ angular.module('malariaplantdbApp')
             {text: "medicinal plant", weight: 10}
         ];
         $scope.wordColors = ["#8cc542", "#3b98a9"];
+
     });

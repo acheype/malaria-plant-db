@@ -4,6 +4,8 @@ import com.codahale.metrics.annotation.Timed;
 import nc.ird.malariaplantdb.domain.Publication;
 import nc.ird.malariaplantdb.repository.PublicationRepository;
 import nc.ird.malariaplantdb.repository.search.PublicationSearchRepository;
+import nc.ird.malariaplantdb.service.PublicationService;
+import nc.ird.malariaplantdb.web.rest.dto.PubSummaryDTO;
 import nc.ird.malariaplantdb.web.rest.util.HeaderUtil;
 import nc.ird.malariaplantdb.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -40,6 +43,9 @@ public class PublicationResource {
     private PublicationRepository publicationRepository;
 
     @Inject
+    private PublicationService publicationService;
+
+    @Inject
     private PublicationSearchRepository publicationSearchRepository;
 
     /**
@@ -54,7 +60,7 @@ public class PublicationResource {
         if (publication.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new publication cannot already have an ID").body(null);
         }
-        Publication result = publicationRepository.save(publication);
+        Publication result = publicationService.save(publication);
         publicationSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/publications/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("publication", result.getId().toString()))
@@ -73,7 +79,7 @@ public class PublicationResource {
         if (publication.getId() == null) {
             return createPublication(publication);
         }
-        Publication result = publicationRepository.save(publication);
+        Publication result = publicationService.save(publication);
         publicationSearchRepository.save(publication);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("publication", publication.getId().toString()))
@@ -91,6 +97,22 @@ public class PublicationResource {
         throws URISyntaxException {
         Page<Publication> page = publicationRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/publications");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /pubSummaries -> get all the pubSummaries.
+     */
+    @RequestMapping(value = "/pubSummaries",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Transactional(readOnly = true)
+    @Timed
+    public ResponseEntity<List<PubSummaryDTO>> getAllPubSummaries(Pageable pageable)
+        throws URISyntaxException {
+        Page<Publication> pubPage = publicationRepository.findAll(pageable);
+        Page<PubSummaryDTO> page = pubPage.map(pub -> new PubSummaryDTO(pub));
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/pubSummaries");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

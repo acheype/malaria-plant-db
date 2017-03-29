@@ -132,16 +132,21 @@ public class Publication implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     @BatchSize(size = 100)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "PUBLICATION_COMPILER",
+    @JoinTable(name = "publication_compiler",
         joinColumns = @JoinColumn(name = "publications_id", referencedColumnName = "ID"),
         inverseJoinColumns = @JoinColumn(name = "compilers_id", referencedColumnName = "ID"))
     @SortNatural
     private SortedSet<Compiler> compilers = new TreeSet<>();
 
     @Lob
-    @Type(type="org.hibernate.type.StringClobType")
+    @Type(type = "org.hibernate.type.StringClobType")
     @Column(name = "compilers_notes")
     private String compilersNotes;
+
+    @Lob
+    @Type(type = "org.hibernate.type.StringClobType")
+    @Column(name = "citation")
+    private String citation;
 
     @JsonIgnore
     @OneToMany(mappedBy = "publication")
@@ -351,6 +356,14 @@ public class Publication implements Serializable {
         this.compilersNotes = compilersNotes;
     }
 
+    public String getCitation() {
+        return citation;
+    }
+
+    public void setCitation(String citation) {
+        this.citation = citation;
+    }
+
     public Set<PubSpecies> getPubSpecies() {
         return pubSpecies;
     }
@@ -427,18 +440,8 @@ public class Publication implements Serializable {
             ", isbn='" + isbn + "'" +
             ", url='" + url + "'" +
             ", compilersNotes='" + compilersNotes + "'" +
-            ", citation='" + getCitation() + "'" +
+            ", citation='" + citation + "'" +
             '}';
-    }
-
-    /**
-     * Get the publication citation in the APA style
-     *
-     * @return the citation
-     */
-    @Transient
-    public String getCitation() {
-        return "";
     }
 
 }

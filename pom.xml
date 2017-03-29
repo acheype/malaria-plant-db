@@ -20,6 +20,15 @@
             <id>spring-milestones</id>
             <url>http://repo.spring.io/milestone</url>
         </repository>
+        <repository>
+            <id>oss-snapshots-repo</id>
+            <name>Sonatype OSS Maven Repository</name>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -55,6 +64,10 @@
         <metrics-spark-reporter.version>1.2</metrics-spark-reporter.version>
         <metrics-spring.version>3.1.2</metrics-spring.version>
         <postgresql.version>9.4-1203-jdbc42</postgresql.version>
+        <rhino.version>1.7.7</rhino.version>
+        <citeproc-java.version>0.6</citeproc-java.version>
+        <citation-styles.version>1.0.1-SNAPSHOT</citation-styles.version>
+        <citation-locales.version>1.0.1-SNAPSHOT</citation-locales.version>
         <run.addResources>false</run.addResources>
         <spring-security.version>4.0.2.RELEASE</spring-security.version>
         <springfox.version>2.0.3</springfox.version>
@@ -370,7 +383,27 @@
             <artifactId>metrics-spark-reporter</artifactId>
             <version>${metrics-spark-reporter.version}</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.mozilla</groupId>
+            <artifactId>rhino</artifactId>
+            <version>${rhino.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>de.undercouch</groupId>
+            <artifactId>citeproc-java</artifactId>
+            <version>${citeproc-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.citationstyles</groupId>
+            <artifactId>styles</artifactId>
+            <version>${citation-styles.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.citationstyles</groupId>
+            <artifactId>locales</artifactId>
+            <version>${citation-locales.version}</version>
+        </dependency>
+</dependencies>
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
         <resources>

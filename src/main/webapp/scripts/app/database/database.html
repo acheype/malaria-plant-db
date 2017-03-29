@@ -1,40 +1,100 @@
 <div class="container well">
     <div ng-cloak>
-        <div class="row">
-            <h3>Search</h3><br/>
+        <h3>Search</h3><br/>
 
-            <!--<p class="text-justify">Test test</p>-->
-            <div class="row pub-item" ng-repeat="publication in publications">
-                <div class="col-sm-12 col-md-10 vertical-align">
-                    <span ng-repeat="author in publication.authors">
-                        <a ui-sref="author.detail({id: {{author.id}}})">{{author.family + '&nbsp;' +
-                            author.given}}</a>{{$last ? '' : ', '}}
-                    </span>
-                    ({{publication.year}}). {{publication.title}}. {{publication.journal}}.
-                    {{publication.volume}}/{{publication.nbOfVolumes}}. {{publication.pages}}
-                </div><!-- Comments for vertical align
-             --><div class="col-sm-12 col-md-2 vertical-align"">
-                    <a ui-sref="publication.detail({id:publication.id})">Details</a></td>
-                </div>
-
-                    <!--<td>{{publication.doi}}</td>-->
-                    <!--<td>{{publication.pmid}}</td>-->
-                    <!--<td>{{publication.isbn}}</td>-->
-                    <!--<td><a href="{{publication.url}}">{{publication.url}}</a></td>-->
+        <div class="pub-length">{{pubSummaries.length}}
+            publication{{pubSummaries.length > 1 ? 's':''}} found</div>
+        <div class="row pub-item" ng-repeat="pub in pubSummaries">
+            <div class="col-md-12 vertical-align">
+                <!--<a ui-sref="author.detail({id: {{author.id}}})">-->
+                <span class="pub-citation">{{pub.citation}}</span>
+                <span class="pub-urls">
+                    <div ng-if="pub.doi"><a ng-attr-href="http://dx.doi.org/{{pub.doi}}">DOI</a></div>
+                    <div ng-if="pub.pmid"><a ng-attr-href="http://www.ncbi.nlm.nih.gov/pubmed/{{pub.pmid}}">PubMed</a></div>
+                    <div ng-if="pub.isbn"><a ng-attr-href="http://openisbn.com/isbn/{{pub.isbn}}">ISBN</a></div>
+                    <div ng-if="pub.url"><a ng-attr-href="http://dx.doi.org/{{pub.url}}">URL</a></div>
+                </span>
             </div>
-            <nav>
-                <ul class="pagination">
-                    <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
-                    <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a>&lt;</a></li>
-                    <li ng-show="page > 1" ng-click="loadPage(page - 2)"><a>{{page - 1}}</a></li>
-                    <li ng-show="page > 0" ng-click="loadPage(page - 1)"><a>{{page}}</a></li>
-                    <li class="active"><a>{{page + 1}}</a></li>
-                    <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 2}}</a></li>
-                    <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 3}}</a></li>
-                    <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
-                    <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
-                </ul>
-            </nav>
+            <div class="top-buffer">
+                <div><span class="ingredients-label">Ingredients and tests</span>,
+                    <span class="country-label">Country</span>:
+                    <span class="country-value" ng-repeat="country in pub.countries">
+                        {{country}}<span ng-if="!$last">, </span>
+                    </span>
+                </div>
+            </div>
+            <div class="row ingredients-item" ng-repeat="(pi, piTests) in pub.plantIngredients">
+                <div>{{pi}} <span class="glyphicon glyphicon-zoom-in"></span><a href="#">Details</a></div>
+                <table>
+                    <tr>
+                        <td>
+                            <span ng-if="piTests.inVivo" class="invivo-test-type">IN VIVO</span>
+                        </td>
+                        <td>
+                            <span ng-if="piTests.inVivoPeters" class="cat1-test-tag">PETERS</span>
+                            <span ng-if="piTests.inVivoInhibition != null">
+                                <span class="test-value-label">Inhib.:</span>
+                                <span class="test-value">{{piTests.inVivoInhibition}} %</span>
+                            </span>
+                            <span ng-if="piTests.inVivoEd50 == null">
+                                <span class="test-value-label">ED50:</span>
+                                <span class="test-value">{{piTests.inVivoEd50}} mg/kg</span>
+                            </span>
+                            <span ng-if="!piTests.isInVivoRaneTest" class="cat1-test-tag">RANE TEST</span>
+                            <span ng-if="!piTests.isInVivoRepository" class="cat1-test-tag">REPOSITORY</span>
+                            <span ng-if="!piTests.isInVivoLiverStage" class="cat2-test-tag">LIVER STAGE</span>
+                            <span ng-if="!piTests.isInVivoGametocyte" class="cat3-test-tag">GAMETOCYTE</span>
+                            <span ng-if="!piTests.isInVivoOocyst" class="cat3-test-tag">OOCYST</span>
+                            <span ng-if="!piTests.isInVivoSporozoite" class="cat3-test-tag">SPOROZOITE</span>
+                            <span ng-if="!piTests.isInVivoToxicity" class="cat4-test-tag">TOXICITY</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span ng-if="!piTests.inVitro" class="invitro-test-type">IN VITRO</span>
+                        </td>
+                        <td>
+                            <span ng-if="!piTests.inVitroErythocyt" class="cat1-test-tag">ERYTHROCYT</span>
+                            <span ng-if="piTests.inVitroInhibition == null">
+                                <span class="test-value-label">Inhib.:</span>
+                                <span class="test-value">{{piTests.inVitroInhibition}} %</span>
+                            </span>
+                            <span ng-if="piTests.inVitroIc50 == null">
+                                <span class="test-value-label">IC50:</span>
+                                <span class="test-value">{{piTests.inVitroIc50}} &#181;g/ml</span>
+                            </span>
+                            <span ng-if="piTests.inVitroMolIc50 == null">
+                                <span class="test-value-label">IC50:</span>
+                                <span class="test-value">{{piTests.inVitroMolIc50}} &#181;mol/ml</span>
+                            </span>
+                            <span ng-if="!piTests.isInVitroLiverStage" class="cat2-test-tag">LIVER STAGE</span>
+                            <span ng-if="!piTests.isInVitroGametocyte" class="cat3-test-tag">GAMETOCYTE</span>
+                            <span ng-if="!piTests.isInVitroSporozoite" class="cat3-test-tag">SPOROZOITE</span>
+                            <span ng-if="!piTests.isInVitroToxicity" class="cat4-test-tag">TOXICITY</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ingredients-length"
+                ng-if="keys(pub.plantIngredients).length">{{keys(pub.plantIngredients).length}}
+                plant{{keys(pub.plantIngredients).length > 1 ? 's':''}} found</div>
         </div>
+                <!--<td>{{publication.doi}}</td>-->
+                <!--<td>{{publication.pmid}}</td>-->
+                <!--<td>{{publication.isbn}}</td>-->
+                <!--<td><a href="{{publication.url}}">{{publication.url}}</a></td>-->
+        <nav>
+            <ul class="pagination">
+                <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a>&lt;</a></li>
+                <li ng-show="page > 1" ng-click="loadPage(page - 2)"><a>{{page - 1}}</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(page - 1)"><a>{{page}}</a></li>
+                <li class="active"><a>{{page + 1}}</a></li>
+                <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 2}}</a></li>
+                <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 3}}</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+                <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
+            </ul>
+        </nav>
     </div>
 </div>

@@ -3,10 +3,14 @@ package nc.ird.malariaplantdb.repository;
 import nc.ird.malariaplantdb.domain.InVitroPharmaco;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 /**
  * Spring Data JPA repository for the InVitroPharmaco entity.
  */
 public interface InVitroPharmacoRepository extends JpaRepository<InVitroPharmaco,Long> {
+
+    List<InVitroPharmaco> findByPublicationId(Long id);
 
     // Other method to fetch the authors and compilers relationships, but as it's by a join, the firsResult and
     // maxResults are applied in memory

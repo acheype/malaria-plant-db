@@ -31,7 +31,5 @@
             <column name="given" type="varchar(255)"/>
         </createTable>
 
-
-
     </changeSet>
 </databaseChangeLog>

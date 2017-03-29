@@ -50,6 +50,7 @@
             <column name="isbn" type="varchar(255)"/>
             <column name="url" type="varchar(255)"/>
             <column name="compilers_notes" type="${clobType}"/>
+            <column name="citation" type="${clobType}"/>
         </createTable>
 
         <addUniqueConstraint constraintName="uk_publication_title" tableName="publication" columnNames="title"/>
@@ -86,7 +87,7 @@
                                  referencedColumnNames="id"
                                  referencedTableName="publication"/>
 
-        <!-- Joint table between PUBLICATION and COMPILER -->
+        <!-- Joint table between publication and compiler -->
         <createTable tableName="publication_compiler">
             <column name="compilers_id" type="bigint">
                 <constraints nullable="false"/>

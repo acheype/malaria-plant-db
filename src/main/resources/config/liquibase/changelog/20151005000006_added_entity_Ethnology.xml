@@ -62,6 +62,6 @@
                                  constraintName="fk_plantingredient_plantingredient_ethnology_id"
                                  referencedColumnNames="id"
                                  referencedTableName="plant_ingredient"/>
-
+        <!--INSERT INTO PUBLIC.in_vivo_pharmaco (ID, PUBLICATION_ID, TESTED_ENTITY, EXTRACTION_SOLVENT, ADDITIVE_PRODUCT, COMPOUND_NAME, SCREENING_TEST, TREATMENT_ROUTE, DOSE, INHIBITION, SURVIVAL_PERCENT, SURVIVAL_TIME, ED50, LD50, COMPILERS_OBSERVATIONS) VALUES ('1', '2', 'Extract', 'Methanol', '', '', 'Rane test', 'Oral', '400.0000', '', '', '28.50', '', '', '')-->
     </changeSet>
 </databaseChangeLog>

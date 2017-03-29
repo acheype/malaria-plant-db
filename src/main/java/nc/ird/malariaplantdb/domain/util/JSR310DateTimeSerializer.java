@@ -1,13 +1,13 @@
 package nc.ird.malariaplantdb.domain.util;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+
 import java.io.IOException;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
-
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 
 public final class JSR310DateTimeSerializer extends JsonSerializer<TemporalAccessor> {
 
@@ -16,7 +16,8 @@ public final class JSR310DateTimeSerializer extends JsonSerializer<TemporalAcces
 
     public static final JSR310DateTimeSerializer INSTANCE = new JSR310DateTimeSerializer();
 
-    private JSR310DateTimeSerializer() {}
+    private JSR310DateTimeSerializer() {
+    }
 
     @Override
     public void serialize(TemporalAccessor value, JsonGenerator generator, SerializerProvider serializerProvider) throws IOException {

@@ -16,7 +16,7 @@ import java.util.*;
 
 /**
  * Ethnology entity
- * <p>
+ * <p/>
  * Represents for the plant ingredients of a publication the relevant data in ethnology
  *
  * @author acheype
@@ -26,41 +26,49 @@ import java.util.*;
     "traditionalRecipeDetails", "preparationMode", "administrationRoute"})
 @Table(name = "ethnology")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName="ethnology")
+@Document(indexName = "ethnology")
 public class Ethnology implements Serializable, Comparable<Ethnology> {
 
     private final static Comparator<Ethnology> COMPARATOR = new EthnologyComparator();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotNull
     @ManyToOne
     private Publication publication;
+
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     @BatchSize(size = 10)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "ETHNOLOGY_PLANT_INGREDIENT",
-        joinColumns = @JoinColumn(name="ethnologies_id", referencedColumnName="ID"),
-        inverseJoinColumns = @JoinColumn(name="plant_ingredients_id", referencedColumnName="ID"))
+        joinColumns = @JoinColumn(name = "ethnologies_id", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "plant_ingredients_id", referencedColumnName = "ID"))
     @SortNatural
     private SortedSet<PlantIngredient> plantIngredients = new TreeSet<>();
+
     @NotNull
     @Lob
-    @Type(type="org.hibernate.type.StringClobType")
+    @Type(type = "org.hibernate.type.StringClobType")
     @Column(name = "ethno_relevancy", nullable = false)
     private String ethnoRelevancy;
+
     @NotNull
     @Size(max = 255)
     @Column(name = "treatment_type", length = 255, nullable = false)
     private String treatmentType;
+
     @Lob
-    @Type(type="org.hibernate.type.StringClobType")
+    @Type(type = "org.hibernate.type.StringClobType")
     @Column(name = "traditional_recipe_details")
     private String traditionalRecipeDetails;
+
     @Size(max = 255)
     @Column(name = "preparation_mode", length = 255)
     private String preparationMode;
+
     @Size(max = 255)
     @Column(name = "administration_route", length = 255)
     private String administrationRoute;
@@ -152,13 +160,13 @@ public class Ethnology implements Serializable, Comparable<Ethnology> {
     @Override
     public String toString() {
         return "Ethnology{" +
-                "id=" + id +
-                ", ethnoRelevancy='" + ethnoRelevancy + "'" +
-                ", treatmentType='" + treatmentType + "'" +
-                ", traditionalRecipeDetails='" + traditionalRecipeDetails + "'" +
-                ", preparationMode='" + preparationMode + "'" +
-                ", administrationRoute='" + administrationRoute + "'" +
-                '}';
+            "id=" + id +
+            ", ethnoRelevancy='" + ethnoRelevancy + "'" +
+            ", treatmentType='" + treatmentType + "'" +
+            ", traditionalRecipeDetails='" + traditionalRecipeDetails + "'" +
+            ", preparationMode='" + preparationMode + "'" +
+            ", administrationRoute='" + administrationRoute + "'" +
+            '}';
     }
 
     @Override

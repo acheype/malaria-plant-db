@@ -111,6 +111,19 @@ public class InVitroPharmacoResource {
     }
 
     /**
+     * GET  /publications/:id/invitropharmacos -> get all the inVitroPharmacos of the "id" publication.
+     */
+    @RequestMapping(value = "/publications/{id}/invitropharmacos",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<InVitroPharmaco>> getInVitroPharmacosByPublicationId(@PathVariable Long id) {
+        log.debug("REST request to get the inVitroPharmacos of the Publication : {}", id);
+        List<InVitroPharmaco> invitropharmacos = inVitroPharmacoRepository.findByPublicationId(id);
+        return new ResponseEntity<>(invitropharmacos, HttpStatus.OK);
+    }
+
+    /**
      * DELETE  /inVitroPharmacos/:id -> delete the "id" inVitroPharmaco.
      */
     @RequestMapping(value = "/inVitroPharmacos/{id}",

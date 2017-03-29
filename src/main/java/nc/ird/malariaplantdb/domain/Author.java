@@ -15,7 +15,7 @@ import java.util.Objects;
 
 /**
  * Author entity
- * <p>
+ * <p/>
  * For institutional and other single names, only the family name could be entered.
  *
  * @author : acheype
@@ -25,7 +25,7 @@ import java.util.Objects;
 @JsonPropertyOrder({"id", "publication", "family", "given"})
 @Table(name = "author")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName="author")
+@Document(indexName = "author")
 public class Author implements Serializable, Comparable<Author> {
 
     private final static Comparator<Author> COMPARATOR = new AuthorComparator();
@@ -33,13 +33,16 @@ public class Author implements Serializable, Comparable<Author> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotNull
     @ManyToOne
     private Publication publication;
+
     @NotNull
     @Size(max = 255)
     @Column(name = "family", length = 255, nullable = false)
     private String family;
+
     @Size(max = 255)
     @Column(name = "given", length = 255)
     private String given;
@@ -99,10 +102,10 @@ public class Author implements Serializable, Comparable<Author> {
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
-                ", family='" + family + "'" +
-                ", given='" + given + "'" +
-                '}';
+            "id=" + id +
+            ", family='" + family + "'" +
+            ", given='" + given + "'" +
+            '}';
     }
 
     @Override

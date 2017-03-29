@@ -12,11 +12,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * In vitro pharmacology entity
- * <p>
+ * <p/>
  * Represents for the plant ingredients of a publication the relevant data in in vitro pharmacology
  *
  * @author acheype
@@ -27,74 +30,90 @@ import java.util.*;
     "molIc50", "selectivityIndex", "compilersObservations"})
 @Table(name = "in_vitro_pharmaco")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName="invitropharmaco")
+@Document(indexName = "invitropharmaco")
 public class InVitroPharmaco implements Serializable, Comparable<InVitroPharmaco> {
 
     private final static Comparator<InVitroPharmaco> COMPARATOR = new InVitroPharmacoComparator();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotNull
     @ManyToOne
     private Publication publication;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @BatchSize(size = 100)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "IN_VITRO_PHARMACO_PLANT_INGREDIENT",
-        joinColumns = @JoinColumn(name="in_vitro_pharmacos_id", referencedColumnName="ID"),
-        inverseJoinColumns = @JoinColumn(name="plant_ingredients_id", referencedColumnName="ID"))
+    @JoinTable(name = "in_vitro_pharmaco_plant_ingredient",
+        joinColumns = @JoinColumn(name = "in_vitro_pharmacos_id", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "plant_ingredients_id", referencedColumnName = "ID"))
     @SortNatural
     private SortedSet<PlantIngredient> plantIngredients = new TreeSet<>();
+
     @NotNull
     @Size(max = 255)
     @Column(name = "tested_entity", length = 255, nullable = false)
     private String testedEntity;
+
     @Size(max = 255)
     @Column(name = "extraction_solvent", length = 255)
     private String extractionSolvent;
+
     @Size(max = 255)
     @Column(name = "additive_product", length = 255)
     private String additiveProduct;
+
     @Size(max = 255)
     @Column(name = "compound_name", length = 255)
     private String compoundName;
+
     @NotNull
     @Size(max = 255)
     @Column(name = "screening_test", length = 255, nullable = false)
     private String screeningTest;
+
     @Size(max = 255)
     @Column(name = "measure_method", length = 255)
     private String measureMethod;
+
     @Min(value = 0)
     @Max(value = 1000000)
-    @Digits(integer=7, fraction=4)
-    @Column(name = "concentration", precision=11, scale=4)
+    @Digits(integer = 7, fraction = 4)
+    @Column(name = "concentration", precision = 11, scale = 4)
     private BigDecimal concentration;
+
     @Min(value = 0)
     @Max(value = 1000000)
-    @Digits(integer=7, fraction=4)
-    @Column(name = "mol_concentration", precision=11, scale=4)
+    @Digits(integer = 7, fraction = 4)
+    @Column(name = "mol_concentration", precision = 11, scale = 4)
     private BigDecimal molConcentration;
+
     @Min(value = 0)
     @Max(value = 100)
-    @Digits(integer=3, fraction=2)
-    @Column(name = "inhibition", precision=5, scale=2)
+    @Digits(integer = 3, fraction = 2)
+    @Column(name = "inhibition", precision = 5, scale = 2)
     private BigDecimal inhibition;
+
     @Min(value = 0)
     @Max(value = 1000000)
-    @Digits(integer=7, fraction=4)
-    @Column(name = "ic50", precision=11, scale=4)
+    @Digits(integer = 7, fraction = 4)
+    @Column(name = "ic50", precision = 11, scale = 4)
     private BigDecimal ic50;
+
     @Min(value = 0)
     @Max(value = 1000000)
-    @Digits(integer=7, fraction=4)
-    @Column(name = "mol_ic50", precision=11, scale=4)
+    @Digits(integer = 7, fraction = 4)
+    @Column(name = "mol_ic50", precision = 11, scale = 4)
     private BigDecimal molIc50;
+
     @Min(value = 0)
     @Max(value = 100)
-    @Digits(integer=3, fraction=2)
-    @Column(name = "selectivity_index", precision=5, scale=2)
+    @Digits(integer = 3, fraction = 2)
+    @Column(name = "selectivity_index", precision = 5, scale = 2)
     private BigDecimal selectivityIndex;
+
     @Lob
     @Type(type = "org.hibernate.type.StringClobType")
     @Column(name = "compilers_observations")
@@ -220,7 +239,7 @@ public class InVitroPharmaco implements Serializable, Comparable<InVitroPharmaco
         this.publication = publication;
     }
 
-    public Set<PlantIngredient> getPlantIngredients() {
+    public SortedSet<PlantIngredient> getPlantIngredients() {
         return plantIngredients;
     }
 
@@ -251,21 +270,21 @@ public class InVitroPharmaco implements Serializable, Comparable<InVitroPharmaco
     @Override
     public String toString() {
         return "InVitroPharmaco{" +
-                "id=" + id +
-                ", testedEntity='" + testedEntity + "'" +
-                ", extractionSolvent='" + extractionSolvent + "'" +
-                ", additiveProduct='" + additiveProduct + "'" +
-                ", compoundName='" + compoundName + "'" +
-                ", screeningTest='" + screeningTest + "'" +
-                ", measureMethod='" + measureMethod + "'" +
-                ", concentration='" + concentration + "'" +
-                ", molConcentration='" + molConcentration + "'" +
-                ", inhibition='" + inhibition + "'" +
-                ", ic50='" + ic50 + "'" +
-                ", molIc50='" + molIc50 + "'" +
-                ", selectivityIndex='" + selectivityIndex + "'" +
-                ", compilersObservations='" + compilersObservations + "'" +
-                '}';
+            "id=" + id +
+            ", testedEntity='" + testedEntity + "'" +
+            ", extractionSolvent='" + extractionSolvent + "'" +
+            ", additiveProduct='" + additiveProduct + "'" +
+            ", compoundName='" + compoundName + "'" +
+            ", screeningTest='" + screeningTest + "'" +
+            ", measureMethod='" + measureMethod + "'" +
+            ", concentration='" + concentration + "'" +
+            ", molConcentration='" + molConcentration + "'" +
+            ", inhibition='" + inhibition + "'" +
+            ", ic50='" + ic50 + "'" +
+            ", molIc50='" + molIc50 + "'" +
+            ", selectivityIndex='" + selectivityIndex + "'" +
+            ", compilersObservations='" + compilersObservations + "'" +
+            '}';
     }
 
     @Override

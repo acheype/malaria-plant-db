@@ -39,10 +39,5 @@
 
         <addUniqueConstraint constraintName="uk_compiler_email" tableName="compiler" columnNames="email"/>
 
-        <loadData encoding="UTF-8"
-                  file="config/liquibase/compilers.csv"
-                  separator=";"
-                  tableName="compiler"/>
-
     </changeSet>
 </databaseChangeLog>

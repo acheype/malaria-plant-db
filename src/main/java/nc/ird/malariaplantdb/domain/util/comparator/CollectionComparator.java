@@ -19,7 +19,7 @@ class CollectionComparator<T> implements Comparator<Collection<T>> {
      *
      * @param comparatorSupplier A comparator supplier for the T parametrized type
      */
-    CollectionComparator(Supplier<? extends Comparator<T>> comparatorSupplier){
+    CollectionComparator(Supplier<? extends Comparator<T>> comparatorSupplier) {
         this.comparatorSupplier = comparatorSupplier;
     }
 
@@ -31,7 +31,8 @@ class CollectionComparator<T> implements Comparator<Collection<T>> {
 
         do {
             if (!i1.hasNext()) {
-                if (!i2.hasNext()) return 0; else return -1;
+                if (!i2.hasNext()) return 0;
+                else return -1;
             }
             if (!i2.hasNext()) {
                 return 1;

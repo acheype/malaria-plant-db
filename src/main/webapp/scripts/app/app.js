@@ -2,11 +2,16 @@
 
 angular.module('malariaplantdbApp', ['LocalStorageModule',
                'ui.bootstrap', // for modal dialogs
-    'ngResource', 'ui.router', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload', 'ngSanitize', 'angular-jqcloud'])
+    'ngResource', 'ui.router', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload', 'ngSanitize', 'angular-jqcloud',
+    'ngAnimate'])
 
     .run(function ($rootScope, $location, $window, $http, $state,  Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
+        // hack to access key function from Object in angular directives
+        // (see http://stackoverflow.com/questions/22691183/check-object-size-in-angularjs-template-doing-it-wrongKeyFn)
+        $rootScope.keys = Object.keys;
+
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;

@@ -111,6 +111,19 @@ public class PubSpeciesResource {
     }
 
     /**
+     * GET  /publications/:id/pubspecies -> get all the pubspecies of the "id" publication.
+     */
+    @RequestMapping(value = "/publications/{id}/pubspecies",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<PubSpecies>> getPubSpeciesByPublicationId(@PathVariable Long id) {
+        log.debug("REST request to get the Pubspecies of the Publication : {}", id);
+        List<PubSpecies> pubSpecies = pubSpeciesRepository.findByPublicationId(id);
+        return new ResponseEntity<>(pubSpecies,  HttpStatus.OK);
+    }
+
+    /**
      * DELETE  /pubSpecies/:id -> delete the "id" pubSpecies.
      */
     @RequestMapping(value = "/pubSpecies/{id}",

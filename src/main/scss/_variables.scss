@@ -19,6 +19,10 @@ $green-lighter: lighten($green, 15%);
 $green-super-lighter: #efe !default;
 $blue1: #74c1cb !default;
 $blue2: #3085bb !default$blue2-darker: darken($blue2, 10%) !default;
+$orange1: lighten(#F39C12, 12%) !default;
+$orange2: lighten($orange1, 5%) !default;
+$red1: #e74c3c !default;
+$red2 : lighten($red1, 8%) !default;
 
 $brand-primary: $green !default;
 //#88c14e;//#57a983;//#45c675;
@@ -26,8 +30,8 @@ $brand-success: $blue1 !default;
 //lighten(#18BC9C, 13.5%) !default;
 $brand-info: $blue2 !default;
 //#3498DB !default;
-$brand-warning:         lighten(#F39C12, 12%) !default;
-$brand-danger: #e74c3c !default;
+$brand-warning: $orange1 !default;
+$brand-danger: $red1 !default;
 
 
 //== Scaffolding
@@ -771,7 +775,7 @@ $thumbnail-caption-padding:   9px !default;
 //
 //##
 
-$well-bg:                     #fff !default;
+$well-bg:                     $gray-lighter !default;//#fff !default;
 $well-border:                 transparent !default;
 
 

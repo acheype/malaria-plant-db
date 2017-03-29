@@ -15,7 +15,7 @@ import java.util.Objects;
 
 /**
  * PubSpecies entity
- * <p>
+ * <p/>
  * Information about a species referenced in a publication
  *
  * @author acheype
@@ -25,32 +25,40 @@ import java.util.Objects;
     "country", "continent"})
 @Table(name = "pub_species")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName="pubspecies")
+@Document(indexName = "pubspecies")
 public class PubSpecies implements Serializable, Comparable<PubSpecies> {
 
     private final static Comparator<PubSpecies> COMPARATOR = new PubSpeciesComparator();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotNull
     @ManyToOne
     private Publication publication;
+
     @NotNull
     @ManyToOne
     private Species species;
+
     @NotNull
     @Size(max = 255)
     @Column(name = "species_name_in_pub", length = 255, nullable = false)
     private String speciesNameInPub;
+
     @NotNull
     @Column(name = "is_herbarium_voucher")
     private Boolean isHerbariumVoucher;
+
     @Column(name = "herbarium")
     private String herbarium;
+
     @NotNull
     @Size(max = 255)
     @Column(name = "country", length = 255, nullable = false)
     private String country;
+
     @Size(max = 255)
     @Column(name = "continent", length = 255)
     private String continent;
@@ -142,13 +150,13 @@ public class PubSpecies implements Serializable, Comparable<PubSpecies> {
     @Override
     public String toString() {
         return "PubSpecies{" +
-                "id=" + id +
-                ", speciesNameInPub='" + speciesNameInPub + "'" +
-                ", isHerbariumVoucher='" + isHerbariumVoucher + "'" +
-                ", herbarium='" + herbarium + "'" +
-                ", country='" + country + "'" +
-                ", continent='" + continent + "'" +
-                '}';
+            "id=" + id +
+            ", speciesNameInPub='" + speciesNameInPub + "'" +
+            ", isHerbariumVoucher='" + isHerbariumVoucher + "'" +
+            ", herbarium='" + herbarium + "'" +
+            ", country='" + country + "'" +
+            ", continent='" + continent + "'" +
+            '}';
     }
 
     @Override
