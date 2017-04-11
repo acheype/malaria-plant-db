@@ -11,6 +11,7 @@ angular.module('malariaplantdbApp')
                     return data;
                 }
             },
+            'getByPubIdAndPiIds': {method: 'GET', url: 'api/publications/:pubId/pi/:piIds/inVivoPharmacos', isArray: true},
             'update': { method:'PUT' }
         });
     });

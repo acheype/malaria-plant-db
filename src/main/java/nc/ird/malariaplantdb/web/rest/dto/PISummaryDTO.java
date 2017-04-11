@@ -1,6 +1,7 @@
 package nc.ird.malariaplantdb.web.rest.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Plant Ingredient summary used to display the publications list
@@ -30,6 +31,8 @@ public class PISummaryDTO {
     public final static String TOXICITY_TXT = "toxicity";
 
     public final static String ERYTHROCYT_TXT = "erythrocyt";
+
+    private List<Long> plantIngredientsIds;
 
     private boolean isInVivo = false;
 
@@ -70,6 +73,10 @@ public class PISummaryDTO {
     private boolean isInVitroSporozoite = false;
 
     private boolean isInVitroToxicity = false;
+
+    public PISummaryDTO(List<Long> plantIngredientsIds) {
+        this.plantIngredientsIds = plantIngredientsIds;
+    }
 
     public void setTestedEntity(TestType testType, String screeningTest, BigDecimal inVivoInhibition, BigDecimal
         inVivoEd50, BigDecimal inVitroInhibition, BigDecimal inVitroIC50, BigDecimal inVitroMolIc50){
@@ -133,6 +140,14 @@ public class PISummaryDTO {
                 break;
             default :
         }
+    }
+
+    public List<Long> getPlantIngredientsIds() {
+        return plantIngredientsIds;
+    }
+
+    public void setPlantIngredientsIds(List<Long> plantIngredientsIds) {
+        this.plantIngredientsIds = plantIngredientsIds;
     }
 
     public boolean isInVivo() {

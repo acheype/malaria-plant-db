@@ -113,7 +113,7 @@ public class InVitroPharmacoResource {
     /**
      * GET  /publications/:id/invitropharmacos -> get all the inVitroPharmacos of the "id" publication.
      */
-    @RequestMapping(value = "/publications/{id}/invitropharmacos",
+    @RequestMapping(value = "/publ/{id}/invitropharmacos",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed

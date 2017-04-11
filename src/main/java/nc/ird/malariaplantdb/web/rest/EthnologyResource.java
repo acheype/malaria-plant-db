@@ -124,6 +124,22 @@ public class EthnologyResource {
     }
 
     /**
+     * GET  /publications/:pubId/pi/:piIds/ethnologies -> get all the ethnologies with the "id" publication and the
+     * list of plant ingredient ids
+     */
+    @RequestMapping(value = "/publications/{pubId}/pi/{piIds}/ethnologies",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Ethnology>> getEthnologiesByPubIdAndPiIds(@PathVariable Long pubId, @PathVariable
+    List<Long> piIds) {
+        log.debug("REST request to get the Ethnologies of the Publication : {}, and the PlantIngredient(s) : {}",
+            pubId, piIds.stream().map(id -> id.toString()).collect(Collectors.joining(",")));
+        List<Ethnology> ethnologies = ethnologyRepository.findByPublicationIdAndPlantIngredients(pubId, piIds);
+        return new ResponseEntity<>(ethnologies,  HttpStatus.OK);
+    }
+
+    /**
      * DELETE  /ethnologies/:id -> delete the "id" ethnology.
      */
     @RequestMapping(value = "/ethnologies/{id}",

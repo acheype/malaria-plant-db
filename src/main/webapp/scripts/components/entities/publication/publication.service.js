@@ -9,8 +9,8 @@ angular.module('malariaplantdbApp')
                 isArray: true},
             'pubSpecies': {method: 'GET', url: 'api/publications/:id/pubspecies', isArray: true},
             'ethnologies': {method: 'GET', url: 'api/publications/:id/ethnologies', isArray: true},
-            'inVitroPharmacos': {method: 'GET', url: 'api/publications/:id/invitropharmacos', isArray: true},
-            'inVivoPharmacos': {method: 'GET', url: 'api/publications/:id/invivopharmacos', isArray: true},
+            'inVitroPharmacos': {method: 'GET', url: 'api/publications/:id/inVivoPharmacos', isArray: true},
+            'inVivoPharmacos': {method: 'GET', url: 'api/publications/:id/inVivoPharmacos', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

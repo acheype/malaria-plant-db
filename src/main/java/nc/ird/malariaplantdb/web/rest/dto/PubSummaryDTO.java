@@ -2,10 +2,7 @@ package nc.ird.malariaplantdb.web.rest.dto;
 
 import nc.ird.malariaplantdb.domain.*;
 
-import java.util.SortedMap;
-import java.util.SortedSet;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -14,6 +11,8 @@ import java.util.stream.Collectors;
  * @author acheype
  */
 public class PubSummaryDTO {
+
+    private Long id;
 
     private String citation;
 
@@ -30,6 +29,7 @@ public class PubSummaryDTO {
     private SortedMap<String, PISummaryDTO> plantIngredients = new TreeMap<>();
 
     public PubSummaryDTO(Publication pub) {
+        id = pub.getId();
         citation = pub.getCitation();
         doi = pub.getDoi();
         pmid = pub.getPmid();
@@ -43,8 +43,11 @@ public class PubSummaryDTO {
         for (InVivoPharmaco inVivoPharmaco : pub.getInVivoPharmacos()){
             String plantIngredientStr = buildPlantIngredientsKey(inVivoPharmaco.getPlantIngredients());
 
-            if (!plantIngredients.containsKey(plantIngredientStr))
-                plantIngredients.put(plantIngredientStr, new PISummaryDTO());
+            if (!plantIngredients.containsKey(plantIngredientStr)) {
+                List<Long> plantIngredientsIds = inVivoPharmaco.getPlantIngredients().stream().map(pi -> pi.getId())
+                    .collect(Collectors.toList());
+                plantIngredients.put(plantIngredientStr, new PISummaryDTO(plantIngredientsIds));
+            }
 
             plantIngredients.get(plantIngredientStr).setTestedEntity(PISummaryDTO.TestType.IN_VIVO,
                 inVivoPharmaco.getScreeningTest(), inVivoPharmaco.getInhibition(), inVivoPharmaco.getEd50(), null,
@@ -54,8 +57,11 @@ public class PubSummaryDTO {
         for (InVitroPharmaco inVitroPharmaco : pub.getInVitroPharmacos()){
             String plantIngredientStr = buildPlantIngredientsKey(inVitroPharmaco.getPlantIngredients());
 
-            if (!plantIngredients.containsKey(plantIngredientStr))
-                plantIngredients.put(plantIngredientStr, new PISummaryDTO());
+            if (!plantIngredients.containsKey(plantIngredientStr)) {
+                List<Long> plantIngredientsIds = inVitroPharmaco.getPlantIngredients().stream().map(pi -> pi.getId())
+                    .collect(Collectors.toList());
+                plantIngredients.put(plantIngredientStr, new PISummaryDTO(plantIngredientsIds));
+            }
 
             plantIngredients.get(plantIngredientStr).setTestedEntity(PISummaryDTO.TestType.IN_VITRO,
                 inVitroPharmaco.getScreeningTest(), null, null, inVitroPharmaco.getInhibition(),
@@ -67,6 +73,14 @@ public class PubSummaryDTO {
         return plantIngredients.stream()
                     .map(pi -> pi.getSpecies().getFamily() + " " + pi.getSpecies().getSpecies() + ", " + pi.getPartUsed())
                     .collect(Collectors.joining(" / "));
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCitation() {

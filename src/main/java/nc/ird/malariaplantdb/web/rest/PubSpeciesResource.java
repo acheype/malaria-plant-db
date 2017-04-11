@@ -124,6 +124,22 @@ public class PubSpeciesResource {
     }
 
     /**
+     * GET  /publications/:pubId/pi/:piIds/ethnologies -> get all the pubSpecies with the "id" publication and the
+     * list of plant ingredient ids
+     */
+    @RequestMapping(value = "/publications/{pubId}/pi/{piIds}/pubSpecies",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<PubSpecies>> getPubSpeciesByPubIdAndPiIds(@PathVariable Long pubId, @PathVariable
+    List<Long> piIds) {
+        log.debug("REST request to get the PubSpecies of the Publication : {}, and the PlantIngredient(s) : {}",
+            pubId, piIds.stream().map(id -> id.toString()).collect(Collectors.joining(",")));
+        List<PubSpecies> pubSpecies = pubSpeciesRepository.findByPublicationIdAndPlantIngredients(pubId, piIds);
+        return new ResponseEntity<>(pubSpecies,  HttpStatus.OK);
+    }
+
+    /**
      * DELETE  /pubSpecies/:id -> delete the "id" pubSpecies.
      */
     @RequestMapping(value = "/pubSpecies/{id}",

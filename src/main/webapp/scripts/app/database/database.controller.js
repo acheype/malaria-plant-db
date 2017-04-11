@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('malariaplantdbApp')
-    .controller('DatabaseController', function ($scope, Publication, PublicationSearch, ParseLinks) {
+    .controller('DatabaseController', function ($scope, $window, Publication, PublicationSearch, ParseLinks) {
         $scope.pubSummaries = [];
         $scope.page = 0;
 
@@ -17,4 +17,8 @@ angular.module('malariaplantdbApp')
             $scope.loadAll();
         };
         $scope.loadAll();
-    });
+    })
+
+;
+
+

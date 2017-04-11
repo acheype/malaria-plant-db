@@ -4,19 +4,23 @@
 
         <div class="pub-length">{{pubSummaries.length}}
             publication{{pubSummaries.length > 1 ? 's':''}} found</div>
-        <div class="row pub-item" ng-repeat="pub in pubSummaries">
-            <div class="col-md-12 vertical-align">
-                <!--<a ui-sref="author.detail({id: {{author.id}}})">-->
-                <span class="pub-citation">{{pub.citation}}</span>
-                <span class="pub-urls">
-                    <div ng-if="pub.doi"><a ng-attr-href="http://dx.doi.org/{{pub.doi}}">DOI</a></div>
-                    <div ng-if="pub.pmid"><a ng-attr-href="http://www.ncbi.nlm.nih.gov/pubmed/{{pub.pmid}}">PubMed</a></div>
-                    <div ng-if="pub.isbn"><a ng-attr-href="http://openisbn.com/isbn/{{pub.isbn}}">ISBN</a></div>
-                    <div ng-if="pub.url"><a ng-attr-href="http://dx.doi.org/{{pub.url}}">URL</a></div>
-                </span>
+        <div class="pub-item" ng-repeat="pub in pubSummaries">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <!--<a ui-sref="author.detail({id: {{author.id}}})">-->
+                    <span class="pub-citation">{{pub.citation}}</span>
+                </div>
+                <div ng-if="pub.doi || pub.pmid || pub.isbn || pub.url" class="col-xs-12 col-sm-12 col-md-12 pub-urls">
+                    <span ng-if="pub.doi"><a ng-attr-href="http://dx.doi.org/{{pub.doi}}"><span
+                        class="glyphicon glyphicon-new-window"/>&nbsp;DOI</a></span>
+                    <span
+                        ng-if="pub.pmid"><a ng-attr-href="http://www.ncbi.nlm.nih.gov/pubmed/{{pub.pmid}}"><span class="glyphicon glyphicon-new-window"/>&nbsp;PubMed</a></span>
+                    <span ng-if="pub.isbn"><a ng-attr-href="http://openisbn.com/isbn/{{pub.isbn}}"><span class="glyphicon glyphicon-new-window"/>&nbsp;ISBN</a></span>
+                    <span ng-if="pub.url"><a ng-attr-href="{{pub.url}}"><span class="glyphicon glyphicon-new-window"/>&nbsp;URL</a></span>
+                </div>
             </div>
-            <div class="top-buffer">
-                <div><span class="ingredients-label">Ingredients and tests</span>,
+            <div class="row top-little-buffer">
+                <div class="col-xs-12 col-sm-12 col-md-12"><span class="ingredients-label">Ingredients and tests</span>,
                     <span class="country-label">Country</span>:
                     <span class="country-value" ng-repeat="country in pub.countries">
                         {{country}}<span ng-if="!$last">, </span>
@@ -24,56 +28,95 @@
                 </div>
             </div>
             <div class="row ingredients-item" ng-repeat="(pi, piTests) in pub.plantIngredients">
-                <div>{{pi}} <span class="glyphicon glyphicon-zoom-in"></span><a href="#">Details</a></div>
-                <table>
-                    <tr>
-                        <td>
-                            <span ng-if="piTests.inVivo" class="invivo-test-type">IN VIVO</span>
-                        </td>
-                        <td>
-                            <span ng-if="piTests.inVivoPeters" class="cat1-test-tag">PETERS</span>
-                            <span ng-if="piTests.inVivoInhibition != null">
-                                <span class="test-value-label">Inhib.:</span>
-                                <span class="test-value">{{piTests.inVivoInhibition}} %</span>
-                            </span>
-                            <span ng-if="piTests.inVivoEd50 == null">
-                                <span class="test-value-label">ED50:</span>
-                                <span class="test-value">{{piTests.inVivoEd50}} mg/kg</span>
-                            </span>
-                            <span ng-if="!piTests.isInVivoRaneTest" class="cat1-test-tag">RANE TEST</span>
-                            <span ng-if="!piTests.isInVivoRepository" class="cat1-test-tag">REPOSITORY</span>
-                            <span ng-if="!piTests.isInVivoLiverStage" class="cat2-test-tag">LIVER STAGE</span>
-                            <span ng-if="!piTests.isInVivoGametocyte" class="cat3-test-tag">GAMETOCYTE</span>
-                            <span ng-if="!piTests.isInVivoOocyst" class="cat3-test-tag">OOCYST</span>
-                            <span ng-if="!piTests.isInVivoSporozoite" class="cat3-test-tag">SPOROZOITE</span>
-                            <span ng-if="!piTests.isInVivoToxicity" class="cat4-test-tag">TOXICITY</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span ng-if="!piTests.inVitro" class="invitro-test-type">IN VITRO</span>
-                        </td>
-                        <td>
-                            <span ng-if="!piTests.inVitroErythocyt" class="cat1-test-tag">ERYTHROCYT</span>
-                            <span ng-if="piTests.inVitroInhibition == null">
-                                <span class="test-value-label">Inhib.:</span>
-                                <span class="test-value">{{piTests.inVitroInhibition}} %</span>
-                            </span>
-                            <span ng-if="piTests.inVitroIc50 == null">
-                                <span class="test-value-label">IC50:</span>
-                                <span class="test-value">{{piTests.inVitroIc50}} &#181;g/ml</span>
-                            </span>
-                            <span ng-if="piTests.inVitroMolIc50 == null">
-                                <span class="test-value-label">IC50:</span>
-                                <span class="test-value">{{piTests.inVitroMolIc50}} &#181;mol/ml</span>
-                            </span>
-                            <span ng-if="!piTests.isInVitroLiverStage" class="cat2-test-tag">LIVER STAGE</span>
-                            <span ng-if="!piTests.isInVitroGametocyte" class="cat3-test-tag">GAMETOCYTE</span>
-                            <span ng-if="!piTests.isInVitroSporozoite" class="cat3-test-tag">SPOROZOITE</span>
-                            <span ng-if="!piTests.isInVitroToxicity" class="cat4-test-tag">TOXICITY</span>
-                        </td>
-                    </tr>
-                </table>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-10 col-md-10 vertical-align">
+                        <div class="row vertical-align">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                {{pi}}
+                            </div>
+                        </div>
+                        <div ng-if="piTests.inVivo" class="row top-little-buffer">
+                            <div class="col-xs-2 col-sm-2 col-md-2">
+                                <span class="cat-test-tag-block" ng-if="piTests.inVivo">
+                                    <span class="invivo-test-type">IN VIVO</span>
+                                </span>
+                            </div>
+                            <div class="col-xs-10 col-sm-10 col-md-10 vertical-align">
+                                <span class="cat-test-tag-block" ng-if="piTests.inVivoPeters">
+                                    <span class="cat1-test-tag">PETERS</span>
+                                </span>
+                                <span ng-if="piTests.inVivoInhibition != null">
+                                    <span class="test-value-label">Inhib.:</span>
+                                    <span class="test-value">{{piTests.inVivoInhibition}} %</span>
+                                </span>
+                                <span ng-if="piTests.inVivoEd50 != null">
+                                    <span class="test-value-label">ED50:</span>
+                                    <span class="test-value">{{piTests.inVivoEd50}} mg/kg</span>
+                                </span>
+                                <span class="cat-test-tag-block" ng-if="piTests.isInVivoRaneTest">
+                                    <span class="cat1-test-tag">RANE&nbsp;TEST</span>
+                                </span>
+                                <span class="cat-test-tag-block" ng-if="piTests.isInVivoRepository">
+                                    <span class="cat1-test-tag">REPOSITORY</span>
+                                </span>
+                                <span class="cat-test-tag-block" ng-if="piTests.isInVivoLiverStage">
+                                    <span class="cat2-test-tag">LIVER&nbsp;STAGE</span>
+                                </span>
+                                <span class="cat-test-tag-block" ng-if="piTests.isInVivoGametocyte">
+                                    <span class="cat3-test-tag">GAMETOCYTE</span>
+                                </span>
+                                <span class="cat-test-tag-block" ng-if="piTests.isInVivoOocyst">
+                                    <span class="cat3-test-tag">OOCYST</span>
+                                </span>
+                                <span class="cat-test-tag-block" ng-if="piTests.isInVivoSporozoite">
+                                    <span class="cat3-test-tag">SPOROZOITE</span>
+                                </span>
+                                <span class="cat-test-tag-block" ng-if="piTests.isInVivoToxicity">
+                                    <span class="cat4-test-tag">TOXICITY</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div ng-if="piTests.inVitro" class="row top-little-buffer">
+                            <div class="col-xs-2 col-sm-2 col-md-2">
+                               <span class="invitro-test-type">IN VITRO</span>
+                            </div>
+                            <div class="col-xs-10 col-sm-10 col-md-10 vertical-align">
+                                <span class="cat-test-tag-block" ng-if="piTests.inVitroErythocyt">
+                                    <span class="cat1-test-tag">ERYTHROCYT</span>
+                                </span>
+                                <span ng-if="piTests.inVitroInhibition != null">
+                                    <span class="test-value-label">Inhib.:</span>
+                                    <span class="test-value">{{piTests.inVitroInhibition}} %</span>
+                                </span>
+                                <span ng-if="piTests.inVitroIc50 != null">
+                                    <span class="test-value-label">IC50:</span>
+                                    <span class="test-value">{{piTests.inVitroIc50}} &#181;g/ml</span>
+                                </span>
+                                <span ng-if="piTests.inVitroMolIc50 != null">
+                                    <span class="test-value-label">IC50:</span>
+                                    <span class="test-value">{{piTests.inVitroMolIc50}} &#181;mol/ml</span>
+                                </span>
+                                <span class="cat-test-tag-block" ng-if="piTests.isInVitroLiverStage">
+                                    <span class="cat2-test-tag">LIVER&nbsp;STAGE</span>
+                                </span>
+                                <span class="cat-test-tag-block" ng-if="piTests.isInVitroGametocyte">
+                                    <span class="cat3-test-tag">GAMETOCYTE</span>
+                                </span>
+                                <span class="cat-test-tag-block" ng-if="piTests.isInVitroSporozoite">
+                                    <span class="cat3-test-tag">SPOROZOITE</span>
+                                </span>
+                                <span class="cat-test-tag-block" ng-if="piTests.isInVitroToxicity">
+                                    <span class="cat4-test-tag">TOXICITY</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div><!-- comments for vertical align
+                 --><div class="col-xs-12 col-sm-2 col-md-2 vertical-align ingredients-item-details-col">
+                        <a ui-sref="database.detail({pubId: pub.id, piIds: piTests.plantIngredientsIds.join(',')})"
+                           class="ingredients-item-details">
+                            <span class="glyphicon glyphicon-zoom-in"/>&nbsp;Details</a>
+                    </div>
+                </div>
             </div>
             <div class="ingredients-length"
                 ng-if="keys(pub.plantIngredients).length">{{keys(pub.plantIngredients).length}}

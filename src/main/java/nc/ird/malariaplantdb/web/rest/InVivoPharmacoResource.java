@@ -111,17 +111,34 @@ public class InVivoPharmacoResource {
     }
 
     /**
-     * GET  /publications/:id/invivopharmacos -> get all the inVivoPharmacos of the "id" publication.
+     * GET  /publications/:id/inVivoPharmacos -> get all the inVivoPharmacos of the "id" publication.
      */
-    @RequestMapping(value = "/publications/{id}/invivopharmacos",
+    @RequestMapping(value = "/pub/{id}/inVivoPharmacos",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<List<InVivoPharmaco>> getInVivoPharmacosByPublicationId(@PathVariable Long id) {
-        log.debug("REST request to get the inVivoPharmacos of the Publication : {}", id);
-        List<InVivoPharmaco> invivopharmacos = inVivoPharmacoRepository.findByPublicationId(id);
-        return new ResponseEntity<>(invivopharmacos, HttpStatus.OK);
+        log.debug("REST request to get the InVivoPharmacos of the Publication : {}", id);
+        List<InVivoPharmaco> inVivoPharmacos = inVivoPharmacoRepository.findByPublicationId(id);
+        return new ResponseEntity<>(inVivoPharmacos, HttpStatus.OK);
     }
+
+    /**
+     * GET  /publications/:pubId/pi/:piIds/inVivoPharmacos -> get all the inVivoPharmacos with the "id" publication and the
+     * list of plant ingredient ids
+     */
+    @RequestMapping(value = "/publications/{pubId}/pi/{piIds}/inVivoPharmacos",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<InVivoPharmaco>> getEthnologiesByPubIdAndPiIds(@PathVariable Long pubId, @PathVariable
+    List<Long> piIds) {
+        log.debug("REST request to get the InVivoPharmaco of the Publication : {}, and the PlantIngredient(s) : {}",
+            pubId, piIds.stream().map(id -> id.toString()).collect(Collectors.joining(",")));
+        List<InVivoPharmaco> inVivoPharmacos = inVivoPharmacoRepository.findByPublicationIdAndPlantIngredients(pubId, piIds);
+        return new ResponseEntity<>(inVivoPharmacos,  HttpStatus.OK);
+    }
+
 
     /**
      * DELETE  /inVivoPharmacos/:id -> delete the "id" inVivoPharmaco.
