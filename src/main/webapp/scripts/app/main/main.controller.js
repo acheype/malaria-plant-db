@@ -7,11 +7,12 @@ angular.module('malariaplantdbApp')
             $scope.isAuthenticated = Principal.isAuthenticated;
         });
 
+        $scope.carouselActive = 0;
         $scope.carouselInterval = 5000;
-        $scope.slides = [{image: "assets/images/mpdbc_carousel1.jpg", text: ""},
-            {image: "assets/images/mpdbc_carousel2.jpg", text: ""},
-            {image: "assets/images/mpdbc_carousel3.jpg", text: ""},
-            {image: "assets/images/mpdbc_carousel4.jpg", text: ""}
+        $scope.slides = [{image: "assets/images/mpdbc_carousel1.jpg", text: "", id: 0},
+            {image: "assets/images/mpdbc_carousel2.jpg", text: "", id: 1},
+            {image: "assets/images/mpdbc_carousel3.jpg", text: "", id: 2},
+            {image: "assets/images/mpdbc_carousel4.jpg", text: "", id :3}
         ];
 
         $scope.cloudWords = [

@@ -133,6 +133,24 @@ public class PublicationResource {
     }
 
     /**
+     * GET  /pubSummaries/:id -> get the "id" pubSummaries.
+     */
+    @RequestMapping(value = "/pubSummaries/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Transactional(readOnly = true)
+    @Timed
+    public ResponseEntity<PubSummaryDTO> getPubSummary(@PathVariable Long id) {
+        log.debug("REST request to get Publication : {}", id);
+        return Optional.ofNullable(publicationRepository.findOne(id))
+            .map(publication -> new ResponseEntity<>(
+                new PubSummaryDTO(publication),
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+
+    /**
      * DELETE  /publications/:id -> delete the "id" publication.
      */
     @RequestMapping(value = "/publications/{id}",

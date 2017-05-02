@@ -124,6 +124,24 @@ public class InVitroPharmacoResource {
     }
 
     /**
+     * GET  /publications/:pubId/pi/:piIds/inVitroPharmacos -> get all the inVitroPharmacos with the "id" publication
+     * and the list of plant ingredient ids
+     */
+    @RequestMapping(value = "/publications/{pubId}/pi/{piIds}/inVitroPharmacos",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<InVitroPharmaco>> getInVitroPharmacosByPubIdAndPiIds(@PathVariable Long pubId,
+                                                                                  @PathVariable
+    List<Long> piIds) {
+        log.debug("REST request to get the InVitroPharmaco of the Publication : {}, and the PlantIngredient(s) : {}",
+            pubId, piIds.stream().map(id -> id.toString()).collect(Collectors.joining(",")));
+        List<InVitroPharmaco> inVitroPharmacos = inVitroPharmacoRepository.findByPublicationIdAndPlantIngredients
+            (pubId, piIds);
+        return new ResponseEntity<>(inVitroPharmacos,  HttpStatus.OK);
+    }
+
+    /**
      * DELETE  /inVitroPharmacos/:id -> delete the "id" inVitroPharmaco.
      */
     @RequestMapping(value = "/inVitroPharmacos/{id}",

@@ -9,7 +9,7 @@ angular.module('malariaplantdbApp', ['LocalStorageModule',
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
         // hack to access key function from Object in angular directives
-        // (see http://stackoverflow.com/questions/22691183/check-object-size-in-angularjs-template-doing-it-wrongKeyFn)
+        // (see http://stackoverflow.com/questions/22691183/check-object-size-in-angularjs-template-doing-it-wrongKeyFn
         $rootScope.keys = Object.keys;
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {

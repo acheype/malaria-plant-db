@@ -27,4 +27,5 @@ public interface InVivoPharmacoRepository extends JpaRepository<InVivoPharmaco,L
     @Query("select iv from InVivoPharmaco iv join iv.plantIngredients pi where iv.publication.id = :pubId and pi.id in :piIds")
     List<InVivoPharmaco> findByPublicationIdAndPlantIngredients(@Param("pubId") Long pubId, @Param("piIds") List<Long>
         piIds);
+
 }

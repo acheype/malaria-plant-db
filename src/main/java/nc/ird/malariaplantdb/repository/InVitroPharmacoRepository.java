@@ -2,6 +2,8 @@ package nc.ird.malariaplantdb.repository;
 
 import nc.ird.malariaplantdb.domain.InVitroPharmaco;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -20,5 +22,9 @@ public interface InVitroPharmacoRepository extends JpaRepository<InVitroPharmaco
     //@Query("select inVitroPharmaco from InVitroPharmaco inVitroPharmaco  left join fetch inVitroPharmaco" +
     //    ".plantIngredients where inVitroPharmaco.id =:id")
     //InVitroPharmaco findOneWithEagerRelationships(@Param("id") Long id);
+
+    @Query("select iv from InVitroPharmaco iv join iv.plantIngredients pi where iv.publication.id = :pubId and pi.id in :piIds")
+    List<InVitroPharmaco> findByPublicationIdAndPlantIngredients(@Param("pubId") Long pubId, @Param("piIds") List<Long>
+        piIds);
 
 }

@@ -71,7 +71,7 @@ public class PubSummaryDTO {
 
     private String buildPlantIngredientsKey(SortedSet<PlantIngredient> plantIngredients) {
         return plantIngredients.stream()
-                    .map(pi -> pi.getSpecies().getFamily() + " " + pi.getSpecies().getSpecies() + ", " + pi.getPartUsed())
+                    .map(pi -> pi.getSpecies().getSpecies() + ", " + pi.getPartUsed())
                     .collect(Collectors.joining(" / "));
     }
 

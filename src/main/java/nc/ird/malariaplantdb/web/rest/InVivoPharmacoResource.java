@@ -131,14 +131,13 @@ public class InVivoPharmacoResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<InVivoPharmaco>> getEthnologiesByPubIdAndPiIds(@PathVariable Long pubId, @PathVariable
+    public ResponseEntity<List<InVivoPharmaco>> getInVivoByPubIdAndPiIds(@PathVariable Long pubId, @PathVariable
     List<Long> piIds) {
         log.debug("REST request to get the InVivoPharmaco of the Publication : {}, and the PlantIngredient(s) : {}",
             pubId, piIds.stream().map(id -> id.toString()).collect(Collectors.joining(",")));
         List<InVivoPharmaco> inVivoPharmacos = inVivoPharmacoRepository.findByPublicationIdAndPlantIngredients(pubId, piIds);
         return new ResponseEntity<>(inVivoPharmacos,  HttpStatus.OK);
     }
-
 
     /**
      * DELETE  /inVivoPharmacos/:id -> delete the "id" inVivoPharmaco.

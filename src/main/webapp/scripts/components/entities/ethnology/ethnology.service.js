@@ -11,7 +11,7 @@ angular.module('malariaplantdbApp')
                     return data;
                 }
             },
-            'getByPubIdAndPiIds': {method: 'GET', url: 'api/publications/:pubId/pi/:piIds/ethnologies', isArray: true},
+            'getByPubIdAndPiIds': {method: 'GET', url: 'api/publications/:pubId/pi/:piIds/ethnology'},
             'update': { method:'PUT' }
         });
     });

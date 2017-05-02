@@ -1,11 +1,455 @@
 <div class="container well">
     <div ng-cloak>
-        <h3>Ingredients Details</h3><br/>
+        <h3>Details for <small>&laquo;	{{plantIngredientsStr}} &raquo;</small></h3><br/>
 
-        <p>{{publication.citation}}</p>
-        <p>{{pubSpecies}}</p>
-        <p>{{ethnologies}}</p>
-        <p>{{inVivoPharmacos}}</p>
-
+        <!-- PUBLICATION DETAILS -->
+        <div class="pub-item">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 publication-label">
+                    Publication reference
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <span class="pub-citation">{{publication.citation}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div ng-if="publication.doi || publication.pmid || publication.isbn || publication.url" class="col-xs-12 col-sm-12 col-md-12 pub-urls">
+                    <span ng-if="!publication.doi" class="pub-url"><a ng-attr-href="http://dx.doi.org/{{publication.doi}}"><span
+                        class="glyphicon glyphicon-new-window"/>&nbsp;DOI</a></span>
+                    <span ng-if="publication.pmid" class="pub-url"><a
+                        ng-attr-href="http://www.ncbi.nlm.nih.gov/pubmed/{{publication.pmid}}"><span
+                        class="glyphicon glyphicon-new-window"/>&nbsp;PubMed</a></span>
+                    <span ng-if="publication.isbn" class="pub-url"><a
+                        ng-attr-href="http://openisbn.com/isbn/{{publication.isbn}}"><span
+                        class="glyphicon glyphicon-new-window"/>&nbsp;ISBN</a></span>
+                    <span ng-if="publication.url" class="pub-url"><a ng-attr-href="{{publication.url}}"><span
+                        class="glyphicon glyphicon-new-window"/>&nbsp;URL</a></span>
+                </div>
+            </div>
+            <div class="row top-buffer">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <span class="publication-label right-buffer">Compiler{{publication.compilers.length > 1 ?
+                        's':''}}</span>
+                    <span ng-repeat="compiler in publication.compilers">
+                        {{compiler.given}} {{compiler.family}}<span ng-if="!$last">,&nbsp;</span>
+                    </span>
+                </div>
+            </div>
+            <div ng-if="publication.compilersNotes" class="row top-little-buffer">
+                <div class="col-xs-12 col-sm-12 col-md-12 publication-label">
+                    Compiler notes
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    {{publication.compilersNotes}}
+                </div>
+            </div>
+            <!-- SPECIES DETAILS -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 review-label"> Species</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <uib-tabset>
+                        <uib-tab ng-repeat="sp in pubSpecies"
+                                 heading="{{sp.species.species}}">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 tab-content">
+                                    <div class="cat-properties-label">Botanical reference</div>
+                                    <div class="cat-properties-item">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                Family
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                {{sp.species.family | placeholder}}
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                Species
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                {{sp.species.species | placeholder}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                Species name in publication
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                {{sp.speciesNameInPub | placeholder}}
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                Herbarium vouncher
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                {{sp.isHerbariumVoucher && sp.herbarium ? sp.herbarium :
+                                                (sp.isHerbariumVouncher ? 'Yes' : 'No') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cat-properties-label">Geographical information</div>
+                                    <div class="cat-properties-item">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                Country
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                {{sp.country | placeholder}}
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                Continent
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                {{sp.continent | placeholder}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+            <!-- REVIEW DETAILS -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 review-label">
+                    Review
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <uib-tabset>
+                        <!-- ETHNOLOGY TAB -->
+                        <uib-tab ng-if="ethnology" index="0" heading="Ethnology">
+                            <div class="row">
+                                  <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="cat-properties-label">Ethnopharmacological relevancy</div>
+                                    <div class="cat-properties-item">
+                                        <div class="row">
+                                            <div class="col-xs-4 col-sm-2 col-md-2 property-label properties-col">
+                                                Details
+                                            </div>
+                                            <div class="col-xs-8 col-sm-10 col-md-10 properties-col">
+                                                {{ethnology.ethnoRelevancy | placeholder}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cat-properties-label">Traditional recipe</div>
+                                    <div class="cat-properties-item">
+                                        <div class="row">
+                                            <div class="col-xs-4 col-sm-2 col-md-2 property-label properties-col">
+                                                Details
+                                            </div>
+                                            <div class="col-xs-8 col-sm-10 col-md-10 properties-col">
+                                                {{ethnology.traditionalRecipeDetails | placeholder}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                Type of treatment
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                {{ethnology.treatmentType | placeholder}}
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                Preparation mode
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                {{ethnology.preparationMode | placeholder}}
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                Administration route
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                {{ethnology.administrationRoute | placeholder}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <!-- IN VIVO PHARMACO TAB -->
+                        <uib-tab ng-if="inVivoPharmacos.length" index="1" heading="In Vivo Pharmaco">
+                            <uib-tabset active="activePill" type="pills">
+                                <uib-tab index="$index" ng-repeat="ivv in inVivoPharmacos" heading="{{$index + 1}}"
+                                         classes="btn-review-item">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="cat-properties-label">Chemical process</div>
+                                        <div class="cat-properties-item">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Tested entity
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                    {{ivv.testedEntity | placeholder}}
+                                                </div>
+                                                <div ng-if="ivv.testedEntity == 'Extract'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Extraction&nbsp;Solvent
+                                                </div>
+                                                <div ng-if="ivv.testedEntity == 'Extract'"
+                                                     class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                    {{ivv.extractionSolvent | placeholder}}
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Additive product
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                    {{ivv.additiveProduct | placeholder}}
+                                                </div>
+                                                <div ng-if="ivv.testedEntity == 'Compound'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Compound Name
+                                                </div>
+                                                <div ng-if="ivv.testedEntity == 'Compound'"
+                                                     class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                    {{ivv.compoundName | placeholder}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="cat-properties-label">Pharmacological process</div>
+                                        <div class="cat-properties-item">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Screening test
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivv.screeningTest | placeholder}}
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Treatment route
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivv.treatmentRoute | placeholder}}
+                                                </div>
+                                                <div ng-if="ivv.screeningTest != 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Dose for selected result <small>(mg/kg)</small>
+                                                </div>
+                                                <div ng-if="ivv.screeningTest != 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivv.dose | placeholder}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="cat-properties-label">Selected result</div>
+                                        <div class="cat-properties-item">
+                                            <div class="row">
+                                                <div ng-if="ivv.screeningTest != 'Toxicity'"
+                                                    class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Inhibition <small>(%)</small>
+                                                </div>
+                                                <div ng-if="ivv.screeningTest != 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivv.inhibition | placeholder}}
+                                                </div>
+                                                <div ng-if="ivv.screeningTest != 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Survival percent <small>(%)</small>
+                                                </div>
+                                                <div ng-if="ivv.screeningTest != 'Toxicity'"
+                                                    class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivv.survivalPercent | placeholder}}
+                                                </div>
+                                                <div ng-if="ivv.screeningTest != 'Toxicity'"
+                                                    class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Survival time <small>(days)</small>
+                                                </div>
+                                                <div ng-if="ivv.screeningTest != 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivv.survivalTime | placeholder}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div ng-if="ivv.screeningTest != 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    ED50 <small>(mg/kg)</small>
+                                                </div>
+                                                <div ng-if="ivv.screeningTest != 'Toxicity'"
+                                                    class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivv.ed50 | placeholder}}
+                                                </div>
+                                                <div ng-if="ivv.screeningTest == 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    LD50 <small>(mg/kg)</small>
+                                                </div>
+                                                <div ng-if="ivv.screeningTest == 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivv.ld50 | placeholder}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="cat-properties-label">Experimental observations from the
+                                            compiler{{publication.compilers.length > 1 ? 's':''}}</div>
+                                        <div class="cat-properties-item">
+                                            {{ivt.compilersObservations | placeholder}}
+                                        </div>
+                                    </div>
+                                </uib-tab>
+                            </uib-tabset>
+                        </uib-tab>
+                        <!-- IN VITRO PHARMACO TAB -->
+                        <uib-tab ng-if="inVitroPharmacos.length" index="2" heading="In Vitro Pharmaco">
+                            <uib-tabset active="activePill" type="pills">
+                                <uib-tab index="$index" ng-repeat="ivt in inVitroPharmacos" heading="{{$index + 1}}"
+                                         classes="btn-review-item">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="cat-properties-label">Chemical process</div>
+                                        <div class="cat-properties-item">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Tested entity
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                    {{ivt.testedEntity | placeholder}}
+                                                </div>
+                                                <div ng-if="ivt.testedEntity == 'Extract'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Extraction&nbsp;Solvent
+                                                </div>
+                                                <div ng-if="ivt.testedEntity == 'Extract'"
+                                                     class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                    {{ivt.extractionSolvent | placeholder}}
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Additive product
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                    {{ivt.additiveProduct | placeholder}}
+                                                </div>
+                                                <div ng-if="ivt.testedEntity == 'Compound'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Compound Name
+                                                </div>
+                                                <div ng-if="ivt.testedEntity == 'Compound'"
+                                                     class="col-xs-6 col-sm-6 col-md-4 properties-col">
+                                                    {{ivt.compoundName | placeholder}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="cat-properties-label">Pharmacological process</div>
+                                        <div class="cat-properties-item">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Screening test
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivt.screeningTest | placeholder}}
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Measure method
+                                                <div class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivt.measureMethod | placeholder}}
+                                                </div>
+                                                <div ng-if="ivt.screeningTest != 'Toxicity && ivt.concentration'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Concentration for selected result <small>(&micro;g/kg)</small>
+                                                </div>
+                                                <div ng-if="ivt.screeningTest != 'Toxicity && ivt.concentration'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivt.concentration | placeholder}}
+                                                </div>
+                                                <div ng-if="ivt.screeningTest != 'Toxicity && ivt.molConcentration'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Concentration for selected result <small>(&micro;mol/kg)</small>
+                                                </div>
+                                                <div ng-if="ivt.screeningTest != 'Toxicity && ivt.molConcentration'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivt.concentration | placeholder}}
+                                                </div>
+                                                <div
+                                                    ng-if="ivt.screeningTest != 'Toxicity && !ivt.concentration &&
+                                                    !ivt.molConcentration"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Concentration for selected result
+                                                </div>
+                                                <div ng-if="ivt.screeningTest != 'Toxicity && ivt.molConcentration'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{null | placeholder}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="cat-properties-label">Selected result</div>
+                                        <div class="cat-properties-item">
+                                            <div class="row">
+                                                <div ng-if="ivt.screeningTest != 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Inhibition <small>(%)</small>
+                                                </div>
+                                                <div ng-if="ivt.screeningTest != 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivt.inhibition | placeholder}}
+                                                </div>
+                                                <div ng-if="ivt.screeningTest != 'Toxicity' && ivt.ic50"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    IC 50 <small>(&micro;g/ml)</small>
+                                                </div>
+                                                <div ng-if="ivt.screeningTest != 'Toxicity' && ivt.ic50"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivt.ic50 | placeholder}}
+                                                </div>
+                                                <div ng-if="ivt.screeningTest != 'Toxicity' && ivt.molIc50"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    IC 50 <small>(&micro;mol/ml)</small>
+                                                </div>
+                                                <div ng-if="ivt.screeningTest != 'Toxicity' && ivt.molIc50"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivt.molIc50 | placeholder}}
+                                                </div>
+                                                <div
+                                                    ng-if="ivt.screeningTest != 'Toxicity' && !ivt.ic50 && !ivt.molIc50"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    IC 50
+                                                </div>
+                                                <div
+                                                    ng-if="ivt.screeningTest != 'Toxicity' && !ivt.ic50 && !ivt.molIc50"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{null | placeholder}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div ng-if="ivt.screeningTest == 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
+                                                    Selectivity index
+                                                </div>
+                                                <div ng-if="ivt.screeningTest == 'Toxicity'"
+                                                     class="col-xs-6 col-sm-6 col-md-2 properties-col">
+                                                    {{ivt.selectivityIndex | placeholder}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="cat-properties-label">Experimental observations from the
+                                            compiler{{publication.compilers.length > 1 ? 's':''}}</div>
+                                        <div class="cat-properties-item">
+                                            {{ivt.compilersObservations | placeholder}}
+                                        </div>
+                                    </div>
+                                </uib-tab>
+                            </uib-tabset>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+        </div>
+        <!-- OTHER INGREDIENTS -->
+        <div ng-if="pubSummary.plantIngredients.length" class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 review-label">
+                Other ingredients
+            </div>
+        </div>
+        <div class="row ingredients-item" ng-repeat="(pi, piTests) in pubSummary.plantIngredients">
+            <summary publication="pub" plant-ingredient-str="pi" pi-summary="piTests"></summary>
+        </div>
     </div>
 </div>

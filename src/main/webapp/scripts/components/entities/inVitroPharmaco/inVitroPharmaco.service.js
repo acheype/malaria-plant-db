@@ -11,6 +11,8 @@ angular.module('malariaplantdbApp')
                     return data;
                 }
             },
+            'getByPubIdAndPiIds': {method: 'GET', url: 'api/publications/:pubId/pi/:piIds/inVitroPharmacos',
+                isArray: true},
             'update': { method:'PUT' }
         });
     });
