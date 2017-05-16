@@ -15,14 +15,14 @@
         against malaria</p>
 </div>
 
-<div class="container well colored-background">
+<div class="container well">
     <div ng-cloak>
         <div class="row">
             <div class="col-xs-12 col-md-4 vertical-align">
                 <img src="assets/images/mpdbc_animated-logo.gif" class="img-responsive center-block"></span>
             </div><!-- comments for vertical align
          --><div class="col-xs-12 col-md-8 vertical-align">
-                <div ng-switch="isAuthenticated()">
+                <div ng-switch="isAuthenticated() && account.login != 'anonymousUser'">
                     <div id="welcome-alert" class="alert alert-success" ng-switch-when="true">You are logged in as user
                         "{{account.login}}".</div>
                 </div>

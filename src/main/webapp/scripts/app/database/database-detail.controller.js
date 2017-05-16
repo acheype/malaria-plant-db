@@ -8,21 +8,15 @@ angular.module('malariaplantdbApp')
         $scope.ethnology = ethnology;
         $scope.inVivoPharmacos = inVivoPharmacos;
         $scope.inVitroPharmacos = inVitroPharmacos;
+        $scope.otherRemedies = {};
 
-        angular.forEach(pubSummary.plantIngredients, function(key, value){
-            if (angular.equals(value.plantIngredientsIds, $stateParams.piIds)) {
-               delete pubSummary.plantIngredients[key];
+        var paramPiIds = $stateParams.piIds.split(",").map(Number);
+
+        angular.forEach(pubSummary.plantIngredients, function(value, key){
+            if (angular.equals(value.plantIngredientsIds, paramPiIds)) {
+                $scope.plantIngredientsStr = key;
+            } else {
+                $scope.otherRemedies[key] = value;
             }
         });
-        $scope.pubSummary = pubSummary.plantIngredients;
-
-        var plantIngredients = ethnology ? ethnology.plantIngredients :
-            (inVivoPharmacos.length > 0 ? inVivoPharmacos[0].plantIngredients :
-                (inVitroPharmacos.length > 0 ? inVitroPharmacos[0].plantIngredients : null));
-
-        $scope.plantIngredientsStr = plantIngredients && plantIngredients.length > 0 ?
-            plantIngredients.map(
-                function(o) {return o.species.family + ' ' + o.species.species + ', ' + o.partUsed}
-            ).join(" / ") :
-            pubSpecies[0].species.family + " " + pubSpecies[0].species.species;
     });

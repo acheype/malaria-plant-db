@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('malariaplantdbApp').controller('PlantIngredientDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'PlantIngredient', 'Species',
-        function($scope, $stateParams, $modalInstance, entity, PlantIngredient, Species) {
+    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'PlantIngredient', 'Species',
+        function($scope, $stateParams, $uibModalInstance, entity, PlantIngredient, Species) {
 
         $scope.plantIngredient = entity;
         $scope.speciesList = Species.sortedQuery();
@@ -14,7 +14,7 @@ angular.module('malariaplantdbApp').controller('PlantIngredientDialogController'
 
         var onSaveFinished = function (result) {
             $scope.$emit('malariaplantdbApp:plantIngredientUpdate', result);
-            $modalInstance.close(result);
+            $uibModalInstance.close(result);
         };
 
         $scope.save = function () {
@@ -26,6 +26,6 @@ angular.module('malariaplantdbApp').controller('PlantIngredientDialogController'
         };
 
         $scope.clear = function() {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
 }]);

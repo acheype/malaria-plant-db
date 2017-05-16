@@ -61,6 +61,16 @@
                   separator=","
                   tableName="in_vivo_pharmaco_plant_ingredient"/>
 
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/in_vitro_pharmaco.csv"
+                  separator=","
+                  tableName="in_vitro_pharmaco"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/in_vitro_pharmaco_plant_ingredient.csv"
+                  separator=","
+                  tableName="in_vitro_pharmaco_plant_ingredient"/>
+
     </changeSet>
 
 </databaseChangeLog>

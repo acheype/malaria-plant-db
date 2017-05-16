@@ -44,8 +44,8 @@ angular.module('malariaplantdbApp')
                 data: {
                     authorities: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
-                    $modal.open({
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
                         templateUrl: 'scripts/app/entities/plantIngredient/plantIngredient-dialog.html',
                         controller: 'PlantIngredientDialogController',
                         size: 'lg',
@@ -67,8 +67,8 @@ angular.module('malariaplantdbApp')
                 data: {
                     authorities: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
-                    $modal.open({
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
                         templateUrl: 'scripts/app/entities/plantIngredient/plantIngredient-dialog.html',
                         controller: 'PlantIngredientDialogController',
                         size: 'lg',

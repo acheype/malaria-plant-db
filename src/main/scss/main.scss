@@ -109,11 +109,7 @@ $citation-font: 'EB Garamond';
     margin: 10px auto 10px auto;
 }
 
-.colored-background {
-    background-color: $gray-lighter;
-}
-
-.colored-background .table-striped > tbody > tr:nth-of-type(odd) {
+.table-striped > tbody > tr:nth-of-type(odd) {
     background-color: #fff;
 }
 
@@ -236,6 +232,7 @@ ul#strength {
 .alerts .alert{
     text-overflow: ellipsis;
 }
+
 .alert pre{
     background: none;
     border: none;

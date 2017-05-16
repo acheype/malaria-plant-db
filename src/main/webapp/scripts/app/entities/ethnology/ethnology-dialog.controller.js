@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('malariaplantdbApp').controller('EthnologyDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Ethnology', 'Publication', 'PlantIngredient',
-        function($scope, $stateParams, $modalInstance, entity, Ethnology, Publication, PlantIngredient) {
+    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'Ethnology', 'Publication', 'PlantIngredient',
+        function($scope, $stateParams, $uibModalInstance, entity, Ethnology, Publication, PlantIngredient) {
 
         $scope.ethnology = entity;
         $scope.publications = Publication.sortedQuery();
@@ -15,7 +15,7 @@ angular.module('malariaplantdbApp').controller('EthnologyDialogController',
 
         var onSaveFinished = function (result) {
             $scope.$emit('malariaplantdbApp:ethnologyUpdate', result);
-            $modalInstance.close(result);
+            $uibModalInstance.close(result);
         };
 
         $scope.save = function () {
@@ -27,6 +27,6 @@ angular.module('malariaplantdbApp').controller('EthnologyDialogController',
         };
 
         $scope.clear = function() {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
 }]);

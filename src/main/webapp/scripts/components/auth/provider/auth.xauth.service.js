@@ -11,8 +11,8 @@ angular.module('malariaplantdbApp')
                         "Content-Type": "application/x-www-form-urlencoded",
                         "Accept": "application/json"
                     }
-                }).success(function (response) {
-                    localStorageService.set('token', response);
+                }).then(function (response) {
+                    localStorageService.set('token', response.data);
                     return response;
                 });
             },

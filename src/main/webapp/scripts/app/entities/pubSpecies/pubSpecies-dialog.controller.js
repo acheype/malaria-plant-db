@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('malariaplantdbApp').controller('PubSpeciesDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Species', 'PubSpecies', 'Publication',
-        function($scope, $stateParams, $modalInstance, entity, Species, PubSpecies, Publication) {
+    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'Species', 'PubSpecies', 'Publication',
+        function($scope, $stateParams, $uibModalInstance, entity, Species, PubSpecies, Publication) {
 
         $scope.pubSpecies = entity;
         $scope.publications = Publication.sortedQuery();
@@ -15,7 +15,7 @@ angular.module('malariaplantdbApp').controller('PubSpeciesDialogController',
 
         var onSaveFinished = function (result) {
             $scope.$emit('malariaplantdbApp:pubSpeciesUpdate', result);
-            $modalInstance.close(result);
+            $uibModalInstance.close(result);
         };
 
         $scope.save = function () {
@@ -27,6 +27,6 @@ angular.module('malariaplantdbApp').controller('PubSpeciesDialogController',
         };
 
         $scope.clear = function() {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
 }]);

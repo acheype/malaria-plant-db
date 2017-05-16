@@ -5,7 +5,7 @@ angular.module('malariaplantdbApp')
         return {
             restrict: 'E',
             template: '<div class="alerts" ng-cloak="">' +
-                            '<alert ng-cloak="" ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()"><pre>{{ alert.msg }}</pre></alert>' +
+                            '<uib-alert ng-cloak="" ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()"><pre class="alert-success">{{ alert.msg }}</pre></uib-alert>' +
                         '</div>',
             controller: ['$scope',
                 function($scope) {
@@ -21,7 +21,7 @@ angular.module('malariaplantdbApp')
         return {
             restrict: 'E',
             template: '<div class="alerts" ng-cloak="">' +
-                            '<alert ng-cloak="" ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()"><pre>{{ alert.msg }}</pre></alert>' +
+                            '<uib-alert ng-cloak="" ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()"><pre class="alert-danger">{{ alert.msg }}</pre></uib-alert>' +
                         '</div>',
             controller: ['$scope',
                 function($scope) {
@@ -68,7 +68,7 @@ angular.module('malariaplantdbApp')
                     });
 
                     var addErrorAlert = function (message, key, data) {
-                         AlertService.error(message); 
+                         AlertService.error(message);
 
                     }
                 }

@@ -124,7 +124,7 @@ public class PubSpeciesResource {
     }
 
     /**
-     * GET  /publications/:pubId/pi/:piIds/ethnologies -> get all the pubSpecies with the "id" publication and the
+     * GET  /publications/:pubId/pi/:piIds/pubSpecies -> get all the pubSpecies with the "id" publication and the
      * list of plant ingredient ids
      */
     @RequestMapping(value = "/publications/{pubId}/pi/{piIds}/pubSpecies",

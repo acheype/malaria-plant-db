@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('malariaplantdbApp').controller('InVivoPharmacoDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'InVivoPharmaco', 'Publication', 'PlantIngredient',
-        function($scope, $stateParams, $modalInstance, entity, InVivoPharmaco, Publication, PlantIngredient) {
+    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'InVivoPharmaco', 'Publication', 'PlantIngredient',
+        function($scope, $stateParams, $uibModalInstance, entity, InVivoPharmaco, Publication, PlantIngredient) {
 
         $scope.inVivoPharmaco = entity;
         $scope.publications = Publication.sortedQuery();
@@ -15,7 +15,7 @@ angular.module('malariaplantdbApp').controller('InVivoPharmacoDialogController',
 
         var onSaveFinished = function (result) {
             $scope.$emit('malariaplantdbApp:inVivoPharmacoUpdate', result);
-            $modalInstance.close(result);
+            $uibModalInstance.close(result);
         };
 
         $scope.save = function () {
@@ -27,6 +27,6 @@ angular.module('malariaplantdbApp').controller('InVivoPharmacoDialogController',
         };
 
         $scope.clear = function() {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
 }]);

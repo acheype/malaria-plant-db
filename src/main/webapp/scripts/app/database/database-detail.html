@@ -345,32 +345,34 @@
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
                                                     Measure method
+                                                </div>
                                                 <div class="col-xs-6 col-sm-6 col-md-2 properties-col">
                                                     {{ivt.measureMethod | placeholder}}
                                                 </div>
-                                                <div ng-if="ivt.screeningTest != 'Toxicity && ivt.concentration'"
+                                                <div ng-if="ivt.screeningTest != 'Toxicity' && ivt.concentration"
                                                      class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
                                                     Concentration for selected result <small>(&micro;g/kg)</small>
                                                 </div>
-                                                <div ng-if="ivt.screeningTest != 'Toxicity && ivt.concentration'"
+                                                <div ng-if="ivt.screeningTest != 'Toxicity' && ivt.concentration"
                                                      class="col-xs-6 col-sm-6 col-md-2 properties-col">
                                                     {{ivt.concentration | placeholder}}
                                                 </div>
-                                                <div ng-if="ivt.screeningTest != 'Toxicity && ivt.molConcentration'"
+                                                <div ng-if="ivt.screeningTest != 'Toxicity' && ivt.molConcentration"
                                                      class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
                                                     Concentration for selected result <small>(&micro;mol/kg)</small>
                                                 </div>
-                                                <div ng-if="ivt.screeningTest != 'Toxicity && ivt.molConcentration'"
+                                                <div ng-if="ivt.screeningTest != 'Toxicity' && ivt.molConcentration"
                                                      class="col-xs-6 col-sm-6 col-md-2 properties-col">
                                                     {{ivt.concentration | placeholder}}
                                                 </div>
                                                 <div
-                                                    ng-if="ivt.screeningTest != 'Toxicity && !ivt.concentration &&
+                                                    ng-if="ivt.screeningTest != 'Toxicity' && !ivt.concentration &&
                                                     !ivt.molConcentration"
                                                      class="col-xs-6 col-sm-6 col-md-2 property-label properties-col">
                                                     Concentration for selected result
                                                 </div>
-                                                <div ng-if="ivt.screeningTest != 'Toxicity && ivt.molConcentration'"
+                                                <div ng-if="ivt.screeningTest != 'Toxicity' && !ivt.concentration &&
+                                                    !ivt.molConcentration"
                                                      class="col-xs-6 col-sm-6 col-md-2 properties-col">
                                                     {{null | placeholder}}
                                                 </div>
@@ -445,11 +447,11 @@
         <!-- OTHER INGREDIENTS -->
         <div ng-if="pubSummary.plantIngredients.length" class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 review-label">
-                Other ingredients
+                Other remedy compositions
             </div>
         </div>
-        <div class="row ingredients-item" ng-repeat="(pi, piTests) in pubSummary.plantIngredients">
-            <summary publication="pub" plant-ingredient-str="pi" pi-summary="piTests"></summary>
+        <div class="row ingredients-item" ng-repeat="(pi, piTests) in otherRemedies">
+            <summary publication="publication" plant-ingredient-str="pi" pi-summary="piTests"></summary>
         </div>
     </div>
 </div>

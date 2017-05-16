@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('malariaplantdbApp').controller('CompilerDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Compiler',
-        function($scope, $stateParams, $modalInstance, entity, Compiler) {
+    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'Compiler',
+        function($scope, $stateParams, $uibModalInstance, entity, Compiler) {
 
         $scope.compiler = entity;
         $scope.load = function(id) {
@@ -13,7 +13,7 @@ angular.module('malariaplantdbApp').controller('CompilerDialogController',
 
         var onSaveFinished = function (result) {
             $scope.$emit('malariaplantdbApp:compilerUpdate', result);
-            $modalInstance.close(result);
+            $uibModalInstance.close(result);
         };
 
         $scope.save = function () {
@@ -25,6 +25,6 @@ angular.module('malariaplantdbApp').controller('CompilerDialogController',
         };
 
         $scope.clear = function() {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
 }]);

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('malariaplantdbApp').controller('InVitroPharmacoDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'InVitroPharmaco', 'Publication', 'PlantIngredient',
-        function($scope, $stateParams, $modalInstance, entity, InVitroPharmaco, Publication, PlantIngredient) {
+    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'InVitroPharmaco', 'Publication', 'PlantIngredient',
+        function($scope, $stateParams, $uibModalInstance, entity, InVitroPharmaco, Publication, PlantIngredient) {
 
             $scope.inVitroPharmaco = entity;
             $scope.publications = Publication.sortedQuery();
@@ -15,7 +15,7 @@ angular.module('malariaplantdbApp').controller('InVitroPharmacoDialogController'
 
             var onSaveFinished = function (result) {
                 $scope.$emit('malariaplantdbApp:inVitroPharmacoUpdate', result);
-                $modalInstance.close(result);
+                $uibModalInstance.close(result);
             };
 
             $scope.save = function () {
@@ -27,7 +27,7 @@ angular.module('malariaplantdbApp').controller('InVitroPharmacoDialogController'
             };
 
             $scope.clear = function() {
-                $modalInstance.dismiss('cancel');
+                $uibModalInstance.dismiss('cancel');
             }
         }]);
 
