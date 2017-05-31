@@ -2,20 +2,17 @@ package nc.ird.malariaplantdb.domain;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nc.ird.malariaplantdb.domain.util.comparator.InVivoPharmacoComparator;
-import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.Objects;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 /**
  * In vivo pharmacology entity
@@ -25,7 +22,7 @@ import java.util.TreeSet;
  * @author acheype
  */
 @Entity
-@JsonPropertyOrder({"id", "publication", "plantIngredients", "testedEntity", "extractionSolvent", "additiveProduct",
+@JsonPropertyOrder({"id", "publication", "remedy", "testedEntity", "extractionSolvent", "additiveProduct",
     "compoundName", "screeningTest", "treatmentRoute", "dose", "inhibition", "survivalPercent", "survivalTime", "ed50",
     "ld50", "compilersObservations"})
 @Table(name = "in_vivo_pharmaco")
@@ -43,14 +40,9 @@ public class InVivoPharmaco implements Serializable, Comparable<InVivoPharmaco> 
     @ManyToOne
     private Publication publication;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @BatchSize(size = 100)
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "in_vivo_pharmaco_plant_ingredient",
-        joinColumns = @JoinColumn(name = "in_vivo_pharmacos_id", referencedColumnName = "ID"),
-        inverseJoinColumns = @JoinColumn(name = "plant_ingredients_id", referencedColumnName = "ID"))
-    @SortNatural
-    private SortedSet<PlantIngredient> plantIngredients = new TreeSet<>();
+    @NotNull
+    @ManyToOne
+    private Remedy remedy;
 
     @NotNull
     @Size(max = 255)
@@ -125,6 +117,22 @@ public class InVivoPharmaco implements Serializable, Comparable<InVivoPharmaco> 
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Publication getPublication() {
+        return publication;
+    }
+
+    public void setPublication(Publication publication) {
+        this.publication = publication;
+    }
+
+    public Remedy getRemedy() {
+        return remedy;
+    }
+
+    public void setRemedy(Remedy remedy) {
+        this.remedy = remedy;
     }
 
     public String getTestedEntity() {
@@ -229,22 +237,6 @@ public class InVivoPharmaco implements Serializable, Comparable<InVivoPharmaco> 
 
     public void setCompilersObservations(String compilersObservations) {
         this.compilersObservations = compilersObservations;
-    }
-
-    public Publication getPublication() {
-        return publication;
-    }
-
-    public void setPublication(Publication publication) {
-        this.publication = publication;
-    }
-
-    public SortedSet<PlantIngredient> getPlantIngredients() {
-        return plantIngredients;
-    }
-
-    public void setPlantIngredients(SortedSet<PlantIngredient> PlantIngredients) {
-        this.plantIngredients = PlantIngredients;
     }
 
     @Override

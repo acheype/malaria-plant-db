@@ -206,6 +206,11 @@ a:hover {
     font-size: 10px;
 }
 
+/* make the pagination button a little more little */
+.pagination > li > a, .pagination > li > span {
+    padding: 7px 12px;
+}
+
 /* start Password strength bar style */
 ul#strength {
     display:inline;
@@ -594,6 +599,10 @@ h3 small {
 
 .top-little-buffer {
     margin-top: 5px;
+}
+
+.top-big-buffer {
+    margin-top: 30px;
 }
 
 .right-buffer {

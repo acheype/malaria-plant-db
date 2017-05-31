@@ -25,6 +25,9 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="publication_id" type="bigint"/>
+            <column name="remedy_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
             <column name="tested_entity" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
@@ -44,29 +47,11 @@
             <column name="compilers_observations" type="${clobType}"/>
         </createTable>
 
-        <createTable tableName="in_vivo_pharmaco_plant_ingredient">
-            <column name="plant_ingredients_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="in_vivo_pharmacos_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="in_vivo_pharmacos_id, plant_ingredients_id"
-                       tableName="in_vivo_pharmaco_plant_ingredient"/>
-
-        <addForeignKeyConstraint baseColumnNames="in_vivo_pharmacos_id"
-                                 baseTableName="in_vivo_pharmaco_plant_ingredient"
-                                 constraintName="fk_invivopharmaco_plantingredient_plantingredient_id"
+        <addForeignKeyConstraint baseColumnNames="remedy_id"
+                                 baseTableName="in_vivo_pharmaco"
+                                 constraintName="fk_invivopharmaco_remedy_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="in_vivo_pharmaco"/>
-
-        <addForeignKeyConstraint baseColumnNames="plant_ingredients_id"
-                                 baseTableName="in_vivo_pharmaco_plant_ingredient"
-                                 constraintName="fk_plantingredient_plantingredient_invivopharmaco_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="plant_ingredient"/>
+                                 referencedTableName="remedy"/>
 
     </changeSet>
 </databaseChangeLog>

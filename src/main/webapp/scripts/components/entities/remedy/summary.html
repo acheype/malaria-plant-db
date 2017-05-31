@@ -2,87 +2,87 @@
     <div class="col-xs-12 col-sm-10 col-md-10 vertical-align">
         <div class="row vertical-align">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                {{plantIngredientStr}}
+                {{remStr}}
             </div>
         </div>
-        <div ng-if="piSummary.inVivo" class="row top-little-buffer">
+        <div ng-if="remSummary.inVivo" class="row top-little-buffer">
             <div class="col-xs-2 col-sm-2 col-md-2">
-                            <span class="cat-test-tag-block" ng-if="piSummary.inVivo">
+                            <span class="cat-test-tag-block">
                                 <span class="invivo-test-type">IN VIVO</span>
                             </span>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 vertical-align">
-                            <span class="cat-test-tag-block" ng-if="piSummary.inVivoPeters">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVivoPeters">
                                 <span class="cat1-test-tag">PETERS</span>
                             </span>
-                            <span ng-if="piSummary.inVivoInhibition != null">
+                            <span ng-if="remSummary.inVivoInhibition != null">
                                 <span class="test-value-label">Inhib.:</span>
-                                <span class="test-value">{{piSummary.inVivoInhibition}} %</span>
+                                <span class="test-value">{{remSummary.inVivoPetersInhibition}} %</span>
                             </span>
-                            <span ng-if="piSummary.inVivoEd50 != null">
+                            <span ng-if="remSummary.inVivoEd50 != null">
                                 <span class="test-value-label">ED50:</span>
-                                <span class="test-value">{{piSummary.inVivoEd50}} mg/kg</span>
+                                <span class="test-value">{{remSummary.inVivoEd50}} mg/kg</span>
                             </span>
-                            <span class="cat-test-tag-block" ng-if="piSummary.isInVivoRaneTest">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVivoRaneTest">
                                 <span class="cat1-test-tag">RANE&nbsp;TEST</span>
                             </span>
-                            <span class="cat-test-tag-block" ng-if="piSummary.isInVivoRepository">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVivoRepository">
                                 <span class="cat1-test-tag">REPOSITORY</span>
                             </span>
-                            <span class="cat-test-tag-block" ng-if="piSummary.isInVivoLiverStage">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVivoLiverStage">
                                 <span class="cat2-test-tag">LIVER&nbsp;STAGE</span>
                             </span>
-                            <span class="cat-test-tag-block" ng-if="piSummary.isInVivoGametocyte">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVivoGametocyte">
                                 <span class="cat3-test-tag">GAMETOCYTE</span>
                             </span>
-                            <span class="cat-test-tag-block" ng-if="piSummary.isInVivoOocyst">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVivoOocyst">
                                 <span class="cat3-test-tag">OOCYST</span>
                             </span>
-                            <span class="cat-test-tag-block" ng-if="piSummary.isInVivoSporozoite">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVivoSporozoite">
                                 <span class="cat3-test-tag">SPOROZOITE</span>
                             </span>
-                            <span class="cat-test-tag-block" ng-if="piSummary.isInVivoToxicity">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVivoToxicity">
                                 <span class="cat4-test-tag">TOXICITY</span>
                             </span>
             </div>
         </div>
-        <div ng-if="piSummary.inVitro" class="row top-little-buffer">
+        <div ng-if="remSummary.inVitro" class="row top-little-buffer">
             <div class="col-xs-2 col-sm-2 col-md-2">
                 <span class="invitro-test-type">IN VITRO</span>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 vertical-align">
-                            <span class="cat-test-tag-block" ng-if="piSummary.inVitroErythocyt">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVitroErythocyt">
                                 <span class="cat1-test-tag">ERYTHROCYT</span>
                             </span>
-                            <span ng-if="piSummary.inVitroInhibition != null">
+                            <span ng-if="remSummary.inVitroInhibition != null">
                                 <span class="test-value-label">Inhib.:</span>
-                                <span class="test-value">{{piSummary.inVitroInhibition}} %</span>
+                                <span class="test-value">{{remSummary.inVitroInhibition}} %</span>
                             </span>
-                            <span ng-if="piSummary.inVitroIc50 != null">
+                            <span ng-if="remSummary.inVitroIc50 != null">
                                 <span class="test-value-label">IC50:</span>
-                                <span class="test-value">{{piSummary.inVitroIc50}} &#181;g/ml</span>
+                                <span class="test-value">{{remSummary.inVitroIc50}} &#181;g/ml</span>
                             </span>
-                            <span ng-if="piSummary.inVitroMolIc50 != null">
+                            <span ng-if="remSummary.inVitroMolIc50 != null">
                                 <span class="test-value-label">IC50:</span>
-                                <span class="test-value">{{piSummary.inVitroMolIc50}} &#181;mol/ml</span>
+                                <span class="test-value">{{remSummary.inVitroMolIc50}} &#181;mol/ml</span>
                             </span>
-                            <span class="cat-test-tag-block" ng-if="piSummary.isInVitroLiverStage">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVitroLiverStage">
                                 <span class="cat2-test-tag">LIVER&nbsp;STAGE</span>
                             </span>
-                            <span class="cat-test-tag-block" ng-if="piSummary.isInVitroGametocyte">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVitroGametocyte">
                                 <span class="cat3-test-tag">GAMETOCYTE</span>
                             </span>
-                            <span class="cat-test-tag-block" ng-if="piSummary.isInVitroSporozoite">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVitroSporozoite">
                                 <span class="cat3-test-tag">SPOROZOITE</span>
                             </span>
-                            <span class="cat-test-tag-block" ng-if="piSummary.isInVitroToxicity">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVitroToxicity">
                                 <span class="cat4-test-tag">TOXICITY</span>
                             </span>
             </div>
         </div>
     </div><!-- comments for vertical align
  --><div class="col-xs-12 col-sm-2 col-md-2 vertical-align ingredients-item-details-col">
-    <a ui-sref="database.detail({pubId: publication.id, piIds: piSummary.plantIngredientsIds.join(',')})"
+    <a ui-sref="database.detail({pubId: publication.id, remId: remSummary.remedyId})"
        class="ingredients-item-details">
         <span class="glyphicon glyphicon-zoom-in"/>&nbsp;Details</a>
     </div>

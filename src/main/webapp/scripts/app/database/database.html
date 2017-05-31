@@ -25,7 +25,8 @@
                 </div>
             </div>
             <div class="row top-little-buffer">
-                <div class="col-xs-12 col-sm-12 col-md-12"><span class="ingredients-label">Ingredients and tests</span>,
+                <div class="col-xs-12 col-sm-12 col-md-12"><span
+                    class="ingredients-label">Remed{{keys(pub.remedies).length > 1 ? "ies" : "y"}} and tests</span>,
                     <span class="country-label">Country</span>:
                     <span class="country-value" ng-repeat="country in pub.countries">
                         {{country}}<span ng-if="!$last">,&nbsp;</span>
@@ -33,13 +34,13 @@
                 </div>
             </div>
 
-            <div class="row ingredients-item" ng-repeat="(pi, piTests) in pub.plantIngredients">
-                <summary publication="pub" plant-ingredient-str="pi" pi-summary="piTests"></summary>
+            <div class="row ingredients-item" ng-repeat="(rem, remTests) in pub.remedies">
+                <summary publication="pub" rem-str="rem" rem-summary="remTests"></summary>
             </div>
 
             <div class="ingredients-length"
-                ng-if="keys(pub.plantIngredients).length">{{keys(pub.plantIngredients).length}}
-                plant{{keys(pub.plantIngredients).length > 1 ? 's':''}} found</div>
+                ng-if="keys(pub.remedies).length">{{keys(pub.remedies).length}}
+                remed{{keys(pub.remedies).length > 1 ? 'ies':'y'}} found</div>
         </div>
 
         <nav>

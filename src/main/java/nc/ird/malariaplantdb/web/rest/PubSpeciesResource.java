@@ -124,18 +124,18 @@ public class PubSpeciesResource {
     }
 
     /**
-     * GET  /publications/:pubId/pi/:piIds/pubSpecies -> get all the pubSpecies with the "id" publication and the
-     * list of plant ingredient ids
+     * GET  /publications/:pubId/remedy/:remId/pubSpecies -> get all the pubSpecies with the "id" publication and the
+     * Remedy id.
      */
-    @RequestMapping(value = "/publications/{pubId}/pi/{piIds}/pubSpecies",
+    @RequestMapping(value = "/publications/{pubId}/remedy/{remId}/pubSpecies",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<List<PubSpecies>> getPubSpeciesByPubIdAndPiIds(@PathVariable Long pubId, @PathVariable
-    List<Long> piIds) {
-        log.debug("REST request to get the PubSpecies of the Publication : {}, and the PlantIngredient(s) : {}",
-            pubId, piIds.stream().map(id -> id.toString()).collect(Collectors.joining(",")));
-        List<PubSpecies> pubSpecies = pubSpeciesRepository.findByPublicationIdAndPlantIngredients(pubId, piIds);
+    Long remId) {
+        log.debug("REST request to get the PubSpecies of the Publication : {}, and the Remedy : {}",
+            pubId, remId);
+        List<PubSpecies> pubSpecies = pubSpeciesRepository.findByPublicationIdAndRemedy(pubId, remId);
         return new ResponseEntity<>(pubSpecies,  HttpStatus.OK);
     }
 

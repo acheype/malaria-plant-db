@@ -1,8 +1,9 @@
 <div class="container well">
     <h2>InVitroPharmaco Notes</h2>
     <jh-alert></jh-alert>
+    <jhAlertError></jhAlertError>
     <div class="container">
-        <div class="row">
+        <div class="row top-big-buffer">
             <div class="col-md-4">
                 <button class="btn btn-primary" ui-sref="inVitroPharmaco.new">
                     <span class="glyphicon glyphicon-flash"></span> <span>Create a new InVitroPharmaco</span>
@@ -45,7 +46,7 @@
         </div>
     </div>
 
-    <div class="table-responsive">
+    <div class="table-responsive top-big-buffer">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -75,7 +76,7 @@
                         <a ui-sref="publication.detail({id:inVitroPharmaco.publication.id})">{{inVitroPharmaco.publication.title}}</a>
                     </td>
                     <td>
-                        <span ng-repeat="plantIngredient in inVitroPharmaco.plantIngredients">
+                        <span ng-repeat="plantIngredient in inVitroPharmaco.remedies">
                           <a ui-sref="plantIngredient.detail({id: plantIngredient.id})">{{plantIngredient.species.family + '&nbsp;' + plantIngredient.species.species +
                               ',&nbsp;' + plantIngredient.partUsed}}</a>
                         </span>{{$last ? '' : '&nbsp;/&nbsp;'}}

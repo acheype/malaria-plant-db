@@ -1,6 +1,6 @@
 <div class="container well">
     <div ng-cloak>
-        <h3>Details for <small>&laquo;	{{plantIngredientsStr}} &raquo;</small></h3><br/>
+        <h3>Details for <small>&laquo;	{{remedyStr}} &raquo;</small></h3><br/>
 
         <!-- PUBLICATION DETAILS -->
         <div class="pub-item">
@@ -287,7 +287,7 @@
                                         <div class="cat-properties-label">Experimental observations from the
                                             compiler{{publication.compilers.length > 1 ? 's':''}}</div>
                                         <div class="cat-properties-item">
-                                            {{ivt.compilersObservations | placeholder}}
+                                            {{ivv.compilersObservations | placeholder}}
                                         </div>
                                     </div>
                                 </uib-tab>
@@ -444,14 +444,19 @@
                 </div>
             </div>
         </div>
-        <!-- OTHER INGREDIENTS -->
-        <div ng-if="pubSummary.plantIngredients.length" class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 review-label">
-                Other remedy compositions
-            </div>
+        <!-- OTHER REMEDIES -->
+        <h4 class="top-big-buffer" ng-if="keys(otherRemedies).length">Other remed{{keys(otherRemedies).length > 1 ?
+            "ies" : "y"}} of the publication</h4>
+
+        <div class="row ingredients-item" ng-repeat="(remStr, remTests) in otherRemedies">
+            <summary publication="publication" rem-str="remStr" rem-summary="remTests"></summary>
         </div>
-        <div class="row ingredients-item" ng-repeat="(pi, piTests) in otherRemedies">
-            <summary publication="publication" plant-ingredient-str="pi" pi-summary="piTests"></summary>
-        </div>
+
+        <button type="submit"
+                onclick="window.history.back()"
+                class="btn btn-info top-big-buffer">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+        </button>
+
     </div>
 </div>

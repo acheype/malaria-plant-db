@@ -1,14 +1,13 @@
 package nc.ird.malariaplantdb.web.rest.dto;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 /**
- * Plant Ingredient summary used to display the publications list
+ * Remedy summary used to display the publications list
  *
  * @author acheype
  */
-public class PISummaryDTO {
+public class RemSummaryDTO {
 
     public enum TestType {
         IN_VIVO, IN_VITRO
@@ -32,14 +31,16 @@ public class PISummaryDTO {
 
     public final static String ERYTHROCYT_TXT = "erythrocyt";
 
-    private List<Long> plantIngredientsIds;
+    private Long remedyId;
 
     private boolean isInVivo = false;
 
     private boolean isInVivoPeters = false;
 
+    // for Peters test only
     private BigDecimal inVivoInhibition;
 
+    // for Peters test only
     private BigDecimal inVivoEd50;
 
     private boolean isInVivoRaneTest = false;
@@ -60,8 +61,10 @@ public class PISummaryDTO {
 
     private boolean isInVitroErythrocyt = false;
 
+    // for Erythorcyt test only
     private BigDecimal inVitroInhibition;
 
+    // for Erythrocyt test only
     private BigDecimal inVitroIc50;
 
     private BigDecimal inVitroMolIc50;
@@ -74,8 +77,8 @@ public class PISummaryDTO {
 
     private boolean isInVitroToxicity = false;
 
-    public PISummaryDTO(List<Long> plantIngredientsIds) {
-        this.plantIngredientsIds = plantIngredientsIds;
+    public RemSummaryDTO(Long remedyId) {
+        this.remedyId = remedyId;
     }
 
     public void setTestedEntity(TestType testType, String screeningTest, BigDecimal inVivoInhibition, BigDecimal
@@ -142,12 +145,12 @@ public class PISummaryDTO {
         }
     }
 
-    public List<Long> getPlantIngredientsIds() {
-        return plantIngredientsIds;
+    public Long getRemedyId() {
+        return remedyId;
     }
 
-    public void setPlantIngredientsIds(List<Long> plantIngredientsIds) {
-        this.plantIngredientsIds = plantIngredientsIds;
+    public void setRemedyId(Long remedyId) {
+        this.remedyId = remedyId;
     }
 
     public boolean isInVivo() {

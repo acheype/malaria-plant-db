@@ -21,11 +21,14 @@
     -->
     <changeSet id="20151005000006" author="jhipster">
         <createTable tableName="ethnology">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
             <column name="publication_id" type="bigint">
                 <constraints nullable="false" />
             </column>
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
-                <constraints primaryKey="true" nullable="false"/>
+            <column name="remedy_id" type="bigint">
+                <constraints nullable="false" />
             </column>
             <column name="ethno_relevancy" type="${clobType}">
                 <constraints nullable="false" />
@@ -39,29 +42,11 @@
 
         </createTable>
 
-        <createTable tableName="ethnology_plant_ingredient">
-            <column name="plant_ingredients_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="ethnologies_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="ethnologies_id, plant_ingredients_id"
-                       tableName="ethnology_plant_ingredient"/>
-
-        <addForeignKeyConstraint baseColumnNames="ethnologies_id"
-                                 baseTableName="ethnology_plant_ingredient"
-                                 constraintName="fk_ethnology_plantingredient_plantingredient_id"
+        <addForeignKeyConstraint baseColumnNames="remedy_id"
+                                 baseTableName="ethnology"
+                                 constraintName="fk_ethnology_remedy_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="ethnology"/>
+                                 referencedTableName="remedy"/>
 
-        <addForeignKeyConstraint baseColumnNames="plant_ingredients_id"
-                                 baseTableName="ethnology_plant_ingredient"
-                                 constraintName="fk_plantingredient_plantingredient_ethnology_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="plant_ingredient"/>
-        <!--INSERT INTO PUBLIC.in_vivo_pharmaco (ID, PUBLICATION_ID, TESTED_ENTITY, EXTRACTION_SOLVENT, ADDITIVE_PRODUCT, COMPOUND_NAME, SCREENING_TEST, TREATMENT_ROUTE, DOSE, INHIBITION, SURVIVAL_PERCENT, SURVIVAL_TIME, ED50, LD50, COMPILERS_OBSERVATIONS) VALUES ('1', '2', 'Extract', 'Methanol', '', '', 'Rane test', 'Oral', '400.0000', '', '', '28.50', '', '', '')-->
     </changeSet>
 </databaseChangeLog>

@@ -27,8 +27,8 @@
         <div class="form-group">
             <label for="field_plantIngredient">Plant Ingredient(s)</label>
             <select class="form-control" id="field_plantIngredient" multiple name="plantIngredient"
-                    ng-model="ethnology.plantIngredients"
-                    ng-options="PlantIngredient as (PlantIngredient.species.family + '&nbsp;' + PlantIngredient.species.species + ',&nbsp;' + PlantIngredient.partUsed) for PlantIngredient in plantIngredients track by PlantIngredient.id"
+                    ng-model="ethnology.remedies"
+                    ng-options="PlantIngredient as (PlantIngredient.species.family + '&nbsp;' + PlantIngredient.species.species + ',&nbsp;' + PlantIngredient.partUsed) for PlantIngredient in remedies track by PlantIngredient.id"
                     required>
             </select>
             <div>

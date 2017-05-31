@@ -4,12 +4,12 @@ angular.module('malariaplantdbApp')
     .directive('summary', function() {
         return {
             restrict: 'E',
-            templateUrl: 'scripts/components/entities/publication/pi-summary.html',
+            templateUrl: 'scripts/components/entities/remedy/summary.html',
             replace: true,
             scope: {
                 publication: '=',
-                plantIngredientStr: '=',
-                piSummary: '='
+                remStr: '=',
+                remSummary: '='
             }
         };
     });

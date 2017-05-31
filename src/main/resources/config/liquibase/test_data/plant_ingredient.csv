@@ -1,3 +1,4 @@
-"ID","SPECIES_ID","PART_USED"
-"1","1","Leaf"
-"2","2","Leaf"
+"ID","SPECIES_ID","PART_USED","REMEDY_ID"
+"1","1","Leaf","1"
+"2","1","Leaf","2"
+"3","2","Flower","2"

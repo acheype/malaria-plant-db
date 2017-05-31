@@ -27,6 +27,9 @@
             <column name="part_used" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="remedy_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
         </createTable>
 
         <addForeignKeyConstraint baseColumnNames="species_id"
@@ -35,8 +38,15 @@
                                  referencedColumnNames="id"
                                  referencedTableName="species"/>
 
-        <addUniqueConstraint constraintName="uk_plantingredient_speciesid_partused" tableName="plant_ingredient"
-                             columnNames="species_id, part_used"/>
+        <addForeignKeyConstraint baseColumnNames="remedy_id"
+                                 baseTableName="plant_ingredient"
+                                 constraintName="fk_remedy_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="remedy"/>
+
+        <addUniqueConstraint constraintName="uk_plantingredient_speciesid_partused_remedyid"
+                             tableName="plant_ingredient"
+                             columnNames="species_id, part_used, remedy_id"/>
 
     </changeSet>
 </databaseChangeLog>
