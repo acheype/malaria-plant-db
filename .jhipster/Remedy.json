@@ -1,0 +1,15 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "plantIngredients",
+            "otherEntityName": "plantIngredient",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "remedy"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20170517041555",
+    "dto": "no",
+    "pagination": "pagination"
+}

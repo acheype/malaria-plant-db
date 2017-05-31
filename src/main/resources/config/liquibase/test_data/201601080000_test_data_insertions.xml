@@ -37,9 +37,9 @@
                   tableName="pub_species"/>
 
         <loadData encoding="UTF-8"
-                  file="config/liquibase/test_data/ethnology.csv"
+                  file="config/liquibase/test_data/remedy.csv"
                   separator=","
-                  tableName="ethnology"/>
+                  tableName="remedy"/>
 
         <loadData encoding="UTF-8"
                   file="config/liquibase/test_data/plant_ingredient.csv"
@@ -47,9 +47,9 @@
                   tableName="plant_ingredient"/>
 
         <loadData encoding="UTF-8"
-                  file="config/liquibase/test_data/ethnology_plant_ingredient.csv"
+                  file="config/liquibase/test_data/ethnology.csv"
                   separator=","
-                  tableName="ethnology_plant_ingredient"/>
+                  tableName="ethnology"/>
 
         <loadData encoding="UTF-8"
                   file="config/liquibase/test_data/in_vivo_pharmaco.csv"
@@ -57,19 +57,9 @@
                   tableName="in_vivo_pharmaco"/>
 
         <loadData encoding="UTF-8"
-                  file="config/liquibase/test_data/in_vivo_pharmaco_plant_ingredient.csv"
-                  separator=","
-                  tableName="in_vivo_pharmaco_plant_ingredient"/>
-
-        <loadData encoding="UTF-8"
                   file="config/liquibase/test_data/in_vitro_pharmaco.csv"
                   separator=","
                   tableName="in_vitro_pharmaco"/>
-
-        <loadData encoding="UTF-8"
-                  file="config/liquibase/test_data/in_vitro_pharmaco_plant_ingredient.csv"
-                  separator=","
-                  tableName="in_vitro_pharmaco_plant_ingredient"/>
 
     </changeSet>
 

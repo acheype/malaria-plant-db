@@ -11,7 +11,7 @@ angular.module('malariaplantdbApp')
                     return data;
                 }
             },
-            'getByPubIdAndPiIds': {method: 'GET', url: 'api/publications/:pubId/pi/:piIds/pubSpecies', isArray: true},
+            'getByPubIdAndRemedyId': {method: 'GET', url: 'api/publications/:pubId/remedy/:remId/pubSpecies', isArray: true},
             'update': { method:'PUT' }
         });
     });

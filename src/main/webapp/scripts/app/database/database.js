@@ -20,10 +20,10 @@ angular.module('malariaplantdbApp')
             })
             .state('database.detail',{
                 parent: 'database',
-                url: '/pub/{pubId}/pi/{piIds}',
+                url: '/pub/{pubId}/remedy/{remId}',
                 data: {
                     authorities: [],
-                    pageTitle: 'Ingredient Details'
+                    pageTitle: 'Remedy Details'
                 },
                 views: {
                     'content@': {
@@ -36,16 +36,16 @@ angular.module('malariaplantdbApp')
                         return Publication.get({id : $stateParams.pubId}).$promise;
                     }],
                     pubSpecies: ['$stateParams', 'PubSpecies', function($stateParams, PubSpecies){
-                        return PubSpecies.getByPubIdAndPiIds({pubId : $stateParams.pubId, piIds : $stateParams.piIds}).$promise;
+                        return PubSpecies.getByPubIdAndRemedyId({pubId : $stateParams.pubId, remId : $stateParams.remId}).$promise;
                     }],
                     ethnology: ['$stateParams', 'Ethnology', function($stateParams, Ethnology){
-                        return Ethnology.getByPubIdAndPiIds({pubId : $stateParams.pubId, piIds : $stateParams.piIds}).$promise;
+                        return Ethnology.getByPubIdAndRemedyId({pubId : $stateParams.pubId, remId : $stateParams.remId}).$promise;
                     }],
                     inVivoPharmacos: ['$stateParams', 'InVivoPharmaco', function($stateParams, InVivoPharmaco){
-                        return InVivoPharmaco.getByPubIdAndPiIds({pubId : $stateParams.pubId, piIds : $stateParams.piIds}).$promise;
+                        return InVivoPharmaco.getByPubIdAndRemedyId({pubId : $stateParams.pubId, remId : $stateParams.remId}).$promise;
                     }],
                     inVitroPharmacos: ['$stateParams', 'InVitroPharmaco', function($stateParams, InVitroPharmaco){
-                        return InVitroPharmaco.getByPubIdAndPiIds({pubId : $stateParams.pubId, piIds : $stateParams.piIds}).$promise;
+                        return InVitroPharmaco.getByPubIdAndRemedyId({pubId : $stateParams.pubId, remId : $stateParams.remId}).$promise;
                     }],
                     pubSummary: ['$stateParams', 'Publication', function($stateParams, Publication) {
                         return Publication.pubSummaryById({id : $stateParams.pubId}).$promise;

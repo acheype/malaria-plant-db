@@ -124,19 +124,18 @@ public class EthnologyResource {
     }
 
     /**
-     * GET  /publications/:pubId/pi/:piIds/ethnology -> get the ethnology with the "id" publication and the
-     * list of plant ingredient ids
+     * GET  /publications/:pubId/remedy/{remId}/ethnology -> get the ethnology with the "id" publication and the
+     * remedy id
      */
-    @RequestMapping(value = "/publications/{pubId}/pi/{piIds}/ethnology",
+    @RequestMapping(value = "/publications/{pubId}/remedy/{remId}/ethnology",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Ethnology> getEthnologyByPubIdAndPiIds(@PathVariable Long pubId, @PathVariable
-    List<Long> piIds) {
-        log.debug("REST request to get the Ethnologiy of the Publication : {}, and the PlantIngredient(s) : {}",
-            pubId, piIds.stream().map(id -> id.toString()).collect(Collectors.joining(",")));
+    public ResponseEntity<Ethnology> getEthnologyByPubIdAndRemedyId(@PathVariable Long pubId, @PathVariable Long
+        remId) {
+        log.debug("REST request to get the Ethnology of the Publication : {}, and the Remedy : {}", pubId, remId);
 
-        return Optional.ofNullable(ethnologyRepository.findByPublicationIdAndPlantIngredients(pubId, piIds))
+        return Optional.ofNullable(ethnologyRepository.findByPublicationIdAndAndRemedy(pubId, remId))
             .map(ethnology -> new ResponseEntity<>(
                 ethnology,
                 HttpStatus.OK))

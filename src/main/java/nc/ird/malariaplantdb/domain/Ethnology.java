@@ -2,17 +2,17 @@ package nc.ird.malariaplantdb.domain;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nc.ird.malariaplantdb.domain.util.comparator.EthnologyComparator;
-import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * Ethnology entity
@@ -22,7 +22,7 @@ import java.util.*;
  * @author acheype
  */
 @Entity
-@JsonPropertyOrder({"id", "publication", "plantIngredients", "ethnoRelevancy", "treatmentType",
+@JsonPropertyOrder({"id", "publication", "remedy", "ethnoRelevancy", "treatmentType",
     "traditionalRecipeDetails", "preparationMode", "administrationRoute"})
 @Table(name = "ethnology")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -40,14 +40,8 @@ public class Ethnology implements Serializable, Comparable<Ethnology> {
     private Publication publication;
 
     @NotNull
-    @ManyToMany(fetch = FetchType.EAGER)
-    @BatchSize(size = 10)
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "ETHNOLOGY_PLANT_INGREDIENT",
-        joinColumns = @JoinColumn(name = "ethnologies_id", referencedColumnName = "ID"),
-        inverseJoinColumns = @JoinColumn(name = "plant_ingredients_id", referencedColumnName = "ID"))
-    @SortNatural
-    private SortedSet<PlantIngredient> plantIngredients = new TreeSet<>();
+    @ManyToOne
+    private Remedy remedy;
 
     @NotNull
     @Lob
@@ -73,6 +67,14 @@ public class Ethnology implements Serializable, Comparable<Ethnology> {
     @Column(name = "administration_route", length = 255)
     private String administrationRoute;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Publication getPublication() {
         return publication;
     }
@@ -81,20 +83,12 @@ public class Ethnology implements Serializable, Comparable<Ethnology> {
         this.publication = publication;
     }
 
-    public Set<PlantIngredient> getPlantIngredients() {
-        return plantIngredients;
+    public Remedy getRemedy() {
+        return remedy;
     }
 
-    public void setPlantIngredients(SortedSet<PlantIngredient> PlantIngredients) {
-        this.plantIngredients = PlantIngredients;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setRemedy(Remedy remedy) {
+        this.remedy = remedy;
     }
 
     public String getEthnoRelevancy() {

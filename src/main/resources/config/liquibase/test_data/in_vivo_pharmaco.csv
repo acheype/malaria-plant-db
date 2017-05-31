@@ -1,8 +1,8 @@
-"ID","PUBLICATION_ID","TESTED_ENTITY","EXTRACTION_SOLVENT","ADDITIVE_PRODUCT","COMPOUND_NAME","SCREENING_TEST","TREATMENT_ROUTE","DOSE","INHIBITION","SURVIVAL_PERCENT","SURVIVAL_TIME","ED50","LD50","COMPILERS_OBSERVATIONS"
-"1","1","Extract","Methanol",NULL,NULL,"Rane test","Oral","400.0000",NULL,NULL,"28.50",NULL,NULL,NULL
-"2","1","Extract","Methanol",NULL,NULL,"Peters","Oral","400.0000","94.00",NULL,NULL,NULL,NULL,NULL
-"3","1","Extract","Methanol",NULL,NULL,"Toxicity","Oral",NULL,NULL,NULL,NULL,NULL,NULL,"LD50 has not been determined."
-"4","2","Extract","Ethanol",NULL,NULL,"Peters","Oral","800.0000","71.00",NULL,NULL,NULL,NULL,NULL
-"5","2","Extract","Ethanol",NULL,NULL,"Rane test","Oral","800.0000",NULL,NULL,NULL,NULL,NULL,NULL
-"6","2","Extract","Ethanol",NULL,NULL,"Repository","Oral","800.0000","71.00",NULL,"29.00",NULL,NULL,NULL
-"7","2","Extract","Ethanol",NULL,NULL,"Toxicity","Oral",NULL,NULL,NULL,NULL,NULL,NULL,"LD50 has not been determined."
+"ID","PUBLICATION_ID","REMEDY_ID","TESTED_ENTITY","EXTRACTION_SOLVENT","ADDITIVE_PRODUCT","COMPOUND_NAME","SCREENING_TEST","TREATMENT_ROUTE","DOSE","INHIBITION","SURVIVAL_PERCENT","SURVIVAL_TIME","ED50","LD50","COMPILERS_OBSERVATIONS"
+"1","1","1","Extract","Methanol",NULL,NULL,"Rane test","Oral","400.0000",NULL,NULL,"28.50",NULL,NULL,NULL
+"2","1","1","Extract","Methanol",NULL,NULL,"Peters","Oral","400.0000","94.00",NULL,NULL,NULL,NULL,NULL
+"3","1","1","Extract","Methanol",NULL,NULL,"Toxicity","Oral",NULL,NULL,NULL,NULL,NULL,NULL,"LD50 has not been determined."
+"4","2","2","Extract","Ethanol",NULL,NULL,"Peters","Oral","800.0000","71.00",NULL,NULL,NULL,NULL,NULL
+"5","2","2","Extract","Ethanol",NULL,NULL,"Rane test","Oral","800.0000",NULL,NULL,NULL,NULL,NULL,NULL
+"6","2","2","Extract","Ethanol",NULL,NULL,"Repository","Oral","800.0000","71.00",NULL,"29.00",NULL,NULL,NULL
+"7","2","2","Extract","Ethanol",NULL,NULL,"Toxicity","Oral",NULL,NULL,NULL,NULL,NULL,NULL,"LD50 has not been determined."

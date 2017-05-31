@@ -1,3 +1,4 @@
-"PUBLICATION_ID","ID","ETHNO_RELEVANCY","TREATMENT_TYPE","TRADITIONAL_RECIPE_DETAILS","PREPARATION_MODE","ADMINISTRATION_ROUTE"
-"1","1","is used in the treatment of gastrointestinal disorders (Asuzu et al., 1993).","Curative",,,
-"2","2","Extract of the leaves in water or diluted alcohol has been used as tonic, expectorant, diaphoretic or vermifuge to induce emesis and for treatment of malaria.","Curative",,,
+"ID","PUBLICATION_ID","REMEDY_ID","ETHNO_RELEVANCY","TREATMENT_TYPE","TRADITIONAL_RECIPE_DETAILS","PREPARATION_MODE","ADMINISTRATION_ROUTE"
+"1","1","1","is used in the treatment of gastrointestinal disorders (Asuzu et al., 1993).","Curative",,,
+"2","2","2","Extract of the leaves in water or diluted alcohol has been used as tonic, expectorant, diaphoretic or vermifuge to induce emesis and for treatment of malaria.","Curative",,,
+"3","1","2","Extract of the leaves in water or diluted alcohol has been used as tonic, expectorant, diaphoretic or vermifuge to induce emesis and for treatment of malaria.","Curative","This ethnological description is just a TEST to have two different remedies in the same publication details",,

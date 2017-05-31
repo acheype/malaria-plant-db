@@ -22,7 +22,7 @@
                     <span>Plant Ingredient(s)</span>
                 </td>
                 <td>
-                    <span ng-repeat="plantIngredient in inVitroPharmaco.plantIngredients">
+                    <span ng-repeat="plantIngredient in inVitroPharmaco.remedies">
                         <a class="form-control-static"
                            ui-sref="plantIngredient.detail({id: plantIngredient.id})">{{plantIngredient.species.family + '&nbsp;' + plantIngredient.species.species + ',&nbsp;' + plantIngredient.partUsed}}</a>{{$last ? '' : '&nbsp;/&nbsp;'}}
                     <span>

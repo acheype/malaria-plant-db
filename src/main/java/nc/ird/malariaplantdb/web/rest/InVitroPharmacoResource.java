@@ -124,20 +124,17 @@ public class InVitroPharmacoResource {
     }
 
     /**
-     * GET  /publications/:pubId/pi/:piIds/inVitroPharmacos -> get all the inVitroPharmacos with the "id" publication
-     * and the list of plant ingredient ids
+     * GET  /publications/:pubId/remedy/:remId/inVitroPharmacos -> get all the inVitroPharmacos with the "id"
+     * publication and the remedy id
      */
-    @RequestMapping(value = "/publications/{pubId}/pi/{piIds}/inVitroPharmacos",
+    @RequestMapping(value = "/publications/{pubId}/remedy/{remId}/inVitroPharmacos",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<InVitroPharmaco>> getInVitroPharmacosByPubIdAndPiIds(@PathVariable Long pubId,
-                                                                                  @PathVariable
-    List<Long> piIds) {
-        log.debug("REST request to get the InVitroPharmaco of the Publication : {}, and the PlantIngredient(s) : {}",
-            pubId, piIds.stream().map(id -> id.toString()).collect(Collectors.joining(",")));
-        List<InVitroPharmaco> inVitroPharmacos = inVitroPharmacoRepository.findByPublicationIdAndPlantIngredients
-            (pubId, piIds);
+    public ResponseEntity<List<InVitroPharmaco>> getInVitroPharmacosByPubIdAndRemedyId(@PathVariable Long pubId,
+                                                                                       @PathVariable Long remId) {
+        log.debug("REST request to get the InVitroPharmaco of the Publication : {}, and the Remedy : {}", pubId, remId);
+        List<InVitroPharmaco> inVitroPharmacos = inVitroPharmacoRepository.findByPublicationIdAndRemedy(pubId, remId);
         return new ResponseEntity<>(inVitroPharmacos,  HttpStatus.OK);
     }
 

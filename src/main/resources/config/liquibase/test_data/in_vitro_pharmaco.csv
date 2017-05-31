@@ -1,3 +1,3 @@
-"PUBLICATION_ID","ID","TESTED_ENTITY","EXTRACTION_SOLVENT","ADDITIVE_PRODUCT","COMPOUND_NAME","SCREENING_TEST","MEASURE_METHOD","CONCENTRATION","MOL_CONCENTRATION","INHIBITION","IC50","MOL_IC50","SELECTIVITY_INDEX","COMPILERS_OBSERVATIONS"
-"2","1","Fraction",null,null,null,"Erythrocyt","Enzymatic",null,null,null,null,"4.4700",null,null
-"2","2","Extract","Methanol",null,null,"Toxicity","Enzymatic",null,null,null,null,null,"1.80","A compiler observation example ! Done."
+"PUBLICATION_ID","ID","REMEDY_ID","TESTED_ENTITY","EXTRACTION_SOLVENT","ADDITIVE_PRODUCT","COMPOUND_NAME","SCREENING_TEST","MEASURE_METHOD","CONCENTRATION","MOL_CONCENTRATION","INHIBITION","IC50","MOL_IC50","SELECTIVITY_INDEX","COMPILERS_OBSERVATIONS"
+"2","1","2","Fraction",null,null,null,"Erythrocyt","Enzymatic",null,null,null,null,"4.4700",null,null
+"2","2","2","Extract","Methanol",null,null,"Toxicity","Enzymatic",null,null,null,null,null,"1.80","A compiler observation example ! Done."

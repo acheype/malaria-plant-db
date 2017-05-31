@@ -22,8 +22,9 @@ import java.util.Objects;
  */
 @Entity
 @JsonPropertyOrder({"id", "species", "partUsed"})
-@Table(name = "plant_ingredient", uniqueConstraints = @UniqueConstraint(columnNames = {"species_id", "part_used"},
-    name = "uk_plantingredient_speciesid_partused"))
+@Table(name = "plant_ingredient", uniqueConstraints = @UniqueConstraint(columnNames = {"species_id", "part_used",
+    "remedy_id"},
+    name = "uk_plantingredient_speciesid_partused_remedy_id"))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "plantingredient")
 public class PlantIngredient implements Serializable, Comparable<PlantIngredient> {
@@ -42,6 +43,10 @@ public class PlantIngredient implements Serializable, Comparable<PlantIngredient
     @Size(max = 255)
     @Column(name = "part_used", length = 255, nullable = false)
     private String partUsed;
+
+    @NotNull
+    @ManyToOne
+    private Remedy remedy;
 
     public Long getId() {
         return id;
@@ -65,6 +70,14 @@ public class PlantIngredient implements Serializable, Comparable<PlantIngredient
 
     public void setPartUsed(String partUsed) {
         this.partUsed = partUsed;
+    }
+
+    public Remedy getRemedy() {
+        return remedy;
+    }
+
+    public void setRemedy(Remedy remedy) {
+        this.remedy = remedy;
     }
 
     @Override

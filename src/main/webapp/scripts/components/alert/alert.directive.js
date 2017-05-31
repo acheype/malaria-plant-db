@@ -5,8 +5,9 @@ angular.module('malariaplantdbApp')
         return {
             restrict: 'E',
             template: '<div class="alerts" ng-cloak="">' +
-                            '<uib-alert ng-cloak="" ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()"><pre class="alert-success">{{ alert.msg }}</pre></uib-alert>' +
-                        '</div>',
+                            '<uib-alert ng-cloak="" ng-repeat="alert in alerts | filter:{type:\'success\'}" ' +
+                            'close="alert.close()"><pre class="alert-success">{{ alert.msg }}</pre></uib-alert>' +
+                            '</div>',
             controller: ['$scope',
                 function($scope) {
                     $scope.alerts = AlertService.get();
@@ -21,8 +22,9 @@ angular.module('malariaplantdbApp')
         return {
             restrict: 'E',
             template: '<div class="alerts" ng-cloak="">' +
-                            '<uib-alert ng-cloak="" ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()"><pre class="alert-danger">{{ alert.msg }}</pre></uib-alert>' +
-                        '</div>',
+                            '<uib-alert ng-cloak="" ng-repeat="alert in alerts | filter:{type:\'danger\'}" ' +
+                            'close="alert.close()"><pre class="alert-danger">{{ alert.msg }}</pre></uib-alert>' +
+                            '</div>',
             controller: ['$scope',
                 function($scope) {
                     $scope.alerts = AlertService.get();

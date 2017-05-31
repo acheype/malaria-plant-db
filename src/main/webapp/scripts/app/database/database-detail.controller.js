@@ -10,11 +10,9 @@ angular.module('malariaplantdbApp')
         $scope.inVitroPharmacos = inVitroPharmacos;
         $scope.otherRemedies = {};
 
-        var paramPiIds = $stateParams.piIds.split(",").map(Number);
-
-        angular.forEach(pubSummary.plantIngredients, function(value, key){
-            if (angular.equals(value.plantIngredientsIds, paramPiIds)) {
-                $scope.plantIngredientsStr = key;
+        angular.forEach(pubSummary.remedies, function(value, key){
+            if (value.remedyId == $stateParams.remId) {
+                $scope.remedyStr = key;
             } else {
                 $scope.otherRemedies[key] = value;
             }

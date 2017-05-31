@@ -14,8 +14,8 @@ public interface PubSpeciesRepository extends JpaRepository<PubSpecies,Long> {
 
     List<PubSpecies> findByPublicationId(Long id);
 
-    @Query("select ps from PubSpecies ps, PlantIngredient pi join ps.species s join pi.species s2 where ps.publication.id = :pubId and s.id = s2.id and pi.id in :piIds")
-    List<PubSpecies> findByPublicationIdAndPlantIngredients(@Param("pubId") Long pubId, @Param("piIds") List<Long>
-        piIds);
+    @Query("select ps from PubSpecies ps, Remedy r join ps.species s join r.plantIngredients pi join pi.species s2 " +
+        "where ps.publication.id = :pubId and s.id = s2.id and r.id = :remId")
+    List<PubSpecies> findByPublicationIdAndRemedy(@Param("pubId") Long pubId, @Param("remId") Long remId);
 
 }

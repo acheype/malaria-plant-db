@@ -13,15 +13,17 @@
              relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151005000004_added_entity_PubSpecies.xml"
              relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20151005000005_added_entity_PlantIngredient.xml"
+    <include file="classpath:config/liquibase/changelog/20151005000005_added_entity_Remedy.xml"
              relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20151005000006_added_entity_Ethnology.xml"
+    <include file="classpath:config/liquibase/changelog/20151005000006_added_entity_PlantIngredient.xml"
              relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20151005000007_added_entity_InVivoPharmaco.xml"
+    <include file="classpath:config/liquibase/changelog/20151005000007_added_entity_Ethnology.xml"
              relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20151005000008_added_entity_InVitroPharmaco.xml"
+    <include file="classpath:config/liquibase/changelog/20151005000008_added_entity_InVivoPharmaco.xml"
              relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20151005000009_added_entity_Publication.xml"
+    <include file="classpath:config/liquibase/changelog/20151005000009_added_entity_InVitroPharmaco.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005000010_added_entity_Publication.xml"
              relativeToChangelogFile="false"/>
 
     <!-- Temporary dataset for dev -->

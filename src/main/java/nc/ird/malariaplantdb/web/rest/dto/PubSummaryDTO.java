@@ -2,7 +2,10 @@ package nc.ird.malariaplantdb.web.rest.dto;
 
 import nc.ird.malariaplantdb.domain.*;
 
-import java.util.*;
+import java.util.SortedMap;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -26,7 +29,7 @@ public class PubSummaryDTO {
 
     private SortedSet<String> countries = new TreeSet<>();
 
-    private SortedMap<String, PISummaryDTO> plantIngredients = new TreeMap<>();
+    private SortedMap<String, RemSummaryDTO> remedies = new TreeMap<>();
 
     public PubSummaryDTO(Publication pub) {
         id = pub.getId();
@@ -40,37 +43,39 @@ public class PubSummaryDTO {
             .map(PubSpecies::getCountry)
             .collect(Collectors.toList()));
 
-        for (InVivoPharmaco inVivoPharmaco : pub.getInVivoPharmacos()){
-            String plantIngredientStr = buildPlantIngredientsKey(inVivoPharmaco.getPlantIngredients());
+        for (Ethnology ethno : pub.getEthnologies()){
+            String remedyKey = buildRemedyKey(ethno.getRemedy());
+            remedies.put(remedyKey, new RemSummaryDTO(ethno.getRemedy().getId()));
+        }
 
-            if (!plantIngredients.containsKey(plantIngredientStr)) {
-                List<Long> plantIngredientsIds = inVivoPharmaco.getPlantIngredients().stream().map(pi -> pi.getId())
-                    .collect(Collectors.toList());
-                plantIngredients.put(plantIngredientStr, new PISummaryDTO(plantIngredientsIds));
+        for (InVivoPharmaco inVivoPharmaco : pub.getInVivoPharmacos()){
+            String remedyKey = buildRemedyKey(inVivoPharmaco.getRemedy());
+
+            if (remedies.values().stream().noneMatch(r -> inVivoPharmaco.getRemedy().getId().equals(r.getRemedyId()))) {
+                remedies.put(remedyKey, new RemSummaryDTO(inVivoPharmaco.getRemedy().getId()));
             }
 
-            plantIngredients.get(plantIngredientStr).setTestedEntity(PISummaryDTO.TestType.IN_VIVO,
+            remedies.get(remedyKey).setTestedEntity(RemSummaryDTO.TestType.IN_VIVO,
                 inVivoPharmaco.getScreeningTest(), inVivoPharmaco.getInhibition(), inVivoPharmaco.getEd50(), null,
                 null, null);
         }
 
         for (InVitroPharmaco inVitroPharmaco : pub.getInVitroPharmacos()){
-            String plantIngredientStr = buildPlantIngredientsKey(inVitroPharmaco.getPlantIngredients());
+            String remedyKey = buildRemedyKey(inVitroPharmaco.getRemedy());
 
-            if (!plantIngredients.containsKey(plantIngredientStr)) {
-                List<Long> plantIngredientsIds = inVitroPharmaco.getPlantIngredients().stream().map(pi -> pi.getId())
-                    .collect(Collectors.toList());
-                plantIngredients.put(plantIngredientStr, new PISummaryDTO(plantIngredientsIds));
+            if (remedies.values().stream().noneMatch(
+                    r -> inVitroPharmaco.getRemedy().getId().equals(r.getRemedyId()))) {
+                remedies.put(remedyKey, new RemSummaryDTO(inVitroPharmaco.getRemedy().getId()));
             }
 
-            plantIngredients.get(plantIngredientStr).setTestedEntity(PISummaryDTO.TestType.IN_VITRO,
+            remedies.get(remedyKey).setTestedEntity(RemSummaryDTO.TestType.IN_VITRO,
                 inVitroPharmaco.getScreeningTest(), null, null, inVitroPharmaco.getInhibition(),
                 inVitroPharmaco.getIc50(), inVitroPharmaco.getMolIc50());
         }
     }
 
-    private String buildPlantIngredientsKey(SortedSet<PlantIngredient> plantIngredients) {
-        return plantIngredients.stream()
+    private String buildRemedyKey(Remedy remedy) {
+        return remedy.getPlantIngredients().stream()
                     .map(pi -> pi.getSpecies().getSpecies() + ", " + pi.getPartUsed())
                     .collect(Collectors.joining(" / "));
     }
@@ -131,12 +136,12 @@ public class PubSummaryDTO {
         this.countries = countries;
     }
 
-    public SortedMap<String, PISummaryDTO> getPlantIngredients() {
-        return plantIngredients;
+    public SortedMap<String, RemSummaryDTO> getRemedies() {
+        return remedies;
     }
 
-    public void setPlantIngredients(SortedMap<String, PISummaryDTO> plantIngredients) {
-        this.plantIngredients = plantIngredients;
+    public void setRemedies(SortedMap<String, RemSummaryDTO> remedies) {
+        this.remedies = remedies;
     }
 
 }

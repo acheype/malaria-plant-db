@@ -23,8 +23,8 @@ public interface InVitroPharmacoRepository extends JpaRepository<InVitroPharmaco
     //    ".plantIngredients where inVitroPharmaco.id =:id")
     //InVitroPharmaco findOneWithEagerRelationships(@Param("id") Long id);
 
-    @Query("select distinct iv from InVitroPharmaco iv join iv.plantIngredients pi where iv.publication.id = :pubId and pi.id in :piIds")
-    List<InVitroPharmaco> findByPublicationIdAndPlantIngredients(@Param("pubId") Long pubId, @Param("piIds") List<Long>
-        piIds);
+    @Query("select iv from InVitroPharmaco iv join iv.remedy r where iv.publication.id = :pubId " +
+        "and r.id = :remId")
+    List<InVitroPharmaco> findByPublicationIdAndRemedy(@Param("pubId") Long pubId, @Param("remId") Long remId);
 
 }
