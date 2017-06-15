@@ -15,11 +15,11 @@
                             <span class="cat-test-tag-block" ng-if="remSummary.inVivoPeters">
                                 <span class="cat1-test-tag">PETERS</span>
                             </span>
-                            <span ng-if="remSummary.inVivoInhibition != null">
+                            <span ng-if="remSummary.inVivoInhibition">
                                 <span class="test-value-label">Inhib.:</span>
-                                <span class="test-value">{{remSummary.inVivoPetersInhibition}} %</span>
+                                <span class="test-value">{{remSummary.inVivoInhibition}} %</span>
                             </span>
-                            <span ng-if="remSummary.inVivoEd50 != null">
+                            <span ng-if="remSummary.inVivoEd50">
                                 <span class="test-value-label">ED50:</span>
                                 <span class="test-value">{{remSummary.inVivoEd50}} mg/kg</span>
                             </span>
@@ -51,18 +51,18 @@
                 <span class="invitro-test-type">IN VITRO</span>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 vertical-align">
-                            <span class="cat-test-tag-block" ng-if="remSummary.inVitroErythocyt">
+                            <span class="cat-test-tag-block" ng-if="remSummary.inVitroErythrocyt">
                                 <span class="cat1-test-tag">ERYTHROCYT</span>
                             </span>
-                            <span ng-if="remSummary.inVitroInhibition != null">
+                            <span ng-if="remSummary.inVitroInhibition">
                                 <span class="test-value-label">Inhib.:</span>
                                 <span class="test-value">{{remSummary.inVitroInhibition}} %</span>
                             </span>
-                            <span ng-if="remSummary.inVitroIc50 != null">
+                            <span ng-if="remSummary.inVitroIc50">
                                 <span class="test-value-label">IC50:</span>
                                 <span class="test-value">{{remSummary.inVitroIc50}} &#181;g/ml</span>
                             </span>
-                            <span ng-if="remSummary.inVitroMolIc50 != null">
+                            <span ng-if="remSummary.inVitroMolIc50">
                                 <span class="test-value-label">IC50:</span>
                                 <span class="test-value">{{remSummary.inVitroMolIc50}} &#181;mol/ml</span>
                             </span>

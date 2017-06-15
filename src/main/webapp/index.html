@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="assets/styles/main.css">
         <!-- endbuild -->
     </head>
-    <body ng-app="malariaplantdbApp">
+    <div ng-app="malariaplantdbApp">
         <!--[if lt IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -48,10 +48,14 @@
                     </span>
                 </div><!-- comments for vertical align
              --><div class="col-xs-12 col-sm-12 col-md-4 vertical-align footer-right">
-                    <span>IRD - All rights reserved - 2015</span><a href="http://www.ird.fr/"><img
-                    src="assets/images/ird_small.png"></a>
+                    <div>
+                        <div><a href="http://www.ird.fr/"><img src="assets/images/ird_small.png"></a></div>
+                        <div class="rights">All rights reserved - 2017</div>
+                    </div>
+
                 </div>
             </div>
+        </div>
 
         <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
         <script>

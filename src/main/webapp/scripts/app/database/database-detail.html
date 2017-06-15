@@ -170,8 +170,8 @@
                         <!-- IN VIVO PHARMACO TAB -->
                         <uib-tab ng-if="inVivoPharmacos.length" index="1" heading="In Vivo Pharmaco">
                             <uib-tabset active="activePill" type="pills">
-                                <uib-tab index="$index" ng-repeat="ivv in inVivoPharmacos" heading="{{$index + 1}}"
-                                         classes="btn-review-item">
+                                <uib-tab index="$index" ng-repeat="ivv in inVivoPharmacos"
+                                         heading="{{$index + 1}} - {{ivv.screeningTest}}" classes="btn-review-item">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="cat-properties-label">Chemical process</div>
                                         <div class="cat-properties-item">
@@ -296,8 +296,8 @@
                         <!-- IN VITRO PHARMACO TAB -->
                         <uib-tab ng-if="inVitroPharmacos.length" index="2" heading="In Vitro Pharmaco">
                             <uib-tabset active="activePill" type="pills">
-                                <uib-tab index="$index" ng-repeat="ivt in inVitroPharmacos" heading="{{$index + 1}}"
-                                         classes="btn-review-item">
+                                <uib-tab index="$index" ng-repeat="ivt in inVitroPharmacos"
+                                         heading="{{$index + 1}} - {{ivt.screeningTest}}" classes="btn-review-item">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="cat-properties-label">Chemical process</div>
                                         <div class="cat-properties-item">
