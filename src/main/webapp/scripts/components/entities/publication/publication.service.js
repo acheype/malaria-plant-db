@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('malariaplantdbApp')
-    .factory('Publication', function ($resource, DateUtils) {
+    .factory('Publication', function ($resource) {
         return $resource('api/publications/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'sortedQuery': {method: 'GET', params: {sort: ['title,asc']}, isArray: true},

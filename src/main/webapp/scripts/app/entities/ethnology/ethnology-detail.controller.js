@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('malariaplantdbApp')
-    .controller('EthnologyDetailController', function ($scope, $rootScope, $stateParams, entity, Ethnology, Publication, PlantIngredient) {
+    .controller('EthnologyDetailController', function ($scope, $rootScope, $stateParams, entity, Ethnology, Publication) {
         $scope.ethnology = entity;
         $scope.load = function (id) {
             Ethnology.get({id: id}, function(result) {

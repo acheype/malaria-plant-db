@@ -15,11 +15,13 @@ angular.module('malariaplantdbApp')
                 rememberMe: $scope.rememberMe
             }).then(function () {
                 $scope.authenticationError = false;
-                if ($rootScope.previousStateName === 'register') {
-                    $state.go('home');
-                } else {
-                    $rootScope.back();
-                }
+                // to manage the bug that the navbar was not updated after the login, a reload was added and there
+                // is now only a single case which return to the home
+                //if ($rootScope.previousStateName === 'register') {
+                    $state.go('home', {}, {reload: true});
+                //} else {
+                //    $rootScope.back();
+                //}
             }).catch(function () {
                 $scope.authenticationError = true;
             });

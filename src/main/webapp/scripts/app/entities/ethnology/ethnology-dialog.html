@@ -9,36 +9,78 @@
     <div class="modal-body">
         <jh-alert-error></jh-alert-error>
         <div class="form-group">
-            <label for="id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
+            <label for="field_id">ID</label>
+            <input type="text" class="form-control" id="field_id" name="id"
                     ng-model="ethnology.id" disabled>
         </div>
         <div class="form-group">
             <label for="field_publication">Publication</label>
-            <select class="form-control" id="field_publication" name="publication" ng-model="ethnology.publication"
-                    ng-options="publication as publication.title for publication in publications track by publication.id"
-                required>
-            </select>
+            <input type="text" class="form-control" id="field_publication" name="publication"
+                   ng-model="ethnology.publication"
+                   uib-typeahead="publication as publication.title for publication in publications | filter:$viewValue"
+                   typeahead-editable="false">
+            <!--<select class="form-control" id="field_publication" name="publication"-->
+                    <!--ng-model="ethnology.publication"-->
+                    <!--ng-options="publication as publication.title for publication in publications track by publication.title"-->
+                <!--required>-->
+            <!--</select>-->
             <p class="help-block"
-               ng-show="editForm.publication.$error.required">
-                The list requires a value.
+               ng-show="editForm.publication.$invalid">
+                The field is required.
             </p>
         </div>
         <div class="form-group">
-            <label for="field_plantIngredient">Plant Ingredient(s)</label>
-            <select class="form-control" id="field_plantIngredient" multiple name="plantIngredient"
-                    ng-model="ethnology.remedies"
-                    ng-options="PlantIngredient as (PlantIngredient.species.family + '&nbsp;' + PlantIngredient.species.species + ',&nbsp;' + PlantIngredient.partUsed) for PlantIngredient in remedies track by PlantIngredient.id"
-                    required>
-            </select>
-            <div>
-                <p class="help-block" ng-show="editForm.plantIngredient.$error.required">
-                    The list requires one or several values to be selected.
-                </p>
-                <p class="help-block">
-                    You may add several plant ingredients or deselect a plant ingredient by holding down the Ctrl key.
+            <div class="label-fields">Remedy</div>
+            <div class="row">
+                <div class="col-xs-9 col-sm-9 col-md-6">
+                    <label for="field_species" class="sub-label">Species</label>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-4">
+                    <label for="field_partUsed" class="sub-label">Part used</label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-9 col-sm-9 col-md-6">
+                    <input type="text" class="form-control" id="field_species" name="species" ng-model="curSpecies"
+                           uib-typeahead="sp as sp.species for sp in species | filter:$viewValue"
+                           typeahead-editable="false">
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-4">
+                    <select class="form-control" id="field_partUsed" name="partUsed" ng-model="curPartUsed"
+                             ng-options="partUsed for partUsed in partUsedList">
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2">
+                    <button type="button" ng-click="addPlantIngredient(curSpecies, curPartUsed)" class="btn btn-info">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp;<span> Add</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <p class="col-xs-12 col-sm-12 col-md-12 help-block">
+                    For the remedy, you need to add one or several pairs : species/part used.
                 </p>
             </div>
+            <div class="sub-label">Current List</div>
+            <table ng-show="ethnology.remedy.plantIngredients.length" class="table table-striped">
+                <tbody>
+                    <tr ng-repeat="pi in ethnology.remedy.plantIngredients | orderBy: ['species', 'partUsed']">
+                        <td>{{pi.species.species}} / {{pi.partUsed}}</td>
+                        <td><button type="button" ng-click="removePlantIngredient(pi)"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                        </button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <input style="display: none;" type="number" name="plantIngredientsLength"
+                   ng-model="ethnology.remedy.plantIngredients.length" min="1">
+            <p ng-show="!ethnology.remedy.plantIngredients.length">The list is empty.</p>
+            <p class="help-block" ng-show="editForm.plantIngredientsLength.$invalid">
+                The list requires one or several values.
+            </p>
         </div>
         <div class="form-group">
             <label for="field_ethnoRelevancy">Ethno Relevancy</label>

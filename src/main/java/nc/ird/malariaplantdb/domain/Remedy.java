@@ -34,7 +34,7 @@ public class Remedy implements Serializable, Comparable<Remedy> {
     private Long id;
 
     @JsonIgnoreProperties(value = {"remedy"})
-    @OneToMany(mappedBy = "remedy", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "remedy", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @BatchSize(size = 100)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @SortNatural

@@ -109,8 +109,34 @@ $citation-font: 'EB Garamond';
     margin: 10px auto 10px auto;
 }
 
+.table {
+    //background-color: white;
+    //border: 1px solid $blue1;
+}
+
+table > thead > tr > th, table > tbody > tr > th, table > tfoot > tr > th, .table > thead > tr > th,
+.table > tbody > tr > th, .table > tfoot > tr > th  {
+    font-weight: bold;
+    color: $green;
+    border-bottom: 2px solid $green;
+}
+
+table > thead > tr > td, table > tbody > tr > td, table > tfoot > tr > td, .table > thead > tr > td,
+.table > tbody > tr > td, .table > tfoot > tr > td {
+    border-bottom: 1px solid $gray-lighter;
+}
+
+table > thead > tr:hover > td, table > tbody > tr:hover > td, table > tfoot > tr:hover > td,
+.table > thead > tr:hover > td, .table > tbody > tr:hover > td, .table > tfoot > tr:hover > td {
+    color: $green;
+}
+
 .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #fff;
+    background-color: white;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: $green-super-lighter;
 }
 
 [href^='mailto'] {
@@ -398,6 +424,21 @@ ul#strength {
     }
 }
 /* End of distributed footer */
+
+/* Forms part */
+
+.label-fields {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.sub-label {
+    font-size: $font-size-small;
+    font-weight: bolder;
+    color : $blue2;
+}
+
+/* En of forms part */
 
 /* Database part */
 

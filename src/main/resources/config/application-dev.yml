@@ -22,12 +22,12 @@ spring:
         driver-class-name: org.h2.jdbcx.JdbcDataSource
         url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
         name:
-        username: 
+        username:
         password:
     jpa:
         database-platform: nc.ird.malariaplantdb.domain.util.FixedH2Dialect
         database: H2
-        show_sql: true
+        show_sql: false
         properties:
             hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
@@ -59,6 +59,7 @@ server:
 # ===================================================================
 
 jhipster:
+
     cache: # Hibernate 2nd level cache, used by CacheConfiguration
         timeToLiveSeconds: 3600
         ehcache:
@@ -76,3 +77,9 @@ jhipster:
             host: localhost
             port: 2003
             prefix: malariaplantdb
+    security:
+            authentication:
+                xauth:
+                    secret: myXAuthSecret
+                    # Token is very long... in dev mod
+                    tokenValidityInSeconds: 200000

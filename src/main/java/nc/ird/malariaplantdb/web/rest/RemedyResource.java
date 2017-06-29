@@ -54,6 +54,8 @@ public class RemedyResource {
             return ResponseEntity.badRequest().header("Failure", "A new remedy cannot already have an ID").body(null);
         }
         Remedy result = remedyRepository.save(remedy);
+
+        remedy.getPlantIngredients().stream().forEach(pi -> pi.setRemedy(remedy));
         remedySearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/remedys/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("remedy", result.getId().toString()))
@@ -72,6 +74,8 @@ public class RemedyResource {
         if (remedy.getId() == null) {
             return createRemedy(remedy);
         }
+
+        remedy.getPlantIngredients().stream().forEach(pi -> pi.setRemedy(remedy));
         Remedy result = remedyRepository.save(remedy);
         remedySearchRepository.save(remedy);
         return ResponseEntity.ok()

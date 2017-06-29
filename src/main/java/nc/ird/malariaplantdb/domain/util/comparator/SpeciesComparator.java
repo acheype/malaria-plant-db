@@ -11,8 +11,7 @@ import java.util.Comparator;
  */
 public class SpeciesComparator implements Comparator<Species> {
 
-    private final static Comparator<Species> BY_SPECIES = Comparator.comparing(Species::getFamily)
-        .thenComparing(Species::getSpecies);
+    private final static Comparator<Species> BY_SPECIES = Comparator.comparing(Species::getSpecies);
 
     @Override
     public int compare(Species s1, Species s2) {

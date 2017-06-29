@@ -40,7 +40,7 @@ public class Ethnology implements Serializable, Comparable<Ethnology> {
     private Publication publication;
 
     @NotNull
-    @ManyToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Remedy remedy;
 
     @NotNull

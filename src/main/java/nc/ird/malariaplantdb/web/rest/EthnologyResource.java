@@ -54,6 +54,9 @@ public class EthnologyResource {
         if (ethnology.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new ethnology cannot already have an ID").body(null);
         }
+
+        if (ethnology.getRemedy() != null)
+            ethnology.getRemedy().getPlantIngredients().stream().forEach(pi -> pi.setRemedy(ethnology.getRemedy()));
         Ethnology result = ethnologyRepository.save(ethnology);
         ethnologySearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/ethnologies/" + result.getId()))
@@ -73,6 +76,9 @@ public class EthnologyResource {
         if (ethnology.getId() == null) {
             return createEthnology(ethnology);
         }
+
+        if (ethnology.getRemedy() != null)
+            ethnology.getRemedy().getPlantIngredients().stream().forEach(pi -> pi.setRemedy(ethnology.getRemedy()));
         Ethnology result = ethnologyRepository.save(ethnology);
         ethnologySearchRepository.save(ethnology);
         return ResponseEntity.ok()
