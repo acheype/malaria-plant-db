@@ -41,7 +41,7 @@ public class InVivoPharmaco implements Serializable, Comparable<InVivoPharmaco> 
     private Publication publication;
 
     @NotNull
-    @ManyToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Remedy remedy;
 
     @NotNull

@@ -48,6 +48,7 @@ angular.module('malariaplantdbApp')
         };
 
         $scope.clear = function () {
-            $scope.ethnology = {ethnoRelevancy: null, treatmentType: null, traditionalRecipeDetails: null, preparationMode: null, administrationRoute: null, id: null};
+            $scope.ethnology = {ethnoRelevancy: null, treatmentType: null, traditionalRecipeDetails: null,
+                preparationMode: null, administrationRoute: null, id: null, remedy: {id: null, plantIngredients: []}};
         };
     });

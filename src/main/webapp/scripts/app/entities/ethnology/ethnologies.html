@@ -53,7 +53,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Publication</th>
-                    <!--<th>Plant Ingredient(s)</th>-->
+                    <th>Remedy</th>
                     <th>Ethno Relevancy</th>
                     <th>Treatment Type</th>
                     <th>Traditional Recipe Details</th>
@@ -68,11 +68,12 @@
                     <td>
                         <a ui-sref="publication.detail({id:ethnology.publication.id})">{{ethnology.publication.title}}</a>
                     </td>
-                    <!--<td>-->
-                        <!--<span ng-repeat="plantIngredient in ethnology.remedies">-->
-                            <!--<a ui-sref="plantIngredient.detail({id: plantIngredient.id})">{{plantIngredient.species.family + '&nbsp;' + plantIngredient.species.species + ',&nbsp;' + plantIngredient.partUsed}}</a>{{$last ? '' : '&nbsp;/&nbsp;'}}-->
-                        <!--</span>-->
-                    <!--</td>-->
+                    <td>
+                        <span ng-show="ethnology.remedy" ng-repeat="pi in ethnology.remedy.plantIngredients">
+                            <a ui-sref="species.detail({id: pi.species.id})">
+                                {{pi.species.species}}</a>,&nbsp;{{pi.partUsed}}{{$last ? '' : '&nbsp;/&nbsp;'}}
+                        </span>
+                    </td>
                     <td>{{ethnology.ethnoRelevancy}}</td>
                     <td>{{ethnology.treatmentType}}</td>
                     <td>{{ethnology.traditionalRecipeDetails}}</td>

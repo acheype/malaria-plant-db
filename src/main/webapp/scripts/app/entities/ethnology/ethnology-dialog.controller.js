@@ -1,31 +1,21 @@
 'use strict';
 
 angular.module('malariaplantdbApp').controller('EthnologyDialogController',
-    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'Ethnology', 'Publication', 'Species',
-        function($scope, $stateParams, $uibModalInstance, entity, Ethnology, Publication, Species) {
+    ['$scope', '$rootScope', '$stateParams', '$uibModalInstance', 'entity', 'Ethnology', 'Publication', 'Species',
+        'Pitools', function($scope, $rootScope, $stateParams, $uibModalInstance, entity, Ethnology, Publication,
+                            Species, PiTools) {
 
         $scope.ethnology = entity;
         $scope.publications = Publication.sortedQuery();
         $scope.species = Species.sortedQuery();
-        $scope.partUsedList = ['Aerial part', 'Aerial part with flower', 'Aerial part with fruit', 'Bark', 'Bulb',
-            'Essential oil', 'Exsudate', 'Flower', 'Flower bud', 'Fruit', 'Heart wood', 'Inner bark', 'Latex', 'Leaf',
-            'Leaf bud', 'Leaf petiole', 'Other', 'Part not defined', 'Petal', 'Rhizom', 'Root', 'Root bark', 'Sap',
-            'Seed', 'Stem', 'Stem and leaf', 'Stem bark', 'Tendril', 'Whole plant'];
+        $scope.partUsedList = PiTools.partUsedList;
 
         $scope.curSpecies = null;
         $scope.curPartUsed = null;
 
-        $scope.containsPlantIngredient = function(species, partUsed, list) {
-            return list.filter(function(listItem) {
-                    return angular.equals(listItem.species, species) &&
-                        angular.equals(listItem.partUsed, partUsed)
-                }).length > 0;
-        };
-
-
         $scope.addPlantIngredient = function(curSpecies, curPartUsed){
             if (curSpecies && curPartUsed &&
-                    !$scope.containsPlantIngredient(curSpecies, curPartUsed, $scope.ethnology.remedy.plantIngredients)) {
+                    !PiTools.containsPlantIngredient(curSpecies, curPartUsed, $scope.ethnology.remedy.plantIngredients)) {
                 $scope.ethnology.remedy.plantIngredients.push({id: null, species: curSpecies, partUsed: curPartUsed});
                 $scope.curSpecies = null;
                 $scope.curPartUsed = null;

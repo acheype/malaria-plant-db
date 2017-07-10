@@ -54,6 +54,9 @@ public class InVivoPharmacoResource {
         if (inVivoPharmaco.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new inVivoPharmaco cannot already have an ID").body(null);
         }
+
+        if (inVivoPharmaco.getRemedy() != null)
+            inVivoPharmaco.getRemedy().getPlantIngredients().stream().forEach(pi -> pi.setRemedy(inVivoPharmaco.getRemedy()));
         InVivoPharmaco result = inVivoPharmacoRepository.save(inVivoPharmaco);
         inVivoPharmacoSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/inVivoPharmacos/" + result.getId()))

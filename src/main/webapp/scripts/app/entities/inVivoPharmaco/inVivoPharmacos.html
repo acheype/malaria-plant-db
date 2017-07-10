@@ -52,7 +52,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Publication</th>
-                    <th>Plant Ingredient(s)</th>
+                    <th>Remedy</th>
                     <th>Tested Entity</th>
                     <th>Extraction Solvent</th>
                     <th>Additive Product</th>
@@ -76,8 +76,9 @@
                         <a ui-sref="publication.detail({id:inVivoPharmaco.publication.id})">{{inVivoPharmaco.publication.title}}</a>
                     </td>
                     <td>
-                        <span ng-repeat="plantIngredient in inVivoPharmaco.remedies">
-                            <a ui-sref="plantIngredient.detail({id: plantIngredient.id})">{{plantIngredient.species.family + '&nbsp;' + plantIngredient.species.species + ',&nbsp;' + plantIngredient.partUsed}}</a>{{$last ? '' : '&nbsp;/&nbsp;'}}
+                        <span ng-show="inVivoPharmaco.remedy" ng-repeat="pi in inVivoPharmaco.remedy.plantIngredients">
+                            <a ui-sref="species.detail({id: pi.species.id})">
+                                {{pi.species.species}}</a>,&nbsp;{{pi.partUsed}}{{$last ? '' : '&nbsp;/&nbsp;'}}
                         </span>
                     </td>
                     <td>{{inVivoPharmaco.testedEntity}}</td>

@@ -54,6 +54,8 @@ public class InVitroPharmacoResource {
         if (inVitroPharmaco.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new inVitroPharmaco cannot already have an ID").body(null);
         }
+        if (inVitroPharmaco.getRemedy() != null)
+            inVitroPharmaco.getRemedy().getPlantIngredients().stream().forEach(pi -> pi.setRemedy(inVitroPharmaco.getRemedy()));
         InVitroPharmaco result = inVitroPharmacoRepository.save(inVitroPharmaco);
         inVitroPharmacoSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/inVitroPharmacos/" + result.getId()))
@@ -73,6 +75,8 @@ public class InVitroPharmacoResource {
         if (inVitroPharmaco.getId() == null) {
             return createInVitroPharmaco(inVitroPharmaco);
         }
+        if (inVitroPharmaco.getRemedy() != null)
+            inVitroPharmaco.getRemedy().getPlantIngredients().stream().forEach(pi -> pi.setRemedy(inVitroPharmaco.getRemedy()));
         InVitroPharmaco result = inVitroPharmacoRepository.save(inVitroPharmaco);
         inVitroPharmacoSearchRepository.save(inVitroPharmaco);
         return ResponseEntity.ok()

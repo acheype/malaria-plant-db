@@ -48,6 +48,9 @@ angular.module('malariaplantdbApp')
         };
 
         $scope.clear = function () {
-            $scope.inVitroPharmaco = {testedEntity: null, extractionSolvent: null, additiveProduct: null, compoundName: null, screeningTest: null, measureMethod: null, concentration: null, molConcentration: null, inhibition: null, ic50: null, molIc50: null, selectivityIndex: null, compilersObservations: null, id: null};
+            $scope.inVitroPharmaco = {testedEntity: null, extractionSolvent: null, additiveProduct: null,
+                compoundName: null, screeningTest: null, measureMethod: null, concentration: null,
+                molConcentration: null, inhibition: null, ic50: null, molIc50: null, selectivityIndex: null,
+                compilersObservations: null, id: null, remedy: {id: null, plantIngredients: []}};
         };
     });

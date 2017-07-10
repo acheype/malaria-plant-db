@@ -51,7 +51,11 @@ angular.module('malariaplantdbApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {testedEntity: null, extractionSolvent: null, additiveProduct: null, compoundName: null, screeningTest: null, measureMethod: null, concentration: null, molConcentration: null, inhibition: null, ic50: null, molIc50: null, selectivityIndex: null, compilersObservations: null, id: null};
+                                return {testedEntity: null, extractionSolvent: null, additiveProduct: null,
+                                    compoundName: null, screeningTest: null, measureMethod: null, concentration: null,
+                                    molConcentration: null, inhibition: null, ic50: null, molIc50: null,
+                                    selectivityIndex: null, compilersObservations: null, id: null, remedy: {id: null,
+                                        plantIngredients: []}};
                             }
                         }
                     }).result.then(function(result) {

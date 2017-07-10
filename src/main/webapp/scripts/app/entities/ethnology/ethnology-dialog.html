@@ -13,17 +13,13 @@
             <input type="text" class="form-control" id="field_id" name="id"
                     ng-model="ethnology.id" disabled>
         </div>
+
         <div class="form-group">
             <label for="field_publication">Publication</label>
             <input type="text" class="form-control" id="field_publication" name="publication"
                    ng-model="ethnology.publication"
                    uib-typeahead="publication as publication.title for publication in publications | filter:$viewValue"
                    typeahead-editable="false">
-            <!--<select class="form-control" id="field_publication" name="publication"-->
-                    <!--ng-model="ethnology.publication"-->
-                    <!--ng-options="publication as publication.title for publication in publications track by publication.title"-->
-                <!--required>-->
-            <!--</select>-->
             <p class="help-block"
                ng-show="editForm.publication.$invalid">
                 The field is required.
@@ -82,6 +78,7 @@
                 The list requires one or several values.
             </p>
         </div>
+
         <div class="form-group">
             <label for="field_ethnoRelevancy">Ethno Relevancy</label>
             <textarea class="form-control" rows="3" type="text" class="form-control" name="ethnoRelevancy"
