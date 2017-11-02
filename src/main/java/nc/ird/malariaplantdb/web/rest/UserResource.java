@@ -9,7 +9,6 @@ import nc.ird.malariaplantdb.repository.search.UserSearchRepository;
 import nc.ird.malariaplantdb.security.AuthoritiesConstants;
 import nc.ird.malariaplantdb.service.UserService;
 import nc.ird.malariaplantdb.web.rest.dto.ManagedUserDTO;
-import nc.ird.malariaplantdb.web.rest.dto.UserDTO;
 import nc.ird.malariaplantdb.web.rest.util.HeaderUtil;
 import nc.ird.malariaplantdb.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -27,11 +26,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing users.

@@ -1,7 +1,6 @@
 package nc.ird.malariaplantdb.security;
 
 import nc.ird.malariaplantdb.config.Constants;
-
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 

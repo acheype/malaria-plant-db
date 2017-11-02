@@ -2,7 +2,6 @@ package nc.ird.malariaplantdb.repository;
 
 import nc.ird.malariaplantdb.config.audit.AuditEventConverter;
 import nc.ird.malariaplantdb.domain.PersistentAuditEvent;
-
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.boot.actuate.audit.AuditEventRepository;
 import org.springframework.context.annotation.Bean;

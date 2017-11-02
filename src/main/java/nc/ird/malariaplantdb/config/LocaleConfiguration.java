@@ -1,7 +1,6 @@
 package nc.ird.malariaplantdb.config;
 
 import nc.ird.malariaplantdb.config.locale.AngularCookieLocaleResolver;
-
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.MessageSource;

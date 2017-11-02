@@ -2,6 +2,7 @@ package nc.ird.malariaplantdb.domain;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nc.ird.malariaplantdb.domain.util.comparator.CompilerComparator;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
@@ -122,8 +123,12 @@ public class Compiler implements Serializable, Comparable<Compiler> {
 
         Compiler compiler = (Compiler) o;
 
-        return Objects.equals(id, compiler.id);
+        if (id == null && compiler.id == null)
+            return EqualsBuilder.reflectionEquals(this, compiler);
 
+        if ( ! Objects.equals(id, compiler.id)) return false;
+
+        return true;
     }
 
     @Override

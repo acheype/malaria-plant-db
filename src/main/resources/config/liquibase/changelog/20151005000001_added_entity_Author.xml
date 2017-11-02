@@ -29,6 +29,9 @@
                 <constraints nullable="false" />
             </column>
             <column name="given" type="varchar(255)"/>
+            <column name="position" type="int">
+                <constraints nullable="false" />
+            </column>
         </createTable>
 
     </changeSet>

@@ -4,12 +4,14 @@ import nc.ird.malariaplantdb.domain.Ethnology;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Spring Data JPA repository for the Ethnology entity.
  */
+@Repository
 public interface EthnologyRepository extends JpaRepository<Ethnology,Long> {
 
     List<Ethnology> findByPublicationId(Long id);

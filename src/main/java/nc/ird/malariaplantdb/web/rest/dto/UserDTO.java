@@ -2,10 +2,11 @@ package nc.ird.malariaplantdb.web.rest.dto;
 
 import nc.ird.malariaplantdb.domain.Authority;
 import nc.ird.malariaplantdb.domain.User;
-
 import org.hibernate.validator.constraints.Email;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Set;
 import java.util.stream.Collectors;
 /**

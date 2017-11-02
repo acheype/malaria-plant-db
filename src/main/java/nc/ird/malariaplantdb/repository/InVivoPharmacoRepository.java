@@ -4,12 +4,14 @@ import nc.ird.malariaplantdb.domain.InVivoPharmaco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Spring Data JPA repository for the InVivoPharmaco entity.
  */
+@Repository
 public interface InVivoPharmacoRepository extends JpaRepository<InVivoPharmaco,Long> {
 
     List<InVivoPharmaco> findByPublicationId(Long id);

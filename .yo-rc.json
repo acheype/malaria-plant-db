@@ -1,25 +1,25 @@
 {
-  "generator-jhipster": {
-    "baseName": "malariaplantdb",
-    "packageName": "nc.ird.malariaplantdb",
-    "packageFolder": "nc/ird/malariaplantdb",
-    "authenticationType": "xauth",
-    "hibernateCache": "ehcache",
-    "clusteredHttpSession": "no",
-    "websocket": "no",
-    "databaseType": "sql",
-    "devDatabaseType": "h2Memory",
-    "prodDatabaseType": "postgresql",
-    "searchEngine": "elasticsearch",
-    "useSass": true,
-    "buildTool": "maven",
-    "frontendBuilder": "grunt",
-    "javaVersion": "8",
-    "enableTranslation": false,
-    "rememberMeKey": "cb0f037ff3c3646f9796359f3916f7e654f33744",
-    "enableSocialSignIn": false,
-    "testFrameworks": [
-      "gatling"
-    ]
-  }
+    "generator-jhipster": {
+        "baseName": "malariaplantdb",
+        "packageName": "nc.ird.malariaplantdb",
+        "packageFolder": "nc/ird/malariaplantdb",
+        "authenticationType": "xauth",
+        "hibernateCache": "ehcache",
+        "clusteredHttpSession": "no",
+        "websocket": "no",
+        "databaseType": "sql",
+        "devDatabaseType": "h2Memory",
+        "prodDatabaseType": "postgresql",
+        "searchEngine": "elasticsearch",
+        "useSass": true,
+        "buildTool": "maven",
+        "frontendBuilder": "grunt",
+        "javaVersion": "8",
+        "enableTranslation": false,
+        "rememberMeKey": "cb0f037ff3c3646f9796359f3916f7e654f33744",
+        "enableSocialSignIn": false,
+        "testFrameworks": [
+            "gatling"
+        ]
+    }
 }

@@ -1,15 +1,16 @@
 package nc.ird.malariaplantdb.repository;
 
 import nc.ird.malariaplantdb.domain.PersistentAuditEvent;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 
 /**
  * Spring Data JPA repository for the PersistentAuditEvent entity.
  */
+@Repository
 public interface PersistenceAuditEventRepository extends JpaRepository<PersistentAuditEvent, Long> {
 
     List<PersistentAuditEvent> findByPrincipal(String principal);

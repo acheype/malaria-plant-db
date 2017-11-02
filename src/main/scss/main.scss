@@ -115,7 +115,7 @@ $citation-font: 'EB Garamond';
 }
 
 table > thead > tr > th, table > tbody > tr > th, table > tfoot > tr > th, .table > thead > tr > th,
-.table > tbody > tr > th, .table > tfoot > tr > th  {
+.table > tbody > tr > th, .table > tfoot > tr > th {
     font-weight: bold;
     color: $green;
     border-bottom: 2px solid $green;
@@ -206,7 +206,7 @@ table > thead > tr:hover > td, table > tbody > tr:hover > td, table > tfoot > tr
 
 /* make sure browsers use the pointer cursor for anchors, even with no href */
 a:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .hand {
@@ -239,32 +239,34 @@ a:hover {
 
 /* start Password strength bar style */
 ul#strength {
-    display:inline;
-    list-style:none;
-    margin:0;
-    margin-left:15px;
-    padding:0;
-    vertical-align:2px;
+    display: inline;
+    list-style: none;
+    margin: 0;
+    margin-left: 15px;
+    padding: 0;
+    vertical-align: 2px;
 }
 
 .point:last {
-    margin:0 !important;
+    margin: 0 !important;
 }
+
 .point {
-    background:#DDD;
-    border-radius:2px;
-    display:inline-block;
-    height:5px;
-    margin-right:1px;
-    width:20px;
+    background: #DDD;
+    border-radius: 2px;
+    display: inline-block;
+    height: 5px;
+    margin-right: 1px;
+    width: 20px;
 }
+
 /* end Password strength bar style */
 /* Custom alerts for notification */
-.alerts .alert{
+.alerts .alert {
     text-overflow: ellipsis;
 }
 
-.alert pre{
+.alert pre {
     background: none;
     border: none;
     font: inherit;
@@ -272,6 +274,7 @@ ul#strength {
     padding: 0;
     margin: 0;
 }
+
 /* end of Custom alerts for notification */
 
 /* round buttons for icons */
@@ -423,6 +426,7 @@ ul#strength {
         margin: 0 auto 20px;
     }
 }
+
 /* End of distributed footer */
 
 /* Forms part */
@@ -435,7 +439,7 @@ ul#strength {
 .sub-label {
     font-size: $font-size-small;
     font-weight: bolder;
-    color : $blue2;
+    color: $blue2;
 }
 
 /* En of forms part */
@@ -443,8 +447,8 @@ ul#strength {
 /* Database part */
 
 .pub-length {
-    padding : 10px 0px;
-    color : $blue2;
+    padding: 10px 0px;
+    color: $blue2;
     font-style: italic;
 }
 
@@ -476,13 +480,14 @@ ul#strength {
     border-left: 5px solid $green;
 }
 
-.ingredients-item table td { //TODO adjust
-    padding : 5px 5px 0 5px;
+.ingredients-item table td {
+    //TODO adjust
+    padding: 5px 5px 0 5px;
 }
 
 .ingredients-item-details {
-    vertical-align:middle;
-    font-size:large;
+    vertical-align: middle;
+    font-size: large;
 }
 
 @media (max-width: 767px) {
@@ -538,7 +543,7 @@ ul#strength {
     font-size: $font-size-small;
 }
 
-.cat-test-tag{
+.cat-test-tag {
     background-color: black;
     color: $gray-dark;
     font-size: $font-size-small;
@@ -549,7 +554,7 @@ ul#strength {
 }
 
 @media (max-width: 767px) {
-    .cat-test-tag-block{
+    .cat-test-tag-block {
         display: block;
     }
 }
@@ -579,13 +584,13 @@ h3 small {
     color: $gray-base;
 }
 
-.publication-label{
+.publication-label {
     font-weight: bolder;
     font-size: $font-size-small;
-    color : $blue2;
+    color: $blue2;
 }
 
-.review-label{
+.review-label {
     font-weight: bolder;
     color: $blue2;
     margin-top: 20px;
@@ -593,16 +598,18 @@ h3 small {
     font-size: $font-size-large;
 }
 
-.btn-review-item{
+.btn-review-item {
     padding: 5px 2px;
 }
+
 .nav-pills > li.btn-review-item > a {
     padding: 8px 10px;
     font-size: $font-size-smaller;
 }
+
 .nav-pills > .active.btn-review-item > a,
 .nav-pills > .active.btn-review-item > a:hover,
-.nav-pills > .active.btn-review-item > a:focus{
+.nav-pills > .active.btn-review-item > a:focus {
     background-color: $green-super-lighter;
     color: $green;
     font-weight: bold;
@@ -653,6 +660,7 @@ h3 small {
 }
 
 .right-buffer {
-    margin-right : 10px;
+    margin-right: 10px;
 }
+
 /* End of database part */

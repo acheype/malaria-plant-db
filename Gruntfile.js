@@ -4,10 +4,10 @@ var fs = require('fs');
 
 var parseString = require('xml2js').parseString;
 // Returns the second occurence of the version number
-var parseVersionFromPomXml = function() {
+var parseVersionFromPomXml = function () {
     var version;
     var pomXml = fs.readFileSync('pom.xml', "utf8");
-    parseString(pomXml, function (err, result){
+    parseString(pomXml, function (err, result) {
         version = result.project.version[0];
     });
     return version;
@@ -16,8 +16,8 @@ var parseVersionFromPomXml = function() {
 // usemin custom step
 var useminAutoprefixer = {
     name: 'autoprefixer',
-    createConfig: function(context, block) {
-        if(block.src.length === 0) {
+    createConfig: function (context, block) {
+        if (block.src.length === 0) {
             return {};
         } else {
             return require('grunt-usemin/lib/config/cssmin').createConfig(context, block); // Reuse cssmins createConfig
@@ -101,7 +101,7 @@ module.exports = function (grunt) {
         browserSync: {
             dev: {
                 bsFiles: {
-                    src : [
+                    src: [
                         'src/main/webapp/**/*.html',
                         'src/main/webapp/scripts/**/*.html',
                         'src/main/webapp/**/*.json',
@@ -185,9 +185,9 @@ module.exports = function (grunt) {
                             js: ['concat', 'uglifyjs'],
                             css: ['cssmin', useminAutoprefixer] // Let cssmin concat files so it corrects relative paths to fonts and images
                         },
-                            post: {}
-                        }
+                        post: {}
                     }
+                }
             }
         },
         usemin: {
@@ -227,7 +227,7 @@ module.exports = function (grunt) {
         cssmin: {
             // src and dest is configured in a subtask called "generated" by usemin
         },
-        ngtemplates:    {
+        ngtemplates: {
             dist: {
                 cwd: 'src/main/webapp',
                 src: ['scripts/app/**/*.html', 'scripts/components/**/*.html'],
@@ -271,7 +271,7 @@ module.exports = function (grunt) {
                     cwd: 'src/main/webapp',
                     dest: '<%= yeoman.dist %>/assets/fonts',
                     src: [
-                      'bower_components/bootstrap/fonts/*.*'
+                        'bower_components/bootstrap/fonts/*.*'
                     ]
                 }]
             },
@@ -297,11 +297,11 @@ module.exports = function (grunt) {
                 }]
             },
             generateOpenshiftDirectory: {
-                    expand: true,
-                    dest: 'deploy/openshift',
-                    src: [
-                        'pom.xml',
-                        'src/main/**'
+                expand: true,
+                dest: 'deploy/openshift',
+                src: [
+                    'pom.xml',
+                    'src/main/**'
                 ]
             }
         },

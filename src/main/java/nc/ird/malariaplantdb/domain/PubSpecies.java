@@ -40,7 +40,7 @@ public class PubSpecies implements Serializable, Comparable<PubSpecies> {
 
     @NotNull
     @ManyToOne
-    private Species species;
+    private Species species = new Species();
 
     @NotNull
     @Size(max = 255)

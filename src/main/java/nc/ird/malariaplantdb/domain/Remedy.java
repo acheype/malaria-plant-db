@@ -3,6 +3,7 @@ package nc.ird.malariaplantdb.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nc.ird.malariaplantdb.domain.util.comparator.RemedyComparator;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -67,8 +68,12 @@ public class Remedy implements Serializable, Comparable<Remedy> {
 
         Remedy remedy = (Remedy) o;
 
-        return Objects.equals(id, remedy.id);
+        if (id == null && remedy.id == null)
+            return EqualsBuilder.reflectionEquals(this, remedy);
 
+        if ( ! Objects.equals(id, remedy.id)) return false;
+
+        return true;
     }
 
     @Override

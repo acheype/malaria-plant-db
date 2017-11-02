@@ -30,7 +30,7 @@ import java.util.TreeSet;
 @Entity
 @JsonPropertyOrder({"id", "entryType", "authors", "year", "title", "journal", "pages", "volume", "nbOfVolumes",
     "number", "bookTitle", "publisher", "edition", "conferenceName", "conferencePlace", "university", "institution",
-    "doi", "pmid", "isbn", "url", "isReviewed", "compilers", "compilersNotes", "pubSpecies", "ethnologies",
+    "doi", "pmid", "isbn", "url", "compilers", "compilersNotes", "pubSpecies", "ethnologies",
     "inVivoPharmacos", "inVitroPharmacos", "citation"})
 @Table(name = "publication", uniqueConstraints = @UniqueConstraint(columnNames = {"title"},
     name = "uk_publication_title"))

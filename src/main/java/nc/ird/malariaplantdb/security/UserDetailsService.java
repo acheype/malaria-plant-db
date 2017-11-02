@@ -1,6 +1,5 @@
 package nc.ird.malariaplantdb.security;
 
-import nc.ird.malariaplantdb.domain.Authority;
 import nc.ird.malariaplantdb.domain.User;
 import nc.ird.malariaplantdb.repository.UserRepository;
 import org.slf4j.Logger;

@@ -2,11 +2,13 @@ package nc.ird.malariaplantdb.domain;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nc.ird.malariaplantdb.domain.util.comparator.AuthorComparator;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -47,6 +49,10 @@ public class Author implements Serializable, Comparable<Author> {
     @Column(name = "given", length = 255)
     private String given;
 
+    @Min(value = 1)
+    @Column(name= "position", nullable = false)
+    private int position;
+
     public Long getId() {
         return id;
     }
@@ -75,6 +81,14 @@ public class Author implements Serializable, Comparable<Author> {
         return given;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     public void setGiven(String given) {
         this.given = given;
     }
@@ -90,8 +104,12 @@ public class Author implements Serializable, Comparable<Author> {
 
         Author author = (Author) o;
 
-        return Objects.equals(id, author.id);
+        if (id == null && author.id == null)
+            return EqualsBuilder.reflectionEquals(this, author);
 
+        if ( ! Objects.equals(id, author.id)) return false;
+
+        return true;
     }
 
     @Override
@@ -105,6 +123,7 @@ public class Author implements Serializable, Comparable<Author> {
             "id=" + id +
             ", family='" + family + "'" +
             ", given='" + given + "'" +
+            ", postion='" + position + "'" +
             '}';
     }
 

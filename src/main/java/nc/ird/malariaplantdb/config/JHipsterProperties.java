@@ -1,8 +1,8 @@
 package nc.ird.malariaplantdb.config;
 
-import javax.validation.constraints.NotNull;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Properties specific to JHipster.

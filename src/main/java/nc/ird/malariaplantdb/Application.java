@@ -2,7 +2,6 @@ package nc.ird.malariaplantdb;
 
 import nc.ird.malariaplantdb.config.Constants;
 import nc.ird.malariaplantdb.config.JHipsterProperties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

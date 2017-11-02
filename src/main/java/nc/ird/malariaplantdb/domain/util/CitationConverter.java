@@ -62,6 +62,7 @@ public class CitationConverter implements Converter<Publication, String> {
     }
 
     private CSLItemData buildJournalArticleItem(Publication pub) {
+
         return new CSLItemDataBuilder()
             .type(CSLType.ARTICLE_JOURNAL)
             .title(pub.getTitle())
@@ -79,6 +80,7 @@ public class CitationConverter implements Converter<Publication, String> {
     }
 
     private CSLItemData buildBookItem(Publication pub) {
+
         return new CSLItemDataBuilder()
             .type(CSLType.BOOK)
             .title(pub.getTitle())
@@ -96,6 +98,7 @@ public class CitationConverter implements Converter<Publication, String> {
     }
 
     private CSLItemData buildConferencePaperItem(Publication pub){
+
         return new CSLItemDataBuilder()
             .type(CSLType.PAPER_CONFERENCE)
             .title(pub.getTitle())
@@ -113,6 +116,7 @@ public class CitationConverter implements Converter<Publication, String> {
     }
 
     private CSLItemData buildChapterItem(Publication pub) {
+
         return new CSLItemDataBuilder()
             .type(CSLType.CHAPTER)
             .title(pub.getTitle())
@@ -132,6 +136,7 @@ public class CitationConverter implements Converter<Publication, String> {
     }
 
     private CSLItemData buildThesisItem(Publication pub) {
+
         return new CSLItemDataBuilder()
             .type(CSLType.THESIS)
             .title(pub.getTitle())
@@ -146,6 +151,7 @@ public class CitationConverter implements Converter<Publication, String> {
     }
 
     private CSLItemData buildTechReportItem(Publication pub) {
+
         return new CSLItemDataBuilder()
             .type(CSLType.REPORT)
             .title(pub.getTitle())
@@ -160,4 +166,5 @@ public class CitationConverter implements Converter<Publication, String> {
             .URL(pub.getUrl())
             .build();
     }
+
 }

@@ -1,8 +1,8 @@
 package nc.ird.malariaplantdb.web.rest.dto;
 
-import java.time.ZonedDateTime;
-
 import nc.ird.malariaplantdb.domain.User;
+
+import java.time.ZonedDateTime;
 
 /**
  * A DTO extending the UserDTO, which is meant to be used in the user management UI.

@@ -1,7 +1,6 @@
 package nc.ird.malariaplantdb.aop.logging;
 
 import nc.ird.malariaplantdb.config.Constants;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;

@@ -2,6 +2,7 @@ package nc.ird.malariaplantdb.domain;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nc.ird.malariaplantdb.domain.util.comparator.PlantIngredientComparator;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -91,8 +92,12 @@ public class PlantIngredient implements Serializable, Comparable<PlantIngredient
 
         PlantIngredient plantIngredient = (PlantIngredient) o;
 
-        return Objects.equals(id, plantIngredient.id);
+        if (id == null && plantIngredient.id == null)
+            return EqualsBuilder.reflectionEquals(this, plantIngredient);
 
+        if ( ! Objects.equals(id, plantIngredient.id)) return false;
+
+        return true;
     }
 
     @Override

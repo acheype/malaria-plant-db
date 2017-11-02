@@ -2,6 +2,7 @@ package nc.ird.malariaplantdb.domain;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nc.ird.malariaplantdb.domain.util.comparator.SpeciesComparator;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -77,8 +78,12 @@ public class Species implements Serializable, Comparable<Species> {
 
         Species species = (Species) o;
 
-        return Objects.equals(id, species.id);
+        if (id == null && species.id == null)
+            return EqualsBuilder.reflectionEquals(this, species);
 
+        if ( ! Objects.equals(id, species.id)) return false;
+
+        return true;
     }
 
     @Override
