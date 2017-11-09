@@ -126,7 +126,7 @@ public class ExcelLoader {
 
                         if (filler.getResultError() != null)
                             loaderResult.getCellErrors().add(xlsFillerErrorToCellError((XlsFillerError) filler
-                                    .getResultError(), sheetInfo, i));
+                                    .getResultError(), sheetInfo, Arrays.asList(refInfo.getDtoProperties()) , i));
                     }
                 }
             }
@@ -315,7 +315,8 @@ public class ExcelLoader {
         return true;
     }
 
-    private CellError xlsFillerErrorToCellError(XlsFillerError xlsFillerError, SheetInfo sheetInfo, int i)
+    private CellError xlsFillerErrorToCellError(XlsFillerError xlsFillerError, SheetInfo sheetInfo, List<String>
+        dtoProperties, int i)
             throws IllegalArgumentException {
 
         SheetInfo refSheetInfo = sheetInfos.stream()
@@ -336,11 +337,26 @@ public class ExcelLoader {
         // xlsFillerError.getXlsEntityRefProperties().size == xlsFillerError.getPropVals().size() (verified in the
         // filler)
         StringBuilder valuesMap = new StringBuilder();
+        StringBuilder columnLabels = new StringBuilder();
+
         for (int j = 0; j < xlsFillerError.getXlsEntityRefProperties().size(); j++) {
-            valuesMap.append(xlsFillerError.getXlsEntityRefPropertiesLabels().get(j)).append(" = '")
+            if (xlsFillerError.getPropVals().values().toArray()[j] != null) {
+                if (j != 0) {
+                    valuesMap.append(", ");
+                    columnLabels.append(",");
+                }
+                valuesMap.append(xlsFillerError.getXlsEntityRefPropertiesLabels().get(j)).append(" = '")
                     .append(xlsFillerError.getPropVals().values().toArray()[j]).append("'");
-            if (j != xlsFillerError.getPropVals().size() - 1)
-                valuesMap.append(", ");
+            }
+        }
+
+        ArrayList<String> dtoColumnLabels = new ArrayList<>();
+        for (String dtoProperty : dtoProperties){
+            ColumnInfo columnInfo = sheetInfo.getColumnInfoByDtoProperty(dtoProperty);
+            if (columnInfo == null)
+                throw new IllegalArgumentException(String.format("Impossible to find the dtoProperty in a column of " +
+                    "the '%s' sheet", sheetInfo.getSheetLabel()));
+            else dtoColumnLabels.add(columnInfo.getColumnLabel());
         }
 
         return new CellError(
@@ -353,9 +369,7 @@ public class ExcelLoader {
                         valuesMap),
                 sheetInfo.getSheetLabel(),
                 sheetInfo.getStartRow() + i,
-                xlsFillerError.getPropVals().keySet().stream()
-                        .map(dtoProp -> sheetInfo.getColumnInfoByDtoProperty(dtoProp).getColumnLabel())
-                        .collect(Collectors.joining(", ")));
+                dtoColumnLabels.stream().collect(Collectors.joining(", ")));
     }
 
     private CellError dbFillerErrorToCellError(DbFillerError dbFillerError, SheetInfo sheetInfo, int i) {
@@ -372,9 +386,8 @@ public class ExcelLoader {
                         (propVal));
                 else {
                     StringBuilder curValue = new StringBuilder((String) propsBeforeTransformer.get(columnInfo
-                        .getColumnLabel()));
-                    propsBeforeTransformer.put(columnInfo.getColumnLabel(), curValue.append(", ").append(dbFillerError.getPropVals().get
-                        (propVal)));
+                        .getColumnLabel())).append(", ").append(dbFillerError.getPropVals().get(propVal));
+                    propsBeforeTransformer.put(columnInfo.getColumnLabel(), curValue.toString());
                 }
             }
         }

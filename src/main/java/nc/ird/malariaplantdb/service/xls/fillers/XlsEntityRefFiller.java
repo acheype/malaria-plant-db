@@ -1,5 +1,6 @@
 package nc.ird.malariaplantdb.service.xls.fillers;
 
+import nc.ird.malariaplantdb.service.xls.exceptions.ImportRuntimeException;
 import nc.ird.malariaplantdb.service.xls.fillers.errors.FillerError;
 import nc.ird.malariaplantdb.service.xls.fillers.errors.XlsFillerError;
 import nc.ird.malariaplantdb.service.xls.fillers.util.EqualsStrategy;
@@ -30,8 +31,8 @@ public class XlsEntityRefFiller extends EntityRefFiller {
 
         if (getXlsRefEntityProperties().size() != propValsSearched.size())
             throw new IllegalArgumentException(String.format("The xlsEntityRefProperties must have the same number of" +
-                    " properties than the dtoProperties (if a dtoPropertiesTransformer is specified, after its " +
-                            "application). They have respectively these values : [%s] and [%s]",
+                    " properties than the dtoProperties (after its application if a dtoPropertiesTransformer is " +
+                    "specified). They have respectively these values : [%s] and [%s]",
                     xlsRefEntityProperties.stream().collect(Collectors.joining(", ")),
                     propValsSearched.keySet().stream().collect(Collectors.joining(", "))));
 
@@ -40,8 +41,10 @@ public class XlsEntityRefFiller extends EntityRefFiller {
         for (Object curRefEntity : getXlsRefEntities()) {
             PropVals refPropVals = new PropVals();
 
-            for (String refProp : getXlsRefEntityProperties())
-                refPropVals.put(refProp, PropertyUtils.getProperty(curRefEntity, refProp));
+            for (String refProp : getXlsRefEntityProperties()){
+                Object value = PropertyUtils.getProperty(curRefEntity, refProp);
+                refPropVals.put(refProp, value);
+            }
 
             if (compareWithFillerEqualsStrategy(propValsSearched, refPropVals)) {
                 result.add(curRefEntity);

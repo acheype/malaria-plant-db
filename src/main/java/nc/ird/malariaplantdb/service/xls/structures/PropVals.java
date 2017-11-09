@@ -3,6 +3,7 @@ package nc.ird.malariaplantdb.service.xls.structures;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * <p>Ordered list of the tuple (Property name, Value)</p>
@@ -42,7 +43,7 @@ public class PropVals extends LinkedHashMap<String, Object>{
 //                if (!oStrVal.trim().toLowerCase().equals(thisStrVal.trim().toLowerCase()))
 //                    return false;
 //            } else
-            if (!oCurEntry.getValue().equals(thisCurEntry.getValue()))
+            if (!Objects.equals(oCurEntry.getValue(), thisCurEntry.getValue()))
                 return false;
         }
         return true;

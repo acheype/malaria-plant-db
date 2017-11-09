@@ -17,7 +17,7 @@ import java.util.Objects;
 
 /**
  * Author entity
- * <p/>
+ *
  * For institutional and other single names, only the family name could be entered.
  *
  * @author : acheype

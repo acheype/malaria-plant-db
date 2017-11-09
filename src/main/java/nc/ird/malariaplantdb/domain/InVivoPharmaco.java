@@ -16,7 +16,7 @@ import java.util.Objects;
 
 /**
  * In vivo pharmacology entity
- * <p/>
+ *
  * Represents for the plant ingredients of a publication the relevant data in in vivo pharmacology
  *
  * @author acheype

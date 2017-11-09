@@ -42,7 +42,12 @@ public class SpeciesEntitiesTransformer extends EntitiesTransformer implements A
             if (alreadyDefinedSp.isPresent())
                 pubSp.setSpecies(alreadyDefinedSp.get());
 
-            speciesSet.add(pubSp.getSpecies());
+            // find the corresponding entity when a species with the same attribute is already inserted
+            Optional<Species> sameSp = speciesSet.stream().filter(sp -> sp.equals(pubSp.getSpecies()))
+                .findAny();
+            if (sameSp.isPresent())
+                pubSp.setSpecies(sameSp.get());
+            else speciesSet.add(pubSp.getSpecies());
         }
         entitiesMap.putList(Species.class, new ArrayList<Species>(speciesSet));
     }

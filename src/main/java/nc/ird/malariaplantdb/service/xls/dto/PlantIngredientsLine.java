@@ -2,6 +2,7 @@ package nc.ird.malariaplantdb.service.xls.dto;
 
 import lombok.Data;
 import nc.ird.malariaplantdb.domain.PubSpecies;
+import nc.ird.malariaplantdb.domain.Publication;
 import nc.ird.malariaplantdb.service.xls.annotations.ImportDto;
 import nc.ird.malariaplantdb.service.xls.annotations.ImportProperty;
 import nc.ird.malariaplantdb.service.xls.annotations.PropertyLoader;
@@ -20,6 +21,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Data
 @ImportDto(sheetLabel = "3 - PLANT INGREDIENTS", importOrder = 3, outputEntityClass = PlantIngredientsTemp.class,
         xlsEntityRef = {
+            @XlsEntityRef(
+                dtoProperties = {"publication"},
+                xlsEntityRefType = Publication.class,
+                xlsEntityRefProperties = {"title"},
+                xlsEntityRefPropertiesLabels = {"Title"},
+                filler = XlsEntityRefFiller.class,
+                outputProperty = "publication",
+                dtoPropertiesTransformer = StringNormalizer.class
+            ),
             @XlsEntityRef(
                 dtoProperties = {"publication", "species1"},
                 dtoPropertiesTransformer = StringNormalizer.class,

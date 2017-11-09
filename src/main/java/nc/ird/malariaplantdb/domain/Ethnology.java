@@ -16,7 +16,7 @@ import java.util.Objects;
 
 /**
  * Ethnology entity
- * <p/>
+ *
  * Represents for the plant ingredients of a publication the relevant data in ethnology
  *
  * @author acheype

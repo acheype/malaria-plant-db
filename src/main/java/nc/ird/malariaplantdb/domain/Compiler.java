@@ -19,7 +19,7 @@ import java.util.Objects;
 
 /**
  * Compiler entity
- * <p/>
+ *
  * Must have a family and a given name. Email is mandatory.
  * A compiler can not to be bounded to a publication yet
  *

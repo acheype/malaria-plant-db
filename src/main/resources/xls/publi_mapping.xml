@@ -102,29 +102,29 @@
             </loopbreakcondition>
         </loop>
     </worksheet>
-    <!--<worksheet name="4 - ETHNO">-->
-        <!--<section startRow="0" endRow="0">-->
-        <!--</section>-->
-        <!--<loop startRow="1" endRow="1" items="EthnologyLine" var="ethnology"-->
-              <!--varType="nc.ird.malariaplantdb.service.xls.dto.EthnologyLine">-->
-            <!--<section startRow="1" endRow="1">-->
-                <!--<mapping row="1" col="0">ethnology.publication</mapping>-->
-                <!--<mapping row="1" col="1">ethnology.plantIngredients</mapping>-->
-                <!--<mapping row="1" col="2">ethnology.ethnoRelevancy</mapping>-->
-                <!--<mapping row="1" col="3">ethnology.treatmentType</mapping>-->
-                <!--<mapping row="1" col="4">ethnology.traditionalRecipeDetails</mapping>-->
-                <!--<mapping row="1" col="5">ethnology.preparationMode</mapping>-->
-                <!--<mapping row="1" col="6">ethnology.administrationRoute</mapping>-->
-            <!--</section>-->
-            <!--<loopbreakcondition>-->
-                <!--<rowcheck offset="0">-->
-                    <!--<cellcheck offset="0"/>-->
-                    <!--<cellcheck offset="1"/>-->
-                    <!--<cellcheck offset="2"/>-->
-                <!--</rowcheck>-->
-            <!--</loopbreakcondition>-->
-        <!--</loop>-->
-    <!--</worksheet>-->
+    <worksheet name="4 - ETHNO">
+        <section startRow="0" endRow="0">
+        </section>
+        <loop startRow="1" endRow="1" items="EthnologyLine" var="ethnology"
+              varType="nc.ird.malariaplantdb.service.xls.dto.EthnologyLine">
+            <section startRow="1" endRow="1">
+                <mapping row="1" col="0">ethnology.publication</mapping>
+                <mapping row="1" col="1">ethnology.plantIngredients</mapping>
+                <mapping row="1" col="2">ethnology.ethnoRelevancy</mapping>
+                <mapping row="1" col="3">ethnology.treatmentType</mapping>
+                <mapping row="1" col="4">ethnology.traditionalRecipeDetails</mapping>
+                <mapping row="1" col="5">ethnology.preparationMode</mapping>
+                <mapping row="1" col="6">ethnology.administrationRoute</mapping>
+            </section>
+            <loopbreakcondition>
+                <rowcheck offset="0">
+                    <cellcheck offset="0"/>
+                    <cellcheck offset="1"/>
+                    <cellcheck offset="2"/>
+                </rowcheck>
+            </loopbreakcondition>
+        </loop>
+    </worksheet>
     <!--<worksheet name="5 - IN VIVO PHARMACO">-->
     <!--<section startRow="0" endRow="0">-->
     <!--</section>-->

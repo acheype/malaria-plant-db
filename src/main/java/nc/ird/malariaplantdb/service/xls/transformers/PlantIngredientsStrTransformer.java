@@ -31,7 +31,7 @@ public class PlantIngredientsStrTransformer implements Transformer {
             PropVals resultPropVals = new PropVals();
 
             PropVals dtoPropVals = (PropVals) o;
-            resultPropVals.put("publication", dtoPropVals.get("publication"));
+            resultPropVals.put("publication.title", dtoPropVals.get("publication"));
 
             Pattern pattern = Pattern.compile(PLANT_INGREDIENTS_REGEXP);
             String plantIngredientStr = (String) dtoPropVals.get("plantIngredients");
@@ -42,12 +42,14 @@ public class PlantIngredientsStrTransformer implements Transformer {
                 String species = matcher.group(1);
                 String partUsed = matcher.group(2);
 
-                // use a point then an ID because for errors, it will take the part until the point to have a link to
-                // the column name
                 Transformer transformer = new StringNormalizer();
-                resultPropVals.put("sp" + i, transformer.transform(species));
-                resultPropVals.put("part" + i, transformer.transform(partUsed));
+                resultPropVals.put("plantIngredient" + i + ".species.species", transformer.transform(species));
+                resultPropVals.put("plantIngredient" + i + ".part", transformer.transform(partUsed));
                 i++;
+            }
+            for (int j = i; j <= 10; j++){
+                resultPropVals.put("plantIngredient" + j + ".species.species", null);
+                resultPropVals.put("plantIngredient" + j + ".part", null);
             }
 
             if (resultPropVals.size() <= 1) {

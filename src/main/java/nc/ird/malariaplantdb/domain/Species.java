@@ -17,6 +17,8 @@ import java.util.Objects;
 /**
  * Species entity
  *
+ * The same object will be used when two species has the same family and species names.
+ *
  * @author acheype
  */
 @Entity

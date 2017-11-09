@@ -16,8 +16,11 @@ import java.util.Objects;
 
 /**
  * Plant ingredient entity
- * <p/>
- * Represent a part of a mix referred in a publication
+ *
+ * Represent a part of a mix referred in a publication.
+ *
+ * Unlike for species, a new object is created when a plant ingredient has the same species and same partUsed (the
+ * remedy differs)
  *
  * @author acheype
  */

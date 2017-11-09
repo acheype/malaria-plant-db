@@ -29,7 +29,9 @@ public @interface DbEntityRef {
      * @return the transformer which applies on all {@code dtoIdentifierProperties} values before to be find a
      * matching entity (by default an no-operation transformer). The transformer have to receive a{@code PropVals}
      * object and return a list of{@code PropVals} (if the list contains several{@code PropVals}, the filler will search for
-     * a collection of entity)
+     * a collection of entity). For error messages, to refer as a correct column label in the source sheet in case of
+     * errors, the PropVals keys used in the transformer must be as 'dtoProperty.name1', 'dtoProperty.names2'...
+     * (dtoProperty corresponding to this source sheet column)
      */
     public Class<? extends Transformer> dtoPropertiesTransformer() default NOPTransformer.class;
 
@@ -54,6 +56,5 @@ public @interface DbEntityRef {
      * @return the transformer which modify the entities map after all the filling of this property
      */
     Class<? extends EntitiesTransformer> afterFillingTransformer() default NOPEntitiesTransformer.class;
-
 
 }

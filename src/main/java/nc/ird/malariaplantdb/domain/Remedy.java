@@ -19,7 +19,11 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * A Remedy.
+ * A Remedy entity.
+ *
+ * A remedy couldn't have twice a plant ingredient with the same species and partUsed.
+ * Furthermore, for different publications, a new remedy is always created even if the plantIngredient list is the
+ * same.
  */
 @Entity
 @JsonPropertyOrder({"id", "plantIngredients"})

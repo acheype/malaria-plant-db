@@ -87,11 +87,11 @@ public class ImportResource {
         List<PubSpecies> pubSpecies = entities.getList(PubSpecies.class);
         pubSpecies.forEach(pubSpeciesRepo::save);
 
-        List<PlantIngredient> plantIngredients = entities.getList(PlantIngredient.class);
-        plantIngredients.forEach(plantIngredientRepo::save);
-
         List<Remedy> remedies = entities.getList(Remedy.class);
         remedies.forEach(remedyRepo::save);
+
+        List<PlantIngredient> plantIngredients = entities.getList(PlantIngredient.class);
+        plantIngredients.forEach(plantIngredientRepo::save);
 
         List<Ethnology> ethnoNotes = entities.getList(Ethnology.class);
         ethnoNotes.forEach(ethnologyRepo::save);

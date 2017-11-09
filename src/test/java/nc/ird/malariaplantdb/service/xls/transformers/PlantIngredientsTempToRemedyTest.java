@@ -14,7 +14,7 @@ import java.util.SortedSet;
  *
  * @author acheype
  */
-public class PlantIngredientsTempToSetTest {
+public class PlantIngredientsTempToRemedyTest {
 
     @Test
     @SuppressWarnings("unchecked")
@@ -40,7 +40,7 @@ public class PlantIngredientsTempToSetTest {
         plantIngredients.setPlantIngredient6(pi3);
         plantIngredients.setPlantIngredient8(pi);
 
-        PlantIngredientsTempToSet transformer = new PlantIngredientsTempToSet();
+        PlantIngredientsTempToRemedy transformer = new PlantIngredientsTempToRemedy();
         SortedSet<PlantIngredient> piSet = (SortedSet<PlantIngredient>) transformer.transform(plantIngredients);
 
         Assertions.assertThat(piSet).hasSize(2);
@@ -53,7 +53,7 @@ public class PlantIngredientsTempToSetTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testTransformException() {
-        PlantIngredientsTempToSet transformer = new PlantIngredientsTempToSet();
+        PlantIngredientsTempToRemedy transformer = new PlantIngredientsTempToRemedy();
         transformer.transform("test");
     }
 
