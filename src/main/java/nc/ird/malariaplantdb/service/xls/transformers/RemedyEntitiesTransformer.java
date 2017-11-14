@@ -2,7 +2,6 @@ package nc.ird.malariaplantdb.service.xls.transformers;
 
 import nc.ird.malariaplantdb.domain.PlantIngredient;
 import nc.ird.malariaplantdb.domain.Remedy;
-import nc.ird.malariaplantdb.domain.Species;
 import nc.ird.malariaplantdb.service.xls.dto.PlantIngredientsTemp;
 import nc.ird.malariaplantdb.service.xls.exceptions.ImportRuntimeException;
 import nc.ird.malariaplantdb.service.xls.structures.ClassMap;
@@ -11,7 +10,6 @@ import org.apache.commons.beanutils.PropertyUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.TreeSet;
 
 /**
@@ -36,6 +34,9 @@ public class RemedyEntitiesTransformer extends EntitiesTransformer {
                 remedies.add(remedy);
                 remedy.getPlantIngredients().forEach(plantIngredients::add);
             }
+            // save the remedy for the references from other entities
+            plantIngredientsTemp.setRemedy(remedy);
+
         }
         entitiesMap.putList(PlantIngredient.class, plantIngredients);
         entitiesMap.putList(Remedy.class, remedies);

@@ -24,7 +24,7 @@
                         class="glyphicon glyphicon-new-window"/>&nbsp;URL</a></span>
                 </div>
             </div>
-            <div class="row top-little-buffer">
+            <div class="row top-little-buffer" ng-if="keys(pub.remedies).length">
                 <div class="col-xs-12 col-sm-12 col-md-12"><span
                     class="ingredients-label">Remed{{keys(pub.remedies).length > 1 ? "ies" : "y"}} and tests</span>,
                     <span class="country-label">Country</span>:

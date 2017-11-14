@@ -1,11 +1,11 @@
 package nc.ird.malariaplantdb.service.xls.dto;
 
 import groovy.transform.ToString;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import nc.ird.malariaplantdb.domain.PlantIngredient;
 import nc.ird.malariaplantdb.domain.Publication;
+import nc.ird.malariaplantdb.domain.Remedy;
 import nc.ird.malariaplantdb.domain.Species;
 
 /**
@@ -41,6 +41,8 @@ public class PlantIngredientsTemp {
     private PlantIngredient plantIngredient9 = new PlantIngredient();
 
     private PlantIngredient plantIngredient10 = new PlantIngredient();
+
+    private Remedy remedy;
 
     public PlantIngredientsTemp() {
         plantIngredient1 = new PlantIngredient();

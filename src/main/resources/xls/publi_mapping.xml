@@ -125,66 +125,66 @@
             </loopbreakcondition>
         </loop>
     </worksheet>
-    <!--<worksheet name="5 - IN VIVO PHARMACO">-->
-    <!--<section startRow="0" endRow="0">-->
-    <!--</section>-->
-    <!--<loop startRow="1" endRow="1" items="InVivoPharmacoLine" var="inVivoPharmaco"-->
-    <!--varType="nc.ird.malariaplantdb.service.xls.dto.InVivoPharmacoLine">-->
-    <!--<section startRow="1" endRow="1">-->
-    <!--<mapping row="1" col="0">inVivoPharmaco.publication</mapping>-->
-    <!--<mapping row="1" col="1">inVivoPharmaco.plantIngredients</mapping>-->
-    <!--<mapping row="1" col="2">inVivoPharmaco.testedEntity</mapping>-->
-    <!--<mapping row="1" col="3">inVivoPharmaco.extractionSolvent</mapping>-->
-    <!--<mapping row="1" col="4">inVivoPharmaco.additiveProduct</mapping>-->
-    <!--<mapping row="1" col="5">inVivoPharmaco.compoundName</mapping>-->
-    <!--<mapping row="1" col="6">inVivoPharmaco.screeningTest</mapping>-->
-    <!--<mapping row="1" col="7">inVivoPharmaco.treatmentRoute</mapping>-->
-    <!--<mapping row="1" col="8">inVivoPharmaco.dose</mapping>-->
-    <!--<mapping row="1" col="9">inVivoPharmaco.inhibition</mapping>-->
-    <!--<mapping row="1" col="10">inVivoPharmaco.survivalPercent</mapping>-->
-    <!--<mapping row="1" col="11">inVivoPharmaco.survivalTime</mapping>-->
-    <!--<mapping row="1" col="12">inVivoPharmaco.ed50</mapping>-->
-    <!--<mapping row="1" col="13">inVivoPharmaco.ld50</mapping>-->
-    <!--<mapping row="1" col="14">inVivoPharmaco.compilersObservations</mapping>-->
-    <!--</section>-->
-    <!--<loopbreakcondition>-->
-    <!--<rowcheck offset="0">-->
-    <!--<cellcheck offset="0"/>-->
-    <!--<cellcheck offset="1"/>-->
-    <!--<cellcheck offset="2"/>-->
-    <!--</rowcheck>-->
-    <!--</loopbreakcondition>-->
-    <!--</loop>-->
-    <!--</worksheet>-->
-    <!--<worksheet name="6 - IN VITRO PHARMACO">-->
-    <!--<section startRow="0" endRow="0">-->
-    <!--</section>-->
-    <!--<loop startRow="1" endRow="1" items="InVitroPharmacoLine" var="inVitroPharmaco"-->
-    <!--varType="nc.ird.malariaplantdb.service.xls.dto.InVitroPharmacoLine">-->
-    <!--<section startRow="1" endRow="1">-->
-    <!--<mapping row="1" col="0">inVitroPharmaco.publication</mapping>-->
-    <!--<mapping row="1" col="1">inVitroPharmaco.plantIngredients</mapping>-->
-    <!--<mapping row="1" col="2">inVitroPharmaco.testedEntity</mapping>-->
-    <!--<mapping row="1" col="3">inVitroPharmaco.extractionSolvent</mapping>-->
-    <!--<mapping row="1" col="4">inVitroPharmaco.additiveProduct</mapping>-->
-    <!--<mapping row="1" col="5">inVitroPharmaco.compoundName</mapping>-->
-    <!--<mapping row="1" col="6">inVitroPharmaco.screeningTest</mapping>-->
-    <!--<mapping row="1" col="7">inVitroPharmaco.measureMethod</mapping>-->
-    <!--<mapping row="1" col="8">inVitroPharmaco.concentration</mapping>-->
-    <!--<mapping row="1" col="9">inVitroPharmaco.molConcentration</mapping>-->
-    <!--<mapping row="1" col="10">inVivoPharmaco.inhibition</mapping>-->
-    <!--<mapping row="1" col="11">inVivoPharmaco.ic50</mapping>-->
-    <!--<mapping row="1" col="12">inVivoPharmaco.molIc50</mapping>-->
-    <!--<mapping row="1" col="13">inVivoPharmaco.selectivityIndex</mapping>-->
-    <!--<mapping row="1" col="14">inVivoPharmaco.compilersObservations</mapping>-->
-    <!--</section>-->
-    <!--<loopbreakcondition>-->
-    <!--<rowcheck offset="0">-->
-    <!--<cellcheck offset="0"/>-->
-    <!--<cellcheck offset="1"/>-->
-    <!--<cellcheck offset="2"/>-->
-    <!--</rowcheck>-->
-    <!--</loopbreakcondition>-->
-    <!--</loop>-->
-    <!--</worksheet>-->
+    <worksheet name="5 - IN VIVO PHARMACO">
+        <section startRow="0" endRow="0">
+        </section>
+        <loop startRow="1" endRow="1" items="InVivoPharmacoLine" var="inVivoPharmaco"
+              varType="nc.ird.malariaplantdb.service.xls.dto.InVivoPharmacoLine">
+            <section startRow="1" endRow="1">
+                <mapping row="1" col="0">inVivoPharmaco.publication</mapping>
+                <mapping row="1" col="1">inVivoPharmaco.plantIngredients</mapping>
+                <mapping row="1" col="2">inVivoPharmaco.testedEntity</mapping>
+                <mapping row="1" col="3">inVivoPharmaco.extractionSolvent</mapping>
+                <mapping row="1" col="4">inVivoPharmaco.additiveProduct</mapping>
+                <mapping row="1" col="5">inVivoPharmaco.compoundName</mapping>
+                <mapping row="1" col="6">inVivoPharmaco.screeningTest</mapping>
+                <mapping row="1" col="7">inVivoPharmaco.treatmentRoute</mapping>
+                <mapping row="1" col="8" nullAllowed="true">inVivoPharmaco.dose</mapping>
+                <mapping row="1" col="9" nullAllowed="true">inVivoPharmaco.inhibition</mapping>
+                <mapping row="1" col="10" nullAllowed="true">inVivoPharmaco.survivalPercent</mapping>
+                <mapping row="1" col="11" nullAllowed="true">inVivoPharmaco.survivalTime</mapping>
+                <mapping row="1" col="12" nullAllowed="true">inVivoPharmaco.ed50</mapping>
+                <mapping row="1" col="13" nullAllowed="true">inVivoPharmaco.ld50</mapping>
+                <mapping row="1" col="14">inVivoPharmaco.compilersObservations</mapping>
+            </section>
+            <loopbreakcondition>
+                <rowcheck offset="0">
+                    <cellcheck offset="0"/>
+                    <cellcheck offset="1"/>
+                    <cellcheck offset="2"/>
+                </rowcheck>
+            </loopbreakcondition>
+        </loop>
+    </worksheet>
+    <worksheet name="6 - IN VITRO PHARMACO">
+        <section startRow="0" endRow="0">
+        </section>
+        <loop startRow="1" endRow="1" items="InVitroPharmacoLine" var="inVitroPharmaco"
+              varType="nc.ird.malariaplantdb.service.xls.dto.InVitroPharmacoLine">
+            <section startRow="1" endRow="1">
+                <mapping row="1" col="0">inVitroPharmaco.publication</mapping>
+                <mapping row="1" col="1">inVitroPharmaco.plantIngredients</mapping>
+                <mapping row="1" col="2">inVitroPharmaco.testedEntity</mapping>
+                <mapping row="1" col="3">inVitroPharmaco.extractionSolvent</mapping>
+                <mapping row="1" col="4">inVitroPharmaco.additiveProduct</mapping>
+                <mapping row="1" col="5">inVitroPharmaco.compoundName</mapping>
+                <mapping row="1" col="6">inVitroPharmaco.screeningTest</mapping>
+                <mapping row="1" col="7">inVitroPharmaco.measureMethod</mapping>
+                <mapping row="1" col="8" nullAllowed="true">inVitroPharmaco.concentration</mapping>
+                <mapping row="1" col="9" nullAllowed="true">inVitroPharmaco.molConcentration</mapping>
+                <mapping row="1" col="10" nullAllowed="true">inVitroPharmaco.inhibition</mapping>
+                <mapping row="1" col="11" nullAllowed="true">inVitroPharmaco.ic50</mapping>
+                <mapping row="1" col="12" nullAllowed="true">inVitroPharmaco.molIc50</mapping>
+                <mapping row="1" col="13" nullAllowed="true">inVitroPharmaco.selectivityIndex</mapping>
+                <mapping row="1" col="14">inVitroPharmaco.compilersObservations</mapping>
+            </section>
+            <loopbreakcondition>
+                <rowcheck offset="0">
+                    <cellcheck offset="0"/>
+                    <cellcheck offset="1"/>
+                    <cellcheck offset="2"/>
+                </rowcheck>
+            </loopbreakcondition>
+        </loop>
+    </worksheet>
 </workbook>

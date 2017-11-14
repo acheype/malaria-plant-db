@@ -68,12 +68,17 @@ public class ExcelETL {
         importStatus = new ImportStatus();
     }
 
-    public void startImportProcess(InputStream xlsDataInputStream) throws ImportException {
+    public void checkDataForImport(InputStream xlsDataInputStream) throws ImportException {
         readXlsFile(xlsDataInputStream);
         checkDtos();
+        importStatus.setCheckDone(true);
+    }
+
+    public void startImportProcess() throws ImportException {
         if (getImportStatus().isStatusOK()) {
             loadDtos();
-        }
+        } else throw new ImportException("The data must be check (function checkDataForImport) and mustn't result any " +
+                "error (importStatus.isStatusOK() == true)");
     }
 
     private void readXlsFile(InputStream xlsDataInputStream) throws ImportException {
@@ -81,21 +86,18 @@ public class ExcelETL {
         ExcelReader.ReaderResult readerResult = excelReader.read(xlsDataInputStream);
         getImportStatus().getReadErrors().addAll(readerResult.getCellErrors());
         dtosMap = readerResult.getDtosMap();
-        // TODO need to sort the read errors
     }
 
     private void checkDtos() {
         ExcelChecker excelChecker = new ExcelChecker(getSheetInfos());
         getImportStatus().getBusinessErrors().addAll(excelChecker.checkBusinessRules(dtosMap));
-        // TODO sort the business errors
     }
 
     private void loadDtos() {
         ExcelLoader excelLoader = new ExcelLoader(getSheetInfos());
         ExcelLoader.LoaderResult loaderResult = excelLoader.loadEntities(dtosMap);
         getImportStatus().getIntegrityErrors().addAll(loaderResult.getCellErrors());
-        // TODO sort the integrity errors
-        //getImportStatus().getIntegrityErrors().stream().sorted()
+
         entitiesMap = loaderResult.getEntitiesMap();
     }
 
@@ -178,6 +180,10 @@ public class ExcelETL {
             }
         }
         return columnInfos;
+    }
+
+    public ClassMap getDtosMap() {
+        return dtosMap;
     }
 
     public ClassMap getEntitiesMap() {

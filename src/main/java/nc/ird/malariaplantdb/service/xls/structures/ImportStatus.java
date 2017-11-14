@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 @ToString
 public class ImportStatus {
 
+    boolean checkDone = false;
+
     private List<CellError> readErrors = new ArrayList<>();
 
     private List<CellError> businessErrors = new ArrayList<>();
@@ -28,7 +30,10 @@ public class ImportStatus {
     }
 
     public boolean isStatusOK() {
-        return readErrors.isEmpty() && businessErrors.isEmpty() && integrityErrors.isEmpty();
+        return checkDone && readErrors.isEmpty() && businessErrors.isEmpty() && integrityErrors.isEmpty();
     }
 
+    public void setCheckDone(boolean checkDone) {
+        this.checkDone = checkDone;
+    }
 }
