@@ -18,10 +18,13 @@ import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.inject.Inject;
 import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,12 +101,13 @@ public class ImportResource {
 
     @Transactional
     @RequestMapping(value = "/import",
-        method = RequestMethod.GET,
+        method = RequestMethod.POST,
+        headers = "content-type=multipart/form-data",
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ImportStatus importEntitiesFromXls() throws ImportException {
-        ExcelETL etl = new ExcelETL("nc.ird.malariaplantdb.service.xls.dto", "/xls/publi_mapping.xml");
+    public ImportStatus importEntitiesFromXls(@RequestParam("file") MultipartFile file) throws ImportException, IOException {
+        ExcelETL etl = new ExcelETL("nc.ird.malariaplantdb.service.xls.dto", "/xls/xls_import_mapping.xml");
 
-        InputStream excelInput = new BufferedInputStream(getClass().getResourceAsStream("/xls/publi_test.xlsm"));
+        InputStream excelInput = new BufferedInputStream(file.getInputStream());
 
         etl.checkDataForImport(excelInput);
 

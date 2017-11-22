@@ -1,6 +1,7 @@
 package nc.ird.malariaplantdb.service.xls;
 
 import lombok.extern.slf4j.Slf4j;
+import nc.ird.malariaplantdb.domain.Publication;
 import nc.ird.malariaplantdb.service.xls.annotations.DbEntityRef;
 import nc.ird.malariaplantdb.service.xls.annotations.ImportDto;
 import nc.ird.malariaplantdb.service.xls.annotations.ImportProperty;
@@ -79,6 +80,8 @@ public class ExcelETL {
             loadDtos();
         } else throw new ImportException("The data must be check (function checkDataForImport) and mustn't result any " +
                 "error (importStatus.isStatusOK() == true)");
+
+        getImportStatus().setImportedPubNb(entitiesMap.getList(Publication.class).size());
     }
 
     private void readXlsFile(InputStream xlsDataInputStream) throws ImportException {

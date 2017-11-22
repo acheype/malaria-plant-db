@@ -10,7 +10,7 @@ $bootstrap-sass-asset-helper: false !default;
 $gray-base: #000 !default;
 $gray-darker: #222 !default;
 $gray-dark: #34825e !default;
-$gray: #40ff3b !default;
+$gray: lighten(#F39C12, 12%) !default;//#40ff3b !default;
 $gray-light: lighten($gray, 15%);
 // #b4bcc2
 $gray-lighter: lighten($gray-light, 20%) !default;

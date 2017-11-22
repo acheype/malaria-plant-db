@@ -1,0 +1,48 @@
+<div class="container well">
+
+    <h2>Data Importation</h2>
+
+    <div class="alerts" ng-cloak="">
+        <uib-alert ng-cloak="">
+                <pre class="alert-danger" ng-if="errorResponse && errorResponse.status != 200">
+                    The following error occurs (status {{errorResponse.status}}) :<br>
+                    &nbsp;&nbsp;&nbsp;- <em>Error type</em> : {{errorResponse.data.error}}<br>
+                    &nbsp;&nbsp;&nbsp;- <em>Message</em> : {{errorResponse.data.message}}<br>
+                    &nbsp;&nbsp;&nbsp;- <em>Exception</em> : {{errorResponse.data.exception}}<br>
+                </pre>
+        </uib-alert>
+    </div>
+
+    <br>
+    <form name="importForm" role="form" novalidate ng-submit="process()" show-validation>
+        <div class="top-buffer">Please select the Malaria Plant DB entry workbook you want to import (Excel file with the .xlsm
+            extension).</div>
+
+        <div class="file-container">
+            <!-- "'vnd.ms-excel.sheet.macroEnabled.12'"-->
+            <button type="file" ngf-select name="file" ng-model="file"
+                    accept=".xlsm"
+                    ngf-accept="'.xlsm'"
+                    ngf-pattern="'*.xlsm'" ngf-max-size="20MB"
+                    class="btn btn-default">
+                <span class="glyphicon glyphicon-file"></span>&nbsp;<span>{{file.name ? file.name : "Choose a file..."}}</span>
+            </button>
+        </div>
+
+        <p class="help-block top-buffer" ng-show="importForm.file.$error.pattern">
+            The selected file has not the .xlsm extension. Please select a new one.
+        </p>
+        <p class="help-block top-buffer" ng-show="importForm.file.$error.maxSize">
+            The file has a bigger size than 20 Mo. Please select a smaller one.
+        </p>
+
+        <div ng-if="file.name && importForm.$valid" class="top-big-buffer">
+            You can now start the importation (it could last few tens of seconds).
+            <div class="file-container">
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-import"></span>&nbsp;<span>Import</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

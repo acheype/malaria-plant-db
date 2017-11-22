@@ -1,5 +1,6 @@
 package nc.ird.malariaplantdb.service.xls.structures;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @ToString
 public class ImportStatus {
 
+    @JsonIgnore
     boolean checkDone = false;
 
     private List<CellError> readErrors = new ArrayList<>();
@@ -24,6 +26,8 @@ public class ImportStatus {
     private List<CellError> businessErrors = new ArrayList<>();
 
     private List<CellError> integrityErrors = new ArrayList<>();
+
+    private Integer importedPubNb = 0;
 
     public List<CellError> getReadErrorsBySheet(@NonNull String sheet) {
         return readErrors.stream().filter(e -> sheet.equals(e.getSheet())).collect(Collectors.toList());
@@ -35,5 +39,9 @@ public class ImportStatus {
 
     public void setCheckDone(boolean checkDone) {
         this.checkDone = checkDone;
+    }
+
+    public void setImportedPubNb(Integer importedPubNb) {
+        this.importedPubNb = importedPubNb;
     }
 }

@@ -379,6 +379,10 @@ ul#strength {
     margin-right: 15px;
 }
 
+.footer-distributed .footer-centre {
+    text-align: center;
+}
+
 .footer-distributed .footer-centre > span {
     display: inline-block;
     vertical-align: top;
@@ -408,6 +412,13 @@ ul#strength {
     font-size: $font-size-small;
 }
 
+@media (min-width: 992px) {
+    // hack for the ird logo stay at the right (and doesn't go to the next line)
+    .footer-distributed .footer-right {
+        width: 32%;
+    }
+}
+
 @media (max-width: 767px) {
 
     .footer-distributed .row > div {
@@ -423,6 +434,7 @@ ul#strength {
 
 @media (min-width: 768px) and (max-width: 991px) {
     .footer-distributed .row > div {
+        text-align: center;
         margin: 0 auto 20px;
     }
 }
@@ -487,7 +499,7 @@ ul#strength {
 
 .ingredients-item-details {
     vertical-align: middle;
-    font-size: large;
+    font-size: $font-size-large;
 }
 
 @media (max-width: 767px) {
@@ -664,3 +676,21 @@ h3 small {
 }
 
 /* End of database part */
+
+/* Import part */
+.file-container {
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.congratulation {
+    padding: 30px 0px 30px 0px;
+    font-size: $font-size-large;
+    color: $green;
+}
+
+.import-error {
+    margin: 10px 0px 20px 0px;
+    color: $red2;
+}
+/* End of import part */

@@ -1,12 +1,21 @@
 # robotstxt.org/
 
 User-agent: *
-Disallow: /api/account
+Disallow: /api/account/
 Disallow: /api/account/change_password
 Disallow: /api/account/sessions
 Disallow: /api/audits/
 Disallow: /api/logs/
 Disallow: /api/users/
+Disallow: /api/import/
+Disallow: /api/authors/
+Disallow: /api/compilers/
+Disallow: /api/inVivoPharmacos/
+Disallow: /api/inVitroPharmacos/
+Disallow: /api/plantIngredients/
+Disallow: /api/publications/
+Disallow: /api/pubSpecies/
+Disallow: /api/remedies/
 Disallow: /metrics/
 Disallow: /health/
 Disallow: /trace/

@@ -1,0 +1,104 @@
+<div class="container well">
+    <div ng-cloak>
+        <h2>Data Importation results</h2><br>
+
+        <div ng-if="importStatus.statusOK" class="congratulation">
+            Congratulation, you have imported all the data associated to {{importStatus.importedPubNb}} publications !
+        </div>
+
+        <div ng-if="!importStatus.statusOK" class="import-error">
+            The importation script have detected {{importStatus.readErrors.length + importStatus.businessErrors.length +
+            importStatus.integrityErrors.length}} error{{importStatus.readErrors.length + importStatus.businessErrors.length +
+            importStatus.integrityErrors.length > 1 ? "s" : ""}}. Please refer to the corresponding cell and fix it.
+        </div>
+
+        <div ng-if="importStatus.readErrors.length">
+            <h4>Read error list</h4>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Sheet</th>
+                            <th>Line</th>
+                            <th>Column</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="error in importStatus.readErrors">
+                        <td>{{error.sheet}}</td>
+                        <td>{{error.line}}</td>
+                        <td>{{error.column}}</td>
+                        <td><div style="display: inline-block;"
+                                 uib-popover-placement="top" uib-popover="TEST">
+                                {{error.message}}</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div ng-if="importStatus.businessErrors.length">
+            <h4>Business error list</h4>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Sheet</th>
+                        <th>Line</th>
+                        <th>Column</th>
+                        <th>Message</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="error in importStatus.businessErrors">
+                        <td>{{error.sheet}}</td>
+                        <td>{{error.line}}</td>
+                        <td>{{error.column}}</td>
+                        <td>{{error.message}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div ng-if="importStatus.integrityErrors.length" >
+            <h4>Reference error list</h4>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Sheet</th>
+                        <th>Line</th>
+                        <th>Column</th>
+                        <th>Message</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="error in importStatus.integrityErrors">
+                        <td>{{error.sheet}}</td>
+                        <td>{{error.line}}</td>
+                        <td>{{error.column}}</td>
+                        <td>{{error.message}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br>
+
+        <button ng-if="importStatus.statusOK" type="button" ui-sref="database" class="btn btn-info btn-sm">
+            <span class="glyphicon glyphicon-grain"></span>&nbsp;View the database</span>
+        </button>
+
+        <button ng-if="!importStatus.statusOK" type="button" ui-sref="import" class="btn btn-info btn-sm">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;Go back to file selection</span>
+        </button>
+
+    </div>
+</div>
