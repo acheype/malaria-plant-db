@@ -20,12 +20,10 @@ public class HeaderUtil {
     }
 
     public static HttpHeaders createEntityUpdateAlert(String entityName, String param) {
-        return createAlert(String.format("A " + entityName + " is updated with identifier '%s', param)" + param),
-            param);
+        return createAlert(String.format("A " + entityName + " is updated with identifier '%s'", param),  param);
     }
 
     public static HttpHeaders createEntityDeletionAlert(String entityName, String param) {
-        return createAlert(String.format("A " + entityName + " is deleted with identifier '%s', param)" + param),
-            param);
+        return createAlert(String.format("A " + entityName + " is deleted with identifier '%s'", param), param);
     }
 }

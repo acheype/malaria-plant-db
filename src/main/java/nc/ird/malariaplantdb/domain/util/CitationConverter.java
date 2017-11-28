@@ -6,6 +6,7 @@ import de.undercouch.citeproc.csl.CSLItemDataBuilder;
 import de.undercouch.citeproc.csl.CSLName;
 import de.undercouch.citeproc.csl.CSLType;
 import nc.ird.malariaplantdb.domain.Publication;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.converter.Converter;
@@ -19,7 +20,7 @@ public class CitationConverter implements Converter<Publication, String> {
 
     private final Logger log = LoggerFactory.getLogger(CitationConverter.class);
 
-    public static final String CSL_STYLE = "apa";
+    public static final String CSL_STYLE = "jep-with-bold-title";
 
     @Override
     public String convert(Publication pub) {
@@ -53,7 +54,10 @@ public class CitationConverter implements Converter<Publication, String> {
         }
 
         try {
-            return CSL.makeAdhocBibliography(CSL_STYLE, "text", item).makeString();
+            String htmlTxt = CSL.makeAdhocBibliography(CSL_STYLE, "html", item).makeString();
+            // remove the 2 div containing the citation
+            return StringUtils.substringBetween(htmlTxt, "<div class=\"csl-bib-body\">\n  <div class=\"csl-entry\">",
+                "</div>\n</div>");
         } catch (Exception e) {
             log.error("Impossible to convert the citation with citeproc, publication ID is : {}, exception is: {}",
                 pub.getId(), e.getMessage());

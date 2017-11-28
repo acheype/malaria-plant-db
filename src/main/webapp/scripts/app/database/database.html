@@ -7,7 +7,7 @@
         <div class="pub-item" ng-repeat="pub in pubSummaries">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                    <span class="pub-citation">{{pub.citation}}</span>
+                    <span class="pub-citation" ng-bind-html="pub.citation"/>
                 </div>
             </div>
             <div class="row">

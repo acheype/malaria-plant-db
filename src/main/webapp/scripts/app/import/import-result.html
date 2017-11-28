@@ -2,6 +2,9 @@
     <div ng-cloak>
         <h2>Data Importation results</h2><br>
 
+        <div>
+            Excel file name : <strong>{{filename}}</strong>
+        </div>
         <div ng-if="importStatus.statusOK" class="congratulation">
             Congratulation, you have imported all the data associated to {{importStatus.importedPubNb}} publications !
         </div>
@@ -13,7 +16,7 @@
         </div>
 
         <div ng-if="importStatus.readErrors.length">
-            <h4>Read error list</h4>
+            <h5>Read error list</h5>
 
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -41,7 +44,7 @@
         </div>
 
         <div ng-if="importStatus.businessErrors.length">
-            <h4>Business error list</h4>
+            <h5>Business error list</h5>
 
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -66,7 +69,7 @@
         </div>
 
         <div ng-if="importStatus.integrityErrors.length" >
-            <h4>Reference error list</h4>
+            <h5>Reference error list</h5>
 
             <div class="table-responsive">
                 <table class="table table-striped">

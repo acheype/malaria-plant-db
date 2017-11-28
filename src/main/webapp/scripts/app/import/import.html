@@ -8,7 +8,7 @@
                     The following error occurs (status {{errorResponse.status}}) :<br>
                     &nbsp;&nbsp;&nbsp;- <em>Error type</em> : {{errorResponse.data.error}}<br>
                     &nbsp;&nbsp;&nbsp;- <em>Message</em> : {{errorResponse.data.message}}<br>
-                    &nbsp;&nbsp;&nbsp;- <em>Exception</em> : {{errorResponse.data.exception}}<br>
+                    &nbsp;&nbsp;&nbsp;- <em>Exception</em> : {{errorResponse.data.exception}}
                 </pre>
         </uib-alert>
     </div>
@@ -42,6 +42,7 @@
                 <button type="submit" class="btn btn-primary">
                     <span class="glyphicon glyphicon-import"></span>&nbsp;<span>Import</span>
                 </button>
+                <img ng-if="loadingImage" src="assets/images/loader.gif" class="little-loader">
             </div>
         </div>
     </form>

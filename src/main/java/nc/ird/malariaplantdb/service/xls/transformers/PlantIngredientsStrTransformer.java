@@ -29,9 +29,10 @@ public class PlantIngredientsStrTransformer implements Transformer {
                     "PropVals object as input. It gots this object instead : '%s'", o));
         } else {
             PropVals resultPropVals = new PropVals();
+            Transformer transformer = new StringNormalizer();
 
             PropVals dtoPropVals = (PropVals) o;
-            resultPropVals.put("publication.title", dtoPropVals.get("publication"));
+            resultPropVals.put("publication.title", transformer.transform(dtoPropVals.get("publication")));
 
             Pattern pattern = Pattern.compile(PLANT_INGREDIENTS_REGEXP);
             String plantIngredientStr = (String) dtoPropVals.get("plantIngredients");
@@ -42,7 +43,6 @@ public class PlantIngredientsStrTransformer implements Transformer {
                 String species = matcher.group(1);
                 String partUsed = matcher.group(2);
 
-                Transformer transformer = new StringNormalizer();
                 resultPropVals.put("plantIngredient" + i + ".species.species", transformer.transform(species));
                 resultPropVals.put("plantIngredient" + i + ".part", transformer.transform(partUsed));
                 i++;

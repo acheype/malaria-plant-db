@@ -109,6 +109,10 @@ $citation-font: 'EB Garamond';
     margin: 10px auto 10px auto;
 }
 
+h5 {
+    font-weight: bold;
+}
+
 .table {
     //background-color: white;
     //border: 1px solid $blue1;
@@ -683,6 +687,12 @@ h3 small {
     margin-left: 50px;
 }
 
+.little-loader{
+    height: 50px;
+    width: 50px;
+    margin-left: 40px;
+}
+
 .congratulation {
     padding: 30px 0px 30px 0px;
     font-size: $font-size-large;
@@ -690,7 +700,8 @@ h3 small {
 }
 
 .import-error {
-    margin: 10px 0px 20px 0px;
+    margin: 30px 0px 30px 0px;
+    font-size: $font-size-large;
     color: $red2;
 }
 /* End of import part */

@@ -40,7 +40,7 @@ public class StrToAuthorsSet implements Transformer {
 
                 Author author = new Author();
                 author.setFamily(StringNormalizer.getInstance().transform(lastName));
-                author.setGiven(StringNormalizer.getInstance().transform(givenName));
+                author.setGiven(GivenNameNormalizer.getInstance().transform(givenName));
                 author.setPosition(position);
                 authors.add(author);
 

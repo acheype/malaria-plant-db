@@ -6,7 +6,7 @@ angular.module('malariaplantdbApp')
             .state('import-result', {
                 parent: 'admin',
                 url: '/import-result',
-                params: {importStatus: null},
+                params: {importStatus: null, filename: null},
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'Data importation results'
@@ -20,6 +20,9 @@ angular.module('malariaplantdbApp')
                 resolve: {
                     importStatus: ['$stateParams', function($stateParams){
                         return $stateParams.importStatus;
+                    }],
+                    filename: ['$stateParams', function($stateParams) {
+                        return $stateParams.filename;
                     }]
                 }
             });

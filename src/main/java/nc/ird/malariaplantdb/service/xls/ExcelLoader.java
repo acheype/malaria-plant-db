@@ -361,7 +361,7 @@ public class ExcelLoader {
 
         return new CellError(
                 String.format(FillerError.ErrorCause.NOT_UNIQUE_MATCH.equals(xlsFillerError.getErrorCause()) ?
-                                "Can't find in the '%s' sheet an unique line with %s values%s : %s" :
+                                "Can't find in the '%s' sheet an unique line with %s value%s : %s" :
                                 "Can't find in the '%s' sheet any line with %s value%s : %s",
                         refSheetInfo.getSheetLabel(),
                         xlsFillerError.getPropVals().size() > 1 ? "these" : "this",
