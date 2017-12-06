@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('malariaplantdbApp')
-    .controller('PublicationController', function ($scope, Publication, PublicationSearch, ParseLinks) {
+    .controller('PublicationController', function ($scope, $window, Publication, PublicationSearch, ParseLinks) {
         $scope.publications = [];
         $scope.page = 0;
         $scope.loadAll = function() {
@@ -29,6 +29,7 @@ angular.module('malariaplantdbApp')
                     $scope.loadAll();
                     $('#deletePublicationConfirmation').modal('hide');
                     $scope.clear();
+                    $window.scrollTo(0, 0);
                 });
         };
 

@@ -27,8 +27,8 @@
              relativeToChangelogFile="false"/>
 
     <!-- Temporary dataset for dev -->
-    <include file="classpath:config/liquibase/test_data/201601080000_test_data_insertions.xml"
-             relativeToChangelogFile="false"/>
+    <!--<include file="classpath:config/liquibase/test_data/201601080000_test_data_insertions.xml"-->
+             <!--relativeToChangelogFile="false"/>-->
 
     <!-- JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

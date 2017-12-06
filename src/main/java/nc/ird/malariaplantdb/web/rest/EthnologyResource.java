@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import nc.ird.malariaplantdb.domain.Ethnology;
 import nc.ird.malariaplantdb.repository.EthnologyRepository;
 import nc.ird.malariaplantdb.repository.search.EthnologySearchRepository;
+import nc.ird.malariaplantdb.service.PublicationService;
 import nc.ird.malariaplantdb.web.rest.util.HeaderUtil;
 import nc.ird.malariaplantdb.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -41,6 +42,9 @@ public class EthnologyResource {
 
     @Inject
     private EthnologySearchRepository ethnologySearchRepository;
+
+    @Inject
+    private PublicationService publicationService;
 
     /**
      * POST  /ethnologies -> Create a new ethnology.
@@ -141,7 +145,7 @@ public class EthnologyResource {
         remId) {
         log.debug("REST request to get the Ethnology of the Publication : {}, and the Remedy : {}", pubId, remId);
 
-        return Optional.ofNullable(ethnologyRepository.findByPublicationIdAndAndRemedy(pubId, remId))
+        return Optional.ofNullable(ethnologyRepository.findByPublicationIdAndAndRemedyId(pubId, remId))
             .map(ethnology -> new ResponseEntity<>(
                 ethnology,
                 HttpStatus.OK))
@@ -149,16 +153,19 @@ public class EthnologyResource {
     }
 
     /**
-     * DELETE  /ethnologies/:id -> delete the "id" ethnology.
+     * DELETE  /ethnologies/:id -> delete the "id" ethnology and all associated data (species
+     * when they are not still referenced, plant ingredients, and remedies when they are not still referenced)
      */
     @RequestMapping(value = "/ethnologies/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteEthnology(@PathVariable Long id) {
-        log.debug("REST request to delete Ethnology : {}", id);
-        ethnologyRepository.delete(id);
-        ethnologySearchRepository.delete(id);
+        log.debug("REST request to delete Ethnology and all associated data: {}", id);
+
+        Ethnology ethnology = ethnologyRepository.findOne(id);
+
+        publicationService.deleteEthnologyAndAssociated(ethnology);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ethnology", id.toString())).build();
     }
 

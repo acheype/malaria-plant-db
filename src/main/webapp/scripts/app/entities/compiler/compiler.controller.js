@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('malariaplantdbApp')
-    .controller('CompilerController', function ($scope, Compiler, CompilerSearch, ParseLinks) {
+    .controller('CompilerController', function ($scope, $window, Compiler, CompilerSearch, ParseLinks) {
         $scope.compilers = [];
         $scope.page = 0;
         $scope.loadAll = function() {
@@ -29,6 +29,7 @@ angular.module('malariaplantdbApp')
                     $scope.loadAll();
                     $('#deleteCompilerConfirmation').modal('hide');
                     $scope.clear();
+                    $window.scrollTo(0, 0);
                 });
         };
 

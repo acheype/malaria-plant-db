@@ -1,9 +1,11 @@
 package nc.ird.malariaplantdb.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import nc.ird.malariaplantdb.domain.Publication;
-import nc.ird.malariaplantdb.repository.*;
-import nc.ird.malariaplantdb.repository.search.*;
+import nc.ird.malariaplantdb.domain.*;
+import nc.ird.malariaplantdb.repository.AuthorRepository;
+import nc.ird.malariaplantdb.repository.PublicationRepository;
+import nc.ird.malariaplantdb.repository.search.AuthorSearchRepository;
+import nc.ird.malariaplantdb.repository.search.PublicationSearchRepository;
 import nc.ird.malariaplantdb.service.PublicationService;
 import nc.ird.malariaplantdb.web.rest.dto.PubSummaryDTO;
 import nc.ird.malariaplantdb.web.rest.util.HeaderUtil;
@@ -53,48 +55,6 @@ public class PublicationResource {
 
     @Inject
     private AuthorSearchRepository authorSearchRepo;
-
-    @Inject
-    private PubSpeciesRepository pubSpeciesRepo;
-
-    @Inject
-    private PubSpeciesSearchRepository pubSpeciesSearchRepo;
-
-    @Inject
-    private SpeciesRepository speciesRepo;
-
-    @Inject
-    private SpeciesSearchRepository speciesSearchRepo;
-
-    @Inject
-    private PlantIngredientRepository plantIngredientRepo;
-
-    @Inject
-    private PlantIngredientSearchRepository plantIngredientSearchRepo;
-
-    @Inject
-    private RemedyRepository remedyRepo;
-
-    @Inject
-    private RemedySearchRepository remedySearchRepo;
-
-    @Inject
-    private EthnologyRepository ethnologyRepo;
-
-    @Inject
-    private EthnologySearchRepository ethnologySearchRepo;
-
-    @Inject
-    private InVivoPharmacoRepository inVivoPharmacoRepo;
-
-    @Inject
-    private InVivoPharmacoSearchRepository inVivoPharmacoSearchRepo;
-
-    @Inject
-    private InVitroPharmacoRepository inVitroPharmacoRepo;
-
-    @Inject
-    private InVitroPharmacoSearchRepository inVitroPharmacoSearchRepo;
 
     /**
      * POST  /publications -> Create a new publication.
@@ -197,7 +157,6 @@ public class PublicationResource {
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-
     /**
      * DELETE  /publications/:id -> delete the "id" publication and all associated data (authors, pubSpecies, species
      * when they are not still referenced, plant ingredients, remedies, ethnologies notes, in vivo pharmaco notes and in
@@ -207,32 +166,35 @@ public class PublicationResource {
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Transactional
     public ResponseEntity<Void> deletePublication(@PathVariable Long id) {
         log.debug("REST request to delete Publication and all associated data : {}", id);
 
         Publication pub = publicationRepository.findOne(id);
 
-        pub.getAuthors().forEach(authorRepo::delete);
-        pub.getAuthors().forEach(authorSearchRepo::delete);
+        for (Author author : pub.getAuthors()){
+            authorRepo.delete(author);
+            authorSearchRepo.delete(author);
+        }
 
-        // TODO delete the species only if it isn't still referenced
-        pub.getPubSpecies().stream().map(sp -> sp.getSpecies()).forEach(speciesRepo::delete);
-        pub.getPubSpecies().stream().map(sp -> sp.getSpecies()).forEach(speciesSearchRepo::delete);
+        for (PubSpecies pubSp : pub.getPubSpecies()){
+            publicationService.deletePubSpeciesAndAssociated(pubSp);
+        }
 
-        pub.getPubSpecies().stream().forEach(pubSpeciesRepo::delete);
-        pub.getPubSpecies().stream().forEach(pubSpeciesSearchRepo::delete);
+        for (Ethnology ethnology : pub.getEthnologies()){
+            publicationService.deleteEthnologyAndAssociated(ethnology);
+        }
 
-        pub.getEthnologies().stream().forEach(ethnologyRepo::delete);
-        pub.getEthnologies().stream().forEach(ethnologySearchRepo::delete);
+        for (InVivoPharmaco inVivo : pub.getInVivoPharmacos()){
+            publicationService.deleteInVivoPharmacoAndAssociated(inVivo);
+        }
 
-        pub.getInVivoPharmacos().stream().forEach(inVivoPharmacoRepo::delete);
-        pub.getInVivoPharmacos().stream().forEach(inVivoPharmacoSearchRepo::delete);
+        for (InVitroPharmaco inVitro : pub.getInVitroPharmacos()){
+            publicationService.deleteInVitroPharmacoAndAssociated(inVitro);
+        }
 
-        pub.getInVitroPharmacos().stream().forEach(inVitroPharmacoRepo::delete);
-        pub.getInVitroPharmacos().stream().forEach(inVitroPharmacoSearchRepo::delete);
-
-        publicationRepository.delete(id);
-        publicationSearchRepository.delete(id);
+        publicationRepository.delete(pub);
+        publicationSearchRepository.delete(pub);
 
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("publication", id.toString())).build();
     }

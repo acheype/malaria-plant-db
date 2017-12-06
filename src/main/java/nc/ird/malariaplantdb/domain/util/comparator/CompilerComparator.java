@@ -1,6 +1,7 @@
 package nc.ird.malariaplantdb.domain.util.comparator;
 
 import nc.ird.malariaplantdb.domain.Compiler;
+import org.apache.commons.lang.ObjectUtils;
 
 import java.util.Comparator;
 
@@ -16,7 +17,13 @@ public class CompilerComparator implements Comparator<Compiler> {
 
     @Override
     public int compare(Compiler c1, Compiler c2) {
-        return c1.equals(c2) ? 0 : BY_NAME_AND_ID.compare(c1, c2);
+        if (c1 == null && c2 == null || ObjectUtils.equals(c1, c2))
+            return 0;
+        else if (c1 == null)
+            return -1;
+        else if (c2 == null)
+            return 1;
+        return BY_NAME_AND_ID.compare(c1, c2);
     }
 
 }

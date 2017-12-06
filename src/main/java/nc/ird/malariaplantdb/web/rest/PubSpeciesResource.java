@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import nc.ird.malariaplantdb.domain.PubSpecies;
 import nc.ird.malariaplantdb.repository.PubSpeciesRepository;
 import nc.ird.malariaplantdb.repository.search.PubSpeciesSearchRepository;
+import nc.ird.malariaplantdb.service.PublicationService;
 import nc.ird.malariaplantdb.web.rest.util.HeaderUtil;
 import nc.ird.malariaplantdb.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -41,6 +43,9 @@ public class PubSpeciesResource {
 
     @Inject
     private PubSpeciesSearchRepository pubSpeciesSearchRepository;
+
+    @Inject
+    private PublicationService publicationService;
 
     /**
      * POST  /pubSpecies -> Create a new pubSpecies.
@@ -140,16 +145,19 @@ public class PubSpeciesResource {
     }
 
     /**
-     * DELETE  /pubSpecies/:id -> delete the "id" pubSpecies.
+     * DELETE  /pubSpecies/:id -> delete the "id" pubSpecies and the associated Species when it is not still referenced
      */
     @RequestMapping(value = "/pubSpecies/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Transactional
     public ResponseEntity<Void> deletePubSpecies(@PathVariable Long id) {
-        log.debug("REST request to delete PubSpecies : {}", id);
-        pubSpeciesRepository.delete(id);
-        pubSpeciesSearchRepository.delete(id);
+        log.debug("REST request to delete PubSpecies and all associated data: {}", id);
+
+        PubSpecies pubSpecies = pubSpeciesRepository.getOne(id);
+
+        publicationService.deletePubSpeciesAndAssociated(pubSpecies);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("pubSpecies", id.toString())).build();
     }
 

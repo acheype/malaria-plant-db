@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('malariaplantdbApp')
-    .controller('RemedyController', function ($scope, Remedy, RemedySearch, ParseLinks) {
+    .controller('RemedyController', function ($scope, $window, Remedy, RemedySearch, ParseLinks) {
         $scope.remedys = [];
         $scope.page = 0;
         $scope.loadAll = function() {
@@ -29,6 +29,7 @@ angular.module('malariaplantdbApp')
                     $scope.loadAll();
                     $('#deleteRemedyConfirmation').modal('hide');
                     $scope.clear();
+                    $window.scrollTo(0, 0);
                 });
         };
 

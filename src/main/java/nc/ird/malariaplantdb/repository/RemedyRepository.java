@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RemedyRepository extends JpaRepository<Remedy,Long> {
 
+//    List<Remedy> findByPlantIngredientId()
 }

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('malariaplantdbApp')
-    .controller('InVivoPharmacoController', function ($scope, InVivoPharmaco, InVivoPharmacoSearch, ParseLinks) {
+    .controller('InVivoPharmacoController', function ($scope, $window, InVivoPharmaco, InVivoPharmacoSearch, ParseLinks) {
         $scope.inVivoPharmacos = [];
         $scope.page = 0;
         $scope.loadAll = function() {
@@ -29,6 +29,7 @@ angular.module('malariaplantdbApp')
                     $scope.loadAll();
                     $('#deleteInVivoPharmacoConfirmation').modal('hide');
                     $scope.clear();
+                    $window.scrollTo(0, 0);
                 });
         };
 

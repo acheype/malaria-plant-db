@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import nc.ird.malariaplantdb.domain.InVivoPharmaco;
 import nc.ird.malariaplantdb.repository.InVivoPharmacoRepository;
 import nc.ird.malariaplantdb.repository.search.InVivoPharmacoSearchRepository;
+import nc.ird.malariaplantdb.service.PublicationService;
 import nc.ird.malariaplantdb.web.rest.util.HeaderUtil;
 import nc.ird.malariaplantdb.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -41,6 +42,9 @@ public class InVivoPharmacoResource {
 
     @Inject
     private InVivoPharmacoSearchRepository inVivoPharmacoSearchRepository;
+
+    @Inject
+    private PublicationService publicationService;
 
     /**
      * POST  /inVivoPharmacos -> Create a new inVivoPharmaco.
@@ -138,21 +142,24 @@ public class InVivoPharmacoResource {
     Long remId) {
         log.debug("REST request to get the InVivoPharmaco of the Publication : {}, and the Remedy : {}",
             pubId, remId);
-        List<InVivoPharmaco> inVivoPharmacos = inVivoPharmacoRepository.findByPublicationIdAndRemedy(pubId, remId);
+        List<InVivoPharmaco> inVivoPharmacos = inVivoPharmacoRepository.findByPublicationIdAndRemedyId(pubId, remId);
         return new ResponseEntity<>(inVivoPharmacos,  HttpStatus.OK);
     }
 
     /**
-     * DELETE  /inVivoPharmacos/:id -> delete the "id" inVivoPharmaco.
+     * DELETE  /inVivoPharmacos/:id -> delete the "id" inVivoPharmaco and all associated data (species when they are not
+     * still referenced, plant ingredients, and remedies when they are not still referenced)
      */
     @RequestMapping(value = "/inVivoPharmacos/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteInVivoPharmaco(@PathVariable Long id) {
-        log.debug("REST request to delete InVivoPharmaco : {}", id);
-        inVivoPharmacoRepository.delete(id);
-        inVivoPharmacoSearchRepository.delete(id);
+        log.debug("REST request to delete InVivoPharmaco and all associated data: {}", id);
+
+        InVivoPharmaco inVivoPharmaco = inVivoPharmacoRepository.findOne(id);
+
+        publicationService.deleteInVivoPharmacoAndAssociated(inVivoPharmaco);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("inVivoPharmaco", id.toString())).build();
     }
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('malariaplantdbApp')
-    .controller('AuthorController', function ($scope, Author, AuthorSearch, ParseLinks) {
+    .controller('AuthorController', function ($scope, $window, Author, AuthorSearch, ParseLinks) {
         $scope.authors = [];
         $scope.page = 0;
         $scope.loadAll = function() {
@@ -29,6 +29,7 @@ angular.module('malariaplantdbApp')
                     $scope.loadAll();
                     $('#deleteAuthorConfirmation').modal('hide');
                     $scope.clear();
+                    $window.scrollTo(0, 0);
                 });
         };
 

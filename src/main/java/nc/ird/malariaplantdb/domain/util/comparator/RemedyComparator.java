@@ -2,6 +2,7 @@ package nc.ird.malariaplantdb.domain.util.comparator;
 
 import nc.ird.malariaplantdb.domain.PlantIngredient;
 import nc.ird.malariaplantdb.domain.Remedy;
+import org.apache.commons.lang.ObjectUtils;
 
 import java.util.Comparator;
 
@@ -21,7 +22,13 @@ public class RemedyComparator implements Comparator<Remedy> {
 
     @Override
     public int compare(Remedy r1, Remedy r2) {
-        return r1.equals(r2) ? 0 : BY_PLANT_INGREDIENTS_SET_AND_ID.compare(r1, r2);
+        if (r1 == null && r2 == null || ObjectUtils.equals(r1, r2))
+            return 0;
+        else if (r1 == null)
+            return -1;
+        else if (r2 == null)
+            return 1;
+        return BY_PLANT_INGREDIENTS_SET_AND_ID.compare(r1, r2);
     }
 
 }

@@ -1,6 +1,7 @@
 package nc.ird.malariaplantdb.domain.util.comparator;
 
 import nc.ird.malariaplantdb.domain.Species;
+import org.apache.commons.lang.ObjectUtils;
 
 import java.util.Comparator;
 
@@ -15,6 +16,12 @@ public class SpeciesComparator implements Comparator<Species> {
 
     @Override
     public int compare(Species s1, Species s2) {
-        return s1.equals(s2) ? 0 : BY_SPECIES.compare(s1, s2);
+        if (s1 == null && s2 == null || ObjectUtils.equals(s1, s2))
+            return 0;
+        else if (s1 == null)
+            return -1;
+        else if (s2 == null)
+            return 1;
+        else return BY_SPECIES.compare(s1, s2);
     }
 }

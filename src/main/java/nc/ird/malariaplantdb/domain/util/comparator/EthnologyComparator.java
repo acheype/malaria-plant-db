@@ -1,6 +1,7 @@
 package nc.ird.malariaplantdb.domain.util.comparator;
 
 import nc.ird.malariaplantdb.domain.Ethnology;
+import org.apache.commons.lang.ObjectUtils;
 
 import java.util.Comparator;
 
@@ -15,7 +16,13 @@ public class EthnologyComparator implements Comparator<Ethnology> {
         .thenComparing(Ethnology::getId);
 
     @Override
-    public int compare(Ethnology s1, Ethnology s2) {
-        return s1.equals(s2) ? 0 : BY_REMEDY_AND_ID.compare(s1, s2);
+    public int compare(Ethnology i1, Ethnology i2) {
+        if (i1 == null && i2 == null || ObjectUtils.equals(i1, i2))
+            return 0;
+        else if (i1 == null)
+            return -1;
+        else if (i2 == null)
+            return 1;
+        return BY_REMEDY_AND_ID.compare(i1, i2);
     }
 }

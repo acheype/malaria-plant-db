@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import nc.ird.malariaplantdb.domain.InVitroPharmaco;
 import nc.ird.malariaplantdb.repository.InVitroPharmacoRepository;
 import nc.ird.malariaplantdb.repository.search.InVitroPharmacoSearchRepository;
+import nc.ird.malariaplantdb.service.PublicationService;
 import nc.ird.malariaplantdb.web.rest.util.HeaderUtil;
 import nc.ird.malariaplantdb.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -41,6 +42,9 @@ public class InVitroPharmacoResource {
 
     @Inject
     private InVitroPharmacoSearchRepository inVitroPharmacoSearchRepository;
+
+    @Inject
+    private PublicationService publicationService;
 
     /**
      * POST  /inVitroPharmacos -> Create a new inVitroPharmaco.
@@ -138,21 +142,24 @@ public class InVitroPharmacoResource {
     public ResponseEntity<List<InVitroPharmaco>> getInVitroPharmacosByPubIdAndRemedyId(@PathVariable Long pubId,
                                                                                        @PathVariable Long remId) {
         log.debug("REST request to get the InVitroPharmaco of the Publication : {}, and the Remedy : {}", pubId, remId);
-        List<InVitroPharmaco> inVitroPharmacos = inVitroPharmacoRepository.findByPublicationIdAndRemedy(pubId, remId);
+        List<InVitroPharmaco> inVitroPharmacos = inVitroPharmacoRepository.findByPublicationIdAndRemedyId(pubId, remId);
         return new ResponseEntity<>(inVitroPharmacos,  HttpStatus.OK);
     }
 
     /**
-     * DELETE  /inVitroPharmacos/:id -> delete the "id" inVitroPharmaco.
+     * DELETE  /inVitroPharmacos/:id -> delete the "id" inVitroPharmaco and all associated data (species when they are
+     * not still referenced, plant ingredients, and remedies when they are not still referenced)
      */
     @RequestMapping(value = "/inVitroPharmacos/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteInVitroPharmaco(@PathVariable Long id) {
-        log.debug("REST request to delete InVitroPharmaco : {}", id);
-        inVitroPharmacoRepository.delete(id);
-        inVitroPharmacoSearchRepository.delete(id);
+        log.debug("REST request to delete InVitroPharmaco and all associated data: {}", id);
+
+        InVitroPharmaco inVitroPharmaco = inVitroPharmacoRepository.findOne(id);
+
+        publicationService.deleteInVitroPharmacoAndAssociated(inVitroPharmaco);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("inVitroPharmaco", id.toString())).build();
     }
 

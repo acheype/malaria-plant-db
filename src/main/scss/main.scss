@@ -445,6 +445,15 @@ ul#strength {
 
 /* End of distributed footer */
 
+/* About us part */
+.email-link {
+    font-size: $font-size-h3;
+}
+
+table a:not(.btn).email-link {
+    text-decoration: none;
+}
+
 /* Forms part */
 
 .label-fields {

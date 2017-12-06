@@ -20,4 +20,6 @@ public interface PubSpeciesRepository extends JpaRepository<PubSpecies,Long> {
         "where ps.publication.id = :pubId and s.id = s2.id and r.id = :remId")
     List<PubSpecies> findByPublicationIdAndRemedy(@Param("pubId") Long pubId, @Param("remId") Long remId);
 
+    List<PubSpecies> findBySpeciesId(Long speciesId);
+
 }

@@ -37,7 +37,7 @@ public class Author implements Serializable, Comparable<Author> {
     private Long id;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     private Publication publication;
 
     @NotNull

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('malariaplantdbApp')
-    .controller('InVitroPharmacoController', function ($scope, InVitroPharmaco, InVitroPharmacoSearch, ParseLinks) {
+    .controller('InVitroPharmacoController', function ($scope, $window, InVitroPharmaco, InVitroPharmacoSearch, ParseLinks) {
         $scope.inVitroPharmacos = [];
         $scope.page = 0;
         $scope.loadAll = function() {
@@ -29,6 +29,7 @@ angular.module('malariaplantdbApp')
                     $scope.loadAll();
                     $('#deleteInVitroPharmacoConfirmation').modal('hide');
                     $scope.clear();
+                    $window.scrollTo(0, 0);
                 });
         };
 

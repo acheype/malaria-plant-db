@@ -27,6 +27,8 @@ public interface InVitroPharmacoRepository extends JpaRepository<InVitroPharmaco
 
     @Query("select iv from InVitroPharmaco iv join iv.remedy r where iv.publication.id = :pubId " +
         "and r.id = :remId")
-    List<InVitroPharmaco> findByPublicationIdAndRemedy(@Param("pubId") Long pubId, @Param("remId") Long remId);
+    List<InVitroPharmaco> findByPublicationIdAndRemedyId(@Param("pubId") Long pubId, @Param("remId") Long remId);
+
+    List<InVitroPharmaco> findByRemedyId(Long remedyId);
 
 }

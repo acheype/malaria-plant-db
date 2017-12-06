@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('malariaplantdbApp')
-    .controller('EthnologyController', function ($scope, Ethnology, EthnologySearch, ParseLinks) {
+    .controller('EthnologyController', function ($scope, $window, Ethnology, EthnologySearch, ParseLinks) {
         $scope.ethnologies = [];
         $scope.page = 0;
         $scope.loadAll = function() {
@@ -29,6 +29,7 @@ angular.module('malariaplantdbApp')
                     $scope.loadAll();
                     $('#deleteEthnologyConfirmation').modal('hide');
                     $scope.clear();
+                    $window.scrollTo(0, 0);
                 });
         };
 

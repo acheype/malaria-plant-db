@@ -36,7 +36,11 @@
                     <td>{{compiler.given}}</td>
                     <td><span ng-bind-html="compiler.institution"/></td>
                     <td><small><span ng-bind-html="compiler.institutionAddress"/></small></td>
-                    <td><a ng-href="mailto:'{{compiler.email}}'">{{compiler.email}}</a></td>
+                    <td>
+                        <a ng-href="mailto:'{{compiler.email}}'" ng-attr-title="Send a mail to {{compiler.given}}"
+                           class="email-link"><span
+                            class="icon-mail"></span></a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

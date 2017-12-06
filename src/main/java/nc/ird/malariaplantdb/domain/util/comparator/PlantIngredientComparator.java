@@ -1,6 +1,7 @@
 package nc.ird.malariaplantdb.domain.util.comparator;
 
 import nc.ird.malariaplantdb.domain.PlantIngredient;
+import org.apache.commons.lang.ObjectUtils;
 
 import java.util.Comparator;
 
@@ -19,7 +20,13 @@ public class PlantIngredientComparator implements Comparator<PlantIngredient> {
 
     @Override
     public int compare(PlantIngredient pi1, PlantIngredient pi2) {
-        return pi1.equals(pi2) ? 0 : BY_SPECIES_AND_PART.compare(pi1, pi2);
+        if (pi1 == null && pi2 == null || ObjectUtils.equals(pi1, pi2))
+            return 0;
+        else if (pi1 == null)
+            return -1;
+        else if (pi2 == null)
+            return 1;
+        return BY_SPECIES_AND_PART.compare(pi1, pi2);
     }
 
 }

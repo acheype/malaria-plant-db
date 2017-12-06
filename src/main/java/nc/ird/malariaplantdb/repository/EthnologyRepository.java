@@ -25,5 +25,8 @@ public interface EthnologyRepository extends JpaRepository<Ethnology,Long> {
     //Ethnology findOneWithEagerRelationships(@Param("id") Long id);
 
     @Query("select e from Ethnology e join e.remedy r where e.publication.id = :pubId and r.id = :remId")
-    Ethnology findByPublicationIdAndAndRemedy(@Param("pubId") Long pubId, @Param("remId") Long remId);
+    Ethnology findByPublicationIdAndAndRemedyId(@Param("pubId") Long pubId, @Param("remId") Long remId);
+
+    List<Ethnology> findByRemedyId(Long remedyId);
+
 }

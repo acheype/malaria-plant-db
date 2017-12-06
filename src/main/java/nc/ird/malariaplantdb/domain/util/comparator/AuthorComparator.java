@@ -1,6 +1,7 @@
 package nc.ird.malariaplantdb.domain.util.comparator;
 
 import nc.ird.malariaplantdb.domain.Author;
+import org.apache.commons.lang.ObjectUtils;
 
 import java.util.Comparator;
 
@@ -19,6 +20,12 @@ public class AuthorComparator implements Comparator<Author> {
 
     @Override
     public int compare(Author a1, Author a2) {
-        return a1.equals(a2) ? 0 : BY_POSITION_AND_ID.compare(a1, a2);
+        if (a1 == null && a2 == null || ObjectUtils.equals(a1, a2))
+            return 0;
+        else if (a1 == null)
+            return -1;
+        else if (a2 == null)
+            return 1;
+        return BY_POSITION_AND_ID.compare(a1, a2);
     }
 }
