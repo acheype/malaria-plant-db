@@ -72,12 +72,12 @@ public class ExcelLoaderTest {
 
         List<SheetInfo> sheetInfos = new ArrayList<>();
 
-        String fieldInfosWithErrStr = PublicationMock.PUBLI_COLUMN_INFOS.replace("ColumnInfo(columnLetterRef=C| " +
-                        "columnLabel=Year| dtoPropertyName=year| outputProperty=year| " +
-                        "propertyTransformer=org.apache.commons.collections.functors.NOPTransformer)",
-                "ColumnInfo(columnLetterRef=C| columnLabel=Year| dtoPropertyName=year| " +
-                        "outputProperty=yearXXX| propertyTransformer=org.apache.commons.collections.functors" +
-                        ".NOPTransformer)");
+        String fieldInfosWithErrStr = PublicationMock.PUBLI_COLUMN_INFOS.replace("ColumnInfo(columnLetterRef=C| columnLabel=Year| dtoPropertyName=year| " +
+                "outputProperty=year| propertyTransformer=" + PublicationMock.NOP_TRANSFORMER_CLASS +
+                "| afterLoadingTransformer=" + PublicationMock.NOP_ENTITIES_TRANSFORMER_CLASS+ "),",
+            "ColumnInfo(columnLetterRef=C| columnLabel=Year| dtoPropertyName=year| " +
+                "outputProperty=yearXXX| propertyTransformer=" + PublicationMock.NOP_TRANSFORMER_CLASS +
+                "| afterLoadingTransformer=" + PublicationMock.NOP_ENTITIES_TRANSFORMER_CLASS+ "),");
 
         SheetInfo sheetInfo = new SheetInfo(
                 PublicationLine.class,

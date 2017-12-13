@@ -43,33 +43,8 @@ To ensure everything worked, run:
 
 Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
-# Testing
-
-Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in `src/test/javascript` and can be run with:
-
-    grunt test
-
-# Continuous Integration
-
-To setup this project in Jenkins, use the following configuration:
-
-* Project name: `malaria-plant-db`
-* Source Code Management
-    * Git Repository: `git@github.com:xxxx/malaria-plant-db.git`
-    * Branches to build: `*/master`
-    * Additional Behaviours: `Wipe out repository & force clone`
-* Build Triggers
-    * Poll SCM / Schedule: `H/5 * * * *`
-* Build
-    * Invoke Maven / Tasks: `-Pprod clean package`
-* Post-build Actions
-    * Publish JUnit test result report / Test Report XMLs: `build/test-results/*.xml`
-
 [JHipster]: https://jhipster.gitub.io/
 [Node.js]: https://nodejs.org/
 [Bower]: http://bower.io/
 [Grunt]: http://gruntjs.com/
 [BrowserSync]: http://www.browsersync.io/
-[Karma]: http://karma-runner.github.io/
-[Jasmine]: http://jasmine.github.io/2.0/introduction.html
-[Protractor]: https://angular.github.io/protractor/

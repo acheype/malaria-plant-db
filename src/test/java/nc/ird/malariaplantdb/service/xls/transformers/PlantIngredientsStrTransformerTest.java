@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 /**
  * Test class for PlantIngredientsStrTransformer
@@ -27,11 +28,16 @@ public class PlantIngredientsStrTransformerTest {
         ArrayList<PropVals> resultPropValsList = (ArrayList<PropVals>) transformer.transform(dtoPropVals);
         Assertions.assertThat(resultPropValsList).hasSize(1);
         PropVals resultPropVals = resultPropValsList.get(0);
-        Assertions.assertThat(resultPropVals.get("sp1")).isEqualTo("Halothamnus somalensis (N.E.Br.) Botsch.");
-        Assertions.assertThat(resultPropVals.get("part1")).isEqualTo("Root");
-        Assertions.assertThat(resultPropVals.get("sp2")).isEqualTo("Halothamnus somalensisA (N.E.Br.) Botsch.");
-        Assertions.assertThat(resultPropVals.get("part2")).isEqualTo("Bark");
-        Assertions.assertThat(resultPropVals).hasSize(5);
+        Assertions.assertThat(resultPropVals.get("plantIngredient1.species.species")).isEqualTo("Halothamnus " +
+            "somalensis (N.E.Br.) Botsch.");
+        Assertions.assertThat(resultPropVals.get("plantIngredient1.part")).isEqualTo("Root");
+        Assertions.assertThat(resultPropVals.get("plantIngredient2.species.species")).isEqualTo("Halothamnus " +
+            "somalensisA (N.E.Br.) Botsch.");
+
+        IntStream.range(3, 10).forEach(i -> Assertions.assertThat(resultPropVals.get("plantIngredient" + i + "" +
+            ".species.species")).isNull());
+        IntStream.range(3, 10).forEach(i -> Assertions.assertThat(resultPropVals.get("plantIngredient" + i + "" +
+            ".part")).isNull());
     }
 
     @Test(expected = IllegalArgumentException.class)

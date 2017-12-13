@@ -9,57 +9,80 @@ import java.util.List;
 
 public class PublicationMock {
 
-    private static String NOP_TRANSFORMER_CLASS = "org.apache.commons.collections.functors.NOPTransformer";
+    public static String NOP_TRANSFORMER_CLASS = "org.apache.commons.collections.functors.NOPTransformer";
 
-    private static String STRING_NORMALIZER_CLASS = "nc.ird.malariaplantdb.service.xls.transformers" +
+    public static String NOP_ENTITIES_TRANSFORMER_CLASS = "nc.ird.malariaplantdb.service.xls.transformers" +
+        ".NOPEntitiesTransformer";
+
+    public static String STRING_NORMALIZER_CLASS = "nc.ird.malariaplantdb.service.xls.transformers" +
             ".StringNormalizer";
 
     public final static String PUBLI_COLUMN_INFOS =
             "ColumnInfo(columnLetterRef=A| columnLabel=Entry Type| dtoPropertyName=entryType| " +
-                    "outputProperty=entryType| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=entryType| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=B| columnLabel=Author(s)| dtoPropertyName=authors|" +
                     "outputProperty=authors| propertyTransformer=nc.ird.malariaplantdb.service.xls" +
-                    ".transformers.StrToAuthorsSet)," +
+                    ".transformers.StrToAuthorsSet| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=C| columnLabel=Year| dtoPropertyName=year| " +
-                    "outputProperty=year| propertyTransformer=" + NOP_TRANSFORMER_CLASS + "), " +
+                    "outputProperty=year| propertyTransformer=" + NOP_TRANSFORMER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=D| columnLabel=Title| dtoPropertyName=title| " +
-                    "outputProperty=title| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=title| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=E| columnLabel=Journal| dtoPropertyName=journal| " +
-                    "outputProperty=journal| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=journal| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=F| columnLabel=Pages| dtoPropertyName=pages| " +
-                    "outputProperty=pages| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=pages| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=G| columnLabel=Volume| dtoPropertyName=volume| " +
-                    "outputProperty=volume| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=volume| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=H| columnLabel=Nb of volumes| dtoPropertyName=nbOfVolumes| " +
-                    "outputProperty=nbOfVolumes| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=nbOfVolumes| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=I| columnLabel=Number| dtoPropertyName=number| " +
-                    "outputProperty=number| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=number| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=J| columnLabel=Book title| dtoPropertyName=bookTitle| " +
-                    "outputProperty=bookTitle| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=bookTitle| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=K| columnLabel=Publisher| dtoPropertyName=publisher| " +
-                    "outputProperty=publisher| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=publisher| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=L| columnLabel=Edition| dtoPropertyName=edition| " +
-                    "outputProperty=edition| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=edition| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=M| columnLabel=Conference name| dtoPropertyName=conferenceName| " +
-                    "outputProperty=conferenceName| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=conferenceName| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=N| columnLabel=Conference place| dtoPropertyName=conferencePlace| " +
-                    "outputProperty=conferencePlace| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=conferencePlace| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=O| columnLabel=University| dtoPropertyName=university| " +
-                    "outputProperty=university| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=university| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=P| columnLabel=Institution| dtoPropertyName=institution| " +
-                    "outputProperty=institution| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=institution| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=Q| columnLabel=DOI| dtoPropertyName=doi| " +
-                    "outputProperty=doi| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=doi| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=R| columnLabel=PMID| dtoPropertyName=pmid| " +
-                    "outputProperty=pmid| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=pmid| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=S| columnLabel=ISBN| dtoPropertyName=isbn| " +
-                    "outputProperty=isbn| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=isbn| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=T| columnLabel=URL| dtoPropertyName=url| " +
-                    "outputProperty=url| propertyTransformer=" + STRING_NORMALIZER_CLASS + "), " +
+                    "outputProperty=url| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=U| columnLabel=Compiler(s) name(s)| dtoPropertyName=compilers| " +
-                    "outputProperty=null), " +
+                    "outputProperty=null| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=V| columnLabel=Note from compiler(s)| dtoPropertyName=compilersNotes| " +
-                    "outputProperty=compilersNotes| propertyTransformer=" + STRING_NORMALIZER_CLASS + ")";
+                    "outputProperty=compilersNotes| propertyTransformer=" + STRING_NORMALIZER_CLASS +
+                    "| afterLoadingTransformer=" + NOP_ENTITIES_TRANSFORMER_CLASS+ ")";
 
     public final static String PUB_LINES = "PublicationLine(title=Ampelozyziphus amazonicus Ducke," +
             " a medicinal plant used to prevent malaria in the Amazon Region, hampers the development of Plasmodium " +
@@ -107,9 +130,11 @@ public class PublicationMock {
 
     public final static String XLS_REF_TEST_COLUMN_INFOS =
             "ColumnInfo(columnLetterRef=C| columnLabel=Year| dtoPropertyName=year| " +
-                    "outputProperty=| propertyTransformer=" + NOP_TRANSFORMER_CLASS + "), " +
+                    "outputProperty=| propertyTransformer=" + NOP_TRANSFORMER_CLASS + "| afterLoadingTransformer=" +
+                    NOP_ENTITIES_TRANSFORMER_CLASS+ ")," +
                     "ColumnInfo(columnLetterRef=D| columnLabel=Title| dtoPropertyName=title| " +
-                    "outputProperty=| propertyTransformer=" + NOP_TRANSFORMER_CLASS + ")";
+                    "outputProperty=| propertyTransformer=" + NOP_TRANSFORMER_CLASS + "| afterLoadingTransformer=" +
+                    NOP_ENTITIES_TRANSFORMER_CLASS+ ")";
 
     public final static String XLS_REF_TEST_LINES = "XlsRefTestLine(refTitle=Ampelozyziphus amazonicus Ducke," +
             " a medicinal plant used to prevent malaria in the Amazon Region, hampers the development of Plasmodium " +

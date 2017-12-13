@@ -47,15 +47,15 @@ public class PlantIngredientsStrTransformer implements Transformer {
                 resultPropVals.put("plantIngredient" + i + ".part", transformer.transform(partUsed));
                 i++;
             }
+            if (i == 1){
+                throw new IllegalArgumentException(String.format("The followed 'PlantIngredients' field is not correctly " +
+                        "formatted : '%s'\n",
+                    dtoPropVals.get("plantIngredients")));
+            }
+
             for (int j = i; j <= 10; j++){
                 resultPropVals.put("plantIngredient" + j + ".species.species", null);
                 resultPropVals.put("plantIngredient" + j + ".part", null);
-            }
-
-            if (resultPropVals.size() <= 1) {
-                throw new IllegalArgumentException(String.format("The followed 'PlantIngredients' field is not correctly " +
-                                "formatted : '%s'\n",
-                        dtoPropVals.get("plantIngredients")));
             }
 
             return new ArrayList<PropVals>(Arrays.asList(resultPropVals));

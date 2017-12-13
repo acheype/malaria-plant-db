@@ -79,23 +79,6 @@ module.exports = function (grunt) {
                     /bootstrap-sass\/assets\/stylesheets/
                 ],
                 ignorePath: /\.\.\/webapp\/bower_components\// // remove ../webapp/bower_components/ from paths of injected sass files
-            },
-            test: {
-                src: 'src/test/javascript/karma.conf.js',
-                exclude: [/angular-i18n/, /angular-scenario/],
-                ignorePath: /\.\.\/\.\.\//, // remove ../../ from paths of injected javascripts
-                devDependencies: true,
-                fileTypes: {
-                    js: {
-                        block: /(([\s\t]*)\/\/\s*bower:*(\S*))(\n|\r|.)*?(\/\/\s*endbower)/gi,
-                        detect: {
-                            js: /'(.*\.js)'/gi
-                        },
-                        replace: {
-                            js: '\'{{filePath}}\','
-                        }
-                    }
-                }
             }
         },
         browserSync: {
@@ -305,12 +288,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        karma: {
-            unit: {
-                configFile: 'src/test/javascript/karma.conf.js',
-                singleRun: true
-            }
-        },
         ngAnnotate: {
             dist: {
                 files: [{
@@ -392,10 +369,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', [
         'clean:server',
-        'wiredep:test',
         'ngconstant:dev',
         'sass:server',
-        'karma'
     ]);
 
     grunt.registerTask('build', [
@@ -438,13 +413,11 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('buildOpenshift', [
-        'test',
         'build',
         'copy:generateOpenshiftDirectory'
     ]);
 
     grunt.registerTask('deployOpenshift', [
-        'test',
         'build',
         'copy:generateOpenshiftDirectory',
         'buildcontrol:openshift'
