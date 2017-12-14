@@ -1,0 +1,50 @@
+version: '3'
+services:
+    springboot-app:
+        container_name: malariaplantdb-web
+        image: acheype/malariaplantdb-web:0.9
+        ports:
+            - "80:80"
+        links:
+            - "postgres"
+            - "elasticsearch"
+        environment:
+            - POSTGRES_HOST=postgres
+            - ELASTICSEARCH_HOST=elasticsearch
+            - ELASTICSEARCH_CLUSTER=malariaplantdb-cluster
+            - MAIL_HOST= smtp.ird.nc
+            - MAIL_PORT= 25
+        env_file: ./malariaplantdb-web.env
+        # example of the environment file content :
+        # POSTGRES_USER=malariaplantdb
+        # POSTGRES_PASSWORD=mpdb
+        # MAIL_USERNAME=m@i1us3r
+        # MAIL_PASSWORD=m@i1p@ssw0rd
+
+    postgres:
+        container_name: malariaplantdb-db
+        image: postgres:9.6.6
+        volumes:
+            - /data/postgresql:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_USER=malariaplantdb
+            - POSTGRES_PASSWORD=mpdb
+        env_file: ./malariaplantdb-db.env
+        # please define the variables POSTGRES_USER and POSTGRES_PASSWORD in the malariaplantdb-db.env file.
+        # example of the environment file content :
+        # POSTGRES_USER=malariaplantdb
+        # POSTGRES_PASSWORD=mpdb
+
+    elasticsearch:
+        container_name: malariaplantdb-es
+        image: elasticsearch:5.6.5
+        volumes:
+            - /data/es-data:/usr/share/elasticsearch/data
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        environment:
+            - cluster.name=malariaplantdb-cluster
+            - ES_JAVA_OPTS=-Xms1g -Xmx1g
