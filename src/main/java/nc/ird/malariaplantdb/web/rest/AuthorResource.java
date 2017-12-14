@@ -14,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -87,9 +88,12 @@ public class AuthorResource {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Transactional(readOnly = true)
     public ResponseEntity<List<Author>> getAllAuthors(Pageable pageable)
         throws URISyntaxException {
         Page<Author> page = authorRepository.findAll(pageable);
+        // eagerly load the association
+        page.getContent().stream().forEach(author -> author.getPublication().getTitle());
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/authors");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -101,11 +105,15 @@ public class AuthorResource {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Transactional(readOnly = true)
     public ResponseEntity<Author> getAuthor(@PathVariable Long id) {
         log.debug("REST request to get Author : {}", id);
-        return Optional.ofNullable(authorRepository.findOne(id))
-            .map(author -> new ResponseEntity<>(
-                author,
+        Author author = authorRepository.findOne(id);
+        // eagerly load the association
+        author.getPublication().getTitle();
+        return Optional.ofNullable(author)
+            .map(aut -> new ResponseEntity<>(
+                aut,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

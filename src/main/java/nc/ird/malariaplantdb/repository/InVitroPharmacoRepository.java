@@ -16,7 +16,7 @@ public interface InVitroPharmacoRepository extends JpaRepository<InVitroPharmaco
 
     List<InVitroPharmaco> findByPublicationId(Long id);
 
-    // Other method to fetch the authors and compilers relationships, but as it's by a join, the firsResult and
+    // Other method to fetch the authors and compilers relationships, but as it's by a join, the firstResult and
     // maxResults are applied in memory
     //@Query("select distinct inVitroPharmaco from InVitroPharmaco inVitroPharmaco  left join fetch inVitroPharmaco" +
     //    ".plantIngredients")

@@ -152,8 +152,8 @@ module.exports = function (grunt) {
                     src: [
                         '<%= yeoman.dist %>/scripts/**/*.js',
                         '<%= yeoman.dist %>/assets/styles/**/*.css',
-                        '<%= yeoman.dist %>/assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}'//,
-                        //'<%= yeoman.dist %>/assets/fonts/*'
+                        '<%= yeoman.dist %>/assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
+                        '<%= yeoman.dist %>/assets/fonts/*'
                     ]
                 }
             }
@@ -166,7 +166,8 @@ module.exports = function (grunt) {
                     html: {
                         steps: {
                             js: ['concat', 'uglifyjs'],
-                            css: ['cssmin', useminAutoprefixer] // Let cssmin concat files so it corrects relative paths to fonts and images
+                            css: ['cssmin']//, useminAutoprefixer] // Let cssmin concat files so it corrects
+                            // relative paths to fonts and images
                         },
                         post: {}
                     }
@@ -268,8 +269,8 @@ module.exports = function (grunt) {
                     src: [
                         '*.html',
                         'scripts/**/*.html',
-                        'assets/images/**/*.{png,gif,webp,jpg,jpeg,svg}'
-                        //'assets/fonts/*'
+                        'assets/images/**/*.{png,gif,webp,jpg,jpeg,svg}',
+                        'assets/fonts/*'
                     ]
                 }, {
                     expand: true,

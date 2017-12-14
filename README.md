@@ -55,8 +55,9 @@ Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
    cd docker/test
    docker-compose build
    
+   mkdir /data
    mkdir /data/postgres -R
    mkdir /data/es-data
-   sudo chown 999:999 es-data/
+   sudo chown 999:999 /data/es-data/
    
    
