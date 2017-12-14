@@ -12,8 +12,8 @@ services:
             - POSTGRES_HOST=postgres
             - ELASTICSEARCH_HOST=elasticsearch
             - ELASTICSEARCH_CLUSTER=malariaplantdb-cluster
-            - MAIL_HOST= smtp.ird.nc
-            - MAIL_PORT= 25
+            - MAIL_HOST=smtp.ird.nc
+            - MAIL_PORT=25
         env_file: ./malariaplantdb-web.env
         # please define the variables POSTGRES_USER, POSTGRES_PASSWORD, MAIL_USERNAME and MAIL_PASSWORD in the
         # malariaplantdb-web.env file.
