@@ -48,3 +48,15 @@ Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 [Bower]: http://bower.io/
 [Grunt]: http://gruntjs.com/
 [BrowserSync]: http://www.browsersync.io/
+
+
+   mvn -Pprod clean package
+   cp target/malariaplantdb-1.0.war docker/test/malariaplantdb-web/malariaplantdb.war
+   cd docker/test
+   docker-compose build
+   
+   mkdir /data/postgres -R
+   mkdir /data/es-data
+   sudo chown 999:999 es-data/
+   
+   

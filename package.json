@@ -1,6 +1,6 @@
 {
   "name": "malariaplantdb",
-  "version": "1.0.0-SNAPSHOT",
+  "version": "0.9.0",
   "description": "Database of medicinal plants against malaria",
   "private": true,
   "dependencies": {},
@@ -16,11 +16,11 @@
     "grunt-contrib-concat": "0.5.1",
     "grunt-contrib-cssmin": "0.11.0",
     "grunt-contrib-htmlmin": "0.4.0",
-    "grunt-contrib-imagemin": "^1.0.0",
+    "grunt-contrib-imagemin": "1.0.0",
     "grunt-contrib-jshint": "0.11.0",
     "grunt-contrib-uglify": "0.8.0",
     "grunt-contrib-watch": "0.6.1",
-    "grunt-include-source": "^0.7.0",
+    "grunt-include-source": "0.7.0",
     "grunt-modernizr": "0.6.0",
     "grunt-ng-annotate": "0.10.0",
     "grunt-ng-constant": "1.1.0",
@@ -43,7 +43,7 @@
     "wiredep": "2.2.2"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=0.12.0"
   },
   "scripts": {
     "test": "grunt test"

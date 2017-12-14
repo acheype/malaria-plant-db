@@ -1,0 +1,43 @@
+version: '3'
+services:
+    springboot-app:
+        container_name: malariaplantdb-web
+        build: ./malariaplantdb-web
+        image: acheype/malariaplantdb-web
+        ports:
+            - "80:80"
+        links:
+            - "postgres"
+            - "elasticsearch"
+        environment:
+            - POSTGRES_HOST=postgres
+            - POSTGRES_USER=malariaplantdb
+            - POSTGRES_PASSWORD=mpdb
+            - ELASTICSEARCH_HOST=elasticsearch
+            - ELASTICSEARCH_CLUSTER=malariaplantdb-cluster
+            - MAIL_HOST=smtp.ird.nc
+            - MAIL_PORT=25
+            - MAIL_USERNAME=m@i1us3r
+            - MAIL_PASSWORD=m@i1p@ssw0rd
+
+    postgres:
+        container_name: malariaplantdb-db
+        image: postgres:9.6.6
+        volumes:
+            - /data/postgresql:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_USER=malariaplantdb
+            - POSTGRES_PASSWORD=mpdb
+
+    elasticsearch:
+        container_name: malariaplantdb-es
+        image: itzg/elasticsearch:1.3
+        volumes:
+            - /data/es-data:/data
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        environment:
+            - CLUSTER=malariaplantdb-cluster

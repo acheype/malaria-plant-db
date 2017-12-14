@@ -21,7 +21,7 @@ spring:
     datasource:
         driver-class-name: org.postgresql.ds.PGSimpleDataSource
         url: jdbc:postgresql://${POSTGRES_HOST}:5432/malariaplantdb
-        name: malariaplantdb
+        name:
         username: ${POSTGRES_USER}
         password: ${POSTGRES_PASSWORD}
     jpa:
@@ -35,8 +35,7 @@ spring:
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
     data:
         elasticsearch:
-            cluster-name:
-            cluster-nodes: ${ELASTICSEARCH_HOST}:9300
+            cluster-nodes: {ELASTICSEARCH_HOST}:9300
     mail:
         host: ${MAIL_HOST}
         port: ${MAIL_PORT}
