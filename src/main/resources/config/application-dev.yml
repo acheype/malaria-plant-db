@@ -19,14 +19,13 @@ spring:
         livereload:
             enabled: false # we use Grunt + BrowserSync for livereload
     datasource:
-        driver-class-name: org.h2.jdbcx.JdbcDataSource
-        url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
-        name:
-        username:
-        password:
+        driver-class-name: org.postgresql.ds.PGSimpleDataSource
+        url: jdbc:postgresql://localhost:5432/malariaplantdb
+        username: malariaplantdb
+        password: mpdb
     jpa:
-        database-platform: nc.ird.malariaplantdb.domain.util.FixedH2Dialect
-        database: H2
+        database-platform: nc.ird.malariaplantdb.domain.util.FixedPostgreSQL82Dialect
+        database: POSTGRESQL
         show_sql: false
         properties:
             hibernate.cache.use_second_level_cache: true
@@ -37,12 +36,11 @@ spring:
         elasticsearch:
             cluster-name: malariaplantdb-cluster
             cluster-nodes: localhost:9300
-#            properties:
-#                path:
-#                  logs: target/elasticsearch/log
-#                  data: target/elasticsearch/data
     mail:
-        host: localhost
+        host: smtp.ird.nc
+        port: 25
+        username:
+        password:
     messages:
         cache-seconds: 1
     thymeleaf:
@@ -59,13 +57,12 @@ server:
 # ===================================================================
 
 jhipster:
-
     cache: # Hibernate 2nd level cache, used by CacheConfiguration
         timeToLiveSeconds: 3600
         ehcache:
             maxBytesLocalHeap: 16M
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: malariaplantdb@localhost
+        from: adrien.cheype@ird.fr
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:

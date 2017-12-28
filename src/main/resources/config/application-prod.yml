@@ -21,7 +21,6 @@ spring:
     datasource:
         driver-class-name: org.postgresql.ds.PGSimpleDataSource
         url: jdbc:postgresql://${POSTGRES_HOST}:5432/malariaplantdb
-        name:
         username: ${POSTGRES_USER}
         password: ${POSTGRES_PASSWORD}
     jpa:
@@ -67,7 +66,7 @@ jhipster:
         ehcache:
             maxBytesLocalHeap: 256M
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: malariaplantdb@localhost
+        from: ${MAIL_FROM}
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:

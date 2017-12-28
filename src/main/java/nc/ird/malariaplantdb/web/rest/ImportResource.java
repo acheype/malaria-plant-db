@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service class for the entities importation process.
@@ -117,12 +118,48 @@ public class ImportResource {
             etl.startImportProcess();
 
             checkPublicationsWithNoReview(etl);
+            checkPublicationWithSeveralEthno(etl);
             if (etl.getImportStatus().isStatusOK()) {
                 persistEntities(etl.getEntitiesMap());
             }
         }
 
         return etl.getImportStatus();
+    }
+
+    private void checkPublicationWithSeveralEthno(ExcelETL etl){
+        ArrayList<CellError> cellErrors = new ArrayList<>();
+
+        SheetInfo ethnoSheetInfo = etl.getSheetInfos().stream()
+            .filter(s -> s.getOutputEntityClass().equals(Ethnology.class))
+            .findAny()
+            .orElse(null);
+        int curLine = ethnoSheetInfo.getStartRow();
+
+        List<Ethnology> ethnoList = etl.getEntitiesMap().getList(Ethnology.class);
+        for (Ethnology ethnology : ethnoList) {
+
+            if (ethnoList.stream().filter(e -> e.getRemedy() != null &&
+                                        e.getRemedy().equals(ethnology.getRemedy()))
+                                        .count() > 1)
+                cellErrors.add(
+                    new CellError(
+                        String.format("The publication '%s' has several ethnology notes with the same plant " +
+                                "ingredients : '%s'. Each ethnology note of a publication must have a different " +
+                                "mix of plant ingredients.",
+                            ethnology.getPublication().getTitle(),
+                            ethnology.getRemedy().getPlantIngredients().stream()
+                                .map(pi -> pi.getSpecies().getSpecies() + ", " + pi.getPartUsed())
+                                .collect(Collectors.joining(" / "))),
+                        ethnoSheetInfo.getSheetLabel(),
+                        curLine,
+                        ethnoSheetInfo.getColumnInfoByDtoProperty("plantIngredients").getColumnLabel()
+                    )
+                );
+
+            curLine++;
+        }
+        etl.getImportStatus().getBusinessErrors().addAll(0, cellErrors);
     }
 
     private void checkPublicationsWithNoReview(ExcelETL etl){

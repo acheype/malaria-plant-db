@@ -141,15 +141,13 @@ public class EthnologyResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Ethnology> getEthnologyByPubIdAndRemedyId(@PathVariable Long pubId, @PathVariable Long
+    public ResponseEntity<List<Ethnology>> getEthnologyByPubIdAndRemedyId(@PathVariable Long pubId, @PathVariable Long
         remId) {
         log.debug("REST request to get the Ethnology of the Publication : {}, and the Remedy : {}", pubId, remId);
 
-        return Optional.ofNullable(ethnologyRepository.findByPublicationIdAndAndRemedyId(pubId, remId))
-            .map(ethnology -> new ResponseEntity<>(
-                ethnology,
-                HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        List<Ethnology> ethnologies = ethnologyRepository.findByPublicationIdAndAndRemedyId(pubId, remId);
+
+        return new ResponseEntity<>(ethnologies, HttpStatus.OK);
     }
 
     /**

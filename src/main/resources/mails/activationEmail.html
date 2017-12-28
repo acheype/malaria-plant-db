@@ -13,7 +13,7 @@
             it:
         </p>
         <p>
-            <a th:href="@{|${baseUrl}/#/activate?key=${user.activationKey}|}"
+            <a th:href="@{|${baseUrl}/#!/activate?key=${user.activationKey}|}"
                th:text="|${user.login}|">Activation Link</a>
         </p>
 
@@ -33,6 +33,8 @@
         <span th:text="#{email.activation.text6}">Regards,</span>
             <br/>
         <em th:text="#{email.signature}">The Malaria plant DB's administrators</em>
-        </p>
+    </p>
+    <br/>
+    <p><em>NB</em> : Please don't reply to this e-mail.</p>
     </body>
 </html>

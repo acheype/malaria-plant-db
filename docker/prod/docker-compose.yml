@@ -12,6 +12,7 @@ services:
             - POSTGRES_HOST=postgres
             - ELASTICSEARCH_HOST=elasticsearch
             - ELASTICSEARCH_CLUSTER=malariaplantdb-cluster
+            - MAIL_FROM=adminsys.noumea@ird.fr
             - MAIL_HOST=smtp.ird.nc
             - MAIL_PORT=25
         env_file: ./malariaplantdb-web.env
