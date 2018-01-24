@@ -13,8 +13,12 @@ import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletCont
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.MimeMappings;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import javax.inject.Inject;
 import javax.servlet.*;
@@ -134,5 +138,22 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         h2ConsoleServlet.addMapping("/console/*");
         h2ConsoleServlet.setInitParameter("-properties", "src/main/resources");
         h2ConsoleServlet.setLoadOnStartup(1);
+    }
+
+    /**
+     * Active the CORS support for with an AllowedOrigin set to '*'
+     * @return the corsFilter
+     */
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/api/**", config);
+        source.registerCorsConfiguration("/v2/api-docs", config);
+        return new CorsFilter(source);
     }
 }

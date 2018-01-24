@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('malariaplantdbApp')
-    .controller('DatabaseDetailController', function ($scope, $rootScope, $stateParams, publication, ethnology,
-                                                      pubSpecies, inVivoPharmacos, inVitroPharmacos, pubSummary) {
+    .controller('DatabaseDetailController', function ($scope, $rootScope, $stateParams, publication, pubSpecies,
+                                                      ethnology, inVivoPharmacos, inVitroPharmacos, pubSummary) {
         $scope.publication = publication;
         $scope.pubSpecies = pubSpecies;
         $scope.ethnology = ethnology;

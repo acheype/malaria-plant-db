@@ -4,6 +4,6 @@ angular.module('malariaplantdbApp')
 
 .constant('ENV', 'dev')
 
-.constant('VERSION', '0.9-SNAPSHOT')
+.constant('VERSION', '0.9.1')
 
 ;

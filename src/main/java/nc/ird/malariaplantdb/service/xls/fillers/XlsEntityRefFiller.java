@@ -1,10 +1,10 @@
 package nc.ird.malariaplantdb.service.xls.fillers;
 
-import nc.ird.malariaplantdb.service.xls.exceptions.ImportRuntimeException;
 import nc.ird.malariaplantdb.service.xls.fillers.errors.FillerError;
 import nc.ird.malariaplantdb.service.xls.fillers.errors.XlsFillerError;
 import nc.ird.malariaplantdb.service.xls.fillers.util.EqualsStrategy;
 import nc.ird.malariaplantdb.service.xls.structures.PropVals;
+import org.apache.commons.beanutils.NestedNullException;
 import org.apache.commons.beanutils.PropertyUtils;
 
 import java.lang.reflect.Constructor;
@@ -42,8 +42,12 @@ public class XlsEntityRefFiller extends EntityRefFiller {
             PropVals refPropVals = new PropVals();
 
             for (String refProp : getXlsRefEntityProperties()){
-                Object value = PropertyUtils.getProperty(curRefEntity, refProp);
-                refPropVals.put(refProp, value);
+                try {
+                    Object value = PropertyUtils.getProperty(curRefEntity, refProp);
+                    refPropVals.put(refProp, value);
+                } catch (NestedNullException exception){
+                    System.out.println("toto");
+                }
             }
 
             if (compareWithFillerEqualsStrategy(propValsSearched, refPropVals)) {

@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  */
 public class PlantIngredientsStrTransformer implements Transformer {
 
-    static final private String PLANT_INGREDIENTS_REGEXP = "([a-zA-ZÀ-ÿ &\\.\\-\\(\\)]+),([a-zA-ZÀ-ÿ \\-]+)/?";
+    static final private String PLANT_INGREDIENTS_REGEXP = "([a-zA-ZÀ-ÿ &\\.\\-\\(\\)']+),([a-zA-ZÀ-ÿ \\-]+)/?";
 
     @Override
     public Object transform(Object o) {

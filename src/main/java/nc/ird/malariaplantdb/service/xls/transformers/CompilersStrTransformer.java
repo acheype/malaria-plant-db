@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class CompilersStrTransformer implements Transformer {
 
-    static final private String COMPILERS_REGEXP = "([a-zA-ZÀ-ÿ &\\-]+),([a-zA-ZÀ-ÿ \\-]+)/?";
+    static final private String COMPILERS_REGEXP = "([a-zA-ZÀ-ÿ &\\-']+),([a-zA-ZÀ-ÿ \\-]+)/?";
 
     @Override
     public Object transform(Object o) {
@@ -27,7 +27,6 @@ public class CompilersStrTransformer implements Transformer {
             throw new IllegalArgumentException(String.format("The CompilersStrTransformer transformer need a " +
                     "PropVals object as input. It gots this object instead : '%s'", o));
         } else {
-
             List<PropVals> resultPropValsList = new ArrayList<>();
 
             PropVals dtoPropVals = (PropVals) o;

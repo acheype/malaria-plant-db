@@ -14,10 +14,7 @@ import nc.ird.malariaplantdb.service.xls.transformers.StringNormalizer;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 /**
@@ -79,6 +76,10 @@ public class InVitroPharmacoLine {
 
     @ImportProperty(columnLetterRef = "B", columnLabel = "Plant ingredient(s) tested")
     @NotEmpty(message = "The cell is empty or the value invalid")
+    @Pattern(regexp = "^(([a-zA-ZÀ-ÿ &\\.\\-\\(\\)']+),([a-zA-ZÀ-ÿ \\-]+)/)*([a-zA-ZÀ-ÿ &\\.\\-\\(\\)']+),([a-zA-ZÀ-ÿ \\-]+)$",
+        message = "The plant ingredient(s) value is not well formatted. Please enter each species name first, " +
+            "a coma (,) then the part used. For several plant ingredients, please separate each plant ingredient " +
+            "by a slash (/).")
     private String plantIngredients;
 
     @ImportProperty(columnLetterRef = "C", columnLabel = "Tested entity",

@@ -89,8 +89,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/publications/**").permitAll()
             .antMatchers("/api/pubSpecies/**").permitAll()
             .antMatchers("/api/remedies/**").permitAll()
+            .antMatchers("/api/pubSummaries").permitAll()
             .antMatchers("/api/import/**").hasAuthority(AuthoritiesConstants.USER)
-            .antMatchers("/api/**").permitAll()
+            .antMatchers(org.springframework.http.HttpMethod.OPTIONS, "/api/**").permitAll()
             .antMatchers("/login/**").hasAuthority(AuthoritiesConstants.ANONYMOUS)
             .antMatchers("/login").hasAuthority(AuthoritiesConstants.ANONYMOUS)
             .antMatchers("/metrics/**").hasAuthority(AuthoritiesConstants.ADMIN)
@@ -111,6 +112,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/configuration/ui").permitAll()
             .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/protected/**").authenticated()
+            .antMatchers("/database/**").permitAll()
         .and()
             .apply(securityConfigurerAdapter());
 

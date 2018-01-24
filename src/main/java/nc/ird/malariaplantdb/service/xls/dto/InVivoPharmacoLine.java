@@ -77,7 +77,7 @@ public class InVivoPharmacoLine {
 
     @ImportProperty(columnLetterRef = "B", columnLabel = "Plant ingredient(s) tested")
     @NotEmpty(message = "The cell is empty or the value invalid")
-    @Pattern(regexp = "^(([a-zA-ZÀ-ÿ &\\.\\-\\(\\)]+),([a-zA-ZÀ-ÿ \\-]+)/)*([a-zA-ZÀ-ÿ &\\.\\-\\(\\)]+),([a-zA-ZÀ-ÿ \\-]+)$",
+    @Pattern(regexp = "^(([a-zA-ZÀ-ÿ &\\.\\-\\(\\)']+),([a-zA-ZÀ-ÿ \\-]+)/)*([a-zA-ZÀ-ÿ &\\.\\-\\(\\)']+),([a-zA-ZÀ-ÿ \\-]+)$",
         message = "The plant ingredient(s) value is not well formatted. Please enter each species name first, " +
             "a coma (,) then the part used. For several plant ingredients, please separate each plant ingredient " +
             "by a slash (/).")

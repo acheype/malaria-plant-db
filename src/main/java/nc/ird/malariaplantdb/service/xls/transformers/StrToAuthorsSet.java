@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class StrToAuthorsSet implements Transformer {
 
-    static final private String AUTHORS_REGEXP = "([a-zA-ZÀ-ÿ \\-]+),([a-zA-ZÀ-ÿ \\-.]+)/?";
+    static final private String AUTHORS_REGEXP = "([a-zA-ZÀ-ÿ \\-']+),([a-zA-ZÀ-ÿ \\-.]+)/?";
 
     @Override
     public Object transform(Object o) {

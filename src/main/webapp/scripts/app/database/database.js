@@ -49,7 +49,7 @@ angular.module('malariaplantdbApp')
                     }],
                     pubSummary: ['$stateParams', 'Publication', function($stateParams, Publication) {
                         return Publication.pubSummaryById({id : $stateParams.pubId}).$promise;
-                    }],
+                    }]
                 }
             })
     });
