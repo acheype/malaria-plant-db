@@ -61,3 +61,13 @@ Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
    sudo chown 999:999 /data/es-data/
    
    
+   
+## From development to production
+
+To have the database and elasticsearch set quicky, it's possible to use the same docker image than in production. For 
+this, you can go to the directory `docker/test` and launch separately the two services :
+
+    docker-compose up postgres
+    docker-compose up elasticsearch
+   
+   

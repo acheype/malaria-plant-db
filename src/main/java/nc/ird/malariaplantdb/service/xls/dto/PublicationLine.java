@@ -45,7 +45,7 @@ public class PublicationLine {
     @ImportProperty(columnLetterRef = "B", columnLabel = "Author(s)",
             propertyLoader = @PropertyLoader(transformer = StrToAuthorsSet.class))
     @NotEmpty(message = "The cell is empty or the value invalid")
-    @Pattern(regexp = "^(([a-zA-ZÀ-ÿ \\-]+),([a-zA-ZÀ-ÿ \\-\\.]+)/)*([a-zA-ZÀ-ÿ \\-]+),([a-zA-ZÀ-ÿ \\-\\.]+)$",
+    @Pattern(regexp = "^(([a-zA-ZÀ-ÿ \\-']+),([a-zA-ZÀ-ÿ \\-\\.]+)/)*([a-zA-ZÀ-ÿ \\-']+),([a-zA-ZÀ-ÿ \\-\\.]+)$",
             message = "The authors value is not well formatted. Please enter each author name with the last name " +
                     "first, a coma (,) then the given name initials (with comas). For several authors, " +
                     "please separate each complete name by a slash (/).")
@@ -132,7 +132,7 @@ public class PublicationLine {
 
     @NotEmpty(message = "The cell is empty or the value invalid")
     @ImportProperty(columnLetterRef = "U", columnLabel = "Compiler(s) name(s)")
-    @Pattern(regexp = "^(([a-zA-ZÀ-ÿ \\-]+),([a-zA-ZÀ-ÿ \\-]+)/)*([a-zA-ZÀ-ÿ \\-]+),([a-zA-ZÀ-ÿ \\-]+)$",
+    @Pattern(regexp = "^(([a-zA-ZÀ-ÿ \\-']+),([a-zA-ZÀ-ÿ \\-]+)/)*([a-zA-ZÀ-ÿ \\-']+),([a-zA-ZÀ-ÿ \\-]+)$",
             message = "The compilers value is not well formatted. Please enter each compiler name with the last name " +
                     "first, a coma (,) then the given name. For several compilers, please separate each complete " +
                     "name by a slash (/).")
