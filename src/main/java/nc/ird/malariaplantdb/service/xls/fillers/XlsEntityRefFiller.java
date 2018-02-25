@@ -42,7 +42,12 @@ public class XlsEntityRefFiller extends EntityRefFiller {
             PropVals refPropVals = new PropVals();
 
             for (String refProp : getXlsRefEntityProperties()){
-                Object value = PropertyUtils.getProperty(curRefEntity, refProp);
+                Object value;
+                try {
+                   value = PropertyUtils.getNestedProperty(curRefEntity, refProp);
+                } catch (NestedNullException e){
+                    value = null;
+                }
                 refPropVals.put(refProp, value);
             }
 

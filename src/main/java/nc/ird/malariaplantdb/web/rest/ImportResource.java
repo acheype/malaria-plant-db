@@ -139,7 +139,7 @@ public class ImportResource {
         List<Ethnology> ethnoList = etl.getEntitiesMap().getList(Ethnology.class);
         for (Ethnology ethnology : ethnoList) {
 
-            if (ethnoList.stream().filter(e -> ethnology.getPublication() != null &&
+            if (ethnoList.stream().filter(e -> e.getPublication() != null && ethnology.getPublication() != null &&
                                         e.getPublication().getTitle().equals(ethnology.getPublication().getTitle()) &&
                                         e.getRemedy() != null &&
                                         e.getRemedy().equals(ethnology.getRemedy()))

@@ -12,7 +12,7 @@
 
     <groupId>nc.ird.malariaplantdb</groupId>
     <artifactId>malariaplantdb</artifactId>
-    <version>0.9.2</version>
+    <version>0.9.3</version>
     <packaging>war</packaging>
     <name>malariaplantdb</name>
 

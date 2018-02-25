@@ -75,15 +75,23 @@ Then you will need to connect you at the web application by a different port : h
 
 ## From development to production
 
-   mvn -Pprod clean package
-   cp target/malariaplantdb-1.0.war docker/test/malariaplantdb-web/malariaplantdb.war
-   cd docker/test
-   docker-compose build
-   
-   mkdir /data
-   mkdir /data/postgres -R
-   mkdir /data/es-data
-   sudo chown 999:999 /data/es-data/
+    mvn -Pprod clean package
+    cp target/malariaplantdb-1.0.war docker/test/malariaplantdb-web/malariaplantdb.war
+    cd docker/test
+    docker-compose build
+    docker tag acheype/malariaplantdb-web:latest acheype/malariaplantdb-web:0.9.2
+    docker push acheype/malariaplantdb-web:latest
+    docker push acheype/malariaplantdb-web:0.9.2
+    
+    git pull
+    cd /docker/prod
+    docker-compose down
+    docker-compose up
+    
+    mkdir /data
+    mkdir /data/postgres -R
+    mkdir /data/es-data
+    sudo chown 999:999 /data/es-data/
      
 [JHipster]: https://jhipster.gitub.io/
 [Node.js]: https://nodejs.org/
