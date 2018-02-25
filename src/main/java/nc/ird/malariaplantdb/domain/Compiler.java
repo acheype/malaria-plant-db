@@ -8,6 +8,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Setting;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -30,6 +31,7 @@ import java.util.Objects;
 @Table(name = "compiler", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}, name = "uk_compiler_email"))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "compiler")
+@Setting(settingPath = "/config/elastic-settings.json")
 public class Compiler implements Serializable, Comparable<Compiler> {
 
     private final static Comparator<Compiler> COMPARATOR = new CompilerComparator();

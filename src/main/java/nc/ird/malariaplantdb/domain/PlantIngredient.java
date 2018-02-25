@@ -19,8 +19,7 @@ import java.util.Objects;
  *
  * Represent a part of a mix referred in a publication.
  *
- * Unlike for species, a new object is created when a plant ingredient has the same species and same partUsed (the
- * remedy differs)
+ * Unlike for species, a new object is created when a plant ingredient has the same species and same partUsed
  *
  * @author acheype
  */

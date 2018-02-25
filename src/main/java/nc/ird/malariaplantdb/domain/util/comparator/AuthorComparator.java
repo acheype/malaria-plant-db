@@ -12,8 +12,9 @@ import java.util.Comparator;
  */
 public class AuthorComparator implements Comparator<Author> {
 
-    private final static Comparator<Author> BY_POSITION = Comparator.comparing(Author::getPosition).thenComparing(
-        Author::getGiven);
+    private final static Comparator<Author> BY_POSITION = Comparator.comparing(
+        Author::getPosition, Comparator.nullsFirst(Comparator.naturalOrder())).thenComparing(
+            Author::getGiven, Comparator.nullsFirst(Comparator.naturalOrder()));
 
     private final static Comparator<Author> BY_POSITION_AND_ID = BY_POSITION.thenComparing(Author::getId,
         Comparator.nullsFirst(Comparator.naturalOrder()));

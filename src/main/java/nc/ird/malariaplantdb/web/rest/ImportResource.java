@@ -139,7 +139,9 @@ public class ImportResource {
         List<Ethnology> ethnoList = etl.getEntitiesMap().getList(Ethnology.class);
         for (Ethnology ethnology : ethnoList) {
 
-            if (ethnoList.stream().filter(e -> e.getRemedy() != null &&
+            if (ethnoList.stream().filter(e -> ethnology.getPublication() != null &&
+                                        e.getPublication().getTitle().equals(ethnology.getPublication().getTitle()) &&
+                                        e.getRemedy() != null &&
                                         e.getRemedy().equals(ethnology.getRemedy()))
                                         .count() > 1)
                 cellErrors.add(
@@ -253,7 +255,11 @@ public class ImportResource {
         plantIngredients.forEach(plantIngredientSearchRepo::save);
 
         List<Ethnology> ethnoNotes = entities.getList(Ethnology.class);
-        ethnoNotes.forEach(ethnologyRepo::save);
+        for (Ethnology ethno : ethnoNotes){
+            ethnologyRepo.save(ethno);
+        }
+
+//        ethnoNotes.forEach(ethnologyRepo::save);
         ethnoNotes.forEach(ethnologySearchRepo::save);
 
         List<InVivoPharmaco> inVivoNotes = entities.getList(InVivoPharmaco.class);

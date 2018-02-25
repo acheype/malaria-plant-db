@@ -23,6 +23,8 @@ import java.util.Map;
  */
 public class EmptyOrNotIfPropertyValueValidator implements ConstraintValidator<EmptyOrNotIfPropertyValue, Object> {
 
+    public static final String WILDCARD = "*";
+
     /**
      * The property name for which its value will be compared
      */
@@ -72,14 +74,18 @@ public class EmptyOrNotIfPropertyValueValidator implements ConstraintValidator<E
                     "the parameters of the corresponding annotation.", e);
         }
 
-        if (criteriaVal != null && !criteriaVal.toString().isEmpty()) {
-            boolean criteriaOK = Arrays.asList(criteriaValues).contains(criteriaVal.toString());
-            if (!criteriaOK)
-                result = true;
-            else
-                result = isEmpty ? isEmpty(testedVal) : !isEmpty(testedVal);
-        } else
+        boolean criteriaOK;
+        if (criteriaValues.length == 0)
+            criteriaOK = criteriaVal == null || criteriaVal.toString().isEmpty();
+        else if (criteriaValues.length == 1 && criteriaValues[0].equals(WILDCARD))
+            criteriaOK = criteriaVal != null && !criteriaVal.toString().isEmpty();
+        else
+            criteriaOK = criteriaVal != null && Arrays.asList(criteriaValues).contains(criteriaVal.toString());
+
+        if (!criteriaOK)
             result = true;
+        else
+            result = isEmpty ? isEmpty(testedVal) : !isEmpty(testedVal);
 
         // binds the errors message to the tested property
         context.disableDefaultConstraintViolation();

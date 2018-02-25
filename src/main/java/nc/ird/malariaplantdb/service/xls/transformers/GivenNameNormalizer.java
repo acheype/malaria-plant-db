@@ -17,7 +17,8 @@ public class GivenNameNormalizer implements Transformer {
         String firstLetters = "";
         String text = input.toString().trim().replaceAll("\\.+", " ").replaceAll("\\s+", " ");
         for (String s : text.split(" +")){
-            firstLetters += s.charAt(0) + ".";
+            if (s.length() > 0)
+                firstLetters += s.charAt(0) + ".";
         }
         return firstLetters;
     }

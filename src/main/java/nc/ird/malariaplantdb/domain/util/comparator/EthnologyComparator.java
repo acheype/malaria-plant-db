@@ -12,8 +12,9 @@ import java.util.Comparator;
  */
 public class EthnologyComparator implements Comparator<Ethnology> {
 
-    private final static Comparator<Ethnology> BY_REMEDY_AND_ID = Comparator.comparing(Ethnology::getRemedy)
-        .thenComparing(Ethnology::getId);
+    private final static Comparator<Ethnology> BY_REMEDY_AND_ID = Comparator.comparing(
+        Ethnology::getRemedy, Comparator.nullsFirst(Comparator.naturalOrder())).thenComparing(
+            Ethnology::getId, Comparator.nullsFirst(Comparator.naturalOrder()));
 
     @Override
     public int compare(Ethnology i1, Ethnology i2) {

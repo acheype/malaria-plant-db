@@ -33,7 +33,9 @@ public @interface EmptyOrNotIfPropertyValue {
     String criteriaProperty();
 
     /**
-     * @return the values to compare to the criteria properties
+     * @return the values to compare to the criteria properties. It's normally a list of values that the
+     * criteriaProperty must have to fulfill the criteria. You can also put an empty array to mean you wait for an empty
+     * value or at contrary <code>{"*"}</code> if you wait any value in the criteria property.
      */
     String[] criteriaValues();
 

@@ -11,6 +11,7 @@ import nc.ird.malariaplantdb.service.xls.fillers.XlsEntityRefFiller;
 import nc.ird.malariaplantdb.service.xls.transformers.PubSpeciesToSpecies;
 import nc.ird.malariaplantdb.service.xls.transformers.RemedyEntitiesTransformer;
 import nc.ird.malariaplantdb.service.xls.transformers.StringNormalizer;
+import nc.ird.malariaplantdb.service.xls.validators.EmptyOrNotIfPropertyValue;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -132,7 +133,168 @@ import org.hibernate.validator.constraints.NotEmpty;
                 afterFillingTransformer = RemedyEntitiesTransformer.class
             )
         })
-//TODO Improve EmptyOrNotIfPropertyValue annotation to some ones with a criteriaProperty "not empty"
+@EmptyOrNotIfPropertyValue.List({
+    @EmptyOrNotIfPropertyValue(
+        message = "As 'Plant ingredient #1 (species)' have a value, you must select a 'Plant ingredient #1 " +
+            "(part used)'  value.",
+        criteriaProperty = "species1",
+        criteriaValues = {"*"},
+        testedProperty = "partUsed1",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As ''Plant ingredient #1 (part used))' have a value, you must select a 'Plant ingredient #1 " +
+            "(species)'  value.",
+        criteriaProperty = "partUsed1",
+        criteriaValues = {"*"},
+        testedProperty = "species1",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As 'Plant ingredient #2 (species)' have a value, you must select a 'Plant ingredient #2 " +
+            "(part used)'  value.",
+        criteriaProperty = "species2",
+        criteriaValues = {"*"},
+        testedProperty = "partUsed2",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As ''Plant ingredient #2 (part used))' have a value, you must select a 'Plant ingredient #2 " +
+            "(species)'  value.",
+        criteriaProperty = "partUsed2",
+        criteriaValues = {"*"},
+        testedProperty = "species2",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As 'Plant ingredient #3 (species)' have a value, you must select a 'Plant ingredient #3 " +
+            "(part used)'  value.",
+        criteriaProperty = "species3",
+        criteriaValues = {"*"},
+        testedProperty = "partUsed3",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As ''Plant ingredient #3 (part used))' have a value, you must select a 'Plant ingredient #3 " +
+            "(species)'  value.",
+        criteriaProperty = "partUsed3",
+        criteriaValues = {"*"},
+        testedProperty = "species3",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As 'Plant ingredient #4 (species)' have a value, you must select a 'Plant ingredient #4 " +
+            "(part used)'  value.",
+        criteriaProperty = "species4",
+        criteriaValues = {"*"},
+        testedProperty = "partUsed4",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As ''Plant ingredient #4 (part used))' have a value, you must select a 'Plant ingredient #4 " +
+            "(species)'  value.",
+        criteriaProperty = "partUsed4",
+        criteriaValues = {"*"},
+        testedProperty = "species4",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As 'Plant ingredient #5 (species)' have a value, you must select a 'Plant ingredient #5 " +
+            "(part used)'  value.",
+        criteriaProperty = "species5",
+        criteriaValues = {"*"},
+        testedProperty = "partUsed5",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As ''Plant ingredient #5 (part used))' have a value, you must select a 'Plant ingredient #5 " +
+            "(species)'  value.",
+        criteriaProperty = "partUsed5",
+        criteriaValues = {"*"},
+        testedProperty = "species5",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As 'Plant ingredient #6 (species)' have a value, you must select a 'Plant ingredient #6 " +
+            "(part used)'  value.",
+        criteriaProperty = "species6",
+        criteriaValues = {"*"},
+        testedProperty = "partUsed6",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As ''Plant ingredient #6 (part used))' have a value, you must select a 'Plant ingredient #6 " +
+            "(species)'  value.",
+        criteriaProperty = "partUsed6",
+        criteriaValues = {"*"},
+        testedProperty = "species6",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As 'Plant ingredient #7 (species)' have a value, you must select a 'Plant ingredient #7 " +
+            "(part used)'  value.",
+        criteriaProperty = "species7",
+        criteriaValues = {"*"},
+        testedProperty = "partUsed7",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As ''Plant ingredient #7 (part used))' have a value, you must select a 'Plant ingredient #7 " +
+            "(species)'  value.",
+        criteriaProperty = "partUsed7",
+        criteriaValues = {"*"},
+        testedProperty = "species7",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As 'Plant ingredient #8 (species)' have a value, you must select a 'Plant ingredient #8 " +
+            "(part used)'  value.",
+        criteriaProperty = "species8",
+        criteriaValues = {"*"},
+        testedProperty = "partUsed8",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As ''Plant ingredient #8 (part used))' have a value, you must select a 'Plant ingredient #8 " +
+            "(species)'  value.",
+        criteriaProperty = "partUsed8",
+        criteriaValues = {"*"},
+        testedProperty = "species8",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As 'Plant ingredient #9 (species)' have a value, you must select a 'Plant ingredient #9 " +
+            "(part used)'  value.",
+        criteriaProperty = "species9",
+        criteriaValues = {"*"},
+        testedProperty = "partUsed9",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As ''Plant ingredient #9 (part used))' have a value, you must select a 'Plant ingredient #9 " +
+            "(species)'  value.",
+        criteriaProperty = "partUsed9",
+        criteriaValues = {"*"},
+        testedProperty = "species9",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As 'Plant ingredient #10 (species)' have a value, you must select a 'Plant ingredient #10 " +
+            "(part used)'  value.",
+        criteriaProperty = "species10",
+        criteriaValues = {"*"},
+        testedProperty = "partUsed10",
+        isEmpty = false
+    ),
+    @EmptyOrNotIfPropertyValue(
+        message = "As ''Plant ingredient #10 (part used))' have a value, you must select a 'Plant ingredient #10 " +
+            "(species)'  value.",
+        criteriaProperty = "partUsed10",
+        criteriaValues = {"*"},
+        testedProperty = "species10",
+        isEmpty = false
+    )}
+)
 public class PlantIngredientsLine {
 
     @ImportProperty(columnLetterRef = "A", columnLabel = "Publication (title)")

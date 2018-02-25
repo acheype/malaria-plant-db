@@ -18,7 +18,7 @@ public class RemedyComparator implements Comparator<Remedy> {
             r2.getPlantIngredients());
 
     private final static Comparator<Remedy> BY_PLANT_INGREDIENTS_SET_AND_ID = BY_PLANT_INGREDIENTS_SET.thenComparing(
-        Remedy::getId);
+        Remedy::getId, Comparator.nullsFirst(Comparator.naturalOrder()));
 
     @Override
     public int compare(Remedy r1, Remedy r2) {

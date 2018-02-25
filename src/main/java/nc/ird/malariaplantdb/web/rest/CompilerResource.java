@@ -7,6 +7,7 @@ import nc.ird.malariaplantdb.repository.search.CompilerSearchRepository;
 import nc.ird.malariaplantdb.security.AuthoritiesConstants;
 import nc.ird.malariaplantdb.web.rest.util.HeaderUtil;
 import nc.ird.malariaplantdb.web.rest.util.PaginationUtil;
+import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -138,8 +139,9 @@ public class CompilerResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Compiler> searchCompilers(@PathVariable String query) {
+        QueryStringQueryBuilder queryBuilder = queryStringQuery(query);
         return StreamSupport
-            .stream(compilerSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .stream(compilerSearchRepository.search(queryBuilder).spliterator(), false)
             .collect(Collectors.toList());
     }
 }

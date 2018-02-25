@@ -30,13 +30,10 @@ public class RemedyEntitiesTransformer extends EntitiesTransformer {
         for (PlantIngredientsTemp plantIngredientsTemp : plantIngredientsTempList) {
             Remedy remedy = new Remedy();
             remedy.setPlantIngredients(buildPlantIngredientsSet(plantIngredientsTemp, remedy));
-            if (!remedies.contains(remedy)){
-                remedies.add(remedy);
-                remedy.getPlantIngredients().forEach(plantIngredients::add);
-            }
+            remedies.add(remedy);
+            remedy.getPlantIngredients().forEach(plantIngredients::add);
             // save the remedy for the references from other entities
             plantIngredientsTemp.setRemedy(remedy);
-
         }
         entitiesMap.putList(PlantIngredient.class, plantIngredients);
         entitiesMap.putList(Remedy.class, remedies);
@@ -52,8 +49,8 @@ public class RemedyEntitiesTransformer extends EntitiesTransformer {
                     PLANT_INGREDIENTS_PROPERTIES[i]);
                 // insert when the properties of the plant ingredient are defined and when an already plant ingredient
                 // with the same properties doesn't exist
-                if (plantIngredient.getSpecies() != null && plantIngredient.getPartUsed() != null &&
-                    !plantIngredientsSet.contains(plantIngredient)) {
+                if (plantIngredient.getSpecies() != null && plantIngredient.getPartUsed() != null){
+//                    !plantIngredientsSet.contains(plantIngredient)) {
                     // attach the plant ingredient to the remedy
                     plantIngredient.setRemedy(remedy);
                     plantIngredientsSet.add(plantIngredient);

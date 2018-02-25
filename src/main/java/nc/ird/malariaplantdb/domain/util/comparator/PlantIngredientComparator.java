@@ -16,7 +16,7 @@ public class PlantIngredientComparator implements Comparator<PlantIngredient> {
         new SpeciesComparator().compare(pi1.getSpecies(), pi2.getSpecies());
 
     private final static Comparator<PlantIngredient> BY_SPECIES_AND_PART = BY_SPECIES.thenComparing(
-        PlantIngredient::getPartUsed);
+        PlantIngredient::getPartUsed, Comparator.nullsFirst(Comparator.naturalOrder()));
 
     @Override
     public int compare(PlantIngredient pi1, PlantIngredient pi2) {

@@ -80,6 +80,7 @@ public class EthnologyLine {
     @ImportProperty(columnLetterRef = "C", columnLabel = "Ethnopharmalogical relevancy",
             propertyLoader = @PropertyLoader(outputProperty = "ethnoRelevancy",
                     transformer = StringNormalizer.class))
+    @NotEmpty(message = "The cell is empty or the value invalid")
     private String ethnoRelevancy;
 
     @ImportProperty(columnLetterRef = "D", columnLabel = "Treatment type",

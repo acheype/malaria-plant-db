@@ -12,8 +12,9 @@ import java.util.Comparator;
  */
 public class InVitroPharmacoComparator implements Comparator<InVitroPharmaco> {
 
-    private final static Comparator<InVitroPharmaco> BY_REMEDY_AND_ID = Comparator.comparing(InVitroPharmaco::getRemedy)
-        .thenComparing(InVitroPharmaco::getId);
+    private final static Comparator<InVitroPharmaco> BY_REMEDY_AND_ID = Comparator.comparing(
+        InVitroPharmaco::getRemedy, Comparator.nullsFirst(Comparator.naturalOrder())).thenComparing(
+            InVitroPharmaco::getId, Comparator.nullsFirst(Comparator.naturalOrder()));
 
     @Override
     public int compare(InVitroPharmaco i1, InVitroPharmaco i2) {

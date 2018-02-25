@@ -12,7 +12,8 @@ import java.util.Comparator;
  */
 public class SpeciesComparator implements Comparator<Species> {
 
-    private final static Comparator<Species> BY_SPECIES = Comparator.comparing(Species::getSpecies);
+    private final static Comparator<Species> BY_SPECIES = Comparator.comparing(
+        Species::getSpecies, Comparator.nullsFirst(Comparator.naturalOrder()));
 
     @Override
     public int compare(Species s1, Species s2) {

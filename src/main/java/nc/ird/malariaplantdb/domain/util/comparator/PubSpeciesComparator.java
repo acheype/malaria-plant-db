@@ -15,7 +15,8 @@ public class PubSpeciesComparator implements Comparator<PubSpecies> {
     private final static Comparator<PubSpecies> BY_SPECIES = (ps1, ps2) ->
         new SpeciesComparator().compare(ps1.getSpecies(), ps2.getSpecies());
 
-    private final static Comparator<PubSpecies> BY_SPECIES_AND_ID = BY_SPECIES.thenComparing(PubSpecies::getId);
+    private final static Comparator<PubSpecies> BY_SPECIES_AND_ID = BY_SPECIES.thenComparing(
+        PubSpecies::getId, Comparator.nullsFirst(Comparator.naturalOrder()));
 
     @Override
     public int compare(PubSpecies ps1, PubSpecies ps2) {

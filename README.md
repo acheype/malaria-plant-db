@@ -1,6 +1,6 @@
 # Malaria Plant DB
 
-###The database of medicinal plants against malaria
+### The database of medicinal plants against malaria
 
 Malaria Plant DB was generated using JHipster, you can find documentation and help at [JHipster][].
 

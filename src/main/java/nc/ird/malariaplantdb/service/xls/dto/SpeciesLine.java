@@ -35,13 +35,6 @@ import javax.validation.constraints.NotNull;
         })
 @EmptyOrNotIfPropertyValue.List({
         @EmptyOrNotIfPropertyValue(
-                message = "As 'Herbarium voucher' is YES, 'Herbarium' must not be empty",
-                criteriaProperty = "isHerbariumVoucher",
-                criteriaValues = {"true"},
-                testedProperty = "herbarium",
-                isEmpty = false
-        ),
-        @EmptyOrNotIfPropertyValue(
                 message = "As 'Herbarium voucher' is NO, 'Herbarium' must be empty",
                 criteriaProperty = "isHerbariumVoucher",
                 criteriaValues = {"false"},
