@@ -1,9 +1,11 @@
 {
   "name": "malariaplantdb",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Database of medicinal plants against malaria",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "node-sass": "^4.7.2"
+  },
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-autoprefixer": "2.2.0",
