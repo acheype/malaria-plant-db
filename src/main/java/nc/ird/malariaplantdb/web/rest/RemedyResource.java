@@ -93,7 +93,7 @@ public class RemedyResource {
     public ResponseEntity<List<Remedy>> getAllRemedys(Pageable pageable)
         throws URISyntaxException {
         Page<Remedy> page = remedyRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/remedys");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/remedys");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

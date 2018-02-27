@@ -90,7 +90,7 @@ public class SpeciesResource {
     public ResponseEntity<List<Species>> getAllSpecies(Pageable pageable)
         throws URISyntaxException {
         Page<Species> page = speciesRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/species");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/species");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

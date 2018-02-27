@@ -6,6 +6,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -42,6 +44,7 @@ public class InVivoPharmaco implements Serializable, Comparable<InVivoPharmaco> 
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
+    @Field(type = FieldType.Nested)
     private Remedy remedy;
 
     @NotNull

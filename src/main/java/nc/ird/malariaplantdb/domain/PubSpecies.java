@@ -5,6 +5,8 @@ import nc.ird.malariaplantdb.domain.util.comparator.PubSpeciesComparator;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -40,6 +42,7 @@ public class PubSpecies implements Serializable, Comparable<PubSpecies> {
 
     @NotNull
     @ManyToOne
+    @Field(type = FieldType.Nested)
     private Species species = new Species();
 
     @NotNull

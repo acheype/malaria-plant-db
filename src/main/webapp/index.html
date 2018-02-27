@@ -29,10 +29,8 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-3 vertical-align">
                 <a class="mpdbc-title" href="#/">Malaria Plant DB Community</a>
-            </div>
-            <!-- comments for vertical align
-                         -->
-            <div class="col-xs-12 col-sm-12 col-md-5 vertical-align footer-centre">
+            </div><!-- comments for vertical align
+         --><div class="col-xs-12 col-sm-12 col-md-5 vertical-align footer-centre">
                     <span><ul class="footer-links">
                         <li><a href="#"><span class="glyphicon glyphicon-copyright-mark"></span>&nbsp;&nbsp;<span>Imprint</span></a>
                         </li>
@@ -41,8 +39,10 @@
                     </ul></span>
                     <span id="contact">
                         <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b">
-                            <a href="#" title="Send a mail to the administrators" class="hi-icon hi-icon-mobile"><span
-                            class="icon-mail"></span></a>
+                            <a ng-href="mailto:'eric.deharo@ird.fr,genevieve.bourdy@ird.fr'" title="Send a mail to the administrators" class="hi-icon hi-icon-mobile">
+                                <!--<span class="icon-mail"></span>-->
+                                <span class="glyphicon glyphicon-envelope"></span>
+                            </a>
                         </div>
                     </span>
                     <!--<span>-->
@@ -191,6 +191,11 @@
     <script src="scripts/app/database/database-detail.controller.js"></script>
     <script src="scripts/app/database/database.controller.js"></script>
     <script src="scripts/app/database/database.js"></script>
+    <script src="scripts/app/dataentry/dataentry.js"></script>
+    <script src="scripts/app/dataentry/howtoenterdata/howtoenterdata.controller.js"></script>
+    <script src="scripts/app/dataentry/howtoenterdata/howtoenterdata.js"></script>
+    <script src="scripts/app/dataentry/howtoparticipate/howtoparticipate.controller.js"></script>
+    <script src="scripts/app/dataentry/howtoparticipate/howtoparticipate.js"></script>
     <script src="scripts/app/entities/author/author-detail.controller.js"></script>
     <script src="scripts/app/entities/author/author-dialog.controller.js"></script>
     <script src="scripts/app/entities/author/author.controller.js"></script>

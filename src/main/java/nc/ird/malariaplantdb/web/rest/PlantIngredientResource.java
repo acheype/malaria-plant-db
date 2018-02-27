@@ -90,7 +90,7 @@ public class PlantIngredientResource {
     public ResponseEntity<List<PlantIngredient>> getAllPlantIngredients(Pageable pageable)
         throws URISyntaxException {
         Page<PlantIngredient> page = plantIngredientRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/plantIngredients");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/plantIngredients");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

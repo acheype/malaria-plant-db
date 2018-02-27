@@ -95,7 +95,7 @@ public class CompilerResource {
     public ResponseEntity<List<Compiler>> getAllCompilers(Pageable pageable)
         throws URISyntaxException {
         Page<Compiler> page = compilerRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/compilers");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/compilers");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

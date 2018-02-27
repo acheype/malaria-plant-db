@@ -97,7 +97,7 @@ public class InVivoPharmacoResource {
     public ResponseEntity<List<InVivoPharmaco>> getAllInVivoPharmacos(Pageable pageable)
         throws URISyntaxException {
         Page<InVivoPharmaco> page = inVivoPharmacoRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/inVivoPharmacos");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/inVivoPharmacos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

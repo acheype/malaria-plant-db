@@ -142,7 +142,7 @@ public class UserResource {
         List<ManagedUserDTO> managedUserDTOs = page.getContent().stream()
             .map(user -> new ManagedUserDTO(user))
             .collect(Collectors.toList());
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/user-management");
         return new ResponseEntity<>(managedUserDTOs, headers, HttpStatus.OK);
     }
 

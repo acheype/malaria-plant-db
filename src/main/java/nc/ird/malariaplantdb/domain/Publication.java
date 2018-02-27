@@ -1,11 +1,12 @@
 package nc.ird.malariaplantdb.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -52,6 +53,7 @@ public class Publication implements Serializable {
     @BatchSize(size = 100)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @SortNatural
+    @Field(type = FieldType.Nested)
     private SortedSet<Author> authors = new TreeSet<>();
 
     @NotNull
@@ -63,70 +65,87 @@ public class Publication implements Serializable {
     @NotNull
     @Size(max = 255)
     @Column(name = "title", length = 255, nullable = false)
+    @Field(type = FieldType.String)
     private String title;
 
     @Size(max = 255)
     @Column(name = "journal", length = 255)
+    @Field(type = FieldType.String)
     private String journal;
 
     @Size(max = 255)
     @Column(name = "pages", length = 255)
+    @Field(type = FieldType.String)
     private String pages;
 
     @Size(max = 255)
     @Column(name = "volume", length = 255)
+    @Field(type = FieldType.String)
     private String volume;
 
     @Size(max = 255)
     @Column(name = "nb_of_volumes", length = 255)
+    @Field(type = FieldType.String)
     private String nbOfVolumes;
 
     @Size(max = 255)
     @Column(name = "number", length = 255)
+    @Field(type = FieldType.String)
     private String number;
 
     @Size(max = 255)
     @Column(name = "book_title", length = 255)
+    @Field(type = FieldType.String)
     private String bookTitle;
 
     @Size(max = 255)
     @Column(name = "publisher", length = 255)
+    @Field(type = FieldType.String)
     private String publisher;
 
     @Size(max = 255)
     @Column(name = "edition", length = 255)
+    @Field(type = FieldType.String)
     private String edition;
 
     @Size(max = 255)
     @Column(name = "conference_name", length = 255)
+    @Field(type = FieldType.String)
     private String conferenceName;
 
     @Size(max = 255)
     @Column(name = "conference_place", length = 255)
+    @Field(type = FieldType.String)
     private String conferencePlace;
 
     @Size(max = 255)
     @Column(name = "university", length = 255)
+    @Field(type = FieldType.String)
     private String university;
 
     @Size(max = 255)
     @Column(name = "institution", length = 255)
+    @Field(type = FieldType.String)
     private String institution;
 
     @Size(max = 255)
     @Column(name = "doi", length = 255)
+    @Field(type = FieldType.String)
     private String doi;
 
     @Size(max = 255)
     @Column(name = "pmid", length = 255)
+    @Field(type = FieldType.String)
     private String pmid;
 
     @Size(max = 255)
     @Column(name = "isbn", length = 255)
+    @Field(type = FieldType.String)
     private String isbn;
 
     @Size(max = 255)
     @Column(name = "url", length = 255)
+    @Field(type = FieldType.String)
     private String url;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -136,11 +155,13 @@ public class Publication implements Serializable {
         joinColumns = @JoinColumn(name = "publications_id", referencedColumnName = "ID"),
         inverseJoinColumns = @JoinColumn(name = "compilers_id", referencedColumnName = "ID"))
     @SortNatural
+//    @Field(type = FieldType.Nested)
     private SortedSet<Compiler> compilers = new TreeSet<>();
 
     @Lob
     @Type(type = "org.hibernate.type.StringClobType")
     @Column(name = "compilers_notes")
+    @Field(type = FieldType.String)
     private String compilersNotes;
 
     @Lob
@@ -148,28 +169,32 @@ public class Publication implements Serializable {
     @Column(name = "citation")
     private String citation;
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "publication")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @SortNatural
+//    @Field(type = FieldType.Nested)
     private SortedSet<PubSpecies> pubSpecies = new TreeSet<>();
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "publication")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @SortNatural
+    @Field(type = FieldType.Nested)
     private SortedSet<Ethnology> ethnologies = new TreeSet<>();
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "publication")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @SortNatural
+//    @Field(type = FieldType.Nested)
     private SortedSet<InVivoPharmaco> inVivoPharmacos = new TreeSet<>();
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "publication")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @SortNatural
+//    @Field(type = FieldType.Nested)
     private SortedSet<InVitroPharmaco> inVitroPharmacos = new TreeSet<>();
 
     public Long getId() {

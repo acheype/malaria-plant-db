@@ -10,43 +10,45 @@ $mpdbc-title-font: 'Cabin Condensed';
 $citation-font: 'EB Garamond';
 
 // Custom Mpdbc Icons
-@font-face {
-    font-family: 'mpdbc-icons';
-    src: url('../styles/fonts/mpdbc-icons.eot?6n0q6m');
-    src: url('../styles/fonts/mpdbc-icons.eot?6n0q6m#iefix') format('embedded-opentype'),
-    url('../styles/fonts/mpdbc-icons.ttf?6n0q6m') format('truetype'),
-    url('../styles/fonts/mpdbc-icons.woff?6n0q6m') format('woff'),
-    url('../styles/fonts/mpdbc-icons.svg?6n0q6m#mpdbc-icons') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-[class^="icon-"], [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'mpdbc-icons' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-mail:before {
-    content: "\e902";
-}
-
-.icon-users:before {
-    content: "\e900";
-}
-
-.icon-twitter:before {
-    content: "\e901";
-}
+// not worked after deployment (minimize or other process on js files ?)
+//
+//@font-face {
+//    font-family: 'mpdbc-icons';
+//    src: url('../styles/fonts/mpdbc-icons.eot?6n0q6m');
+//    src: url('../styles/fonts/mpdbc-icons.eot?6n0q6m#iefix') format('embedded-opentype'),
+//    url('../styles/fonts/mpdbc-icons.ttf?6n0q6m') format('truetype'),
+//    url('../styles/fonts/mpdbc-icons.woff?6n0q6m') format('woff'),
+//    url('../styles/fonts/mpdbc-icons.svg?6n0q6m#mpdbc-icons') format('svg');
+//    font-weight: normal;
+//    font-style: normal;
+//}
+//
+//[class^="icon-"], [class*=" icon-"] {
+//    /* use !important to prevent issues with browser extensions that change fonts */
+//    font-family: 'mpdbc-icons' !important;
+//    speak: none;
+//    font-style: normal;
+//    font-weight: normal;
+//    font-variant: normal;
+//    text-transform: none;
+//    line-height: 1;
+//
+//    /* Better Font Rendering =========== */
+//    -webkit-font-smoothing: antialiased;
+//    -moz-osx-font-smoothing: grayscale;
+//}
+//
+//.icon-mail:before {
+//    content: "\e902";
+//}
+//
+//.icon-users:before {
+//    content: "\e900";
+//}
+//
+//.icon-twitter:before {
+//    content: "\e901";
+//}
 
 /* End custom mpdbc icons */
 
@@ -470,6 +472,42 @@ table a:not(.btn).email-link {
 /* En of forms part */
 
 /* Database part */
+#custom-search-input {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 0;
+}
+
+#custom-search-input .search-query {
+    padding-right: 3px;
+    padding-right: 4px \9;
+    padding-left: 3px;
+    padding-left: 4px \9;
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#custom-search-input button {
+    border: 0;
+    background: none;
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color:#D9230F;
+}
+
+.search-query:focus + button {
+    z-index: 3;
+}
 
 .pub-length {
     padding: 10px 0px;
@@ -686,6 +724,11 @@ h3 small {
 
 .right-buffer {
     margin-right: 10px;
+}
+
+.large-icon {
+    font-size: 1.8em;
+    vertical-align: middle;
 }
 
 /* End of database part */

@@ -43,6 +43,25 @@
                             &#xA0;<span>Community</span></a></li>
                     </ul>
                 </li>
+                <li ng-class="{active: $state.includes('dataentry')}" class="dropdown pointer">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        <span>
+                            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;
+                            <span class="hidden-sm">Data entry</span>
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ui-sref-active="active"><a ui-sref="howtoparticipate" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-asterisk"></span>
+                            &#xA0;<span>How to participate ?</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="howtoenterdata" data-toggle="collapse"
+                                                       data-target=".navbar-collapse.in"><span
+                            class="glyphicon glyphicon-asterisk"></span>
+                            &#xA0;<span>How to enter data ?</span></a></li>
+                    </ul>
+                </li>
                 <li ui-sref-active="active">
                     <a ui-sref="database" data-toggle="collapse" data-target=".navbar-collapse.in">
                         <span class="glyphicon glyphicon-grain"></span>&nbsp;

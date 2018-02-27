@@ -98,7 +98,7 @@ public class InVitroPharmacoResource {
     public ResponseEntity<List<InVitroPharmaco>> getAllInVitroPharmacos(Pageable pageable)
         throws URISyntaxException {
         Page<InVitroPharmaco> page = inVitroPharmacoRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/inVitroPharmacos");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/inVitroPharmacos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

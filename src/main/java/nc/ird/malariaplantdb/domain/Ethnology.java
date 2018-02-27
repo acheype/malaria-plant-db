@@ -6,6 +6,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -41,30 +43,36 @@ public class Ethnology implements Serializable, Comparable<Ethnology> {
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
+//    @Field(type = FieldType.Nested)
     private Remedy remedy;
 
     @NotNull
     @Lob
     @Type(type = "org.hibernate.type.StringClobType")
     @Column(name = "ethno_relevancy", nullable = false)
+    @Field(type = FieldType.String)
     private String ethnoRelevancy;
 
     @NotNull
     @Size(max = 255)
     @Column(name = "treatment_type", length = 255, nullable = false)
+    @Field(type = FieldType.String)
     private String treatmentType;
 
     @Lob
     @Type(type = "org.hibernate.type.StringClobType")
     @Column(name = "traditional_recipe_details")
+    @Field(type = FieldType.String)
     private String traditionalRecipeDetails;
 
     @Size(max = 255)
     @Column(name = "preparation_mode", length = 255)
+    @Field(type = FieldType.String)
     private String preparationMode;
 
     @Size(max = 255)
     @Column(name = "administration_route", length = 255)
+    @Field(type = FieldType.String)
     private String administrationRoute;
 
     public Long getId() {

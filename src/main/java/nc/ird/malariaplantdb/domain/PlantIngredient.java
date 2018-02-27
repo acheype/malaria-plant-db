@@ -6,6 +6,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -40,6 +42,7 @@ public class PlantIngredient implements Serializable, Comparable<PlantIngredient
 
     @NotNull
     @ManyToOne
+    @Field(type = FieldType.Nested)
     private Species species;
 
     @NotNull

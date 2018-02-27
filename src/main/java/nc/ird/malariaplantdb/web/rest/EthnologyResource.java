@@ -100,7 +100,7 @@ public class EthnologyResource {
     public ResponseEntity<List<Ethnology>> getAllEthnologies(Pageable pageable)
         throws URISyntaxException {
         Page<Ethnology> page = ethnologyRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/ethnologies");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/ethnologies");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

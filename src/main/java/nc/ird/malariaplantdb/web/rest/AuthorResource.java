@@ -94,7 +94,7 @@ public class AuthorResource {
         Page<Author> page = authorRepository.findAll(pageable);
         // eagerly load the association
         page.getContent().stream().forEach(author -> author.getPublication().getTitle());
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/authors");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/authors");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

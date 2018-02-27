@@ -1,9 +1,23 @@
 <div class="container well">
     <div ng-cloak>
-        <h3>Search</h3><br/>
+        <h3>Search</h3>
 
-        <div class="pub-length">{{pubSummaries.length}}
-            publication{{pubSummaries.length > 1 ? 's':''}} found</div>
+        <form name="searchForm" class="form-inline">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="search-query form-control" ng-model="searchQuery" id="searchQuery"
+                           placeholder="search" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-danger" ng-click="search()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+
+        <div class="pub-length">{{resultNb}}
+            publication{{resultNb > 1 ? 's':''}} found</div>
         <div class="pub-item" ng-repeat="pub in pubSummaries">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -43,7 +57,7 @@
                 remed{{keys(pub.remedies).length > 1 ? 'ies':'y'}} found</div>
         </div>
 
-        <nav>
+        <nav ng-if="resultNb > 20">
             <ul class="pagination">
                 <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
                 <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a>&lt;</a></li>

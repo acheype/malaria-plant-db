@@ -38,8 +38,10 @@
                     <td><small><span ng-bind-html="compiler.institutionAddress"/></small></td>
                     <td>
                         <a ng-href="mailto:'{{compiler.email}}'" ng-attr-title="Send a mail to {{compiler.given}}"
-                           class="email-link"><span
-                            class="icon-mail"></span></a>
+                           class="email-link">
+                            <!--<span class="icon-mail"></span>-->
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </a>
                     </td>
                 </tr>
                 </tbody>

@@ -1,5 +1,8 @@
 package nc.ird.malariaplantdb.service;
 
+import nc.ird.malariaplantdb.domain.*;
+import nc.ird.malariaplantdb.domain.Compiler;
+import nc.ird.malariaplantdb.repository.CompilerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
@@ -10,6 +13,14 @@ import java.util.List;
 
 @Service
 public class IndexerService {
+
+    private static final Class[] CLASSES_TO_INDEX = {Author.class, Compiler.class, Ethnology.class,
+        InVivoPharmaco.class, InVitroPharmaco.class, PlantIngredient.class, Publication.class, PubSpecies.class,
+        Remedy.class, Species.class, User.class};
+
+    @Autowired
+    CompilerRepository compilerRepository;
+
     private  static  final  String INDEX_NAME = "compiler";
     public static final double INDEX_COMMIT_SIZE = 100;
 
@@ -17,23 +28,24 @@ public class IndexerService {
 
     @Autowired
     ElasticsearchTemplate elasticsearchTemplate;
+
     public long bulkIndex() throws Exception {
         int counter = 0;
         try {
-            if (!elasticsearchTemplate.indexExists(INDEX_NAME)) {
-
-            } else {
-                elasticsearchTemplate.deleteIndex(INDEX_NAME);
+            if (elasticsearchTemplate.indexExists("compiler")) {
+                elasticsearchTemplate.deleteIndex("compiler");
             }
-            elasticsearchTemplate.createIndex(INDEX_NAME);
 
+            elasticsearchTemplate.createIndex("compiler");
+
+            List<Compiler> compilers = compilerRepository.findAll();
             List<IndexQuery> queries = new ArrayList<IndexQuery>();
 
-//            for (Car car : cars) {
+            for (Compiler compiler : compilers) {
                 IndexQuery indexQuery = new IndexQuery();
 //                indexQuery.setId(car.getId().toString());
 //                indexQuery.setSource(gson.toJson(car));
-                indexQuery.setIndexName(INDEX_NAME);
+                indexQuery.setIndexName("compiler");
                 queries.add(indexQuery);
                 if (counter % INDEX_COMMIT_SIZE == 0) {
                     elasticsearchTemplate.bulkIndex(queries);
@@ -41,7 +53,7 @@ public class IndexerService {
                     System.out.println("bulkIndex counter : " + counter);
                 }
                 counter++;
-//            }
+            }
             if (queries.size() > 0) {
                 elasticsearchTemplate.bulkIndex(queries);
             }

@@ -1,0 +1,284 @@
+<div class="container well" xmlns="http://www.w3.org/1999/html">
+    <div ng-cloak>
+        <h3 class="text-center">How to enter data ?</h3><br/><br/>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <p class="text-justify">Data must be previously compiled in a dedicated Excel file (one article/Excel file).</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <h4>Important</h4>
+                <ul>
+                    <li><strong style="color: red">When opening the Excel file, answer YES to the start-up question
+                        'enable the macros'.</strong>If not, you will not be able to enter data.</li>
+                    <li>Do not change the format of the cells (only the contents of the cells can be modified).</li>
+                    <li>Strictly respect the instructions from the yellow pop-up.</li>
+                    <li>If a cell is orange, it must be filled.</li>
+                    <li><strong style="color: red">Do not 'jump over' lines (no empty line between 2 lines).</strong></li>
+                    <li>Columns with the suffix * are mandatory.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <h5><em>1 - PUBLI</em> thumb</h5>
+                <p class="text-justify">This is the starting point of the database, interconnected with other thumbs.<br/>
+                    It is very important to respect the popup instructions. <br/>
+                    To make the compilation easier it is recommended to export the bibliography from MpDBc citation
+                    style for <a href="https://www.zotero.org/">Zotero</a>.
+                    <a href="/assets/files/MalariaPlantDB_Citation_Style.csl" download>Download the MpDBc citation
+                    style</a> and add it in your Zotero preferences.<br/><br/>
+                    <em>Entry type</em>: with the scroll down button, choose a document type.<br/>
+                    <em>Author</em>: copy paste the list of authors from the Zotero MPDBC edited bibliography.<br/>
+                    <em>Title</em>: copy-paste from the Zotero MPDBC edited bibliography.<br/>
+                    <em>journal</em>: use entire name of the journal, example 'Journal of Ethnopharmacology' no
+                    abbreviation as 'J Ethnopharmacol'<br/>
+                </p>
+                <p class="text-justify">
+                    The other columns are filled if data are available.
+                </p>
+                <p class="text-justify">
+                    <em>Compiler name</em>: full name of compiler (the person who has entered all data) must be
+                    noted. Last name first (family name), first name then (example: Fonda, Jane).<br/>
+                    <em>Note from compiler</em>: after entering data, the compiler should make a brief
+                    appreciative comment on the scientific quality of the publication (this is optional).
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <h5><em>2 - SPECIES</em> sheet</h5>
+                <p class="text-justify">
+                    <em>Publication title</em>: use the scroll down list or copy-paste the publication title.<br/>
+                    <em>Species name in publication</em>: write (copy-paste) the Latin binomial of species exactly as
+                    indicated in the publication.<br/>
+                    <em>Species</em>: check the Latin binomial as written in publication on the Internet website
+                    <a href="http://www.theplantlist.org/">The Plant List</a>. Check if it is correctly spelled and
+                    valid. If not, enter correct actualized full Latin binomial (with authors name). If the Latin
+                    binomial is correct in the publication, repeat it in this column. If the Latin binomial as spelled
+                    in the publication does not exist in the PLANT LIST, DO NOT register this species.<br/>
+                    <em>Herbarium</em>: if a herbarium sample has been collected and deposited in a herbarium, mark
+                    'yes' and note the herbarium name if indicated.<br/>
+                    The other columns are filled if data are available.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <h5><em>3 - PLANT INGREDIENTS</em> sheet</h5>
+                <p class="text-justify">
+                    <em>Publication title</em>: use the dropdown list or copy-paste the publication title.<br/>
+                    <em>Plants ingredient</em>: write down species name (accepted full Latin binomial) and plant part(s)
+                    used in remedy (if reported in <em>4 - ETHNO</em> sheet) or in evaluated extracts (if reported in
+                    <em>5 - IN VIVO PHARMACO</em> and <em>6 - IN VITRO PHARMACO</em> sheet).
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <h5><em>4 - ETHNO</em> sheet</h5>
+                <p class="text-justify">
+                    <em>Publication title</em>: use the dropdown list or copy-paste the publication title.<br/>
+                    <em>Plant ingredient(s) used</em>: fill according to previously defined species + plants parts
+                    (cf. <em>3 - Plant ingredients</em> sheet).<br/>
+                    <em>Ethnopharmacological relevancy</em>: note ethnobotanical use of species or remedy as quoted in
+                    the publication (do not create new lines if many uses are reported, just put them all in one cell).
+                    If ethnobotanical use originates from another publication (cited in the compiled publication), note
+                    the complete publication reference (copy-paste from the bibliography of the publication) in the same
+                    cell.<br/>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <h5><em>5 - IN VIVO PHARMACO</em> sheet</h5>
+                <p class="text-justify">
+                    <em>Publication title</em>: use the dropdown list or copy-paste the publication title.<br/>
+                    <em>Plant ingredient(s) used</em>:  fill up according previously defined species + plants parts
+                    (cf. <em>3 - Plant ingredients</em> sheet).<br/>
+                    <em>Tested entity</em>: use the dropdown list and select extract, fraction, or pure compound. If
+                    pure compound, write the name (<em>Compound name</em> column).<br/>
+                    <em>Extract solvent</em>: in the case of an extract, use the dropdown list to select the solvent
+                    used for the extraction (if reported).<br/>
+                    <em>Additive product</em>: note the name of the product possibly added to entity tested.<br/>
+                    <em>Screening test</em>: use the dropdown list (see details below for the choice of the antimalarial
+                    test).<br/>
+                    Note on the choice <em>Toxicity</em> in the dropdown list <em>Screening test</em> column:
+                    <ul>
+                        <li>If an in vivo toxicity test has been performed, tick the <em>Toxicity</em> choice in the
+                            dropdown menu and fill the <em>LD50</em> column (if reported).</li>
+                        <li>If an in vivo toxicity test has been performed but different from a LD50, tick the
+                            <em>Toxicity</em> choice in the in the dropdown menu. Do not fill another column.</li>
+                    </ul>
+                    <strong>Note that the selected result is the best result obtained for a given <em>Screening test</em> and
+                    for a selection of <em>Plant(s) ingredient(s)</em> + <em>Tested entity</em>
+                    (extract/fraction/compound) + a given <em>Treatment route</em>.</strong>
+                </p>
+                <p class="text-justify">
+                    According to the best result, fill the next columns if available: <em>Dose for selected result</em>,
+                    <em>Inhibition for selected result</em>, <em>Survival percent for selected result</em>,
+                    <em>Survival time for selected result</em> and <em>ED50</em>.<br/>
+                    <em>Experimental observation from compiler(s)</em>: free column, to be filled if necessary by
+                    compiler with any relevant information about experimental procedure, analysis of results, etc.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <h5><em>6 - IN VITRO PHARMACO</em> sheet</h5>
+                <p class="text-justify">
+                    <em>Publication title</em>: use the dropdown list or copy-paste the publication title.<br/>
+                    <em>Plant ingredient(s) used</em> column:  fill according to previously defined species + plants
+                    parts (cf. <em>3 - Plant ingredients</em> sheet).<br/>
+                    <em>Tested entity</em>:  note if it's an extract, a fraction, or a pure compound. If pure
+                    compound, write the name ('Compound name' column).<br/>
+                    <em>Extract solvent</em>: in the case of an extract, use the dropdown list to select the
+                    solvent used for the extraction (if reported).<br/>
+                    <em>Additive product</em>: note the name of the product possibly added to entity tested.<br/>
+                    <em>Screening test</em>: see details below for the choice of the antimalarial test.<br/>
+                    Note on the choice <em>Toxicity</em> in <em>Screening test</em> column:
+                    <ul>
+                        <li>If an in vitro toxicity test has been performed and a selectivity index has been calculated,
+                            tick the <em>Toxicity</em> choice in the dropdown menu and fill the column
+                            <em>Selectivity Index</em> for selected result.</li>
+                        <li>If an in vitro toxicity test has been performed and a selectivity index has not been
+                            calculated, tick the <em>Toxicity</em> choice in the dropdown menu. Do not fill another
+                            column.</li>
+                    </ul>
+                    <strong>Note that selected result is the best result obtained in a given <em>Screening test</em> for
+                    a selection of <em>Plant(s) ingredient(s)</em> + <em>Tested entity</em>
+                    (extract/fraction/compound).</strong>
+                </p>
+                <p class="text-justify">
+                    According to the result selected, fill the next columns if available: <em>Concentration for
+                    selected result</em>, <em>Inhibition for selected result</em>, and <em>IC50 for selected
+                    result</em>. The <em>Measure method</em> column can also be filled.<br/>
+                    Note on the measure unit for in vitro results:
+                    <ul>
+                        <li>In case of an extract or fraction, results are given in µg/ml.</li>
+                        <li>In case of a pure compound, results are given in µmole/ml.</li>
+                    </ul>
+                    <em>Experimental observation from compiler(s)</em>: free column, to be filled if necessary by
+                    compiler with any relevant information about experimental procedure, analysis of results, etc.<br/>
+                </p>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <h4>Notes on screening tests</h4>
+                    <p class="text-justify">
+                        Protocols detailed below are standard references for specific screening tests and correspond to
+                        the dropdown menu of the <em>Screening test</em> column. The compiler must be aware that the protocol
+                        used in the paper must match with the protocols described below. If not, tick the 'Other' choice
+                        in the dropdown menu.
+                    </p>
+                </div>
+            </div>
+            <div class="text-center">
+                <img src="assets/images/plasmodium_cycle.jpg">
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <h5>A. IN VIVO</h5>
+                    <h6>1. Schizontocidal activity (activity on erythrocytic stages)</h6>
+                    <p class="text-justify">
+                        <em>Peter’s test, suppressive test (Evaluation of schizontocidal activity on early infection)
+                        </em>: Groups of mice are infected at D0, and then they are treated (IP, Oral, SC) from day
+                        0 to day 3. The suppressive effects is estimated on day 4, examining Giemsa-stained thin blood
+                        smears made from the tail of the treated mice and compared with a control group of mice treated
+                        with the solvent.
+                    </p>
+                    <p class="text-justify">
+                        <em>Rane test, curative test (schizontocidal activity in established infection)</em> :
+                        The 4-day test is modified so that the first treatment did not take place until 72 hours after
+                        the mice had been infected. Then mice are treated daily for x days and parasitaemias evaluated
+                        on each day of treatment. In addition, mortality is followed-up.
+                    </p>
+                    <p class="text-justify">
+                        <em>Repository activity/prophylactic activity, preventive activity</em> : Mice are
+                            treated (with the drugs) pre-infection, for X consecutive days (days 0–X). On day X+1, the mice
+                            are inoculated with Plasmodium (as in the 4-day test, Peter’s test) and on day 7 (72 hours
+                            post-infection) their parasitaemias are assessed.
+                    </p>
+                    <h6>2. Transmission inhibition test</h6>
+                    <p class="text-justify">
+                        <em>Gametocytes</em>: The effect on the formation of gametocytes (sexual forms, found in the
+                        host blood, who reproduce in the mosquito gut) is assessed by estimating the ratio between the
+                        number of gametocytes and the number of infected red blood cells.
+                    </p>
+                    <p class="text-justify">
+                        <em>Oocyst test</em>: Effect on the infectivity of gametocytes. One hour after having received
+                        drugs, mice with infected red blood cells are narcotized and placed, individually, over cages
+                        containing <em>Anopheles stephensi</em> females (for 45 min.). Ten days after the blood meal,
+                        mosquitoes are dissected and their mid-guts examined under the light microscope to assess oocyst
+                        presence and count their number (that means that gametocytes in infected blood were able to
+                        develop a sexual cycle in the mosquito gut).
+                    </p>
+                    <p class="text-justify">
+                        <em>Sporozoïte test</em>: Sporonticidal activity (Prophylactic activity – inhibition of the
+                        infection by sporozoites). Mice are treated before (x days before) infection by sporozoites.
+                        Mice are then challenged by exposing them to infectious mosquito bites on day 0. Parasite
+                        density is determined on Giemsa-stained thin blood smears, sampled from the tail of the mice at
+                        day 5,6,7… In some cases mice are directly infected by injection of suspension of sporozoites
+                        extracted from mosquito’s salivary glands. Drugs are administrated 2 hours after infection by
+                        sporozoites. Smears are made 48 hours after infection and every day until parasitaemia reaches
+                        2%.
+                    </p>
+                    <p class="text-justify">
+                        <em>Liver stages</em>: After administrating sporozoïtes, it is especially important to
+                        distinguish between genuine activity against the liver schizonts and action on first generation
+                        merozoites emerging from them; this is especially likely with a compound that possesses a
+                        significant repository action. However, pre-erythrocytic schizonts can also be sought directly
+                        in Giemsa-stained microscope sections of the livers of treated and control animals, but only if
+                        they receive exceptionally heavy sporozoite inocula. To differentiate between schizonticid
+                        activity (red blood stages) in the case of a long lasting compound and prophylactic activity
+                        (sporozoites and liver stages), groups infected with erythrocytic stages are added in the
+                        experiment and time to reach 2% is compared with sporozoites infected groups.
+                    </p>
+                    <h6>3. Toxicity</h6>
+                    <p class="text-justify">The median lethal dose, LD50 (abbreviation for "lethal dose, 50%"), LC50
+                        (lethal concentration, 50%) or LCt50 is a measure of the dose required to kill half the members
+                        of a tested population after a specified test duration.
+                    </p><br/>
+                    <h5>B. IN VITRO</h5>
+                    <h6>1. Schizontocidal activity (activity on erythrocytic stages)</h6>
+                    <p class="text-justify">
+                        <em>Erythrocyts</em>: Classically drugs are added to <em>P. falciparum</em> cultured in red
+                        blood cells and the activity of the drugs is determined by isotopic ([3H]-hypoxanthine),
+                        enzymatic (LDH), fluorometric (syber green) or visual (microscope) methods.
+                    </p>
+                    <p class="text-justify">
+                        <em>Liver stage</em>: Drugs are tested on human or rodent species of Plasmodium. Primary human
+                        (HH) or murine hepatocytes (MH), are infected with murine malaria or P. falciparum sporozoites.
+                        Compounds are added simultaneously with sporozoites at different concentrations. The culture
+                        medium is then replaced 3h after sporozoites inoculation and then on a daily basis. The
+                        inhibitory effect of the compound is quantified, after fluorescent immunostaining of the
+                        liver-schizonts with a mouse serum raised against PfHSP70 through fluorescence microscopic
+                        analysis (some variations are also described in the literature).
+                    </p>
+                    <h6>2. Transmission inhibition test</h6>
+                    <p class="text-justify">
+                        <em>Gametocyte</em>: <em>P. falciparum</em> cultures are submitted to different types of
+                        stimulation to generate gametocytes and gametocytes are counted with an optical microscope (some
+                        variations are also described in the literature) after the drug challenge.
+                        <em>Sporozoites</em>: They are collected from salivary glands and challenged with the drugs
+                        prior infecting hepatocytes (see liver stage).
+                    </p>
+                    <h6>3. Toxicity</h6>
+                    <p class="text-justify">
+                        Many Cell types can be used to screen for toxicity both by estimation of the basal functions of
+                        the cell or testing specialized cell functions. SI refers to the ratio of the toxic dose of the
+                        drug (or TC50) divided by the dose that leads to the desired pharmacological effect (IC50 in
+                        Plasmodium). The higher the SI, the higher is the selective antiplasmodial activity of a given
+                        extract or compound.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br/>
+    </div>
+</div>
