@@ -1,6 +1,6 @@
 {
   "name": "malariaplantdb",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Database of medicinal plants against malaria",
   "private": true,
   "dependencies": {

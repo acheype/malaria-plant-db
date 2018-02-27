@@ -2,7 +2,7 @@ version: '3'
 services:
     springboot-app:
         container_name: malariaplantdb-web
-        image: acheype/malariaplantdb-web:0.9.3
+        image: acheype/malariaplantdb-web:0.9.4
         ports:
             - "80:80"
         links:
